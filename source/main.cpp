@@ -33,9 +33,18 @@ namespace Colors {
 	Color S = C2D_Color32(102, 198, 92, 255);
 	Color T = C2D_Color32(180,  81,172, 255);
 	Color Z = C2D_Color32(239,  98, 77, 255);
+	// Ghost piece colors (just lower opacity)
+	Color IGhost = C2D_Color32( 65, 175,222, 100);
+	Color OGhost = C2D_Color32(247, 211, 62, 100);
+	Color LGhost = C2D_Color32(239, 149, 53, 100);
+	Color JGhost = C2D_Color32( 25, 131,191, 100);
+	Color SGhost = C2D_Color32(102, 198, 92, 100);
+	Color TGhost = C2D_Color32(180,  81,172, 100);
+	Color ZGhost = C2D_Color32(239,  98, 77, 100);
 }
 
 std::array<Color, 7> colors{Colors::I, Colors::O, Colors::L, Colors::J, Colors::S, Colors::T, Colors::Z};
+std::array<Color, 7> colorsGhost{Colors::IGhost, Colors::OGhost, Colors::LGhost, Colors::JGhost, Colors::SGhost, Colors::TGhost, Colors::ZGhost};
 
 void straightLine(float x, float y, float w, float h, float thick, Color col) {
 	C2D_DrawRectSolid(x - thick, y - thick, 0.0f, w + thick, h + thick, col);
@@ -138,6 +147,7 @@ class Piece {
 		Board& board;
 		float das;
 		Color color;
+		Color ghostColor;
 	public:
 		Vector2 pos;
 		PieceType type;
@@ -151,6 +161,7 @@ class Piece {
 			this->shape = shape;
 			this->type = type;
 			color = colors[type];
+			ghostColor = colorsGhost[type];
 			size = std::sqrt(shape.size());
 			pos = {std::floor(board.width / 2) - std::floor(size / 2), 0};
 			fallTimer = 0.0f;
@@ -159,17 +170,6 @@ class Piece {
 			dasTimer = {0.0f, 0.0f};
 			arr = 0.0f;
 			arrTimer = arr;
-		}
-
-		void draw(Vector2 origin, int tileSize) {
-			for (int y = 0; y < size; ++y) {
-				for (int x = 0; x < size; ++x) {
-					if (shape[y * size + x]) {
-						C2D_DrawRectSolid(origin.x + (pos.x + x) * tileSize, origin.y + (pos.y + y) * tileSize, 0.0f,
-											tileSize, tileSize, color);
-					}
-				}
-			}
 		}
 
 		void set() {
@@ -193,6 +193,23 @@ class Piece {
 				}
 			}
 			return false;
+		}
+
+		void draw(Vector2 origin, int tileSize) {
+			int ghostY = 0;
+			while (!collides(0, ghostY++)) {}
+			ghostY -= 2;
+
+			for (int y = 0; y < size; ++y) {
+				for (int x = 0; x < size; ++x) {
+					if (shape[y * size + x]) {
+						C2D_DrawRectSolid(origin.x + (pos.x + x) * tileSize, origin.y + (pos.y + y) * tileSize, 0.0f,
+											tileSize, tileSize, color);
+						C2D_DrawRectSolid(origin.x + (pos.x + x) * tileSize, origin.y + (pos.y + ghostY + y) * tileSize, 0.0f,
+											tileSize, tileSize, ghostColor);
+					}
+				}
+			}
 		}
 
 		bool move(Direction dir) {

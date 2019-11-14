@@ -15,6 +15,8 @@ using Color = u32;
 using PieceShape = std::vector<bool>;
 
 Color WHITE = C2D_Color32(255, 255, 255, 255);
+Color BLACK = C2D_Color32(  0,   0,   0, 255);
+Color GRIDBLACK = C2D_Color32(0, 0, 0, 100);
 
 struct Vector2 {
 	float x;
@@ -24,16 +26,20 @@ struct Vector2 {
 enum PieceType {I, O, L, J, S, T, Z, None};
 
 namespace Colors {
-	Color I = C2D_Color32(65, 175, 222, 255);
+	Color I = C2D_Color32( 65, 175,222, 255);
 	Color O = C2D_Color32(247, 211, 62, 255);
 	Color L = C2D_Color32(239, 149, 53, 255);
-	Color J = C2D_Color32(25, 131, 191, 255);
+	Color J = C2D_Color32( 25, 131,191, 255);
 	Color S = C2D_Color32(102, 198, 92, 255);
-	Color T = C2D_Color32(180, 81, 172, 255);
-	Color Z = C2D_Color32(239, 98, 77,  255);
+	Color T = C2D_Color32(180,  81,172, 255);
+	Color Z = C2D_Color32(239,  98, 77, 255);
 }
 
 std::array<Color, 7> colors{Colors::I, Colors::O, Colors::L, Colors::J, Colors::S, Colors::T, Colors::Z};
+
+void straightLine(float x, float y, float w, float h, float thick, Color col) {
+	C2D_DrawRectSolid(x - thick, y - thick, 0.0f, w + thick, h + thick, col);
+}
 
 class Board {
 	private:
@@ -68,14 +74,24 @@ class Board {
 		}
 		
 		void draw(Vector2 origin, int tileSize) {
-			// C2D_DrawRectLines??(origin.x, origin.y, width * tileSize, height * tileSize, WHITE);
+			const int outerThick = 2;
+			// top
+			straightLine(origin.x, origin.y, width * tileSize, 0, outerThick, BLACK);
+			// bottom
+			straightLine(origin.x, origin.y + height * tileSize, width * tileSize, 0, outerThick, BLACK);
+			// left
+			straightLine(origin.x, origin.y, 0, height * tileSize, outerThick, BLACK);
+			// right
+			straightLine(origin.x + width * tileSize, origin.y, 0, height * tileSize, outerThick, BLACK);
 
-			// for (int y = 1; y < height; ++y) {
-			//     DrawLine(origin.x, origin.y + y * tileSize, origin.x + width * tileSize, origin.y + y * tileSize, {255, 255, 255, 100});
-			// }
-			// for (int x = 1; x < width; ++x) {
-			//     DrawLine(origin.x + x * tileSize, origin.y, origin.x + x * tileSize, origin.y + height * tileSize, {255, 255, 255, 100});
-			// }
+			const int gridThick = 1;
+
+			for (int y = 1; y < height; ++y) {
+				straightLine(origin.x, origin.y + y * tileSize, width * tileSize, 0, gridThick, GRIDBLACK);
+			}
+			for (int x = 1; x < width; ++x) {
+				straightLine(origin.x + x * tileSize, origin.y, 0, height * tileSize, gridThick, GRIDBLACK);
+			}
 
 			for (int y = 0; y < height; ++y) {
 				for (int x = 0; x < width; ++x) {
@@ -337,11 +353,7 @@ int main() {
 	std::array<PieceType, 7> pieces{PieceType::I, PieceType::O, PieceType::L, PieceType::J, PieceType::S, PieceType::T, PieceType::Z};
 
 	Board board = Board(10, 20);
-	Vector2 origin = {SCREEN_WIDTH / 2 - (board.width / 2) * tileSize, 25};
-
-	for (int x = 3; x < board.width; ++x) {
-		board.set(x, 19, PieceType::T);
-	}
+	Vector2 origin = {SCREEN_WIDTH / 2 - (board.width / 2) * tileSize, 10};
 
 	Piece piece = Piece(board, shapes[PieceType::I], PieceType::I);
 	float dt = 1.0f / 60.0f; // hardcoded because im too lazy to use std::chrono

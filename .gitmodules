@@ -1,0 +1,4 @@
+[submodule "lib/3ds-cmake"]
+	path = lib/3ds-cmake
+	url = https://github.com/geniiii/3ds-cmake.git
+	branch = citro2d

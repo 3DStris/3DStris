@@ -1,0 +1,6 @@
+#pragma once
+
+#define _3DSTRIS_VERSION "0.2.0"
+#define _3DSTRIS_VERSION_MAJOR "0"
+#define _3DSTRIS_VERSION_MINOR "2"
+#define _3DSTRIS_VERSION_PATCH "0"

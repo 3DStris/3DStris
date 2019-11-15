@@ -47,7 +47,7 @@ int main() {
 
 	Board board = Board(10, 20);
 
-	const int tileSize = (SCREEN_HEIGHT - 10) / board.height;
+	const u32 tileSize = (SCREEN_HEIGHT - 10) / board.height;
 
 	Vector2 origin = {SCREEN_WIDTH / 2.0f -
 						  (board.width / 2.0f) * static_cast<float>(tileSize),
@@ -76,7 +76,7 @@ int main() {
 
 		piece.update(dt, kDown, kHeld);
 
-		if (piece.hasSet) {
+		if (piece.hasSet()) {
 			piece.reset(shapes[bag.front()], bag.front());
 			bag.pop_front();
 			if (bag.size() < min_bag) {

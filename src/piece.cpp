@@ -2,19 +2,21 @@
 #include <3dstris/piece.hpp>
 
 // Ching cong
-Piece::Piece(Board& board, PieceShape shape, PieceType type) : board(board) {
+Piece::Piece(Board& board, const PieceShape& shape, const PieceType type)
+	: board(board) {
 	reset(shape, type);
 }
 
-void Piece::reset(PieceShape shape, PieceType type) {
+void Piece::reset(const PieceShape& shape, const PieceType type) {
 	this->shape = shape;
 	this->type = type;
+
 	color = colors[type];
 	ghostColor = colorsGhost[type];
-	size = std::sqrt(shape.size());
+	size = u32(std::sqrt(shape.size()));
 	pos = {std::floor(board.width / 2.f) - std::floor(size / 2.f), 0};
 	fallTimer = 0.0f;
-	hasSet = false;
+	_hasSet = false;
 	das = 0.2f;	 //0.138f;
 	dasTimer = {0.0f, 0.0f};
 	arr = 0.0f;
@@ -22,19 +24,19 @@ void Piece::reset(PieceShape shape, PieceType type) {
 }
 
 void Piece::set() {
-	for (int y = 0; y < size; ++y) {
-		for (int x = 0; x < size; ++x) {
+	for (u32 y = 0; y < size; ++y) {
+		for (u32 x = 0; x < size; ++x) {
 			if (shape[y * size + x]) {
-				board.set(pos.x + x, pos.y + y, type);
+				board.set(u32(pos.x + x), u32(pos.y + y), type);
 			}
 		}
 	}
 	board.clearLines();
 }
 
-bool Piece::collides(int offX, int offY) {
-	for (int y = 0; y < size; ++y) {
-		for (int x = 0; x < size; ++x) {
+bool Piece::collides(const int offX, const int offY) const {
+	for (u32 y = 0; y < size; ++y) {
+		for (u32 x = 0; x < size; ++x) {
 			Vector2 offPos = {pos.x + x + offX, pos.y + y + offY};
 			if (shape[y * size + x] && (!board.inside(offPos) ||
 										board.get(offPos) != PieceType::None)) {
@@ -45,14 +47,14 @@ bool Piece::collides(int offX, int offY) {
 	return false;
 }
 
-void Piece::draw(Vector2 origin, int tileSize) {
+void Piece::draw(const Vector2 origin, const u32 tileSize) const {
 	int ghostY = 0;
-	while (!collides(0, ghostY++)) {
+	while (!collides(0, ++ghostY)) {
 	}
-	ghostY -= 2;
+	ghostY--;
 
-	for (int y = 0; y < size; ++y) {
-		for (int x = 0; x < size; ++x) {
+	for (u32 y = 0; y < size; ++y) {
+		for (u32 x = 0; x < size; ++x) {
 			if (shape[y * size + x]) {
 				C2D_DrawRectSolid(origin.x + (pos.x + x) * tileSize,
 								  origin.y + (pos.y + y) * tileSize, 0.0f,
@@ -65,10 +67,11 @@ void Piece::draw(Vector2 origin, int tileSize) {
 	}
 }
 
-void Piece::draw(Vector2 origin, int tileSize, PieceShape& shape, Color color) {
-	const int size = std::sqrt(shape.size());
-	for (int y = 0; y < size; ++y) {
-		for (int x = 0; x < size; ++x) {
+void Piece::draw(const Vector2 origin, const u32 tileSize,
+				 const PieceShape& shape, const Color color) {
+	const auto size = u32(std::sqrt(shape.size()));
+	for (u32 y = 0; y < size; ++y) {
+		for (u32 x = 0; x < size; ++x) {
 			if (shape[y * size + x]) {
 				C2D_DrawRectSolid(origin.x + x * tileSize,
 								  origin.y + y * tileSize, 0.0f, tileSize,
@@ -78,8 +81,8 @@ void Piece::draw(Vector2 origin, int tileSize, PieceShape& shape, Color color) {
 	}
 }
 
-bool Piece::move(Direction dir) {
-	float xOff = 0, yOff = 0;
+bool Piece::move(const Direction dir) {
+	int xOff = 0, yOff = 0;
 	switch (dir) {
 		case Direction::left:
 			xOff = -1;
@@ -102,11 +105,11 @@ bool Piece::move(Direction dir) {
 	return false;
 }
 
-void Piece::rotate(bool ccw) {
+void Piece::rotate(const bool ccw) {
 	PieceShape newShape;
 	newShape.resize(size * size, false);
-	for (int y = 0; y < size; ++y) {
-		for (int x = 0; x < size; ++x) {
+	for (u32 y = 0; y < size; ++y) {
+		for (u32 x = 0; x < size; ++x) {
 			if (shape[y * size + x]) {
 				if (ccw) {
 					newShape[(size - x - 1) * size + y] = true;
@@ -119,7 +122,7 @@ void Piece::rotate(bool ccw) {
 	shape = newShape;
 }
 
-void Piece::update(float dt, u32 kDown, u32 kHeld) {
+void Piece::update(const float dt, const u32 kDown, const u32 kHeld) {
 	fallTimer += dt;
 	if (fallTimer > 1.0f) {
 		fallTimer = 0.0f;
@@ -129,7 +132,7 @@ void Piece::update(float dt, u32 kDown, u32 kHeld) {
 	if (kDown & KEY_UP) {
 		while (move(Direction::down)) {
 		}
-		hasSet = true;
+		this->_hasSet = true;
 		set();
 		return;
 	}

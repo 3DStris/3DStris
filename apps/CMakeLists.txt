@@ -13,7 +13,6 @@ set(BANNER_LOCATION "${3dstris_SOURCE_DIR}/resources/banner.cgfx")
 set(RSF_LOCATION "${3dstris_SOURCE_DIR}/resources/3dstris.rsf")
 set(SOUND_LOCATION "${3dstris_SOURCE_DIR}/resources/sound.cwav")
 
-
 add_3dsx_target(3dstris-bin
 	${NAME} # Name
 	${DESCRIPTION} # Description
@@ -21,12 +20,16 @@ add_3dsx_target(3dstris-bin
 	${ICON_LOCATION} # Icon
 )
 
-add_cia_target(3dstris-bin
-	${RSF_LOCATION} # RSF
-	${BANNER_LOCATION} # Banner
-	${SOUND_LOCATION} # Sound
-	${NAME} # Name
-	${DESCRIPTION} # Description
-	${AUTHOR} # Author(s)
-	${ICON_LOCATION} # Icon
-)
+if (SMDHTOOL AND BANNERTOOL AND MAKEROM)
+	add_cia_target(3dstris-bin
+		${RSF_LOCATION} # RSF
+		${BANNER_LOCATION} # Banner
+		${SOUND_LOCATION} # Sound
+		${NAME} # Name
+		${DESCRIPTION} # Description
+		${AUTHOR} # Author(s)
+		${ICON_LOCATION} # Icon
+	)
+else()
+	message(WARNING "Not building CIA; could not find required tools.")
+endif()

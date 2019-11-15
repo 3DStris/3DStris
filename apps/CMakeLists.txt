@@ -11,7 +11,7 @@ set(ICON_LOCATION "${3dstris_SOURCE_DIR}/resources/icon.png")
 
 set(BANNER_LOCATION "${3dstris_SOURCE_DIR}/resources/banner.png")
 set(RSF_LOCATION "${3dstris_SOURCE_DIR}/resources/3dstris.rsf")
-set(SOUND_LOCATION "${3dstris_SOURCE_DIR}/resources/3dstris.cwav")
+set(SOUND_LOCATION "${3dstris_SOURCE_DIR}/resources/sound.cwav")
 
 
 add_3dsx_target(3dstris-main

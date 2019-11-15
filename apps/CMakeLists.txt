@@ -4,7 +4,7 @@ target_compile_options(3dstris-bin PRIVATE -mword-relocations -march=armv6k -mtu
 
 target_link_libraries(3dstris-bin PUBLIC 3dstris)
 
-set(NAME "3DSTris")
+set(NAME "3DStris")
 set(DESCRIPTION "Tetris for the 3DS")
 set(AUTHOR "Mat")
 set(ICON_LOCATION "${3dstris_SOURCE_DIR}/resources/icon.png")

@@ -4,14 +4,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <cmath>
-#include <vector>
 #include <array>
+#include <random>
+#include <algorithm>
+#include <deque>
 
 #include "board.hpp"
 #include "shapes.hpp"
 
-float randf() {
-	return static_cast<float>(rand()) / RAND_MAX;
+std::array<PieceType, 7> genBag(std::mt19937& rng) {
+	std::array<PieceType, 7> pieces{PieceType::I, PieceType::O, PieceType::L, PieceType::J, PieceType::S, PieceType::T, PieceType::Z};
+	std::shuffle(pieces.begin(), pieces.end(), rng);
+	return pieces;
 }
 
 int main() {
@@ -22,19 +26,30 @@ int main() {
 	C2D_Prepare();
 	consoleInit(GFX_BOTTOM, NULL);
 
+	std::random_device rd;
+	std::mt19937 bagRNG(rd());
+
 	// Create screens
 	C3D_RenderTarget* top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
 
 	Color colBg = C2D_Color32(34, 34, 34, 255);
 
-	const int tileSize = (SCREEN_HEIGHT - 10)/20;
-
-	std::array<PieceType, 7> pieces{PieceType::I, PieceType::O, PieceType::L, PieceType::J, PieceType::S, PieceType::T, PieceType::Z};
-
 	Board board = Board(10, 20);
+
+	const int tileSize = (SCREEN_HEIGHT - 10) / board.height;
+	
 	Vector2 origin = {SCREEN_WIDTH / 2.0f - (board.width / 2.0f) * static_cast<float>(tileSize), 10.0f};
 
-	Piece piece = Piece(board, shapes[PieceType::I], PieceType::I);
+	// bag
+	const int min_bag = 4;
+	std::deque<PieceType> bag;
+	for (PieceType p : genBag(bagRNG)) {
+		bag.push_back(p);
+	}
+	
+	Piece piece = Piece(board, shapes[bag.front()], bag.front());
+	bag.pop_front();
+
 	float dt = 1.0f / 60.0f; // hardcoded because im too lazy to use std::chrono
 	while (aptMainLoop()) {
 		hidScanInput();
@@ -48,8 +63,13 @@ int main() {
 		piece.update(dt, kDown, kHeld);
 
 		if (piece.hasSet) {
-			PieceType p = pieces[static_cast<int>(randf() * pieces.size())];
-			piece.reset(shapes[p], p);
+			piece.reset(shapes[bag.front()], bag.front());
+			bag.pop_front();
+			if (bag.size() < min_bag) {
+				for (PieceType p : genBag(bagRNG)) {
+					bag.push_back(p);
+				}
+			}
 		}
 		
 		// Render the scene
@@ -59,6 +79,13 @@ int main() {
 
 		board.draw(origin, tileSize);
 		piece.draw(origin, tileSize);
+
+		// draw bag
+		int y = 0;
+		for (PieceType p : bag) {
+			Piece::draw({origin.x + board.width * tileSize + 30, origin.y + y * tileSize}, tileSize, shapes[p], colors[p]);
+			y += std::sqrt(shapes[p].size()) + 1;
+		}
 
 		C3D_FrameEnd(0);
 	}

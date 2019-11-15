@@ -15,7 +15,7 @@ void Piece::reset(PieceShape shape, PieceType type) {
 	pos = {std::floor(board.width / 2.f) - std::floor(size / 2.f), 0};
 	fallTimer = 0.0f;
 	hasSet = false;
-	das = 0.138f;
+	das = 0.2f; //0.138f;
 	dasTimer = {0.0f, 0.0f};
 	arr = 0.0f;
 	arrTimer = arr;
@@ -56,6 +56,18 @@ void Piece::draw(Vector2 origin, int tileSize) {
 									tileSize, tileSize, color);
 				C2D_DrawRectSolid(origin.x + (pos.x + x) * tileSize, origin.y + (pos.y + ghostY + y) * tileSize, 0.0f,
 									tileSize, tileSize, ghostColor);
+			}
+		}
+	}
+}
+
+void Piece::draw(Vector2 origin, int tileSize, PieceShape& shape, Color color) {
+	const int size = std::sqrt(shape.size());
+	for (int y = 0; y < size; ++y) {
+		for (int x = 0; x < size; ++x) {
+			if (shape[y * size + x]) {
+				C2D_DrawRectSolid(origin.x + x * tileSize, origin.y + y * tileSize, 0.0f,
+								  tileSize, tileSize, color);
 			}
 		}
 	}

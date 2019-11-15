@@ -31,6 +31,8 @@ class Piece {
 
 		void draw(Vector2 origin, int tileSize);
 
+		static void draw(Vector2 origin, int tileSize, PieceShape& shape, Color color);
+
 		bool move(Direction dir);
 
 		void rotate(bool ccw);

@@ -149,32 +149,32 @@ AccessControlInfo:
    - fs:USER
    - gsp::Gpu
    - hid:USER
-   - ndm:u
-   - pxi:dev
+  # - ndm:u
+  # - pxi:dev
    - APT:U
    - ac:u
-   - act:u
-   - am:net
-   - boss:U
-   - cam:u
-   - cecd:u
-   - csnd:SND
-   - frd:u
-   - http:C
-   - ir:USER
-   - ir:u
-   - ir:rst
-   - ldr:ro
-   - mic:u
-   - news:u
-   - nfc:u
-   - nim:aoc
-   - nwm::UDS
-   - ptm:u
-   - qtm:u
+  # - act:u
+  # - am:net
+  # - boss:U
+  # - cam:u
+  # - cecd:u
+  # - csnd:SND
+  # - frd:u
+  # - http:C
+  # - ir:USER
+  # - ir:u
+  # - ir:rst
+  # - ldr:ro
+  # - mic:u
+  # - news:u
+  # - nfc:u
+  # - nim:aoc
+  # - nwm::UDS
+  - ptm:u
+  # - qtm:u
    - soc:U
-   - ssl:C
-   - y2r:u
+  # - ssl:C
+  # - y2r:u
 
 
 SystemControlInfo:

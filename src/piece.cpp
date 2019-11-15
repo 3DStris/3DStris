@@ -134,8 +134,8 @@ void Piece::update(float dt, u32 kDown, u32 kHeld) {
 		return;
 	}
 
-	dasTimer.x = kHeld & KEY_LEFT ? dasTimer.x + dt : 0.0f;
-	dasTimer.y = kHeld & KEY_RIGHT ? dasTimer.y + dt : 0.0f;
+	dasTimer.x = (kHeld & KEY_LEFT) ? dasTimer.x + dt : 0.0f;
+	dasTimer.y = (kHeld & KEY_RIGHT) ? dasTimer.y + dt : 0.0f;
 
 	bool moved = false;
 

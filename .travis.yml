@@ -32,5 +32,9 @@ deploy:
       - "build/apps/3dstris-bin"
       - "build/apps/3dstris-bin.3dsx"
       - "build/apps/3dstris-bin.cia"
+  branches:
+      only:
+        - master
+        - travis-releases
   on:
     repo: geniiii/3DStris

@@ -38,7 +38,6 @@ class Piece {
 	Color color;
 	Color ghostColor;
 	PieceShape shape;
-	u32 size;
 
 	float fallTimer;
 	// Vector2 as they need one for left and right

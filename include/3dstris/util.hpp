@@ -10,7 +10,6 @@ constexpr auto SCREEN_HEIGHT = 240;
 
 using u32 = uint32_t;
 using Color = u32;
-using PieceShape = std::vector<bool>;
 
 const C2D_TextBuf text_buf = C2D_TextBufNew(256);
 

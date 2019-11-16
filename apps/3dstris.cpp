@@ -117,12 +117,12 @@ int main() {
 			Piece::draw({origin.x + board.width * tileSize + 30,
 						 origin.y + y * tileSize},
 						tileSize, shapes[p], colors[p]);
-			y += u32(std::sqrt(shapes[p].size()) + 1);
+			y += shapes[p].size + 1;
 		}
 
 		// draw held piece
 		if (hold != PieceType::None) {
-			Piece::draw({origin.x - u32(std::sqrt(shapes[hold].size()) + 1) * tileSize, origin.y},
+			Piece::draw({origin.x - (shapes[hold].size + 1) * tileSize, origin.y},
 						tileSize, shapes[hold], colors[hold]);
 		}
 

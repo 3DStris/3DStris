@@ -17,11 +17,10 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 
 	color = colors[type];
 	ghostColor = colorsGhost[type];
-	size = u32(std::sqrt(shape.size()));
-	pos = {std::floor(board.width / 2.f) - std::floor(size / 2.f), 0};
+	pos = {std::floor(board.width / 2.f) - std::floor(shape.size / 2.f), 0};
 	fallTimer = 0.0f;
 	_hasSet = false;
-	das = 0.2f;	 //0.138f;
+	das = 0.2f;
 	dasTimer = {0.0f, 0.0f};
 	arr = 0.0f;
 	arrTimer = arr;
@@ -32,9 +31,9 @@ void Piece::reset(const PieceType type) {
 }
 
 void Piece::set() {
-	for (u32 y = 0; y < size; ++y) {
-		for (u32 x = 0; x < size; ++x) {
-			if (shape[y * size + x]) {
+	for (u32 y = 0; y < shape.size; ++y) {
+		for (u32 x = 0; x < shape.size; ++x) {
+			if (shape.shape[y * shape.size + x]) {
 				board.set(u32(pos.x + x), u32(pos.y + y), type);
 			}
 		}
@@ -43,10 +42,10 @@ void Piece::set() {
 }
 
 bool Piece::collides(const int offX, const int offY) const {
-	for (u32 y = 0; y < size; ++y) {
-		for (u32 x = 0; x < size; ++x) {
+	for (u32 y = 0; y < shape.size; ++y) {
+		for (u32 x = 0; x < shape.size; ++x) {
 			Vector2 offPos = {pos.x + x + offX, pos.y + y + offY};
-			if (shape[y * size + x] && (!board.inside(offPos) ||
+			if (shape.shape[y * shape.size + x] && (!board.inside(offPos) ||
 										board.get(offPos) != PieceType::None)) {
 				return true;
 			}
@@ -61,9 +60,9 @@ void Piece::draw(const Vector2 origin, const u32 tileSize) const {
 	}
 	ghostY--;
 
-	for (u32 y = 0; y < size; ++y) {
-		for (u32 x = 0; x < size; ++x) {
-			if (shape[y * size + x]) {
+	for (u32 y = 0; y < shape.size; ++y) {
+		for (u32 x = 0; x < shape.size; ++x) {
+			if (shape.shape[y * shape.size + x]) {
 				C2D_DrawRectSolid(origin.x + (pos.x + x) * tileSize,
 								  origin.y + (pos.y + y) * tileSize, 0.0f,
 								  tileSize, tileSize, color);
@@ -77,10 +76,9 @@ void Piece::draw(const Vector2 origin, const u32 tileSize) const {
 
 void Piece::draw(const Vector2 origin, const u32 tileSize,
 				 const PieceShape& shape, const Color color) {
-	const auto size = u32(std::sqrt(shape.size()));
-	for (u32 y = 0; y < size; ++y) {
-		for (u32 x = 0; x < size; ++x) {
-			if (shape[y * size + x]) {
+	for (u32 y = 0; y < shape.size; ++y) {
+		for (u32 x = 0; x < shape.size; ++x) {
+			if (shape.shape[y * shape.size + x]) {
 				C2D_DrawRectSolid(origin.x + x * tileSize,
 								  origin.y + y * tileSize, 0.0f, tileSize,
 								  tileSize, color);
@@ -115,14 +113,15 @@ bool Piece::move(const Direction dir) {
 
 void Piece::rotate(const bool ccw) {
 	PieceShape newShape;
-	newShape.resize(size * size, false);
-	for (u32 y = 0; y < size; ++y) {
-		for (u32 x = 0; x < size; ++x) {
-			if (shape[y * size + x]) {
+	newShape.shape.resize(shape.size * shape.size, false);
+	newShape.size = shape.size;
+	for (u32 y = 0; y < shape.size; ++y) {
+		for (u32 x = 0; x < shape.size; ++x) {
+			if (shape.shape[y * shape.size + x]) {
 				if (ccw) {
-					newShape[(size - x - 1) * size + y] = true;
+					newShape.shape[(shape.size - x - 1) * shape.size + y] = true;
 				} else {
-					newShape[x * size + size - y - 1] = true;
+					newShape.shape[x * shape.size + shape.size - y - 1] = true;
 				}
 			}
 		}

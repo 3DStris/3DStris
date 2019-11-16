@@ -1,0 +1,25 @@
+sudo: required
+dist: bionic
+
+language: cpp
+cache: ccache
+
+matrix:
+  include:
+    - os: linux
+      env: BUILD_TYPE=Release
+    - os: linux
+      env: BUILD_TYPE=Debug
+
+before_install:
+  - ./.travis/install-devkitpro.sh
+  - source /etc/profile.d/devkit-env.sh
+  - ./.travis/install-makerom.sh
+  - ./.travis/install-bannertool.sh
+
+script:
+  - mkdir -p build && cd build
+  - cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} ..
+  - sudo make -j$(nproc)
+  
+  - ccache -s

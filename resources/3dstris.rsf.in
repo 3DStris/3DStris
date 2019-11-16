@@ -11,6 +11,11 @@ TitleInfo:
   Category                : Application
   UniqueId                : @TITLE_ID@
 
+CardInfo:
+  MediaSize              : 128MB # 128MB / 256MB / 512MB / 1GB / 2GB / 4GB / 8GB / 16GB / 32GB
+  MediaType              : Card1 # Card1 / Card2
+  CardDevice             : None # NorFlash (Pick this if you use savedata) / None
+
 Option:
   UseOnSD                 : true # true if App is to be installed to SD
   FreeProductCode         : true # Removes limitations on ProductCode
@@ -178,8 +183,8 @@ AccessControlInfo:
 
 
 SystemControlInfo:
-  SaveDataSize: 0K
-  RemasterVersion: B1.03.0
+  SaveDataSize: 0K # 128KB
+  RemasterVersion: 0
   StackSize: 0x40000
 
   # Modules that run services listed above should be included below

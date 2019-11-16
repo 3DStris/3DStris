@@ -25,6 +25,8 @@ script:
   - ccache -s
 
 before_deploy:
+    - mv $TRAVIS_BUILD_DIR/build/apps/3dstris-bin.3dsx $TRAVIS_BUILD_DIR/build/apps/3dstris.3dsx
+    - mv $TRAVIS_BUILD_DIR/build/apps/3dstris-bin.cia $TRAVIS_BUILD_DIR/build/apps/3dstris.cia
     - export TRAVIS_TAG=${TRAVIS_TAG:-$(grep -Po "(\d+\.)+\d+" $TRAVIS_BUILD_DIR/include/3dstris/version.hpp)-$(git log --format=%h -1)}
 
 deploy:
@@ -32,8 +34,7 @@ deploy:
   edge: true
   skip_cleanup: true 
   file:
-    - "$TRAVIS_BUILD_DIR/build/apps/3dstris-bin"
-    - "$TRAVIS_BUILD_DIR/build/apps/3dstris-bin.3dsx"
-    - "$TRAVIS_BUILD_DIR/build/apps/3dstris-bin.cia"
+    - "$TRAVIS_BUILD_DIR/build/apps/3dstris.3dsx"
+    - "$TRAVIS_BUILD_DIR/build/apps/3dstris.cia"
   on:
     all_branches: true

@@ -9,8 +9,13 @@ set(DESCRIPTION "Tetris for the 3DS")
 set(AUTHOR "Mat")
 set(ICON_LOCATION "${3dstris_SOURCE_DIR}/resources/icon.png")
 
-set(BANNER_LOCATION "${3dstris_SOURCE_DIR}/resources/banner.cgfx")
+set(PRODUCT_CODE "CTR-B-3RIS")
+set(TITLE_ID "0xED474")
 set(RSF_LOCATION "${3dstris_SOURCE_DIR}/resources/3dstris.rsf")
+configure_file("${3dstris_SOURCE_DIR}/resources/3dstris.rsf.in"
+			   "${RSF_LOCATION}")
+
+set(BANNER_LOCATION "${3dstris_SOURCE_DIR}/resources/banner.cgfx")
 set(SOUND_LOCATION "${3dstris_SOURCE_DIR}/resources/sound.cwav")
 
 add_3dsx_target(3dstris-bin

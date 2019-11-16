@@ -1,3 +1,10 @@
+# the commit's SHA1 (abbreviated to 7 characters), and whether the building workspace was dirty or not
+execute_process(COMMAND
+  "${GIT_EXECUTABLE}" describe --match=NeVeRmAtCh --always --abbrev=7 --dirty
+  WORKING_DIRECTORY "${3dstris_SOURCE_DIR}"
+  OUTPUT_VARIABLE GIT_SHA1
+  ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
+
 configure_file("${3dstris_SOURCE_DIR}/include/3dstris/version.hpp.in"
 			   "${3dstris_SOURCE_DIR}/include/3dstris/version.hpp")
 

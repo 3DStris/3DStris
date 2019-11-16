@@ -30,9 +30,9 @@ int main() {
 	C2D_Prepare();
 	consoleInit(GFX_BOTTOM, nullptr);
 
-	char* version_text =
-		static_cast<char*>(malloc(1 + strlen(_3DSTRIS_VERSION)));
-	sprintf(version_text, "v%s", _3DSTRIS_VERSION);
+	char* version_text = static_cast<char*>(
+		malloc(1 + strlen(_3DSTRIS_VERSION) + strlen(_3DSTRIS_GIT_HASH)));
+	sprintf(version_text, "v%s-%s", _3DSTRIS_VERSION, _3DSTRIS_GIT_HASH);
 
 	C2D_Text version;
 	C2D_TextParse(&version, text_buf, version_text);

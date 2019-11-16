@@ -27,11 +27,11 @@ script:
 deploy:
   provider: releases
   api_key:
-    secure: AJPk4JbsK+Nqar/QBHW5VYHciGVAT7aHvJZW5bxJViKXqHviSBQ+MUbGCr2qkaxsAFTRPODBUSHCVGeT8DA6iqeWHRWapmCx2tNcxEDo/z+tUb9QZkyjzguwm3fXCnj/Jg68OO+Trf4Cuw+O2WDM3yld2DdHLPcK22i4L9QnEdmNINmxbWgJcoal6jcCIyOUyWStIHsxj+YH0/PgfdPYeBCV1d8K79E7cFmVQS2gE3pHw7j95XoC77k3/oEDFQzsvuft4vSx1rhmsOLuJR/IGF5Thdm9PRt8GseSiem5DLyJ0Adv4LxYU5uNU5ylflmX9fw2PG9/VcnO0jHN54pRYvKVO7w2cqR4KkZ6O/mpWpWNxobGUavYS1+MkBXJgY50GcWhH2sJ0a19gvkOU7ffAZ1GavdZkAs5AsOnzz3EWTbhPyLhwalXuSprB8bPxqE+46i0TRIDSqDsPmvSrpBv1uoxBiJr0SBDHDkNvmZWXeb9PmAWxdy55XMu+oRRDXIOi7ZHg4EGYoSA8uWLrDP7Ie1tDxhBuG8MOn9MwGYkUo7wfYWLsP/EJn4z7XHlDJjl0oU5GI4zA83Xh9JX9kIPEHWBJ3jO6Bem4mpTi9KSn3TvEWU/aeCBJCv8yc5IQDp4kwleWQ7lW4u9xipPncbKVaxzvCwuz9sL9941ldTFZEU=
+    secure: Yf/J76RMNVyO9jDV9jnNn2lMTdAYjZ4+VShpO0NFleYH8kJb5CniCN9JMVx/5nxeSuORiU9fy0Azawr7zLCXTfC65zdgvEhZsUJ35VstLh99v/mytuCF8Ms8nqmHGQsX4/5VRdZyW9P9UZ1EociKLYHQ7M/MtdI6meIzY8QrNvQAIdFMxiW4wVaBlvPReOgJDnnWZgD5E/Y6uTMzGJm3qngLWnbQhHpHnnQsrR0Ut8mZsaMejO4hQ0Dz5va8i7kaegjPtOeN2LiTd2As+kP2J/6c3HmjBOE8asMrdqx5HfGI8pd7bR2SM/NLKtzD7HSc8E1VfU76oVlJfFI9R8euuOx1TJRk8f+oAzPPSurqyc5xQajRpDu9hvvmsAQxurn4B6dZVDpcM8RUrZSgM8wTVoJw6295W6QvqRg2awOmJrSQsXvf4SsFwhZ54x0GWF5uVNExhOKRLCdJYYthfUAO07jqFhd/jX4WAi8Lfw8OXF8L/JjH2tyDpcuvYQRbvBqQvQYq51GoBQoB6S9qvR/+6ZLCz466M9OkaPGPJbGowym+LvDScHP8UPSD76aNNZiDOEkVv6t4CkUwjpI5FwNJfMOn2mjee3jbuEOVeNNcBcea7OjseDaPYFdQRt8VnSGRokzBDl9xz2zyjIGEcV1ITPQMzu+iw+HUqCDQIqKobr0=
   file:
-      - "build/apps/3dstris-bin"
-      - "build/apps/3dstris-bin.3dsx"
-      - "build/apps/3dstris-bin.cia"
+    - "build/apps/3dstris-bin"
+    - "build/apps/3dstris-bin.3dsx"
+    - "build/apps/3dstris-bin.cia"
   on:
     all_branches: true
     repo: geniiii/3DStris

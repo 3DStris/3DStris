@@ -30,9 +30,9 @@ int main() {
 	C2D_Prepare();
 	consoleInit(GFX_BOTTOM, nullptr);
 
-	char* version_text =
-		static_cast<char*>(malloc(1 + strlen(_3DSTRIS_VERSION)));
-	sprintf(version_text, "v%s", _3DSTRIS_VERSION);
+	char* version_text = static_cast<char*>(
+		malloc(1 + strlen(_3DSTRIS_VERSION) + strlen(_3DSTRIS_GIT_HASH)));
+	sprintf(version_text, "v%s-%s", _3DSTRIS_VERSION, _3DSTRIS_GIT_HASH);
 
 	C2D_Text version;
 	C2D_TextParse(&version, text_buf, version_text);
@@ -95,12 +95,12 @@ int main() {
 		piece.draw(origin, tileSize);
 
 		// draw bag
-		int y = 0;
+		u32 y = 0;
 		for (PieceType p : bag) {
 			Piece::draw({origin.x + board.width * tileSize + 30,
 						 origin.y + y * tileSize},
 						tileSize, shapes[p], colors[p]);
-			y += int(std::sqrt(shapes[p].size()) + 1);
+			y += u32(std::sqrt(shapes[p].size()) + 1);
 		}
 
 		C2D_DrawText(&version, C2D_WithColor, 1, 0, 0.5f, 0.5f, 0.5f,

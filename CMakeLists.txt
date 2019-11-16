@@ -41,6 +41,7 @@ _3dstris_option(BUILD_CIA "Whether or not to build a CIA" ON)
 message("=====================")
 
 include(Tools3DS)
+find_package(Git)
 find_package(CTRULIB REQUIRED)
 find_package(CITRO3D REQUIRED)
 find_package(CITRO2D REQUIRED)

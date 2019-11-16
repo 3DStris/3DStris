@@ -1,10 +1,10 @@
-sudo: required
 dist: bionic
+os: linux
 
 language: cpp
 cache: ccache
 
-matrix:
+jobs:
   include:
     - os: linux
       env: BUILD_TYPE=Release

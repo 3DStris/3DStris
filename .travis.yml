@@ -33,8 +33,5 @@ deploy:
       - "build/apps/3dstris-bin.3dsx"
       - "build/apps/3dstris-bin.cia"
   on:
-    branches:
-      only:
-        - master
-        - travis-releases
+    all_branches: true
     repo: geniiii/3DStris

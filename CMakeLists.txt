@@ -23,6 +23,23 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMake")
 endif()
 
+macro(_3dstris_option OPTION_NAME OPTION_TEXT OPTION_DEFAULT)
+    option(${OPTION_NAME} ${OPTION_TEXT} ${OPTION_DEFAULT})
+    if(DEFINED ENV{${OPTION_NAME}})
+        # Allow setting the option through an environment variable
+        set(${OPTION_NAME} $ENV{${OPTION_NAME}})
+    endif()
+    if(${OPTION_NAME})
+        add_definitions(-D${OPTION_NAME})
+    endif()
+    message(STATUS "  ${OPTION_NAME}: ${${OPTION_NAME}}")
+endmacro()
+
+message("3DStris CMake options")
+message("=====================")
+_3dstris_option(BUILD_CIA "Whether or not to build a CIA" ON)
+message("=====================")
+
 include(Tools3DS)
 find_package(CTRULIB REQUIRED)
 find_package(CITRO3D REQUIRED)

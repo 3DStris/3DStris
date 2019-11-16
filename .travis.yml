@@ -23,3 +23,14 @@ script:
   - sudo make -j$(nproc)
   
   - ccache -s
+
+deploy:
+  provider: releases
+  api_key:
+    secure: AJPk4JbsK+Nqar/QBHW5VYHciGVAT7aHvJZW5bxJViKXqHviSBQ+MUbGCr2qkaxsAFTRPODBUSHCVGeT8DA6iqeWHRWapmCx2tNcxEDo/z+tUb9QZkyjzguwm3fXCnj/Jg68OO+Trf4Cuw+O2WDM3yld2DdHLPcK22i4L9QnEdmNINmxbWgJcoal6jcCIyOUyWStIHsxj+YH0/PgfdPYeBCV1d8K79E7cFmVQS2gE3pHw7j95XoC77k3/oEDFQzsvuft4vSx1rhmsOLuJR/IGF5Thdm9PRt8GseSiem5DLyJ0Adv4LxYU5uNU5ylflmX9fw2PG9/VcnO0jHN54pRYvKVO7w2cqR4KkZ6O/mpWpWNxobGUavYS1+MkBXJgY50GcWhH2sJ0a19gvkOU7ffAZ1GavdZkAs5AsOnzz3EWTbhPyLhwalXuSprB8bPxqE+46i0TRIDSqDsPmvSrpBv1uoxBiJr0SBDHDkNvmZWXeb9PmAWxdy55XMu+oRRDXIOi7ZHg4EGYoSA8uWLrDP7Ie1tDxhBuG8MOn9MwGYkUo7wfYWLsP/EJn4z7XHlDJjl0oU5GI4zA83Xh9JX9kIPEHWBJ3jO6Bem4mpTi9KSn3TvEWU/aeCBJCv8yc5IQDp4kwleWQ7lW4u9xipPncbKVaxzvCwuz9sL9941ldTFZEU=
+  file:
+      - "build/apps/3dstris-bin"
+      - "build/apps/3dstris-bin.3dsx"
+      - "build/apps/3dstris-bin.cia"
+  on:
+    repo: geniiii/3DStris

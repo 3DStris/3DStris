@@ -1,4 +1,4 @@
-# 3DStris
+# 3DStris [![Build Status][travis-badge]][travis-link]
 Basic Tetris clone for the 3DS.
 
 <p float="left">
@@ -30,3 +30,5 @@ Binaries can be found in `build/apps/`.
 [devkitpro-setup]: https://www.3dbrew.org/wiki/Setting_up_Development_Environment
 [makerom-url]: https://github.com/jakcron/Project_CTR
 [bannertool-url]: https://github.com/Steveice10/bannertool
+[travis-badge]: https://travis-ci.org/3DStris/3DStris.svg?branch=master
+[travis-link]: https://travis-ci.org/3DStris/3DStris

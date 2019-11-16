@@ -1,13 +1,16 @@
 #pragma once
 
 #include <3dstris/util.hpp>
+#include <3dstris/shapes.hpp>
 
 class Board;
 class Piece {
    public:
 	Piece(Board& board, const PieceShape& shape, const PieceType type);
+	Piece(Board& board, const PieceType type);
 
 	void reset(const PieceShape& shape, const PieceType type);
+	void reset(const PieceType type);
 
 	void set();
 
@@ -23,6 +26,8 @@ class Piece {
 	bool hasSet() const { return _hasSet; }
 
 	void update(const float dt, const u32 kDown, const u32 kHeld);
+
+	PieceType getType();
 
    private:
 	Board& board;

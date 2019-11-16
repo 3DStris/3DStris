@@ -60,8 +60,11 @@ int main() {
 		bag.push_back(p);
 	}
 
-	Piece piece = Piece(board, shapes[bag.front()], bag.front());
+	Piece piece = Piece(board, bag.front());
 	bag.pop_front();
+
+	PieceType hold = PieceType::None;
+	bool hasHeld = false;
 
 	float dt =
 		1.0f / 60.0f;  // hardcoded because im too lazy to use std::chrono
@@ -77,12 +80,26 @@ int main() {
 		piece.update(dt, kDown, kHeld);
 
 		if (piece.hasSet()) {
-			piece.reset(shapes[bag.front()], bag.front());
+			hasHeld = false;
+			piece.reset(bag.front());
 			bag.pop_front();
 			if (bag.size() < min_bag) {
 				for (const auto& p : genBag(bagRNG)) {
 					bag.push_back(p);
 				}
+			}
+		}
+
+		if (!hasHeld && (kDown & KEY_X || kDown & KEY_A)) {
+			hasHeld = true;
+			if (hold == PieceType::None) {
+				hold = piece.getType();
+				piece.reset(bag.front());
+				bag.pop_front();
+			} else {
+				PieceType tmp = piece.getType();
+				piece.reset(hold);
+				hold = tmp;
 			}
 		}
 
@@ -103,6 +120,13 @@ int main() {
 			y += u32(std::sqrt(shapes[p].size()) + 1);
 		}
 
+		// draw held piece
+		if (hold != PieceType::None) {
+			Piece::draw({origin.x - u32(std::sqrt(shapes[hold].size()) + 1) * tileSize, origin.y},
+						tileSize, shapes[hold], colors[hold]);
+		}
+
+		// draw version
 		C2D_DrawText(&version, C2D_WithColor, 1, 0, 0.5f, 0.5f, 0.5f,
 					 Colors::I);
 

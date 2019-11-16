@@ -7,6 +7,10 @@ Piece::Piece(Board& board, const PieceShape& shape, const PieceType type)
 	reset(shape, type);
 }
 
+Piece::Piece(Board& board, const PieceType type) : Piece(board, shapes[type], type) {
+	// Uhh
+}
+
 void Piece::reset(const PieceShape& shape, const PieceType type) {
 	this->shape = shape;
 	this->type = type;
@@ -21,6 +25,10 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 	dasTimer = {0.0f, 0.0f};
 	arr = 0.0f;
 	arrTimer = arr;
+}
+
+void Piece::reset(const PieceType type) {
+	reset(shapes[type], type);
 }
 
 void Piece::set() {
@@ -180,4 +188,8 @@ void Piece::update(const float dt, const u32 kDown, const u32 kHeld) {
 		rotate(true);
 	if (kDown & KEY_B)
 		rotate(false);
+}
+
+PieceType Piece::getType() {
+	return type;
 }

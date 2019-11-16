@@ -24,13 +24,16 @@ script:
   
   - ccache -s
 
+before_deploy:
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+
 deploy:
   provider: releases
-  edge: true  
+  edge: true
+  skip_cleanup: true 
   file:
     - "build/apps/3dstris-bin"
     - "build/apps/3dstris-bin.3dsx"
     - "build/apps/3dstris-bin.cia"
   on:
     all_branches: true
-    repo: geniiii/3DStris

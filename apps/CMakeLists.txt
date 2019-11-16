@@ -20,7 +20,7 @@ add_3dsx_target(3dstris-bin
 	${ICON_LOCATION} # Icon
 )
 
-if (SMDHTOOL AND BANNERTOOL AND MAKEROM)
+if (BUILD_CIA AND SMDHTOOL AND BANNERTOOL AND MAKEROM)
 	add_cia_target(3dstris-bin
 		${RSF_LOCATION} # RSF
 		${BANNER_LOCATION} # Banner
@@ -30,6 +30,8 @@ if (SMDHTOOL AND BANNERTOOL AND MAKEROM)
 		${AUTHOR} # Author(s)
 		${ICON_LOCATION} # Icon
 	)
+elseif(NOT BUILD_CIA)
+	message("Not building CIA; BUILD_CIA: ${BUILD_CIA}")
 else()
 	message(WARNING "Not building CIA; could not find required tools.")
 endif()

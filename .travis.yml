@@ -7,8 +7,6 @@ cache: ccache
 jobs:
   include:
     - os: linux
-      env: BUILD_TYPE=Release
-    - os: linux
       env: BUILD_TYPE=Debug
 
 before_install:
@@ -23,3 +21,17 @@ script:
   - sudo make -j$(nproc)
   
   - ccache -s
+
+before_deploy:
+    - mv $TRAVIS_BUILD_DIR/build/apps/3dstris-bin.3dsx $TRAVIS_BUILD_DIR/build/apps/3dstris.3dsx
+    - mv $TRAVIS_BUILD_DIR/build/apps/3dstris-bin.cia $TRAVIS_BUILD_DIR/build/apps/3dstris.cia
+    - export TRAVIS_TAG=${TRAVIS_TAG:-$(grep -Po "(\d+\.)+\d+" $TRAVIS_BUILD_DIR/include/3dstris/version.hpp)-$(git log --format=%h -1)-$(date +'%Y%m%d%H%M%S')}
+
+deploy:
+  provider: releases
+  edge: true
+  skip_cleanup: true
+  prerelease: true
+  file:
+    - "$TRAVIS_BUILD_DIR/build/apps/3dstris.3dsx"
+    - "$TRAVIS_BUILD_DIR/build/apps/3dstris.cia"

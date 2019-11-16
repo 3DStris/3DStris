@@ -1,0 +1,17 @@
+* text=auto
+
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout.
+*.cpp text
+*.hpp text
+*.hpp.in text
+*.txt text
+*.rsf text eol=lf
+*.rsf.in text eol=lf
+*.md text
+
+# Denote all files that are truly binary and should not be modified.
+*.png binary
+*.cia binary
+*.cgfx binary
+*.cwav binary

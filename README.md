@@ -1,7 +1,10 @@
-<img src="screenshot.png" align="right" width="319px"/>
-
 # 3DStris
 Basic Tetris clone for the 3DS.
+
+<p float="left">
+	<img src="screenshot.png" width="400px"/>
+	<img src="banner.png" width="400px"/>
+</p>
 
 # Building
 ## Setup

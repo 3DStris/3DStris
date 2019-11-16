@@ -1,24 +1,29 @@
-# 3DStris (WIP)
+<img src="screenshot.png" align="right" width="319px"/>
 
-Basic tetris clone for the 3DS
-
-![3dstris screenshot](https://raw.githubusercontent.com/matcool/3DStris/master/screenshot.png)
+# 3DStris
+Basic Tetris clone for the 3DS.
 
 # Building
 ## Setup
-For building you'll need devkitPro ([how to install and setup for 3ds dev](https://www.3dbrew.org/wiki/Setting_up_Development_Environment)), CMake and these on your path: [bannertool](https://github.com/Steveice10/bannertool) and [makerom](https://github.com/jakcron/Project_CTR)
+For building [you'll need to set up devkitPro][devkitpro-setup], CMake >= 3.12 and the following tools in your `PATH`:
+- [bannertool][bannertool-url]
+- [makerom][makerom-url]
 
-Also make sure to recursive clone (needed for `lib/3ds-cmake`) :
+Make sure to clone recursively (required for `lib/3ds-cmake`):
 ```bash
-git clone https://github.com/matcool/3DStris --recursive
+git clone --recursive https://github.com/matcool/3DStris
 # Or if you've already cloned
 git submodule update --init
 ```
 ## Commands
-*On Windows you should run these in the devkitPro's shell `devkitPro/msys2/usr/bin/bash.exe`*
+*On Windows, the following commands should be run in devkitPro's shell `devkitPro/msys2/usr/bin/bash.exe`.*
 ```bash
 mkdir build && cd build
 cmake -G "Unix Makefiles" .. # Use "Unix Makefiles" as to avoid using MSVC on Windows
 make
 ```
-Binaries can be found on `build/apps/`
+Binaries can be found in `build/apps/`.
+
+[devkitpro-setup]: https://www.3dbrew.org/wiki/Setting_up_Development_Environment
+[makerom-url]: https://github.com/jakcron/Project_CTR
+[bannertool-url]: https://github.com/Steveice10/bannertool

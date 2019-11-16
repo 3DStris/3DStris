@@ -26,8 +26,7 @@ script:
 
 deploy:
   provider: releases
-  api_key:
-    secure: Yf/J76RMNVyO9jDV9jnNn2lMTdAYjZ4+VShpO0NFleYH8kJb5CniCN9JMVx/5nxeSuORiU9fy0Azawr7zLCXTfC65zdgvEhZsUJ35VstLh99v/mytuCF8Ms8nqmHGQsX4/5VRdZyW9P9UZ1EociKLYHQ7M/MtdI6meIzY8QrNvQAIdFMxiW4wVaBlvPReOgJDnnWZgD5E/Y6uTMzGJm3qngLWnbQhHpHnnQsrR0Ut8mZsaMejO4hQ0Dz5va8i7kaegjPtOeN2LiTd2As+kP2J/6c3HmjBOE8asMrdqx5HfGI8pd7bR2SM/NLKtzD7HSc8E1VfU76oVlJfFI9R8euuOx1TJRk8f+oAzPPSurqyc5xQajRpDu9hvvmsAQxurn4B6dZVDpcM8RUrZSgM8wTVoJw6295W6QvqRg2awOmJrSQsXvf4SsFwhZ54x0GWF5uVNExhOKRLCdJYYthfUAO07jqFhd/jX4WAi8Lfw8OXF8L/JjH2tyDpcuvYQRbvBqQvQYq51GoBQoB6S9qvR/+6ZLCz466M9OkaPGPJbGowym+LvDScHP8UPSD76aNNZiDOEkVv6t4CkUwjpI5FwNJfMOn2mjee3jbuEOVeNNcBcea7OjseDaPYFdQRt8VnSGRokzBDl9xz2zyjIGEcV1ITPQMzu+iw+HUqCDQIqKobr0=
+  edge: true  
   file:
     - "build/apps/3dstris-bin"
     - "build/apps/3dstris-bin.3dsx"

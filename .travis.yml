@@ -7,8 +7,6 @@ cache: ccache
 jobs:
   include:
     - os: linux
-      env: BUILD_TYPE=Release
-    - os: linux
       env: BUILD_TYPE=Debug
 
 before_install:
@@ -32,9 +30,10 @@ before_deploy:
 deploy:
   provider: releases
   edge: true
-  skip_cleanup: true 
+  skip_cleanup: true
+  prerelease: true
   file:
     - "$TRAVIS_BUILD_DIR/build/apps/3dstris.3dsx"
     - "$TRAVIS_BUILD_DIR/build/apps/3dstris.cia"
   on:
-    all_branches: true
+   all_branches: true

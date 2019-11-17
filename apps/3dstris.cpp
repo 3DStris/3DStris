@@ -46,7 +46,7 @@ int main() {
 	// Create screens
 	C3D_RenderTarget* top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
 
-	Color bg_color = C2D_Color32(34, 34, 34, 255);
+	Color bgColor = C2D_Color32(34, 34, 34, 255);
 
 	Board board = Board(10, 20);
 
@@ -56,13 +56,11 @@ int main() {
 		SCREEN_WIDTH / 2.0f - (board.width / 2.0f) * float(tileSize), 10.0f};
 
 	// bag
-	const int min_bag = 4;
-	std::deque<PieceType> bag;
-	for (const auto& p : genBag(bagRNG)) {
-		bag.push_back(p);
-	}
+	const int minBag = 4;
+	const auto& _bag = genBag(bagRNG);
+	std::deque<PieceType> bag(_bag.begin(), _bag.end());
 
-	Piece piece = Piece(board, bag.front());
+	Piece piece(board, bag.front());
 	bag.pop_front();
 
 	PieceType hold = PieceType::None;
@@ -85,7 +83,7 @@ int main() {
 			hasHeld = false;
 			piece.reset(bag.front());
 			bag.pop_front();
-			if (bag.size() < min_bag) {
+			if (bag.size() < minBag) {
 				for (const auto& p : genBag(bagRNG)) {
 					bag.push_back(p);
 				}
@@ -107,7 +105,7 @@ int main() {
 
 		// Render the scene
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-		C2D_TargetClear(top, bg_color);
+		C2D_TargetClear(top, bgColor);
 		C2D_SceneBegin(top);
 
 		board.draw(origin, tileSize);

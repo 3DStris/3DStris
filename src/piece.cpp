@@ -172,7 +172,6 @@ void Piece::rotate(const bool ccw) {
 	// all tests failed, don't rotate piece
 	shape = oldShape;
 	rotation = prevRotation;
-
 }
 
 void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {

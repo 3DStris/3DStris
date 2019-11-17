@@ -2,6 +2,7 @@
 
 #include <3dstris/shapes.hpp>
 #include <3dstris/util.hpp>
+#include <3dstris/colors.hpp>
 #include <3dstris/wallkicks.hpp>
 
 class Board;

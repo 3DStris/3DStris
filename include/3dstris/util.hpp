@@ -22,6 +22,11 @@ struct Vector2 {
 	float y;
 };
 
+struct Vector2d {
+	double x;
+	double y;
+};
+
 enum PieceType { I, O, L, J, S, T, Z, None };
 
 enum Direction { left, right, up, down };

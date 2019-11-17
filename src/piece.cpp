@@ -32,6 +32,8 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
   
 	arr = 0.0;
 	arrTimer = arr;
+
+	rotation = 0;
 }
 
 void Piece::reset(const PieceType type) {
@@ -121,6 +123,7 @@ bool Piece::move(const Direction dir) {
 }
 
 void Piece::rotate(const bool ccw) {
+	if (type == PieceType::O) return;
 	PieceShape newShape;
 	newShape.shape.resize(shape.size * shape.size, false);
 	newShape.size = shape.size;
@@ -136,7 +139,39 @@ void Piece::rotate(const bool ccw) {
 			}
 		}
 	}
+	PieceShape oldShape = shape;
 	shape = newShape;
+
+	int prevRotation = rotation;
+	rotation = MOD(rotation + (ccw ? -1 : 1), 4);
+
+	Wallkick wkData = type == PieceType::I ? Wallkicks::I : Wallkicks::others;
+
+	/*
+	each test is stored as {spawn->ccw, spawn->cw, cw->spawn, cw->180, 180->cw, 180->ccw, ccw->180, ccw->spawn}
+	considering spawn = 0, cw = 1, 180 = 2, ccw = 3
+	(aka add one when rotating clockwise, remove when counter clockwise, and always mod 4)
+	it becomes {0->3, 0->1, 1->0, 1->2, 2->1, 2->3, 3->2, 3->0}
+	its in that order so that:
+	[.., state->state after ccw, state->state after cw, ..]
+	which makes it easy to index by using (ccw being true if the current rotation is counter clockwise)
+	2 * prevRotation + (ccw ? 0 : 1)
+	*/
+
+	int testOffset = 2 * prevRotation + (ccw ? 0 : 1);
+	for (u32 test = 0; test < WK_TESTS; test++) {
+		int i = test * 16 + testOffset * 2;
+		int offX = wkData[i];
+		int offY = wkData[i + 1];
+		if (!collides(offX, offY)) {
+			pos.x += offX;
+			pos.y += offY;
+			return;
+		}
+	}
+	// all tests failed, don't rotate piece
+	shape = oldShape;
+	rotation = prevRotation;
 }
 
 void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {

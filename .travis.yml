@@ -25,13 +25,22 @@ script:
 before_deploy:
     - mv $TRAVIS_BUILD_DIR/build/apps/3dstris-bin.3dsx $TRAVIS_BUILD_DIR/build/apps/3dstris.3dsx
     - mv $TRAVIS_BUILD_DIR/build/apps/3dstris-bin.cia $TRAVIS_BUILD_DIR/build/apps/3dstris.cia
-    - export TRAVIS_TAG=${TRAVIS_TAG:-$(grep -Po "(\d+\.)+\d+" $TRAVIS_BUILD_DIR/include/3dstris/version.hpp)-$(git log --format=%h -1)-$(date +'%Y%m%d%H%M%S')}
+    - export TRAVIS_TAG=${TRAVIS_TAG:-$(grep -Po "(\d+\.)+\d+" $TRAVIS_BUILD_DIR/include/3dstris/version.hpp)-$(git rev-parse --short ${TRAVIS_COMMIT})}
+    - git config --local user.name "3dstris-releases"
+    - git config --local user.email "nobody@nobody.com"
+    - git tag $TRAVIS_TAG $TRAVIS_COMMIT
 
 deploy:
   provider: releases
+  tag_name: $TRAVIS_TAG
+
+  target_commitish: $TRAVIS_COMMIT
+
   edge: true
   skip_cleanup: true
-  prerelease: true
   file:
     - "$TRAVIS_BUILD_DIR/build/apps/3dstris.3dsx"
     - "$TRAVIS_BUILD_DIR/build/apps/3dstris.cia"
+
+branches:
+  only: master

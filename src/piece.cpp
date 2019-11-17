@@ -7,7 +7,8 @@ Piece::Piece(Board& board, const PieceShape& shape, const PieceType type)
 	reset(shape, type);
 }
 
-Piece::Piece(Board& board, const PieceType type) : Piece(board, shapes[type], type) {
+Piece::Piece(Board& board, const PieceType type)
+	: Piece(board, shapes[type], type) {
 	// Uhh
 }
 
@@ -20,15 +21,16 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 	color = colors[type];
 	ghostColor = colorsGhost[type];
 
-	fallTimer = 0.0f;
-	fallAfter = 1.0f;
-	sDropAfter = 0.05f;
-	setTimer = 0.0f;
-	setAfter = 1.0f;
+	fallTimer = 0.0;
+	fallAfter = 1.0;
+	sDropAfter = 0.05;
+	setTimer = 0.0;
+	setAfter = 1.0;
 
-	das = 0.2f;
-	dasTimer = {0.0f, 0.0f};
-	arr = 0.0f;
+	das = 0.2;
+	dasTimer = {0.0, 0.0};
+  
+	arr = 0.0;
 	arrTimer = arr;
 }
 
@@ -51,8 +53,9 @@ bool Piece::collides(const int offX, const int offY) const {
 	for (u32 y = 0; y < shape.size; ++y) {
 		for (u32 x = 0; x < shape.size; ++x) {
 			Vector2 offPos = {pos.x + x + offX, pos.y + y + offY};
-			if (shape.shape[y * shape.size + x] && (!board.inside(offPos) ||
-										board.get(offPos) != PieceType::None)) {
+			if (shape.shape[y * shape.size + x] &&
+				(!board.inside(offPos) ||
+				 board.get(offPos) != PieceType::None)) {
 				return true;
 			}
 		}
@@ -125,7 +128,8 @@ void Piece::rotate(const bool ccw) {
 		for (u32 x = 0; x < shape.size; ++x) {
 			if (shape.shape[y * shape.size + x]) {
 				if (ccw) {
-					newShape.shape[(shape.size - x - 1) * shape.size + y] = true;
+					newShape.shape[(shape.size - x - 1) * shape.size + y] =
+						true;
 				} else {
 					newShape.shape[x * shape.size + shape.size - y - 1] = true;
 				}
@@ -135,10 +139,10 @@ void Piece::rotate(const bool ccw) {
 	shape = newShape;
 }
 
-void Piece::update(const float dt, const u32 kDown, const u32 kHeld) {
+void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 	fallTimer += dt;
 	if (kDown & KEY_DOWN || fallTimer > ((kHeld & KEY_DOWN) ? sDropAfter : fallAfter)) {
-		fallTimer = 0.0f;
+		fallTimer = 0.0;
 		move(Direction::down);
 	}
 
@@ -149,7 +153,7 @@ void Piece::update(const float dt, const u32 kDown, const u32 kHeld) {
 			return;
 		}
 	} else {
-		setTimer = 0.0f;
+		setTimer = 0.0;
 	}
 
 	if (kDown & KEY_UP) {
@@ -160,19 +164,18 @@ void Piece::update(const float dt, const u32 kDown, const u32 kHeld) {
 		return;
 	}
 
-
-	dasTimer.x = (kHeld & KEY_LEFT) ? dasTimer.x + dt : 0.0f;
-	dasTimer.y = (kHeld & KEY_RIGHT) ? dasTimer.y + dt : 0.0f;
+	dasTimer.x = (kHeld & KEY_LEFT) ? dasTimer.x + dt : 0.0;
+	dasTimer.y = (kHeld & KEY_RIGHT) ? dasTimer.y + dt : 0.0;
 
 	bool moved = false;
 
 	if (dasTimer.x > das) {
-		if (arr == 0.0f) {
+		if (arr == 0.0) {
 			while (move(Direction::left)) {
 			}
 		} else {
 			arrTimer -= dt;
-			if (arrTimer <= 0.0f) {
+			if (arrTimer <= 0.0) {
 				move(Direction::left);
 				arrTimer = arr;
 			}
@@ -185,12 +188,12 @@ void Piece::update(const float dt, const u32 kDown, const u32 kHeld) {
 	}
 
 	if (dasTimer.y > das && !moved) {
-		if (arr == 0.0f) {
+		if (arr == 0.0) {
 			while (move(Direction::right)) {
 			}
 		} else {
 			arrTimer -= dt;
-			if (arrTimer <= 0.0f) {
+			if (arrTimer <= 0.0) {
 				move(Direction::right);
 				arrTimer = arr;
 			}

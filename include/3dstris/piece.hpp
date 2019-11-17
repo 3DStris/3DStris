@@ -1,7 +1,7 @@
 #pragma once
 
-#include <3dstris/util.hpp>
 #include <3dstris/shapes.hpp>
+#include <3dstris/util.hpp>
 
 class Board;
 class Piece {
@@ -25,7 +25,7 @@ class Piece {
 	bool collides(const int offX, const int offY) const;
 	bool hasSet() const;
 
-	void update(const float dt, const u32 kDown, const u32 kHeld);
+	void update(const double dt, const u32 kDown, const u32 kHeld);
 
 	PieceType getType();
 
@@ -39,16 +39,16 @@ class Piece {
 	Color ghostColor;
 	PieceShape shape;
 
-	float fallTimer; // timer that's between 0 and either fallAfter or dropTime
-	float fallAfter; // how much time it takes for the piece to fall
-	float sDropAfter; // replaces fallTimer when the soft drop button is held
-	float setTimer; // always 0 unless piece is colliding down, then it's incremented until it gets to setAfter
-	float setAfter; // time it takes for piece to set after it has been colliding down
+	double fallTimer; // timer that's between 0 and either fallAfter or dropTime
+	double fallAfter; // how much time it takes for the piece to fall
+	double sDropAfter; // replaces fallTimer when the soft drop button is held
+	double setTimer; // always 0 unless piece is colliding down, then it's incremented until it gets to setAfter
+	double setAfter; // time it takes for piece to set after it has been colliding down
 
-	float das;
+	double das;
 	// Vector2 as it needs one for left and right
-	Vector2 dasTimer;
+	Vector2d dasTimer;
 
-	float arr;
-	float arrTimer;
+	double arr;
+	double arrTimer;
 };

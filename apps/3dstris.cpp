@@ -124,8 +124,9 @@ int main() {
 
 		// draw held piece
 		if (hold != PieceType::None) {
-			Piece::draw({origin.x - (shapes[hold].size + 1) * tileSize, origin.y},
-						tileSize, shapes[hold], colors[hold]);
+			Piece::draw(
+				{origin.x - (shapes[hold].size + 1) * tileSize, origin.y},
+				tileSize, shapes[hold], colors[hold]);
 		}
 
 		// draw version

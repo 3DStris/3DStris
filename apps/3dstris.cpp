@@ -56,11 +56,9 @@ int main() {
 		SCREEN_WIDTH / 2.0f - (board.width / 2.0f) * float(tileSize), 10.0f};
 
 	// bag
-	const int min_bag = 4;
-	std::deque<PieceType> bag;
-	for (const auto& p : genBag(bagRNG)) {
-		bag.push_back(p);
-	}
+	const int upcoming = 5;
+	const auto _bag = genBag(bagRNG);
+	std::deque<PieceType> bag(_bag.begin(), _bag.end());
 
 	Piece piece = Piece(board, bag.front());
 	bag.pop_front();
@@ -85,7 +83,7 @@ int main() {
 			hasHeld = false;
 			piece.reset(bag.front());
 			bag.pop_front();
-			if (bag.size() < min_bag) {
+			if (bag.size() < upcoming) {
 				for (const auto& p : genBag(bagRNG)) {
 					bag.push_back(p);
 				}
@@ -114,18 +112,21 @@ int main() {
 		piece.draw(origin, tileSize);
 
 		// draw bag
-		u32 y = 0;
-		for (PieceType p : bag) {
-			Piece::draw({origin.x + board.width * tileSize + 30,
+		u32 y = 1;
+		for (u32 i = 0; i < upcoming; ++i) {
+			const auto& p = bag[i];
+			if (p == PieceType::I) --y;
+			Piece::draw({origin.x + (board.width + 1 + (p == PieceType::O ? 1 : 0)) * tileSize,
 						 origin.y + y * tileSize},
 						tileSize, shapes[p], colors[p]);
-			y += shapes[p].size + 1;
+			y += shapes[p].size;
+			if (p == PieceType::O) ++y;
 		}
 
 		// draw held piece
 		if (hold != PieceType::None) {
 			Piece::draw(
-				{origin.x - (shapes[hold].size + 1) * tileSize, origin.y},
+				{origin.x - (shapes[hold].size + 1) * tileSize, origin.y + tileSize},
 				tileSize, shapes[hold], colors[hold]);
 		}
 

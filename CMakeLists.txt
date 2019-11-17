@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.12...3.15)
 set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lib/3ds-cmake/DevkitArm3DS.cmake)
 
 set(3dstris_VERSION_MAJOR 0)
-set(3dstris_VERSION_MINOR 2)
-set(3dstris_VERSION_PATCH 1)
+set(3dstris_VERSION_MINOR 3)
+set(3dstris_VERSION_PATCH 0)
 set(3dstris_VERSION "${3dstris_VERSION_MAJOR}.${3dstris_VERSION_MINOR}.${3dstris_VERSION_PATCH}")
 
 project(

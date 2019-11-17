@@ -2,6 +2,7 @@
 
 #include <3dstris/shapes.hpp>
 #include <3dstris/util.hpp>
+#include <3dstris/wallkicks.hpp>
 
 class Board;
 class Piece {
@@ -34,6 +35,8 @@ class Piece {
 
 	PieceType type;
 	Vector2 pos;
+
+	int rotation;
 
 	Color color;
 	Color ghostColor;

@@ -5,6 +5,9 @@
 #include <array>
 #include <vector>
 
+// python-like modulo, which makes negative numbers wrap around
+#define MOD(a, b) ((b + ((a) % (b))) % b)
+
 constexpr auto SCREEN_WIDTH = 400;
 constexpr auto SCREEN_HEIGHT = 240;
 

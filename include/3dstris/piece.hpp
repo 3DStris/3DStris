@@ -1,7 +1,7 @@
 #pragma once
 
-#include <3dstris/util.hpp>
 #include <3dstris/shapes.hpp>
+#include <3dstris/util.hpp>
 
 class Board;
 class Piece {
@@ -25,7 +25,7 @@ class Piece {
 	bool collides(const int offX, const int offY) const;
 	bool hasSet() const { return _hasSet; }
 
-	void update(const float dt, const u32 kDown, const u32 kHeld);
+	void update(const double dt, const u32 kDown, const u32 kHeld);
 
 	PieceType getType();
 
@@ -39,14 +39,14 @@ class Piece {
 	Color ghostColor;
 	PieceShape shape;
 
-	float fallTimer;
+	double fallTimer;
 	// Vector2 as they need one for left and right
-	Vector2 dasTimer;
+	Vector2d dasTimer;
 
-	float arr;
-	float arrTimer;
+	double arr;
+	double arrTimer;
 
-	float das;
+	double das;
 
 	bool _hasSet;
 };

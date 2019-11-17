@@ -23,6 +23,9 @@ std::array<PieceType, 7> genBag(std::mt19937& rng) {
 int main() {
 	srand(u32(osGetTime()));
 
+	TickCounter tickCounter;
+	osTickCounterStart(&tickCounter);
+
 	// Init libs
 	gfxInitDefault();
 	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
@@ -49,9 +52,8 @@ int main() {
 
 	const u32 tileSize = (SCREEN_HEIGHT - 10) / board.height;
 
-	Vector2 origin = {SCREEN_WIDTH / 2.0f -
-						  (board.width / 2.0f) * static_cast<float>(tileSize),
-					  10.0f};
+	Vector2 origin = {
+		SCREEN_WIDTH / 2.0f - (board.width / 2.0f) * float(tileSize), 10.0f};
 
 	// bag
 	const int min_bag = 4;
@@ -66,8 +68,6 @@ int main() {
 	PieceType hold = PieceType::None;
 	bool hasHeld = false;
 
-	float dt =
-		1.0f / 60.0f;  // hardcoded because im too lazy to use std::chrono
 	while (aptMainLoop()) {
 		hidScanInput();
 
@@ -77,7 +77,9 @@ int main() {
 			break;	// goes back to hb menu
 		}
 
-		piece.update(dt, kDown, kHeld);
+		osTickCounterUpdate(&tickCounter);
+		double deltaTime = osTickCounterRead(&tickCounter) / 1000;
+		piece.update(deltaTime, kDown, kHeld);
 
 		if (piece.hasSet()) {
 			hasHeld = false;

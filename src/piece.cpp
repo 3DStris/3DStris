@@ -15,11 +15,17 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 	this->shape = shape;
 	this->type = type;
 
+	pos = {std::floor(board.width / 2.f) - std::floor(shape.size / 2.f), 0};
+
 	color = colors[type];
 	ghostColor = colorsGhost[type];
-	pos = {std::floor(board.width / 2.f) - std::floor(shape.size / 2.f), 0};
+
 	fallTimer = 0.0f;
-	_hasSet = false;
+	fallAfter = 1.0f;
+	sDropAfter = 0.05f;
+	setTimer = 0.0f;
+	setAfter = 1.0f;
+
 	das = 0.2f;
 	dasTimer = {0.0f, 0.0f};
 	arr = 0.0f;
@@ -131,18 +137,29 @@ void Piece::rotate(const bool ccw) {
 
 void Piece::update(const float dt, const u32 kDown, const u32 kHeld) {
 	fallTimer += dt;
-	if (fallTimer > 1.0f) {
+	if (kDown & KEY_DOWN || fallTimer > ((kHeld & KEY_DOWN) ? sDropAfter : fallAfter)) {
 		fallTimer = 0.0f;
 		move(Direction::down);
+	}
+
+	if (collides(0, 1)) {
+		setTimer += dt;
+		if (hasSet()) {
+			set();
+			return;
+		}
+	} else {
+		setTimer = 0.0f;
 	}
 
 	if (kDown & KEY_UP) {
 		while (move(Direction::down)) {
 		}
-		this->_hasSet = true;
+		setTimer = setAfter;
 		set();
 		return;
 	}
+
 
 	dasTimer.x = (kHeld & KEY_LEFT) ? dasTimer.x + dt : 0.0f;
 	dasTimer.y = (kHeld & KEY_RIGHT) ? dasTimer.y + dt : 0.0f;
@@ -191,4 +208,8 @@ void Piece::update(const float dt, const u32 kDown, const u32 kHeld) {
 
 PieceType Piece::getType() {
 	return type;
+}
+
+bool Piece::hasSet() const {
+	return setTimer >= setAfter;
 }

@@ -23,7 +23,7 @@ class Piece {
 	void rotate(const bool ccw);
 
 	bool collides(const int offX, const int offY) const;
-	bool hasSet() const { return _hasSet; }
+	bool hasSet() const;
 
 	void update(const float dt, const u32 kDown, const u32 kHeld);
 
@@ -39,14 +39,16 @@ class Piece {
 	Color ghostColor;
 	PieceShape shape;
 
-	float fallTimer;
-	// Vector2 as they need one for left and right
+	float fallTimer; // timer that's between 0 and either fallAfter or dropTime
+	float fallAfter; // how much time it takes for the piece to fall
+	float sDropAfter; // replaces fallTimer when the soft drop button is held
+	float setTimer; // always 0 unless piece is colliding down, then it's incremented until it gets to setAfter
+	float setAfter; // time it takes for piece to set after it has been colliding down
+
+	float das;
+	// Vector2 as it needs one for left and right
 	Vector2 dasTimer;
 
 	float arr;
 	float arrTimer;
-
-	float das;
-
-	bool _hasSet;
 };

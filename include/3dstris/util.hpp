@@ -11,6 +11,9 @@
 constexpr auto SCREEN_WIDTH = 400;
 constexpr auto SCREEN_HEIGHT = 240;
 
+constexpr auto BSCREEN_WIDTH = 320;
+constexpr auto BSCREEN_HEIGHT = 240;
+
 using u32 = uint32_t;
 using Color = u32;
 

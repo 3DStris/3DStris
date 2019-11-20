@@ -18,6 +18,10 @@ set(HEADER_LIST
 add_library(3dstris STATIC
   board.cpp
   piece.cpp
+  mainmenu.cpp
+  state.cpp
+  gui.cpp
+  gui/button.cpp
   ${HEADER_LIST})
 
 target_include_directories(3dstris PUBLIC ../include)

@@ -18,6 +18,7 @@ set(HEADER_LIST
 add_library(3dstris STATIC
   board.cpp
   piece.cpp
+  game.cpp
   mainmenu.cpp
   state.cpp
   gui.cpp

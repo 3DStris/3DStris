@@ -7,7 +7,7 @@
 
 class MainMenu : public State {
 public:
-	MainMenu();
+	MainMenu(Game& game);
 
 	void update(double dt);
 	void draw(bool bottom);

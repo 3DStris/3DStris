@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <3dstris/state.hpp>
+#include <3dstris/game.hpp>
 #include <3dstris/mainmenu.hpp>
 #include <algorithm>
 #include <array>
@@ -22,9 +24,10 @@ int main() {
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 	C2D_Prepare();
 
-	State* currState = new MainMenu();
+	Game game = Game();
+	game.setState(new MainMenu(game));
 
-	while (aptMainLoop() && !currState->exit()) {
+	while (aptMainLoop() && !game.exit) {
 		hidScanInput();
 
 		u32 kDown = hidKeysDown();
@@ -34,22 +37,15 @@ int main() {
 		}
 
 		osTickCounterUpdate(&tickCounter);
-		double deltaTime = osTickCounterRead(&tickCounter) / 1000;
+		double dt = osTickCounterRead(&tickCounter) / 1000;
 
-		currState->update(deltaTime);
+		game.update(dt);
 
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
 
-		C2D_SceneBegin(currState->getTop());
-		currState->draw(false);
-
-		if (currState->hasBottom()) {
-			C2D_SceneBegin(currState->getBottom());
-			currState->draw(true);
-		}
+		game.draw();
 
 		C3D_FrameEnd(0);
-
 	}
 
 	// Deinit libs

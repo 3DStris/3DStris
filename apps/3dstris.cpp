@@ -5,7 +5,7 @@
 
 #include <3dstris/state.hpp>
 #include <3dstris/game.hpp>
-#include <3dstris/mainmenu.hpp>
+#include <3dstris/states/mainmenu.hpp>
 #include <algorithm>
 #include <array>
 #include <cmath>

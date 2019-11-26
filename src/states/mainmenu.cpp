@@ -1,4 +1,4 @@
-#include <3dstris/mainmenu.hpp>
+#include <3dstris/states/mainmenu.hpp>
 
 MainMenu::MainMenu(Game& game)
 	: State(game),

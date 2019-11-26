@@ -19,8 +19,8 @@ add_library(3dstris STATIC
   board.cpp
   piece.cpp
   game.cpp
-  mainmenu.cpp
   state.cpp
+  states/mainmenu.cpp
   gui.cpp
   gui/button.cpp
   ${HEADER_LIST})

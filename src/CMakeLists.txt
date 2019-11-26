@@ -13,7 +13,12 @@ set(HEADER_LIST
 	"${3dstris_SOURCE_DIR}/include/3dstris/util.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/shapes.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/board.hpp"
-	"${3dstris_SOURCE_DIR}/include/3dstris/version.hpp")
+	"${3dstris_SOURCE_DIR}/include/3dstris/version.hpp"
+	"${3dstris_SOURCE_DIR}/include/3dstris/game.hpp"
+	"${3dstris_SOURCE_DIR}/include/3dstris/state.hpp"
+	"${3dstris_SOURCE_DIR}/include/3dstris/states/mainmenu.hpp"
+	"${3dstris_SOURCE_DIR}/include/3dstris/gui.hpp"
+	"${3dstris_SOURCE_DIR}/include/3dstris/gui/button.hpp")
 
 add_library(3dstris STATIC
   board.cpp

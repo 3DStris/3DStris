@@ -6,11 +6,6 @@
 #include <3dstris/state.hpp>
 #include <3dstris/game.hpp>
 #include <3dstris/states/mainmenu.hpp>
-#include <algorithm>
-#include <array>
-#include <cmath>
-#include <deque>
-#include <random>
 
 int main() {
 	srand(u32(osGetTime()));
@@ -29,12 +24,6 @@ int main() {
 
 	while (aptMainLoop() && !game.exit) {
 		hidScanInput();
-
-		u32 kDown = hidKeysDown();
-		u32 kHeld = hidKeysHeld();
-		if (kDown & KEY_START) {
-			break;
-		}
 
 		osTickCounterUpdate(&tickCounter);
 		double dt = osTickCounterRead(&tickCounter) / 1000;

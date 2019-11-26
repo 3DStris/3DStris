@@ -27,6 +27,9 @@ C3D_RenderTarget* Game::getBottom() {
 }
 
 void Game::setState(State* state) {
+	auto black = C2D_Color32(0, 0, 0, 255);
+	C2D_TargetClear(top, black);
+	C2D_TargetClear(bottom, black);
 	currentState = state;
 }
 

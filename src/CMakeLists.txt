@@ -17,6 +17,7 @@ set(HEADER_LIST
 	"${3dstris_SOURCE_DIR}/include/3dstris/game.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/state.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/states/mainmenu.hpp"
+	"${3dstris_SOURCE_DIR}/include/3dstris/states/playing.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/gui.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/gui/button.hpp")
 
@@ -26,6 +27,7 @@ add_library(3dstris STATIC
   game.cpp
   state.cpp
   states/mainmenu.cpp
+  states/playing.cpp
   gui.cpp
   gui/button.cpp
   ${HEADER_LIST})

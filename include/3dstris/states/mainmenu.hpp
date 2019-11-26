@@ -4,6 +4,7 @@
 #include <3dstris/state.hpp>
 #include <3dstris/util.hpp>
 #include <3dstris/gui.hpp>
+#include <3dstris/states/playing.hpp>
 
 class MainMenu : public State {
 public:
@@ -15,7 +16,7 @@ public:
 private:
 	C2D_Text titleText;
 	Color titleTextColor;
-	Color bgColor;
+	Color colBackground;
 
 	GUI gui;
 };

@@ -1,6 +1,6 @@
 #include <3dstris/states/playing.hpp>
 
-std::array<PieceType, 7> genBag(std::mt19937& rng) {
+static std::array<PieceType, 7> genBag(std::mt19937& rng) {
 	std::array<PieceType, 7> pieces{PieceType::I, PieceType::O, PieceType::L,
 									PieceType::J, PieceType::S, PieceType::T,
 									PieceType::Z};
@@ -10,9 +10,9 @@ std::array<PieceType, 7> genBag(std::mt19937& rng) {
 
 Playing::Playing()
     : State(),
-      bagRNG(static_cast<u32>(rand())),
       board(10, 20),
       tileSize((SCREEN_HEIGHT - 10) / board.height),
+      bagRNG(static_cast<u32>(rand())),
       upcoming(5),
       piece(board, PieceType::I)  // will be reset later
 {
@@ -79,8 +79,7 @@ void Playing::draw(bool bottom) {
             if (p == PieceType::I)
                 --y;
             Piece::draw(
-                {origin.x +
-                     (board.width + 1 + (p == PieceType::O ? 1 : 0)) * tileSize,
+                {origin.x + (board.width + 1 + (p == PieceType::O)) * tileSize,
                  origin.y + y * tileSize},
                 tileSize, shapes[p], colors[p]);
 			y += shapes[p].size;

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <citro2d.h>
 #include <3dstris/board.hpp>
 #include <3dstris/shapes.hpp>
 #include <3dstris/state.hpp>
@@ -12,14 +11,13 @@
 #include <deque>
 #include <random>
 
-std::array<PieceType, 7> genBag(std::mt19937& rng);
-
 class Playing : public State {
    public:
     Playing();
+    virtual ~Playing() = default;
 
-	void update(double dt);
-	void draw(bool bottom);
+    void update(double dt) override;
+    void draw(bool bottom) override;
 
    private:
 	Color colBackground;

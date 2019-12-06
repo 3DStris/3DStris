@@ -19,7 +19,8 @@ class Game {
 	C3D_RenderTarget* getTop();
 	C3D_RenderTarget* getBottom();
 
-	void setState(State* state);
+    void setState(State* state, bool resetTop = false,
+                  bool resetBottom = false);
 	State* getState();
 
     bool exit = false;

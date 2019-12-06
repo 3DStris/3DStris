@@ -10,10 +10,11 @@ MainMenu::MainMenu()
 	C2D_TextParse(&titleText, text_buf, "3DStris");
 	C2D_TextOptimize(&titleText);
 
-    gui.addButton(ButtonFlags::HCENTER, -1, 10, 100, 50, "Play",
-                  [&]() { this->game.setState(new Playing()); });
+    gui.addButton(ButtonFlags::HCENTER, -1, 10, 100, 50, "Play", [this]() {
+        this->game.setState(new Playing(), false, true);
+    });
     gui.addButton(ButtonFlags::HCENTER, -1, BSCREEN_HEIGHT - 50, 80, 40, "Exit",
-                  [&]() { this->game.exit = true; });
+                  [this]() { this->game.exit = true; });
 }
 
 void MainMenu::update(double dt) {

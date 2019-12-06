@@ -1,3 +1,4 @@
+#include <3dstris/colors.hpp>
 #include <3dstris/game.hpp>
 
 Game::Game() {
@@ -26,10 +27,11 @@ C3D_RenderTarget* Game::getBottom() {
 	return bottom;
 }
 
-void Game::setState(State* state) {
-	auto black = C2D_Color32(0, 0, 0, 255);
-	C2D_TargetClear(top, black);
-	C2D_TargetClear(bottom, black);
+void Game::setState(State* state, bool resetTop, bool resetBottom) {
+    if (resetTop)
+        C2D_TargetClear(top, BLACK);
+    if (resetBottom)
+        C2D_TargetClear(bottom, BLACK);
 	currentState = state;
 }
 

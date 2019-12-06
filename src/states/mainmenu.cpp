@@ -18,6 +18,12 @@ MainMenu::MainMenu(Game& game)
 }
 
 void MainMenu::update(double dt) {
+	u32 kDown = hidKeysDown();
+	
+	if (kDown & KEY_START) {
+		game.exit = true;
+		return;
+	}
 	gui.update(dt);
 }
 

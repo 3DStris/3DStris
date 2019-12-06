@@ -4,8 +4,8 @@
 #include <3dstris/board.hpp>
 #include <3dstris/shapes.hpp>
 #include <3dstris/state.hpp>
-#include <3dstris/util.hpp>
 #include <3dstris/states/mainmenu.hpp>
+#include <3dstris/util.hpp>
 #include <algorithm>
 #include <array>
 #include <cmath>
@@ -15,12 +15,13 @@
 std::array<PieceType, 7> genBag(std::mt19937& rng);
 
 class Playing : public State {
-public:
-	Playing(Game& game);
+   public:
+    Playing();
 
 	void update(double dt);
 	void draw(bool bottom);
-private:
+
+   private:
 	Color colBackground;
 
 	Board board;

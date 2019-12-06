@@ -1,4 +1,4 @@
+#include <3dstris/game.hpp>
 #include <3dstris/state.hpp>
 
-State::State(Game& game) : game(game) {
-}
+State::State() : game(Game::getInstance()) {}

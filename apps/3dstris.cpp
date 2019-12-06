@@ -1,10 +1,5 @@
-#include <citro2d.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include <3dstris/state.hpp>
 #include <3dstris/game.hpp>
+#include <3dstris/state.hpp>
 #include <3dstris/states/mainmenu.hpp>
 
 int main() {
@@ -19,21 +14,18 @@ int main() {
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 	C2D_Prepare();
 
-	Game game = Game();
-	game.setState(new MainMenu(game));
+    Game& game = Game::getInstance();
+    game.setState(new MainMenu());
 
 	while (aptMainLoop() && !game.exit) {
 		hidScanInput();
 
 		osTickCounterUpdate(&tickCounter);
-		double dt = osTickCounterRead(&tickCounter) / 1000;
 
-		game.update(dt);
+        game.update(osTickCounterRead(&tickCounter) / 1000);
 
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
-
 		game.draw();
-
 		C3D_FrameEnd(0);
 	}
 

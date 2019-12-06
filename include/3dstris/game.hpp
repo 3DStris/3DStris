@@ -1,15 +1,16 @@
 #pragma once
 
-#include <citro2d.h>
 #include <3ds.h>
+#include <citro2d.h>
 #include <3dstris/state.hpp>
 
 class State;
 class Game {
-public:
-	bool exit = false;
-
-	Game();
+   public:
+    static Game& getInstance() {
+        static Game game;
+        return game;
+    }
 
 	void update(double dt);
 
@@ -20,9 +21,14 @@ public:
 
 	void setState(State* state);
 	State* getState();
-private:
+
+    bool exit = false;
+
+   private:
+    Game();
+
 	C3D_RenderTarget* top;
 	C3D_RenderTarget* bottom;
-	
+
 	State* currentState;
 };

@@ -10,7 +10,7 @@ class Board {
 
 	Board(u32 width, u32 height);
 
-    bool inside(u32 x, u32 y);
+	bool inside(u32 x, u32 y);
 	bool inside(int x, int y);
 	bool inside(Vector2 pos);
 

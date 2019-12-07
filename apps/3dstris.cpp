@@ -1,3 +1,4 @@
+#include <tex3ds.h>
 #include <3dstris/game.hpp>
 #include <3dstris/state.hpp>
 #include <3dstris/states/mainmenu.hpp>
@@ -10,19 +11,20 @@ int main() {
 
 	// Init libs
 	gfxInitDefault();
+	romfsInit();
 	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 	C2D_Prepare();
 
-    Game& game = Game::getInstance();
-    game.setState(new MainMenu());
+	Game& game = Game::getInstance();
+	game.setState(new MainMenu());
 
 	while (aptMainLoop() && !game.exit) {
 		hidScanInput();
 
 		osTickCounterUpdate(&tickCounter);
 
-        game.update(osTickCounterRead(&tickCounter) / 1000);
+		game.update(osTickCounterRead(&tickCounter) / 1000);
 
 		C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
 		game.draw();

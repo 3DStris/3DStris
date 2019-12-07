@@ -7,10 +7,10 @@
 class State;
 class Game {
    public:
-    static Game& getInstance() {
-        static Game game;
-        return game;
-    }
+	static Game& getInstance() {
+		static Game game;
+		return game;
+	}
 
 	void update(double dt);
 
@@ -19,17 +19,20 @@ class Game {
 	C3D_RenderTarget* getTop();
 	C3D_RenderTarget* getBottom();
 
-    void setState(State* state, bool resetTop = false,
-                  bool resetBottom = false);
+	const C2D_SpriteSheet& getSpriteSheet();
+
+	void setState(State* state, bool resetTop = false,
+				  bool resetBottom = false);
 	State* getState();
 
-    bool exit = false;
+	bool exit = false;
 
    private:
-    Game();
+	Game();
 
 	C3D_RenderTarget* top;
 	C3D_RenderTarget* bottom;
 
 	State* currentState;
+	C2D_SpriteSheet spriteSheet;
 };

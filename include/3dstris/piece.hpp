@@ -1,8 +1,8 @@
 #pragma once
 
+#include <3dstris/colors.hpp>
 #include <3dstris/shapes.hpp>
 #include <3dstris/util.hpp>
-#include <3dstris/colors.hpp>
 #include <3dstris/wallkicks.hpp>
 
 class Board;
@@ -43,11 +43,14 @@ class Piece {
 	Color ghostColor;
 	PieceShape shape;
 
-	double fallTimer; // timer that's between 0 and either fallAfter or dropTime
-	double fallAfter; // how much time it takes for the piece to fall
-	double sDropAfter; // replaces fallTimer when the soft drop button is held
-	double setTimer; // always 0 unless piece is colliding down, then it's incremented until it gets to setAfter
-	double setAfter; // time it takes for piece to set after it has been colliding down
+	double
+		fallTimer;  // timer that's between 0 and either fallAfter or dropTime
+	double fallAfter;   // how much time it takes for the piece to fall
+	double sDropAfter;  // replaces fallTimer when the soft drop button is held
+	double setTimer;	// always 0 unless piece is colliding down, then it's
+						// incremented until it gets to setAfter
+	double setAfter;	// time it takes for piece to set after it has been
+						// colliding down
 
 	double das;
 	// Vector2 as it needs one for left and right

@@ -8,14 +8,15 @@
 
 class MainMenu : public State {
    public:
-    MainMenu();
+	MainMenu();
+	virtual ~MainMenu() = default;
 
-    void update(double dt) override;
-    void draw(bool bottom) override;
+	void update(double dt) override;
+	void draw(bool bottom) override;
 
    private:
-	C2D_Text titleText;
-	Color titleTextColor;
+	C2D_Image icon;
+
 	Color colBackground;
 
 	GUI gui;

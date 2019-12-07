@@ -1,10 +1,11 @@
 #include <3dstris/colors.hpp>
 #include <3dstris/game.hpp>
 
-Game::Game() {
+Game::Game()
+	: currentState(nullptr),
+	  spriteSheet(C2D_SpriteSheetLoad("romfs:/gfx/sprites.t3x")) {
 	top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
 	bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
-	currentState = nullptr;
 }
 
 void Game::update(double dt) {
@@ -27,11 +28,15 @@ C3D_RenderTarget* Game::getBottom() {
 	return bottom;
 }
 
+const C2D_SpriteSheet& Game::getSpriteSheet() {
+	return spriteSheet;
+}
+
 void Game::setState(State* state, bool resetTop, bool resetBottom) {
-    if (resetTop)
-        C2D_TargetClear(top, BLACK);
-    if (resetBottom)
-        C2D_TargetClear(bottom, BLACK);
+	if (resetTop)
+		C2D_TargetClear(top, BLACK);
+	if (resetBottom)
+		C2D_TargetClear(bottom, BLACK);
 	currentState = state;
 }
 

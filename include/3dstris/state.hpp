@@ -7,11 +7,11 @@
 class Game;
 class State {
    public:
-    State();
+	State();
 
-    virtual void update(double dt) = 0;
-    virtual void draw(bool bottom) = 0;
+	virtual void update(double dt) = 0;
+	virtual void draw(bool bottom) = 0;
 
    protected:
-    Game& game;
+	Game& game;
 };

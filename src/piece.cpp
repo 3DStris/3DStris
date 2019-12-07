@@ -29,7 +29,7 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 
 	das = 0.2;
 	dasTimer = {0.0, 0.0};
-  
+
 	arr = 0.0;
 	arrTimer = arr;
 
@@ -123,7 +123,8 @@ bool Piece::move(const Direction dir) {
 }
 
 void Piece::rotate(const bool ccw) {
-	if (type == PieceType::O) return;
+	if (type == PieceType::O)
+		return;
 	PieceShape newShape;
 	newShape.shape.resize(shape.size * shape.size, false);
 	newShape.size = shape.size;
@@ -143,19 +144,19 @@ void Piece::rotate(const bool ccw) {
 	shape = newShape;
 
 	int prevRotation = rotation;
-	rotation = MOD(rotation + (ccw ? -1 : 1), 4);
+	rotation = mod(rotation + (ccw ? -1 : 1), 4);
 
 	Wallkick wkData = type == PieceType::I ? Wallkicks::I : Wallkicks::others;
 
 	/*
-	each test is stored as {spawn->ccw, spawn->cw, cw->spawn, cw->180, 180->cw, 180->ccw, ccw->180, ccw->spawn}
-	considering spawn = 0, cw = 1, 180 = 2, ccw = 3
-	(aka add one when rotating clockwise, remove when counter clockwise, and always mod 4)
-	it becomes {0->3, 0->1, 1->0, 1->2, 2->1, 2->3, 3->2, 3->0}
+	each test is stored as {spawn->ccw, spawn->cw, cw->spawn, cw->180, 180->cw,
+	180->ccw, ccw->180, ccw->spawn} considering spawn = 0, cw = 1, 180 = 2, ccw
+	= 3 (aka add one when rotating clockwise, remove when counter clockwise, and
+	always mod 4) it becomes {0->3, 0->1, 1->0, 1->2, 2->1, 2->3, 3->2, 3->0}
 	its in that order so that:
 	[.., state->state after ccw, state->state after cw, ..]
-	which makes it easy to index by using (ccw being true if the current rotation is counter clockwise)
-	2 * prevRotation + (ccw ? 0 : 1)
+	which makes it easy to index by using (ccw being true if the current
+	rotation is counter clockwise) 2 * prevRotation + (ccw ? 0 : 1)
 	*/
 
 	int testOffset = 2 * prevRotation + (ccw ? 0 : 1);
@@ -176,7 +177,8 @@ void Piece::rotate(const bool ccw) {
 
 void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 	fallTimer += dt;
-	if (kDown & KEY_DOWN || fallTimer > ((kHeld & KEY_DOWN) ? sDropAfter : fallAfter)) {
+	if (kDown & KEY_DOWN ||
+		fallTimer > ((kHeld & KEY_DOWN) ? sDropAfter : fallAfter)) {
 		fallTimer = 0.0;
 		move(Direction::down);
 	}

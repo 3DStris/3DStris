@@ -10,7 +10,7 @@ struct PieceShape {
 };
 
 namespace Shapes {
-// clang-format off
+	// clang-format off
 	const PieceShape I = {{
 		0, 0, 0, 0,
 		1, 1, 1, 1,
@@ -34,7 +34,7 @@ namespace Shapes {
 		1, 1,
 		1, 1
 	}, 2};
-	
+
 	const PieceShape S = {{
 		0, 1, 1,
 		1, 1, 0,
@@ -52,8 +52,8 @@ namespace Shapes {
 		0, 1, 1,
 		0, 0, 0
 	}, 3};
-// clang-format on
-};	// namespace Shapes
+	// clang-format on
+};  // namespace Shapes
 
 static std::array<PieceShape, 7> shapes{Shapes::I, Shapes::O, Shapes::L,
 										Shapes::J, Shapes::S, Shapes::T,

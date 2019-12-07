@@ -8,7 +8,7 @@ bool Board::inside(u32 x, u32 y) {
 	return x < width && y < height;
 }
 bool Board::inside(int x, int y) {
-	return x >= 0 && y >= 0 &&	//
+	return x >= 0 && y >= 0 &&  //
 		   inside(u32(x), u32(y));
 }
 bool Board::inside(Vector2 pos) {

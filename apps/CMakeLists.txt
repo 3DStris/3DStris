@@ -6,8 +6,9 @@ target_link_libraries(3dstris-bin PUBLIC 3dstris)
 
 set(NAME "3DStris")
 set(DESCRIPTION "Tetris for the 3DS")
-set(AUTHOR "Mat")
+set(AUTHOR "3DStris Team")
 set(ICON_LOCATION "${3dstris_SOURCE_DIR}/resources/icon.png")
+set(ROMFS_LOCATION "${3dstris_SOURCE_DIR}/romfs")
 
 set(PRODUCT_CODE "CTR-B-3RIS")
 set(TITLE_ID "0xED474")
@@ -22,6 +23,7 @@ add_3dsx_target(3dstris-bin
 	${NAME} # Name
 	${DESCRIPTION} # Description
 	${AUTHOR} # Author(s)
+	${ROMFS_LOCATION} # RomFS
 	${ICON_LOCATION} # Icon
 )
 
@@ -30,6 +32,7 @@ if (BUILD_CIA AND SMDHTOOL AND BANNERTOOL AND MAKEROM)
 		${RSF_LOCATION} # RSF
 		${BANNER_LOCATION} # Banner
 		${SOUND_LOCATION} # Sound
+		${ROMFS_LOCATION} # RomFS
 		${NAME} # Name
 		${DESCRIPTION} # Description
 		${AUTHOR} # Author(s)

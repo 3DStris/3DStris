@@ -6,7 +6,10 @@
 #include <vector>
 
 // python-like modulo, which makes negative numbers wrap around
-#define MOD(a, b) ((b + ((a) % (b))) % b)
+template <typename T>
+constexpr auto mod(T a, T b) {
+	return (b + (a % b)) % b;
+}
 
 constexpr auto SCREEN_WIDTH = 400;
 constexpr auto SCREEN_HEIGHT = 240;
@@ -16,8 +19,6 @@ constexpr auto BSCREEN_HEIGHT = 240;
 
 using u32 = uint32_t;
 using Color = u32;
-
-const C2D_TextBuf text_buf = C2D_TextBufNew(256);
 
 struct Vector2 {
 	float x;

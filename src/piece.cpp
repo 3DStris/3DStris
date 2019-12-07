@@ -144,7 +144,7 @@ void Piece::rotate(const bool ccw) {
 	shape = newShape;
 
 	int prevRotation = rotation;
-	rotation = MOD(rotation + (ccw ? -1 : 1), 4);
+	rotation = mod(rotation + (ccw ? -1 : 1), 4);
 
 	Wallkick wkData = type == PieceType::I ? Wallkicks::I : Wallkicks::others;
 

@@ -3,10 +3,9 @@
 
 MainMenu::MainMenu()
 	: State(),
-	  gui(BSCREEN_WIDTH, BSCREEN_HEIGHT, C2D_Color32(100, 100, 100, 255), BLACK,
+	  icon(C2D_SpriteSheetGetImage(game.getSpriteSheet(), sprites_icon_idx)),
+	  gui(BSCREEN_WIDTH, BSCREEN_HEIGHT, C2D_Color32(100, 100, 100, 255), WHITE,
 		  C2D_Color32(50, 50, 50, 255)) {
-	icon =
-		C2D_SpriteSheetGetImage(this->game.getSpriteSheet(), sprites_icon_idx);
 	colBackground = C2D_Color32(34, 34, 34, 255);
 
 	gui.addButton(ButtonFlags::HCENTER, -1, 10, 100, 50, "Play", [this]() {

@@ -3,7 +3,6 @@
 
 MainMenu::MainMenu()
 	: State(),
-	  // icon(C2D_SpriteSheetGetImage(game.getSpriteSheet(), sprites_icon_idx)),
 	  gui(BSCREEN_WIDTH, BSCREEN_HEIGHT, C2D_Color32(100, 100, 100, 255), BLACK,
 		  C2D_Color32(50, 50, 50, 255)) {
 	icon =

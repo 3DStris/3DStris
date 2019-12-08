@@ -5,7 +5,7 @@
 #include <functional>
 #include <vector>
 
-enum ButtonFlags { NONE = 0, HCENTER = 1, VCENTER = 2 };
+enum ButtonFlags { NONE, HCENTER, VCENTER, CENTER };
 
 class GUI {
    public:

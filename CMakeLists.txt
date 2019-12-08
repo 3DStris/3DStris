@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.12...3.15)
 set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lib/3ds-cmake/DevkitArm3DS.cmake)
 
 set(3dstris_VERSION_MAJOR 0)
-set(3dstris_VERSION_MINOR 4)
-set(3dstris_VERSION_PATCH 1)
+set(3dstris_VERSION_MINOR 5)
+set(3dstris_VERSION_PATCH 0)
 set(3dstris_VERSION "${3dstris_VERSION_MAJOR}.${3dstris_VERSION_MINOR}.${3dstris_VERSION_PATCH}")
 
 project(
@@ -45,6 +45,9 @@ find_package(Git)
 find_package(CTRULIB REQUIRED)
 find_package(CITRO3D REQUIRED)
 find_package(CITRO2D REQUIRED)
+
+set(JSON_BuildTests OFF CACHE INTERNAL "")
+add_subdirectory(lib/json)
 
 add_subdirectory(src)
 add_subdirectory(apps)

@@ -20,6 +20,10 @@ void Game::draw() {
 	currentState->draw(true);
 }
 
+const Config& Game::getConfig() {
+	return config;
+}
+
 C3D_RenderTarget* Game::getTop() {
 	return top;
 }

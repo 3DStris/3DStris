@@ -21,13 +21,12 @@ void GUI::addButton(float x, float y, float w, float h, const char* text,
 
 void GUI::addButton(ButtonFlags flags, float x, float y, float w, float h,
 					const char* text, std::function<void()> onPress) {
-	if (flags & ButtonFlags::HCENTER)
+	if (flags == ButtonFlags::HCENTER || flags == ButtonFlags::CENTER)
 		x = width / 2.0f - w / 2.0f;
-	if (flags & ButtonFlags::VCENTER)
+	if (flags == ButtonFlags::VCENTER || flags == ButtonFlags::CENTER)
 		y = height / 2.0f - h / 2.0f;
 	this->addButton(x, y, w, h, text, onPress);
 }
-
 void GUI::update(double) {
 	touchPosition touch;
 	hidTouchRead(&touch);

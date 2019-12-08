@@ -7,7 +7,7 @@
 
 // python-like modulo, which makes negative numbers wrap around
 template <typename T>
-constexpr auto mod(T a, T b) {
+constexpr T mod(T a, T b) {
 	return (b + (a % b)) % b;
 }
 

@@ -71,7 +71,7 @@ void Config::saveConfig(bool overwrite) {
 	}
 
 	nlohmann::json config = {{"das", das}, {"arr", arr}};
-	const auto configString = config.dump(1, '\t', true);
+	const auto configString = config.dump(4, ' ', true);
 
 	FSFILE_Write(configHandle, nullptr, 0, configString.c_str(),
 				 strlen(configString.c_str()), FS_WRITE_FLUSH);

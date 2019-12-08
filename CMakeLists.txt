@@ -4,7 +4,7 @@ set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lib/3ds-cmake/DevkitArm3DS.
 
 set(3dstris_VERSION_MAJOR 0)
 set(3dstris_VERSION_MINOR 4)
-set(3dstris_VERSION_PATCH 0)
+set(3dstris_VERSION_PATCH 1)
 set(3dstris_VERSION "${3dstris_VERSION_MAJOR}.${3dstris_VERSION_MINOR}.${3dstris_VERSION_PATCH}")
 
 project(

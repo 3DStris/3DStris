@@ -159,9 +159,9 @@ void Piece::rotate(const bool ccw) {
 	rotation is counter clockwise) 2 * prevRotation + (ccw ? 0 : 1)
 	*/
 
-	int testOffset = 2 * prevRotation + (ccw ? 0 : 1);
+	int testOffset = 2 * prevRotation + !ccw;
 	for (u32 test = 0; test < WK_TESTS; test++) {
-		int i = test * 16 + testOffset * 2;
+		u32 i = test * 16 + u32(testOffset * 2);
 		int offX = wkData[i];
 		int offY = wkData[i + 1];
 		if (!collides(offX, offY)) {
@@ -201,8 +201,8 @@ void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 		return;
 	}
 
-	dasTimer.x = (kHeld & KEY_LEFT) ? dasTimer.x + dt : 0.0;
-	dasTimer.y = (kHeld & KEY_RIGHT) ? dasTimer.y + dt : 0.0;
+	dasTimer.x = (kHeld & KEY_LEFT) ? dasTimer.x + dt : 0;
+	dasTimer.y = (kHeld & KEY_RIGHT) ? dasTimer.y + dt : 0;
 
 	bool moved = false;
 

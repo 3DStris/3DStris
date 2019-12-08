@@ -11,6 +11,12 @@ constexpr auto mod(T a, T b) {
 	return (b + (a % b)) % b;
 }
 
+// from https://github.com/henrygab/UtilHeaders/blob/master/constexpr_strlen.h
+template <size_t N>
+constexpr size_t constexpr_strlen(char const (&)[N]) {
+	return N - 1;
+}
+
 constexpr auto SCREEN_WIDTH = 400;
 constexpr auto SCREEN_HEIGHT = 240;
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#define _3DSTRIS_VERSION "@3dstris_VERSION@"
-#define _3DSTRIS_VERSION_MAJOR "@3dstris_VERSION_MAJOR@"
-#define _3DSTRIS_VERSION_MINOR "@3dstris_VERSION_MINOR@"
-#define _3DSTRIS_VERSION_PATCH "@3dstris_VERSION_PATCH@"
-#define _3DSTRIS_GIT_HASH "@GIT_SHA1@"
+constexpr char _3DSTRIS_VERSION[] = "@3dstris_VERSION@";
+constexpr char _3DSTRIS_VERSION_MAJOR[] = "@3dstris_VERSION_MAJOR@";
+constexpr char _3DSTRIS_VERSION_MINOR[] = "@3dstris_VERSION_MINOR@";
+constexpr char _3DSTRIS_VERSION_PATCH[] = "@3dstris_VERSION_PATCH@";
+constexpr char _3DSTRIS_GIT_HASH[] = "@GIT_SHA1@";

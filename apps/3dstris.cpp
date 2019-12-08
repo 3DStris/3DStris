@@ -1,6 +1,7 @@
 #include <tex3ds.h>
 #include <3dstris/game.hpp>
 #include <3dstris/state.hpp>
+#include <3dstris/states/configfailed.hpp>
 #include <3dstris/states/mainmenu.hpp>
 
 int main() {
@@ -17,7 +18,11 @@ int main() {
 	C2D_Prepare();
 
 	Game& game = Game::getInstance();
-	game.setState(new MainMenu());
+	if (!Game::getInstance().getConfig().configFailed) {
+		game.setState(new MainMenu());
+	} else {
+		game.setState(new ConfigFailed());
+	}
 
 	while (aptMainLoop() && !game.exit) {
 		hidScanInput();

@@ -2,3 +2,6 @@
 	path = lib/3ds-cmake
 	url = https://github.com/3DStris/3ds-cmake.git
 	branch = 3dstris
+[submodule "lib/json"]
+	path = lib/json
+	url = https://github.com/nlohmann/json.git

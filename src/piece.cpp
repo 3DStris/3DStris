@@ -1,4 +1,5 @@
 #include <3dstris/board.hpp>
+#include <3dstris/game.hpp>
 #include <3dstris/piece.hpp>
 
 // Ching cong
@@ -27,10 +28,10 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 	setTimer = 0.0;
 	setAfter = 1.0;
 
-	das = 0.2;
+	das = Game::getInstance().getConfig().das;
 	dasTimer = {0.0, 0.0};
 
-	arr = 0.0;
+	arr = Game::getInstance().getConfig().arr;
 	arrTimer = arr;
 
 	rotation = 0;

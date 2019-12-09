@@ -9,8 +9,9 @@ Button::Button(GUI& parent, float x, float y, float w, float h,
 	C2D_TextGetDimensions(&this->text, 1, 1, &textW, &textH);
 
 	// textW and textH are the text size at scale 1:1, do some math to figure
-	// out scale that fits on the button 1   textW
-	// - = -----
+	// out scale that fits on the button
+	// 1   textW
+	// - = ----
 	// x   w-10
 	textSX = std::min((w - 10) / textW, 1.0f);
 	textSY = textSX;  // pray that the button isn't taller than it is wider

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <3dstris/gui/button.hpp>
+#include <3dstris/gui/slider.hpp>
 #include <3dstris/util.hpp>
 #include <functional>
 #include <memory>
@@ -18,6 +19,8 @@ class GUI {
 	void addButton(ButtonFlags flags, float x, float y, float w, float h,
 				   const char* text, std::function<void()> onPress);
 
+	std::shared_ptr<Slider> addSlider(float x, float y, float w);
+
 	void update(double dt);
 	void draw();
 
@@ -26,5 +29,6 @@ class GUI {
    private:
 	int width, height;
 	std::vector<std::unique_ptr<Button>> buttons;
+	std::vector<std::shared_ptr<Slider>> sliders;
 	touchPosition previousTouch;
 };

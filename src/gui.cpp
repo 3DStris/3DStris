@@ -22,6 +22,12 @@ void GUI::addButton(ButtonFlags flags, float x, float y, float w, float h,
 	this->addButton(x, y, w, h, text, onPress);
 }
 
+std::shared_ptr<Slider> GUI::addSlider(float x, float y, float w) {
+	auto slider = std::make_shared<Slider>(*this, x, y, w);
+	sliders.push_back(slider);
+	return slider;
+}
+
 void GUI::update(double) {
 	touchPosition touch;
 	hidTouchRead(&touch);
@@ -33,6 +39,9 @@ void GUI::update(double) {
 			button->press();
 		}
 	}
+	for (auto& slider : sliders) {
+		slider->update(touch);
+	}
 
 	previousTouch = touch;
 }
@@ -40,5 +49,8 @@ void GUI::update(double) {
 void GUI::draw() {
 	for (const auto& button : buttons) {
 		button->draw();
+	}
+	for (const auto& slider : sliders) {
+		slider->draw();
 	}
 }

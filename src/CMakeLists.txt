@@ -21,8 +21,10 @@ set(HEADER_LIST
 	"${3dstris_SOURCE_DIR}/include/3dstris/states/mainmenu.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/states/playing.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/states/configfailed.hpp"
+	"${3dstris_SOURCE_DIR}/include/3dstris/states/configscreen.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/gui.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/gui/button.hpp"
+	"${3dstris_SOURCE_DIR}/include/3dstris/gui/slider.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/wallkicks.hpp")
 
 add_library(3dstris STATIC
@@ -34,8 +36,10 @@ add_library(3dstris STATIC
   states/mainmenu.cpp
   states/playing.cpp
   states/configfailed.cpp
+  states/configscreen.cpp
   gui.cpp
   gui/button.cpp
+  gui/slider.cpp
   ${HEADER_LIST})
 add_t3s(3dstris "${3dstris_SOURCE_DIR}/resources/gfx/sprites.t3s")
 

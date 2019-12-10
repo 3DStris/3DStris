@@ -2,6 +2,7 @@
 #include <3dstris/game.hpp>
 #include <3dstris/state.hpp>
 #include <3dstris/states/configfailed.hpp>
+#include <3dstris/states/configscreen.hpp>
 #include <3dstris/states/mainmenu.hpp>
 
 int main() {
@@ -17,7 +18,7 @@ int main() {
 
 	Game& game = Game::getInstance();
 	if (!Game::getInstance().getConfig().configFailed) {
-		game.setState(make_unique<MainMenu>());
+		game.setState(make_unique<ConfigScreen>());
 	} else {
 		game.setState(make_unique<ConfigFailed>());
 	}

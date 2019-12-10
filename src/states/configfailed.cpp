@@ -12,13 +12,18 @@ ConfigFailed::ConfigFailed()
 	const char* failedString =
 		"Failed to load config; your settings have been reset.";
 
-	C2D_TextParse(&failedText, C2D_TextBufNew(strlen(failedString)),
-				  failedString);
+	failedTextBuf = C2D_TextBufNew(strlen(failedString));
+
+	C2D_TextParse(&failedText, failedTextBuf, failedString);
 	C2D_TextOptimize(&failedText);
 
 	gui.addButton(ButtonFlags::CENTER, -1, -1, SCREEN_WIDTH - 100,
 				  SCREEN_HEIGHT - 100, "OK",
-				  [this]() { this->game.setState(new MainMenu()); });
+				  [this]() { this->game.setState(make_unique<MainMenu>()); });
+}
+
+ConfigFailed::~ConfigFailed() {
+	C2D_TextBufDelete(failedTextBuf);
 }
 
 void ConfigFailed::update(double dt) {

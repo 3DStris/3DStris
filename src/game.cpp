@@ -36,14 +36,16 @@ const C2D_SpriteSheet& Game::getSpriteSheet() {
 	return spriteSheet;
 }
 
-void Game::setState(State* state, bool resetTop, bool resetBottom) {
+void Game::setState(std::unique_ptr<State> state, bool resetTop,
+					bool resetBottom) {
 	if (resetTop)
 		C2D_TargetClear(top, BLACK);
 	if (resetBottom)
 		C2D_TargetClear(bottom, BLACK);
-	currentState = state;
+
+	currentState = std::move(state);
 }
 
-State* Game::getState() {
-	return currentState;
+State& Game::getState() {
+	return *currentState;
 }

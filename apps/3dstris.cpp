@@ -17,9 +17,9 @@ int main() {
 
 	Game& game = Game::getInstance();
 	if (!Game::getInstance().getConfig().configFailed) {
-		game.setState(new MainMenu());
+		game.setState(make_unique<MainMenu>());
 	} else {
-		game.setState(new ConfigFailed());
+		game.setState(make_unique<ConfigFailed>());
 	}
 
 	while (aptMainLoop() && !game.exit) {

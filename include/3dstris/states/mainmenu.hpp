@@ -9,13 +9,15 @@
 class MainMenu : public State {
    public:
 	MainMenu();
-	virtual ~MainMenu() = default;
+	virtual ~MainMenu();
 
 	void update(double dt) override;
 	void draw(bool bottom) override;
 
    private:
 	C2D_Text versionText;
+	C2D_TextBuf versionTextBuf;
+
 	C2D_Image icon;
 
 	Color colBackground;

@@ -9,12 +9,13 @@
 class ConfigFailed : public State {
    public:
 	ConfigFailed();
-	virtual ~ConfigFailed() = default;
+	virtual ~ConfigFailed();
 
 	void update(double dt) override;
 	void draw(bool bottom) override;
 
    private:
+	C2D_TextBuf failedTextBuf;
 	C2D_Text failedText;
 
 	Color colBackground;

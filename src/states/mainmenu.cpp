@@ -9,6 +9,7 @@ constexpr auto versionStringLength = 1 + constexpr_strlen(_3DSTRIS_VERSION) +
 
 MainMenu::MainMenu()
 	: State(),
+	  versionTextBuf(C2D_TextBufNew(versionStringLength)),
 	  icon(C2D_SpriteSheetGetImage(game.getSpriteSheet(), sprites_icon_idx)),
 	  gui(BSCREEN_WIDTH, BSCREEN_HEIGHT, C2D_Color32(100, 100, 100, 255), WHITE,
 		  C2D_Color32(50, 50, 50, 255)) {
@@ -18,15 +19,18 @@ MainMenu::MainMenu()
 		static_cast<char*>(malloc(sizeof(char) * versionStringLength));
 	sprintf(versionString, "v%s-%s", _3DSTRIS_VERSION, _3DSTRIS_GIT_HASH);
 
-	C2D_TextParse(&versionText, C2D_TextBufNew(versionStringLength),
-				  versionString);
+	C2D_TextParse(&versionText, versionTextBuf, versionString);
 	C2D_TextOptimize(&versionText);
 
 	gui.addButton(ButtonFlags::HCENTER, -1, 10, 100, 50, "Play", [this]() {
-		this->game.setState(new Playing(), false, true);
+		this->game.setState(make_unique<Playing>(), false, true);
 	});
 	gui.addButton(ButtonFlags::HCENTER, -1, BSCREEN_HEIGHT - 50, 80, 40, "Exit",
 				  [this]() { this->game.exit = true; });
+}
+
+MainMenu::~MainMenu() {
+	C2D_TextBufDelete(versionTextBuf);
 }
 
 void MainMenu::update(double dt) {

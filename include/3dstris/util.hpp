@@ -3,6 +3,7 @@
 #include <citro2d.h>
 
 #include <array>
+#include <memory>
 #include <vector>
 
 // python-like modulo, which makes negative numbers wrap around
@@ -15,6 +16,12 @@ constexpr T mod(T a, T b) {
 template <size_t N>
 constexpr size_t constexpr_strlen(char const (&)[N]) {
 	return N - 1;
+}
+
+// We're on C++11; no std::make_unique
+template <typename T, typename... Args>
+std::unique_ptr<T> make_unique(Args&&... args) {
+	return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
 constexpr auto SCREEN_WIDTH = 400;

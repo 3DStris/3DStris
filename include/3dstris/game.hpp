@@ -26,9 +26,9 @@ class Game {
 
 	const C2D_SpriteSheet& getSpriteSheet();
 
-	void setState(State* state, bool resetTop = false,
+	void setState(std::unique_ptr<State> state, bool resetTop = false,
 				  bool resetBottom = false);
-	State* getState();
+	State& getState();
 
 	bool exit = false;
 
@@ -40,6 +40,6 @@ class Game {
 	C3D_RenderTarget* top;
 	C3D_RenderTarget* bottom;
 
-	State* currentState;
+	std::unique_ptr<State> currentState;
 	C2D_SpriteSheet spriteSheet;
 };

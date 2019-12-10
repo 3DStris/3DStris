@@ -35,7 +35,7 @@ void Playing::update(double dt) {
 	u32 kHeld = hidKeysHeld();
 
 	if (kDown & KEY_START) {
-		game.setState(new MainMenu());
+		game.setState(make_unique<MainMenu>());
 		return;
 	}
 

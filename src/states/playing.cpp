@@ -12,7 +12,7 @@ Playing::Playing()
 	: State(),
 	  board(10, 20),
 	  tileSize((SCREEN_HEIGHT - 10) / board.height),
-	  bagRNG(static_cast<u32>(rand())),
+	  bagRNG(u32(osGetTime())),
 	  upcoming(5),
 	  piece(board, PieceType::I)  // will be reset later
 {

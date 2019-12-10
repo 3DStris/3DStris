@@ -19,7 +19,7 @@ script:
   - mkdir -p build && cd build
   - cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} ..
   - sudo make -j$(nproc)
-  
+
   - ccache -s
 
 before_deploy:

@@ -5,8 +5,6 @@
 #include <3dstris/states/mainmenu.hpp>
 
 int main() {
-	srand(u32(osGetTime()));
-
 	TickCounter tickCounter;
 	osTickCounterStart(&tickCounter);
 

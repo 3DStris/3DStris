@@ -1,4 +1,4 @@
-# 3DStris [![Build Status][travis-badge]][travis-link]
+# 3DStris [![Build Status][travis-badge]][travis-link] [![CodeFactor][codefactor-badge]][codefactor-link]
 Basic Tetris clone for the 3DS.
 
 <p float="left">
@@ -32,3 +32,5 @@ Binaries can be found in `build/apps/`.
 [bannertool-url]: https://github.com/Steveice10/bannertool
 [travis-badge]: https://travis-ci.org/3DStris/3DStris.svg?branch=master
 [travis-link]: https://travis-ci.org/3DStris/3DStris
+[codefactor-badge]: https://www.codefactor.io/repository/github/3dstris/3dstris/badge
+[codefactor-link]: https://www.codefactor.io/repository/github/3dstris/3dstris

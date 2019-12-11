@@ -5,6 +5,7 @@
 Slider::Slider(GUI& parent, float x, float y, float w, float h, float ballSize)
 	: parent(parent), x(x), y(y), w(w), h(h), ballSize(ballSize) {
 	pressed = false;
+	value = 0.0f;
 }
 
 void Slider::draw() const {

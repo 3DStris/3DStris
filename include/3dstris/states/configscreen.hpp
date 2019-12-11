@@ -19,7 +19,11 @@ class ConfigScreen : public State {
 
 	C2D_TextBuf dynamicTextBuf;
 
-	std::shared_ptr<Slider> slider;
+	std::shared_ptr<Slider> dasSlider;
+	std::shared_ptr<Slider> arrSlider;
+
+	float getDas() const;
+	float getArr() const;
 
 	GUI gui;
 };

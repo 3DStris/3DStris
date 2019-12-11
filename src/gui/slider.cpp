@@ -2,15 +2,13 @@
 #include <3dstris/gui/slider.hpp>
 #include <algorithm>
 
-Slider::Slider(GUI& parent, float x, float y, float w)
-	: parent(parent), x(x), y(y), w(w) {
-	value = 0.0f;
-	ballSize = 30;
+Slider::Slider(GUI& parent, float x, float y, float w, float h, float ballSize)
+	: parent(parent), x(x), y(y), w(w), h(h), ballSize(ballSize) {
 	pressed = false;
 }
 
 void Slider::draw() const {
-	C2D_DrawRectSolid(x, y - 5, 0, w, 10, parent.primaryCol);
+	C2D_DrawRectSolid(x, y - h / 2.0f, 0, w, h, parent.primaryCol);
 	C2D_DrawEllipseSolid(x + value * w - ballSize / 2.0f, y - ballSize / 2.0f, 0,
 		ballSize, ballSize, pressed ? parent.pressedCol : parent.primaryCol);
 }

@@ -8,7 +8,7 @@ ConfigScreen::ConfigScreen()
 		  C2D_Color32(50, 50, 50, 255)) {
 	colBackground = C2D_Color32(34, 34, 34, 255);
 
-	slider = gui.addSlider(50, 50, 100);
+	slider = gui.addSlider(15, 50, 200, 5, 20);
 
 	dynamicTextBuf = C2D_TextBufNew(256);
 }

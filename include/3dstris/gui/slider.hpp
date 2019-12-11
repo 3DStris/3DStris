@@ -6,7 +6,7 @@
 class GUI;
 class Slider {
    public:
-	Slider(GUI& parent, float x, float y, float w);
+	Slider(GUI& parent, float x, float y, float w, float h, float ballSize);
 
 	void draw() const;
 	void update(touchPosition touch);
@@ -19,8 +19,8 @@ class Slider {
    private:
 	GUI& parent;
 
-	float x, y, w;
+	float x, y, w, h;
+	float ballSize;
 	float value;
 	bool pressed;
-	int ballSize;
 };

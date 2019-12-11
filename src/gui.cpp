@@ -22,8 +22,8 @@ void GUI::addButton(ButtonFlags flags, float x, float y, float w, float h,
 	this->addButton(x, y, w, h, text, onPress);
 }
 
-std::shared_ptr<Slider> GUI::addSlider(float x, float y, float w) {
-	auto slider = std::make_shared<Slider>(*this, x, y, w);
+std::shared_ptr<Slider> GUI::addSlider(float x, float y, float w, float h, float ballSize) {
+	auto slider = std::make_shared<Slider>(*this, x, y, w, h, ballSize);
 	sliders.push_back(slider);
 	return slider;
 }

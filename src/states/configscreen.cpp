@@ -20,6 +20,17 @@ ConfigScreen::ConfigScreen()
 
 	dasSlider.setValue(game.getConfig().das / 0.5f);
 	arrSlider.setValue(game.getConfig().arr / 0.1f);
+
+	gui.addButton(ButtonFlags::NONE, 10, BSCREEN_HEIGHT - 55, 100, 50, "Save", [this]() {
+		auto& config = this->game.getConfig();
+		config.das = this->getDas();
+		config.arr = this->getArr();
+		config.saveConfig();
+		this->game.setState(make_unique<MainMenu>());
+	});
+
+	gui.addButton(ButtonFlags::NONE, BSCREEN_WIDTH - 110, BSCREEN_HEIGHT - 55, 100, 50, "Cancel",
+				  [this]() { this->game.setState(make_unique<MainMenu>()); });
 }
 
 void ConfigScreen::update(double dt) {

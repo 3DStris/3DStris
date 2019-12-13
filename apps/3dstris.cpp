@@ -18,7 +18,7 @@ int main() {
 
 	Game& game = Game::getInstance();
 	if (!Game::getInstance().getConfig().configFailed) {
-		game.setState(make_unique<ConfigScreen>());
+		game.setState(make_unique<MainMenu>());
 	} else {
 		game.setState(make_unique<ConfigFailed>());
 	}

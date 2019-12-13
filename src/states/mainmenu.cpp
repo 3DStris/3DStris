@@ -25,6 +25,11 @@ MainMenu::MainMenu()
 	gui.addButton(ButtonFlags::HCENTER, -1, 10, 100, 50, "Play", [this]() {
 		this->game.setState(make_unique<Playing>(), false, true);
 	});
+
+	gui.addButton(ButtonFlags::HCENTER, -1, 100, 90, 50, "Config", [this]() {
+		this->game.setState(make_unique<ConfigScreen>());
+	});
+
 	gui.addButton(ButtonFlags::HCENTER, -1, BSCREEN_HEIGHT - 50, 80, 40, "Exit",
 				  [this]() { this->game.exit = true; });
 }

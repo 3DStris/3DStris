@@ -2,7 +2,7 @@
 #include <3dstris/gui/slider.hpp>
 #include <algorithm>
 
-Slider::Slider(GUI& parent, float x, float y, float w, float h, float ballSize)
+Slider::Slider(const GUI& parent, float x, float y, float w, float h, float ballSize)
 	: parent(parent), x(x), y(y), w(w), h(h), ballSize(ballSize) {
 	pressed = false;
 	value = 0.0f;

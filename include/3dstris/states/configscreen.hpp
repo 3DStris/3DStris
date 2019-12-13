@@ -15,15 +15,16 @@ class ConfigScreen : public State {
 	void draw(bool bottom) override;
 
    private:
+	GUI gui;
+
 	Color colBackground;
 
-	C2D_TextBuf dynamicTextBuf;
+	Text dasText;
+	Text arrText;
 
-	std::shared_ptr<Slider> dasSlider;
-	std::shared_ptr<Slider> arrSlider;
+	Slider& dasSlider;
+	Slider& arrSlider;
 
 	float getDas() const;
 	float getArr() const;
-
-	GUI gui;
 };

@@ -10,7 +10,7 @@ GUI::GUI(int width, int height, Color primaryCol, Color textCol,
 
 void GUI::addButton(float x, float y, float w, float h, const char* text,
 					std::function<void()> onPress) {
-	buttons.emplace_back(*this, x, y, w, h, text, onPress);
+	buttons.emplace_back(make_unique<Button>(*this, x, y, w, h, text, onPress));
 }
 
 void GUI::addButton(ButtonFlags flags, float x, float y, float w, float h,
@@ -22,10 +22,9 @@ void GUI::addButton(ButtonFlags flags, float x, float y, float w, float h,
 	this->addButton(x, y, w, h, text, onPress);
 }
 
-std::shared_ptr<Slider> GUI::addSlider(float x, float y, float w, float h, float ballSize) {
-	auto slider = std::make_shared<Slider>(*this, x, y, w, h, ballSize);
-	sliders.push_back(slider);
-	return slider;
+Slider& GUI::addSlider(float x, float y, float w, float h, float ballSize) {
+	sliders.emplace_back(make_unique<Slider>(*this, x, y, w, h, ballSize));
+	return *sliders.back();
 }
 
 void GUI::update(double) {
@@ -33,10 +32,10 @@ void GUI::update(double) {
 	hidTouchRead(&touch);
 
 	for (auto& button : buttons) {
-		button.update(touch);
-		if (button.inside(previousTouch.px, previousTouch.py) &&
+		button->update(touch);
+		if (button->inside(previousTouch.px, previousTouch.py) &&
 			touch.px == 0 && touch.py == 0) {
-			button.press();
+			button->press();
 		}
 	}
 	for (auto& slider : sliders) {
@@ -48,7 +47,7 @@ void GUI::update(double) {
 
 void GUI::draw() {
 	for (const auto& button : buttons) {
-		button.draw();
+		button->draw();
 	}
 	for (const auto& slider : sliders) {
 		slider->draw();

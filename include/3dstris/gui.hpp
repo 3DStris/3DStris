@@ -19,7 +19,7 @@ class GUI {
 	void addButton(ButtonFlags flags, float x, float y, float w, float h,
 				   const char* text, std::function<void()> onPress);
 
-	std::shared_ptr<Slider> addSlider(float x, float y, float w, float h, float ballSize);
+	Slider& addSlider(float x, float y, float w, float h, float ballSize);
 
 	void update(double dt);
 	void draw();
@@ -28,7 +28,7 @@ class GUI {
 
    private:
 	int width, height;
-	std::vector<Button> buttons;
-	std::vector<std::shared_ptr<Slider>> sliders;
+	std::vector<std::unique_ptr<Button>> buttons;
+	std::vector<std::unique_ptr<Slider>> sliders;
 	touchPosition previousTouch;
 };

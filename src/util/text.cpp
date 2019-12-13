@@ -32,6 +32,8 @@ Text& Text::operator=(const Text& other) {
 void Text::setText(const char* text) {
 	this->text = text;
 
+	C2D_TextBufClear(this->textBuffer);
+
 	C2D_TextParse(&textObject, textBuffer, this->text);
 	C2D_TextOptimize(&textObject);
 }

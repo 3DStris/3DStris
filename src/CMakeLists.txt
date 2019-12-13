@@ -21,6 +21,7 @@ set(HEADER_LIST
 	"${3dstris_SOURCE_DIR}/include/3dstris/states/mainmenu.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/states/playing.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/states/configfailed.hpp"
+	"${3dstris_SOURCE_DIR}/include/3dstris/util/text.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/gui.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/gui/button.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/wallkicks.hpp")
@@ -34,6 +35,7 @@ add_library(3dstris STATIC
   states/mainmenu.cpp
   states/playing.cpp
   states/configfailed.cpp
+  util/text.cpp
   gui.cpp
   gui/button.cpp
   ${HEADER_LIST})

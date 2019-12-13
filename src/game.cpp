@@ -20,7 +20,7 @@ void Game::draw() {
 	currentState->draw(true);
 }
 
-const Config& Game::getConfig() {
+Config& Game::getConfig() {
 	return config;
 }
 
@@ -38,12 +38,12 @@ const C2D_SpriteSheet& Game::getSpriteSheet() {
 
 void Game::setState(std::unique_ptr<State> state, bool resetTop,
 					bool resetBottom) {
+	currentState = std::move(state);
+
 	if (resetTop)
 		C2D_TargetClear(top, BLACK);
 	if (resetBottom)
 		C2D_TargetClear(bottom, BLACK);
-
-	currentState = std::move(state);
 }
 
 State& Game::getState() {

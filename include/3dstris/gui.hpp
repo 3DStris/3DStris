@@ -28,7 +28,7 @@ class GUI {
 
    private:
 	int width, height;
-	std::vector<std::unique_ptr<Button>> buttons;
+	std::vector<Button> buttons;
 	std::vector<std::shared_ptr<Slider>> sliders;
 	touchPosition previousTouch;
 };

@@ -14,7 +14,6 @@
 class Playing : public State {
    public:
 	Playing();
-	virtual ~Playing() = default;
 
 	void update(double dt) override;
 	void draw(bool bottom) override;

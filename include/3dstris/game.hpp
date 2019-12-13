@@ -19,7 +19,7 @@ class Game {
 
 	void draw();
 
-	const Config& getConfig();
+	Config& getConfig();
 
 	C3D_RenderTarget* getTop();
 	C3D_RenderTarget* getBottom();

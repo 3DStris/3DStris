@@ -2,16 +2,16 @@
 
 #include <3ds.h>
 #include <citro2d.h>
+#include <3dstris/util/text.hpp>
 #include <functional>
 
 class GUI;
 class Button {
    public:
-	Button(GUI& parent, float x, float y, float w, float h, const char* text,
-		   std::function<void()> onPress);
-	~Button();
+	Button(const GUI& parent, float x, float y, float w, float h,
+		   const char* text, std::function<void()> onPress);
 
-	void setText(const char* text, bool resizeBuf = true);
+	void setText(const char* text);
 
 	void draw() const;
 	void update(touchPosition touch);
@@ -20,14 +20,11 @@ class Button {
 	void press();
 
    private:
-	GUI& parent;
+	const GUI& parent;
 
-	C2D_TextBuf textBuf;
+	Text text;
 
 	float x, y, w, h;
-	C2D_Text text;
-	float textW, textH;
-	float textSX, textSY;
 	bool pressed;
 	std::function<void()> onPress;
 };

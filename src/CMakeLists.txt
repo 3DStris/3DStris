@@ -22,6 +22,7 @@ set(HEADER_LIST
 	"${3dstris_SOURCE_DIR}/include/3dstris/states/playing.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/states/configfailed.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/states/configscreen.hpp"
+	"${3dstris_SOURCE_DIR}/include/3dstris/util/text.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/gui.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/gui/button.hpp"
 	"${3dstris_SOURCE_DIR}/include/3dstris/gui/slider.hpp"
@@ -37,6 +38,7 @@ add_library(3dstris STATIC
   states/playing.cpp
   states/configfailed.cpp
   states/configscreen.cpp
+  util/text.cpp
   gui.cpp
   gui/button.cpp
   gui/slider.cpp

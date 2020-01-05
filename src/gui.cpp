@@ -1,16 +1,17 @@
 #include <3dstris/gui.hpp>
 
 GUI::GUI(int width, int height, Color primaryCol, Color textCol,
-		 Color pressedCol)
+		 Color pressedCol, Color borderCol)
 	: primaryCol(primaryCol),
 	  textCol(textCol),
 	  pressedCol(pressedCol),
+	  borderCol(borderCol),
 	  width(width),
 	  height(height) {}
 
-std::shared_ptr<Slider> GUI::addSlider(float x, float y, float w, float h,
-									   float ballSize) {
-	auto slider = std::make_shared<Slider>(*this, x, y, w, h, ballSize);
+std::shared_ptr<FloatInputField> GUI::addFloatInputField(float x, float y,
+														 float w, float h) {
+	auto slider = std::make_shared<FloatInputField>(*this, x, y, w, h);
 	widgets.push_back(slider);
 	return slider;
 }

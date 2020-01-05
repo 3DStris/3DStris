@@ -1,11 +1,12 @@
 #pragma once
 
 #include <3dstris/gui/widget.hpp>
+#include <3dstris/util/text.hpp>
 
 class GUI;
-class Slider : public Widget {
+class FloatInputField : public Widget {
    public:
-	Slider(GUI& parent, float x, float y, float w, float h, float ballSize);
+	FloatInputField(GUI& parent, float x, float y, float w, float h);
 
 	void draw() const override;
 	void update(touchPosition touch, touchPosition) override;
@@ -16,8 +17,11 @@ class Slider : public Widget {
 	void setValue(float v);
 
    private:
+	void updateText();
+
+	Text text;
+
 	float x, y, w, h;
-	float ballSize;
 	float value;
 	bool pressed;
 };

@@ -7,7 +7,7 @@ Paused::Paused(State* parent) : State(), pausedText("Paused"), parent(parent) {
 	pausedText.setPos({(SCREEN_WIDTH - pausedText.getWH().x) / 2,
 					   (SCREEN_HEIGHT - pausedText.getWH().y) / 2});
 	unpauseButton =
-		gui.addButton(ButtonFlags::CENTER, -1, 10, 200, 115, "Unpause");
+		gui.addButton(ButtonFlags::CENTER, -1, 10, 200, 115, "Resume");
 	menuButton = gui.addButton(ButtonFlags::HCENTER, -1,
 							   BSCREEN_HEIGHT - 40 - 10, 100, 45, "Menu");
 	colBackground = C2D_Color32(34, 34, 34, 255);

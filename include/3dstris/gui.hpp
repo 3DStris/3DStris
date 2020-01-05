@@ -1,7 +1,7 @@
 #pragma once
 
 #include <3dstris/gui/button.hpp>
-#include <3dstris/gui/slider.hpp>
+#include <3dstris/gui/floatinputfield.hpp>
 #include <3dstris/gui/widget.hpp>
 #include <3dstris/util.hpp>
 #include <vector>
@@ -12,7 +12,7 @@ class GUI {
    public:
 	GUI(int width = BSCREEN_WIDTH, int height = BSCREEN_HEIGHT,
 		Color primaryCol = BUTTON, Color textCol = WHITE,
-		Color pressedCol = BUTTON_HELD);
+		Color pressedCol = BUTTON_HELD, Color borderCol = BUTTON_BORDER);
 
 	template <typename T>
 	std::shared_ptr<Button> addButton(float x, float y, float w, float h,
@@ -32,8 +32,8 @@ class GUI {
 		return this->addButton(x, y, w, h, text);
 	}
 
-	std::shared_ptr<Slider> addSlider(float x, float y, float w, float h,
-									  float ballSize);
+	std::shared_ptr<FloatInputField> addFloatInputField(float x, float y,
+														float w, float h);
 
 	void update(double dt);
 	void draw();
@@ -41,7 +41,7 @@ class GUI {
 	static void drawOutline(float x, float y, float w, float h, u8 scale = 2,
 							Color color = BUTTON_BORDER);
 
-	Color primaryCol, textCol, pressedCol;
+	Color primaryCol, textCol, pressedCol, borderCol;
 
    private:
 	int width, height;

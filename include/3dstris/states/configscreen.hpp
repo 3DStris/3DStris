@@ -21,8 +21,8 @@ class ConfigScreen : public State {
 	std::shared_ptr<Button> saveButton;
 	std::shared_ptr<Button> cancelButton;
 
-	std::shared_ptr<Slider> dasSlider;
-	std::shared_ptr<Slider> arrSlider;
+	std::shared_ptr<FloatInputField> dasSlider;
+	std::shared_ptr<FloatInputField> arrSlider;
 
 	float getDas() const;
 	float getArr() const;

@@ -6,7 +6,7 @@
 
 class Paused : public State {
    public:
-	Paused();
+	Paused(State* parent);
 
 	void update(double dt) override;
 	void draw(bool bottom) override;
@@ -20,4 +20,6 @@ class Paused : public State {
 
 	std::shared_ptr<Button> unpauseButton;
 	std::shared_ptr<Button> menuButton;
+
+	State* parent;
 };

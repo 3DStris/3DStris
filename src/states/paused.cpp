@@ -2,11 +2,7 @@
 #include <3dstris/states/paused.hpp>
 #include <algorithm>
 
-Paused::Paused()
-	: State(),
-	  gui(BSCREEN_WIDTH, BSCREEN_HEIGHT, C2D_Color32(100, 100, 100, 255), WHITE,
-		  C2D_Color32(50, 50, 50, 255)),
-	  pausedText("Paused", WHITE) {
+Paused::Paused(State* parent) : State(), pausedText("Paused"), parent(parent) {
 	pausedText.setScale({2, 2});
 	pausedText.setPos({(SCREEN_WIDTH - pausedText.getWH().x) / 2,
 					   (SCREEN_HEIGHT - pausedText.getWH().y) / 2});
@@ -33,7 +29,8 @@ void Paused::update(double dt) {
 
 void Paused::draw(bool bottom) {
 	if (!bottom) {
-		C2D_TargetClear(this->game.getTop(), colBackground);
+		parent->draw(bottom);
+		C2D_DrawRectSolid(0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, PAUSED);
 
 		pausedText.draw();
 	} else {

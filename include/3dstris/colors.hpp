@@ -2,9 +2,15 @@
 
 #include <3dstris/util.hpp>
 
+const Color BUTTON = C2D_Color32(79, 79, 79, 255);
+const Color BUTTON_BORDER = C2D_Color32(94, 94, 94, 255);
+const Color BUTTON_HELD = C2D_Color32(64, 64, 64, 255);
+
 const Color WHITE = C2D_Color32(255, 255, 255, 255);
 const Color BLACK = C2D_Color32(0, 0, 0, 255);
 const Color GRIDBLACK = C2D_Color32(0, 0, 0, 100);
+
+const Color PAUSED = C2D_Color32(0, 0, 0, 190);
 
 namespace Colors {
 	const Color I = C2D_Color32(65, 175, 222, 255);

@@ -6,10 +6,7 @@
 
 ConfigFailed::ConfigFailed()
 	: State(),
-	  failedText("Failed to load config; your settings have been reset.",
-				 WHITE),
-	  gui(BSCREEN_WIDTH, BSCREEN_HEIGHT, C2D_Color32(100, 100, 100, 255), WHITE,
-		  C2D_Color32(50, 50, 50, 255)) {
+	  failedText("Failed to load config; your settings have been reset.") {
 	colBackground = C2D_Color32(34, 34, 34, 255);
 
 	failedText.setScale({0.6f, 0.6f});

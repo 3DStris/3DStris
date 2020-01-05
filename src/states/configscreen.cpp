@@ -5,18 +5,14 @@
 
 ConfigScreen::ConfigScreen()
 	: State(),
-	  gui(BSCREEN_WIDTH, BSCREEN_HEIGHT, C2D_Color32(100, 100, 100, 255), WHITE,
-		  C2D_Color32(50, 50, 50, 255)),
-	  dasText(sdsempty(), WHITE),
-	  arrText(sdsempty(), WHITE),
-	  dasSlider(gui.addSlider(15, 50, BSCREEN_WIDTH - 30, 5, 20)),
-	  arrSlider(gui.addSlider(15, 100, BSCREEN_WIDTH - 30, 5, 20)) {
+	  dasSlider(gui.addSlider(15, 45, BSCREEN_WIDTH - 30, 10, 28)),
+	  arrSlider(gui.addSlider(15, 95, BSCREEN_WIDTH - 30, 10, 28)) {
 	colBackground = C2D_Color32(34, 34, 34, 255);
 
-	dasText.setPos({15, 10});
+	dasText.setPos({15, 50 - 35});
 	dasText.setScale({0.5f, 0.5f});
 
-	arrText.setPos({15, 60});
+	arrText.setPos({15, 100 - 35});
 	arrText.setScale({0.5f, 0.5f});
 
 	dasSlider->setValue(game.getConfig().das / 0.5f);

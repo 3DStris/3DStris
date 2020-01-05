@@ -23,7 +23,7 @@ Playing::Playing()
 	origin = {SCREEN_WIDTH / 2.0f - (board.width / 2.0f) * float(tileSize),
 			  10.0f};
 
-	const auto& _bag = genBag(bagRNG);
+	const auto _bag = genBag(bagRNG);
 	bag = std::deque<PieceType>(_bag.begin(), _bag.end());
 
 	piece.reset(bag.front());
@@ -38,7 +38,7 @@ void Playing::update(double dt) {
 	u32 kHeld = hidKeysHeld();
 
 	if (kDown & KEY_START) {
-		game.pushState(make_unique<Paused>());
+		game.pushState(make_unique<Paused>(this));
 		return;
 	}
 

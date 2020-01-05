@@ -10,8 +10,9 @@ enum ButtonFlags { NONE, HCENTER, VCENTER, CENTER };
 
 class GUI {
    public:
-	GUI(int width, int height, Color primaryCol, Color textCol,
-		Color pressedCol);
+	GUI(int width = BSCREEN_WIDTH, int height = BSCREEN_HEIGHT,
+		Color primaryCol = BUTTON, Color textCol = WHITE,
+		Color pressedCol = BUTTON_HELD);
 
 	template <typename T>
 	std::shared_ptr<Button> addButton(float x, float y, float w, float h,
@@ -36,6 +37,9 @@ class GUI {
 
 	void update(double dt);
 	void draw();
+
+	static void drawOutline(float x, float y, float w, float h, u8 scale = 2,
+							Color color = BUTTON_BORDER);
 
 	Color primaryCol, textCol, pressedCol;
 

@@ -31,3 +31,11 @@ void GUI::draw() {
 		widget->draw();
 	}
 }
+
+void GUI::drawOutline(float x, float y, float w, float h, u8 scale,
+					  Color color) {
+	C2D_DrawRectSolid(x - scale, y - scale, 0.5f, w + 2 * scale, scale, color);
+	C2D_DrawRectSolid(x - scale, y, 0.5f, scale, h, color);
+	C2D_DrawRectSolid(x + w, y, 0.5f, scale, h, color);
+	C2D_DrawRectSolid(x - scale, y + h, 0.5f, w + 2 * scale, scale, color);
+}

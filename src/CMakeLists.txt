@@ -26,6 +26,7 @@ set_header_list(
 	state.hpp
 	states/mainmenu.hpp
 	states/playing.hpp
+	states/paused.hpp
 	states/configscreen.hpp
 	states/configfailed.hpp
 	util/text.hpp
@@ -43,6 +44,7 @@ add_library(3dstris STATIC
 	state.cpp
 	states/mainmenu.cpp
 	states/playing.cpp
+	states/paused.cpp
 	states/configscreen.cpp
 	states/configfailed.cpp
 	util/text.cpp

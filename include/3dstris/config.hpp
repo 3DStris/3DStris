@@ -15,8 +15,8 @@ struct Config {
 	bool configFailed = false;
 
    private:
-	FS_Path dirPath = fsMakePath(PATH_ASCII, "/3dstris");
-	FS_Path configPath = fsMakePath(PATH_ASCII, "/3dstris/config.json");
+	const FS_Path dirPath = fsMakePath(PATH_ASCII, "/3dstris");
+	const FS_Path configPath = fsMakePath(PATH_ASCII, "/3dstris/config.json");
 
 	FS_Archive sdmcArchive;
 

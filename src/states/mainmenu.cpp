@@ -19,7 +19,7 @@ MainMenu::MainMenu()
 
 	playButton = gui.addButton(ButtonFlags::HCENTER, -1, 10, 100, 50, "Play");
 	configButton =
-		gui.addButton(ButtonFlags::HCENTER, -1, 100, 90, 50, "Config");
+		gui.addButton(ButtonFlags::HCENTER, -1, 100, 100, 50, "Config");
 	exitButton = gui.addButton(ButtonFlags::HCENTER, -1, BSCREEN_HEIGHT - 50,
 							   80, 40, "Exit");
 }
@@ -27,18 +27,18 @@ void MainMenu::update(double dt) {
 	u32 kDown = hidKeysDown();
 
 	if (kDown & KEY_START) {
-		game.exit = true;
+		this->game.exit = true;
 		return;
 	}
 	gui.update(dt);
 
 	if (playButton->pressed()) {
-		this->game.setState(make_unique<Playing>(), false, true);
+		this->game.pushState(make_unique<Playing>(), false, true);
 		return;
 	}
 
 	if (configButton->pressed()) {
-		this->game.setState(make_unique<ConfigScreen>());
+		this->game.pushState(make_unique<ConfigScreen>());
 		return;
 	}
 

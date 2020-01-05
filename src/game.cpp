@@ -1,9 +1,7 @@
 #include <3dstris/colors.hpp>
 #include <3dstris/game.hpp>
 
-Game::Game()
-	: currentState(nullptr),
-	  spriteSheet(C2D_SpriteSheetLoad("romfs:/gfx/sprites.t3x")) {
+Game::Game() : spriteSheet(C2D_SpriteSheetLoad("romfs:/gfx/sprites.t3x")) {
 	top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
 	bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 }
@@ -15,15 +13,15 @@ Game::~Game() {
 }
 
 void Game::update(double dt) {
-	currentState->update(dt);
+	getState().update(dt);
 }
 
 void Game::draw() {
 	C2D_SceneBegin(top);
-	currentState->draw(false);
+	getState().draw(false);
 
 	C2D_SceneBegin(bottom);
-	currentState->draw(true);
+	getState().draw(true);
 }
 
 Config& Game::getConfig() {
@@ -42,16 +40,35 @@ const C2D_SpriteSheet& Game::getSpriteSheet() {
 	return spriteSheet;
 }
 
+void Game::pushState(std::unique_ptr<State> state, bool resetTop,
+					 bool resetBottom) {
+	states.push_back(std::move(state));
+
+	reset(resetTop, resetBottom);
+}
+
 void Game::setState(std::unique_ptr<State> state, bool resetTop,
 					bool resetBottom) {
-	currentState = std::move(state);
+	states.clear();
 
-	if (resetTop)
-		C2D_TargetClear(top, BLACK);
-	if (resetBottom)
-		C2D_TargetClear(bottom, BLACK);
+	pushState(std::move(state), resetTop, resetBottom);
+}
+
+void Game::popState(bool resetTop, bool resetBottom) {
+	states.pop_back();
+
+	reset(resetTop, resetBottom);
 }
 
 State& Game::getState() {
-	return *currentState;
+	return *states.back();
+}
+
+void Game::reset(bool top, bool bottom) {
+	if (top) {
+		C2D_TargetClear(this->top, BLACK);
+	}
+	if (bottom) {
+		C2D_TargetClear(this->bottom, BLACK);
+	}
 }

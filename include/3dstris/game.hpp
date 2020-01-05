@@ -23,8 +23,11 @@ class Game {
 
 	const C2D_SpriteSheet& getSpriteSheet();
 
+	void pushState(std::unique_ptr<State> state, bool resetTop = false,
+				   bool resetBottom = false);
 	void setState(std::unique_ptr<State> state, bool resetTop = false,
 				  bool resetBottom = false);
+	void popState(bool resetTop = false, bool resetBottom = false);
 	State& getState();
 
 	bool exit = false;
@@ -33,11 +36,13 @@ class Game {
 	Game();
 	~Game();
 
+	void reset(bool top, bool bottom);
+
 	Config config;
 
 	C3D_RenderTarget* top;
 	C3D_RenderTarget* bottom;
 
-	std::unique_ptr<State> currentState;
+	std::vector<std::unique_ptr<State>> states;
 	C2D_SpriteSheet spriteSheet;
 };

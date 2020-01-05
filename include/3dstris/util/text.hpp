@@ -1,18 +1,20 @@
 #pragma once
 
+#include <sds.h>
 #include <3dstris/colors.hpp>
 #include <3dstris/util.hpp>
 
 class Text {
    public:
-	Text(const char* text = "", Color color = BLACK);
+	Text(const sds text = sdsempty(), Color color = BLACK);
+	Text(const char* text, Color color = BLACK);
 	~Text();
 
 	Text(const Text& other);
 	Text& operator=(const Text& other);
 
-	void setText(const char* text);
-	const char* getText();
+	void setText(const sds text);
+	sds getText();
 
 	void setX(float x);
 	float getX() const;
@@ -38,7 +40,7 @@ class Text {
    private:
 	Vector2 pos;
 	Vector2 scale;
-	const char* text;
+	sds text = nullptr;
 	Color color;
 	C2D_Text textObject;
 	C2D_TextBuf textBuffer;

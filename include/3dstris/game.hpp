@@ -1,11 +1,7 @@
 #pragma once
 
-#include <3ds.h>
-#include <citro2d.h>
 #include <3dstris/config.hpp>
 #include <3dstris/state.hpp>
-#include <iostream>
-#include <nlohmann/json.hpp>
 
 class State;
 class Game {
@@ -34,6 +30,7 @@ class Game {
 
    private:
 	Game();
+	~Game();
 
 	Config config;
 

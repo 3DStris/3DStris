@@ -1,37 +1,27 @@
 #include <3dstris/sprites.h>
+#include <3dstris/states/configscreen.hpp>
 #include <3dstris/states/mainmenu.hpp>
 #include <3dstris/util.hpp>
 #include <3dstris/version.hpp>
 
-// vVERSION-HASH
-constexpr auto versionStringLength = 1 + constexpr_strlen(_3DSTRIS_VERSION) +
-									 1 + constexpr_strlen(_3DSTRIS_GIT_HASH);
-
 MainMenu::MainMenu()
 	: State(),
-	  versionText("", WHITE),
+	  versionText(
+		  sdscatfmt(sdsempty(), "v%s-%s", _3DSTRIS_VERSION, _3DSTRIS_GIT_HASH),
+		  WHITE),
 	  icon(C2D_SpriteSheetGetImage(game.getSpriteSheet(), sprites_icon_idx)),
 	  gui(BSCREEN_WIDTH, BSCREEN_HEIGHT, C2D_Color32(100, 100, 100, 255), WHITE,
 		  C2D_Color32(50, 50, 50, 255)) {
 	colBackground = C2D_Color32(34, 34, 34, 255);
 
-	char* versionString = new char[versionStringLength + 1];
-	sprintf(versionString, "v%s-%s", _3DSTRIS_VERSION, _3DSTRIS_GIT_HASH);
-
-	versionText.setText(versionString);
 	versionText.setScale({0.5f, 0.5f});
-	versionText.setPos({1, SCREEN_HEIGHT - versionText.getWH().y / 1.25f});
+	versionText.setPos({3, SCREEN_HEIGHT - versionText.getWH().y / 1.25f - 5});
 
-	gui.addButton(ButtonFlags::HCENTER, -1, 10, 100, 50, "Play", [this]() {
-		this->game.setState(make_unique<Playing>(), false, true);
-	});
-
-	gui.addButton(ButtonFlags::HCENTER, -1, 100, 90, 50, "Config", [this]() {
-		this->game.setState(make_unique<ConfigScreen>());
-	});
-
-	gui.addButton(ButtonFlags::HCENTER, -1, BSCREEN_HEIGHT - 50, 80, 40, "Exit",
-				  [this]() { this->game.exit = true; });
+	playButton = gui.addButton(ButtonFlags::HCENTER, -1, 10, 100, 50, "Play");
+	configButton =
+		gui.addButton(ButtonFlags::HCENTER, -1, 100, 90, 50, "Config");
+	exitButton = gui.addButton(ButtonFlags::HCENTER, -1, BSCREEN_HEIGHT - 50,
+							   80, 40, "Exit");
 }
 void MainMenu::update(double dt) {
 	u32 kDown = hidKeysDown();
@@ -41,6 +31,20 @@ void MainMenu::update(double dt) {
 		return;
 	}
 	gui.update(dt);
+
+	if (playButton->pressed()) {
+		this->game.setState(make_unique<Playing>(), false, true);
+		return;
+	}
+
+	if (configButton->pressed()) {
+		this->game.setState(make_unique<ConfigScreen>());
+		return;
+	}
+
+	if (exitButton->pressed()) {
+		this->game.exit = true;
+	}
 }
 
 void MainMenu::draw(bool bottom) {

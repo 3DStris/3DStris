@@ -1,15 +1,14 @@
 #pragma once
 
-#include <3ds.h>
-#include <citro2d.h>
+#include <3dstris/gui/widget.hpp>
 
 class GUI;
-class Slider {
+class Slider : public Widget {
    public:
-	Slider(const GUI& parent, float x, float y, float w, float h, float ballSize);
+	Slider(GUI& parent, float x, float y, float w, float h, float ballSize);
 
-	void draw() const;
-	void update(touchPosition touch);
+	void draw() const override;
+	void update(touchPosition touch, touchPosition) override;
 
 	bool inside(float posX, float posY) const;
 
@@ -17,8 +16,6 @@ class Slider {
 	void setValue(float v);
 
    private:
-	const GUI& parent;
-
 	float x, y, w, h;
 	float ballSize;
 	float value;

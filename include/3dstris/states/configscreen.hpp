@@ -22,8 +22,11 @@ class ConfigScreen : public State {
 	Text dasText;
 	Text arrText;
 
-	Slider& dasSlider;
-	Slider& arrSlider;
+	std::shared_ptr<Button> saveButton;
+	std::shared_ptr<Button> cancelButton;
+
+	std::shared_ptr<Slider> dasSlider;
+	std::shared_ptr<Slider> arrSlider;
 
 	float getDas() const;
 	float getArr() const;

@@ -8,18 +8,18 @@ set(3dstris_VERSION_PATCH 3)
 set(3dstris_VERSION "${3dstris_VERSION_MAJOR}.${3dstris_VERSION_MINOR}.${3dstris_VERSION_PATCH}")
 
 project(
-  3dstris
-  VERSION ${3dstris_VERSION}
-  DESCRIPTION "Tetris for the 3DS"
-  LANGUAGES CXX)
+	3dstris
+	VERSION ${3dstris_VERSION}
+	DESCRIPTION "Tetris for the 3DS"
+	LANGUAGES CXX)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib/3ds-cmake/cmake)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-  set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+	set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-  set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-  set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMake")
+	set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+	set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMake")
 endif()
 
 macro(_3dstris_option OPTION_NAME OPTION_TEXT OPTION_DEFAULT)
@@ -31,7 +31,7 @@ macro(_3dstris_option OPTION_NAME OPTION_TEXT OPTION_DEFAULT)
 	if(${OPTION_NAME})
 		add_definitions(-D${OPTION_NAME})
 	endif()
-	message(STATUS "  ${OPTION_NAME}: ${${OPTION_NAME}}")
+	message(STATUS "${OPTION_NAME}: ${${OPTION_NAME}}")
 endmacro()
 
 message("3DStris CMake options")
@@ -44,6 +44,8 @@ find_package(Git)
 find_package(CTRULIB REQUIRED)
 find_package(CITRO3D REQUIRED)
 find_package(CITRO2D REQUIRED)
+
+add_subdirectory(lib/sds)
 
 set(JSON_BuildTests OFF CACHE INTERNAL "")
 add_subdirectory(lib/json)

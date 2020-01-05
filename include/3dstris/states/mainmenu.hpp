@@ -21,5 +21,9 @@ class MainMenu : public State {
 
 	Color colBackground;
 
+	std::shared_ptr<Button> playButton;
+	std::shared_ptr<Button> configButton;
+	std::shared_ptr<Button> exitButton;
+
 	GUI gui;
 };

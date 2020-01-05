@@ -5,6 +5,7 @@
 
 struct Config {
 	Config();
+	~Config();
 
 	void saveConfig(bool overwrite = true);
 

@@ -6,7 +6,9 @@
 class GUI;
 class FloatInputField : public Widget {
    public:
-	FloatInputField(GUI& parent, float x, float y, float w, float h);
+	FloatInputField(GUI& parent, float x, float y, float w, float h,
+					const sds suffix = sdsempty());
+	~FloatInputField() override;
 
 	void draw() const override;
 	void update(touchPosition touch, touchPosition) override;
@@ -20,6 +22,7 @@ class FloatInputField : public Widget {
 	void updateText();
 
 	Text text;
+	sds suffix;
 
 	float x, y, w, h;
 	float value;

@@ -2,9 +2,13 @@
 #include <3dstris/gui/floatinputfield.hpp>
 
 FloatInputField::FloatInputField(GUI& parent, float x, float y, float w,
-								 float h)
-	: Widget(parent), x(x), y(y), w(w), h(h), value(0.0f) {
+								 float h, const sds suffix)
+	: Widget(parent), suffix(suffix), x(x), y(y), w(w), h(h), value(0.0f) {
 	updateText();
+}
+
+FloatInputField::~FloatInputField() {
+	sdsfree(suffix);
 }
 
 void FloatInputField::draw() const {
@@ -16,12 +20,17 @@ void FloatInputField::update(touchPosition touch, touchPosition) {
 	if (hidKeysDown() & KEY_TOUCH && inside(touch.px, touch.py)) {
 		SwkbdState swkbd;
 
+		sds initialText = sdscatprintf(sdsempty(), "%.4f", value);
+
 		char buf[5];
 		swkbdInit(&swkbd, SWKBD_TYPE_NUMPAD, 1, 4);
 		swkbdSetValidation(&swkbd, SWKBD_NOTEMPTY_NOTBLANK, 0, 0);
 		swkbdSetFeatures(&swkbd, SWKBD_FIXED_WIDTH);
 		swkbdSetNumpadKeys(&swkbd, '.', 0);
+		swkbdSetInitialText(&swkbd, initialText);
 		swkbdInputText(&swkbd, buf, sizeof(buf));
+
+		sdsfree(initialText);
 
 		float tempValue = std::atof(buf);
 		if (tempValue != 0.f) {
@@ -46,7 +55,7 @@ void FloatInputField::setValue(float v) {
 }
 
 void FloatInputField::updateText() {
-	this->text.setText(sdscatprintf(sdsempty(), "%.2f", value));
+	this->text.setText(sdscatprintf(sdsempty(), "%.2f%s", value, suffix));
 
 	auto textScale = std::min(this->text.getWH().y / h, 0.5f);
 	this->text.setScale({textScale, textScale});

@@ -7,8 +7,10 @@ ConfigScreen::ConfigScreen()
 	: State(),
 	  dasText("DAS"),
 	  arrText("ARR"),
-	  dasSlider(gui.addFloatInputField(15, 45, BSCREEN_WIDTH - 30, 25)),
-	  arrSlider(gui.addFloatInputField(15, 95, BSCREEN_WIDTH - 30, 25)) {
+	  dasInputField(
+		  gui.addFloatInputField(15, 45, BSCREEN_WIDTH - 30, 25, sdsnew("ms"))),
+	  arrInputField(gui.addFloatInputField(15, 95, BSCREEN_WIDTH - 30, 25,
+										   sdsnew("ms"))) {
 	colBackground = C2D_Color32(34, 34, 34, 255);
 
 	dasText.setPos({15, 50 - 35});
@@ -17,8 +19,8 @@ ConfigScreen::ConfigScreen()
 	arrText.setPos({15, 100 - 35});
 	arrText.setScale({0.5f, 0.5f});
 
-	dasSlider->setValue(game.getConfig().das);
-	arrSlider->setValue(game.getConfig().arr);
+	dasInputField->setValue(game.getConfig().das * 1000);
+	arrInputField->setValue(game.getConfig().arr * 1000);
 
 	saveButton = gui.addButton(ButtonFlags::NONE, 10, BSCREEN_HEIGHT - 55, 100,
 							   50, "Save");
@@ -47,11 +49,11 @@ void ConfigScreen::update(double dt) {
 }
 
 float ConfigScreen::getDas() const {
-	return dasSlider->getValue();
+	return dasInputField->getValue();
 }
 
 float ConfigScreen::getArr() const {
-	return arrSlider->getValue();
+	return arrInputField->getValue();
 }
 
 void ConfigScreen::draw(bool bottom) {

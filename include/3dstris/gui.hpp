@@ -32,8 +32,8 @@ class GUI {
 		return this->addButton(x, y, w, h, text);
 	}
 
-	std::shared_ptr<FloatInputField> addFloatInputField(float x, float y,
-														float w, float h);
+	std::shared_ptr<FloatInputField> addFloatInputField(
+		float x, float y, float w, float h, const sds suffix = sdsempty());
 
 	void update(double dt);
 	void draw();

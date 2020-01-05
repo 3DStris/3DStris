@@ -1,4 +1,5 @@
 #include <3dstris/states/configscreen.hpp>
+#include <3dstris/states/mainmenu.hpp>
 #include <3dstris/util.hpp>
 #include <3dstris/version.hpp>
 
@@ -66,7 +67,7 @@ void ConfigScreen::draw(bool bottom) {
 		C2D_TargetClear(this->game.getTop(), colBackground);
 	} else {
 		C2D_TargetClear(this->game.getBottom(), colBackground);
-		
+
 		gui.draw();
 
 		gui.draw();

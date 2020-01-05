@@ -1,7 +1,5 @@
 #pragma once
 
-#include <3ds.h>
-#include <citro2d.h>
 #include <3dstris/game.hpp>
 
 class Game;

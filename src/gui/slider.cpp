@@ -1,6 +1,5 @@
 #include <3dstris/gui.hpp>
 #include <3dstris/gui/slider.hpp>
-#include <algorithm>
 
 Slider::Slider(GUI& parent, float x, float y, float w, float h, float ballSize)
 	: Widget(parent), x(x), y(y), w(w), h(h), ballSize(ballSize) {

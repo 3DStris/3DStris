@@ -4,7 +4,6 @@
 
 #include <array>
 #include <memory>
-#include <vector>
 
 // python-like modulo, which makes negative numbers wrap around
 template <typename T>

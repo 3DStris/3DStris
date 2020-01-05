@@ -1,5 +1,6 @@
 #include <3dstris/sprites.h>
 #include <3dstris/states/configfailed.hpp>
+#include <3dstris/states/mainmenu.hpp>
 #include <3dstris/util.hpp>
 #include <3dstris/version.hpp>
 

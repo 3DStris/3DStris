@@ -1,10 +1,7 @@
 #pragma once
 
-#include <3ds.h>
-#include <citro2d.h>
 #include <3dstris/gui/widget.hpp>
 #include <3dstris/util/text.hpp>
-#include <functional>
 
 class GUI;
 class Button : public Widget {

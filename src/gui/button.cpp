@@ -1,5 +1,4 @@
 #include <3dstris/gui.hpp>
-#include <3dstris/gui/button.hpp>
 
 Button::Button(GUI& parent, float x, float y, float w, float h, const sds text)
 	: Widget(parent), text(sdsempty(), parent.textCol), x(x), y(y), w(w), h(h) {

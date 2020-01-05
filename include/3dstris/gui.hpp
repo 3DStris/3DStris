@@ -4,8 +4,6 @@
 #include <3dstris/gui/slider.hpp>
 #include <3dstris/gui/widget.hpp>
 #include <3dstris/util.hpp>
-#include <functional>
-#include <memory>
 #include <vector>
 
 enum ButtonFlags { NONE, HCENTER, VCENTER, CENTER };

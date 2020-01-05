@@ -38,12 +38,12 @@ void ConfigScreen::update(double dt) {
 		config.arr = this->getArr();
 		config.saveConfig();
 
-		this->game.setState(make_unique<MainMenu>());
+		this->game.popState();
 		return;
 	}
 
 	if (cancelButton->pressed()) {
-		this->game.setState(make_unique<MainMenu>());
+		this->game.popState();
 		return;
 	}
 

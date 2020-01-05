@@ -2,14 +2,14 @@
 #include <3dstris/game.hpp>
 #include <3dstris/states/configfailed.hpp>
 
-static bool directoryExists(FS_Archive& archive, FS_Path& path) {
+static bool directoryExists(FS_Archive& archive, const FS_Path& path) {
 	Handle handle;
 
 	return !R_FAILED(FSUSER_OpenDirectory(&handle, archive, path)) &&
 		   !R_FAILED(FSDIR_Close(handle));
 }
 
-static bool fileExists(FS_Archive& archive, FS_Path& path) {
+static bool fileExists(FS_Archive& archive, const FS_Path& path) {
 	Handle handle;
 
 	return !R_FAILED(

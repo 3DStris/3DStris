@@ -44,6 +44,7 @@ void ConfigScreen::update(double dt) {
 
 	if (cancelButton->pressed()) {
 		this->game.setState(make_unique<MainMenu>());
+		return;
 	}
 
 	dasText.setText(

@@ -17,7 +17,7 @@ int main() {
 	C2D_Prepare();
 
 	Game& game = Game::getInstance();
-	if (!Game::getInstance().getConfig().configFailed) {
+	if (!game.getConfig().configFailed) {
 		game.setState(make_unique<MainMenu>());
 	} else {
 		game.setState(make_unique<ConfigFailed>());

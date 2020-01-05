@@ -12,9 +12,9 @@ ConfigFailed::ConfigFailed()
 		  C2D_Color32(50, 50, 50, 255)) {
 	colBackground = C2D_Color32(34, 34, 34, 255);
 
-	failedText.setPos({SCREEN_WIDTH / 2 - failedText.getWH().x / 2,
-					   SCREEN_HEIGHT / 2 - failedText.getWH().y / 2});
-	failedText.setScale({0.5f, 0.5f});
+	failedText.setScale({0.6f, 0.6f});
+	failedText.setPos({(SCREEN_WIDTH - failedText.getWH().x) / 2,
+					   (SCREEN_HEIGHT - failedText.getWH().y) / 2});
 
 	okButton = gui.addButton(ButtonFlags::CENTER, -1, -1, SCREEN_WIDTH - 100,
 							 SCREEN_HEIGHT - 100, "OK");

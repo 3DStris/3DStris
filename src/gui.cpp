@@ -22,9 +22,6 @@ void GUI::update(double) {
 	for (auto& widget : widgets) {
 		widget->update(touch, previousTouch);
 	}
-	for (auto& slider : sliders) {
-		slider->update(touch);
-	}
 
 	previousTouch = touch;
 }
@@ -32,8 +29,5 @@ void GUI::update(double) {
 void GUI::draw() {
 	for (const auto& widget : widgets) {
 		widget->draw();
-	}
-	for (const auto& slider : sliders) {
-		slider->draw();
 	}
 }

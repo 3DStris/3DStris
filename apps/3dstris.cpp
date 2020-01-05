@@ -2,6 +2,7 @@
 #include <3dstris/game.hpp>
 #include <3dstris/state.hpp>
 #include <3dstris/states/configfailed.hpp>
+#include <3dstris/states/configscreen.hpp>
 #include <3dstris/states/mainmenu.hpp>
 
 int main() {

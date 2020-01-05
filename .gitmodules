@@ -5,3 +5,7 @@
 [submodule "lib/json"]
 	path = lib/json
 	url = https://github.com/nlohmann/json.git
+[submodule "lib/sds"]
+	path = lib/sds
+	url = https://github.com/3DStris/sds
+	branch = cpp

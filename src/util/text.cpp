@@ -1,12 +1,15 @@
 #include <3dstris/util/text.hpp>
 
-Text::Text(const char* text, Color color)
+Text::Text(const sds text, Color color)
 	: pos({0, 0}), scale({1, 1}), color(color), textBuffer(C2D_TextBufNew(64)) {
 	this->setText(text);
 }
 
+Text::Text(const char* text, Color color) : Text(sdsnew(text), color) {}
+
 Text::~Text() {
 	C2D_TextBufDelete(this->textBuffer);
+	sdsfree(text);
 }
 
 Text::Text(const Text& other)
@@ -29,7 +32,8 @@ Text& Text::operator=(const Text& other) {
 	return *this;
 }
 
-void Text::setText(const char* text) {
+void Text::setText(sds text) {
+	sdsfree(this->text);
 	this->text = text;
 
 	C2D_TextBufClear(this->textBuffer);
@@ -38,7 +42,7 @@ void Text::setText(const char* text) {
 	C2D_TextOptimize(&textObject);
 }
 
-const char* Text::getText() {
+sds Text::getText() {
 	return text;
 }
 

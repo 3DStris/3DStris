@@ -4,18 +4,11 @@
 
 #include <array>
 #include <memory>
-#include <vector>
 
 // python-like modulo, which makes negative numbers wrap around
 template <typename T>
 constexpr T mod(T a, T b) {
 	return (b + (a % b)) % b;
-}
-
-// from https://github.com/henrygab/UtilHeaders/blob/master/constexpr_strlen.h
-template <size_t N>
-constexpr size_t constexpr_strlen(char const (&)[N]) {
-	return N - 1;
 }
 
 // We're on C++11; no std::make_unique

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <citro2d.h>
 #include <3dstris/gui.hpp>
 #include <3dstris/state.hpp>
 #include <3dstris/states/playing.hpp>
@@ -17,6 +16,8 @@ class ConfigFailed : public State {
 	Text failedText;
 
 	Color colBackground;
+
+	std::shared_ptr<Button> okButton;
 
 	GUI gui;
 };

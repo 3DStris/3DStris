@@ -3,11 +3,7 @@
 #include <3dstris/board.hpp>
 #include <3dstris/shapes.hpp>
 #include <3dstris/state.hpp>
-#include <3dstris/states/mainmenu.hpp>
 #include <3dstris/util.hpp>
-#include <algorithm>
-#include <array>
-#include <cmath>
 #include <deque>
 #include <random>
 

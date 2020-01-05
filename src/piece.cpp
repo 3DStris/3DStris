@@ -1,6 +1,5 @@
 #include <3dstris/board.hpp>
 #include <3dstris/game.hpp>
-#include <3dstris/piece.hpp>
 
 // Ching cong
 Piece::Piece(Board& board, const PieceShape& shape, const PieceType type)

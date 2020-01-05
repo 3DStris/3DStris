@@ -41,11 +41,12 @@ Config::Config() {
 	u64 fileSize;
 	FSFILE_GetSize(configHandle, &fileSize);
 
-	unsigned char* configRead = new unsigned char[fileSize];
+	sds configRead = sdsnewlen("", fileSize);
 	FSFILE_Read(configHandle, nullptr, 0, configRead, fileSize);
 
 	try {
 		nlohmann::json configJson = nlohmann::json::parse(configRead);
+		sdsfree(configRead);
 
 		das = configJson["das"].get<double>();
 		arr = configJson["arr"].get<double>();
@@ -53,7 +54,9 @@ Config::Config() {
 		saveConfig();
 		configFailed = true;
 	}
+}
 
+Config::~Config() {
 	FSFILE_Close(configHandle);
 	FSDIR_Close(dirHandle);
 	FSUSER_CloseArchive(sdmcArchive);

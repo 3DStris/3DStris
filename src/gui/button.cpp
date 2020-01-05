@@ -1,19 +1,15 @@
 #include <3dstris/gui.hpp>
-#include <3dstris/gui/button.hpp>
 
-Button::Button(const GUI& parent, float x, float y, float w, float h,
-			   const char* text, std::function<void()> onPress)
-	: parent(parent),
-	  text("", parent.textCol),
-	  x(x),
-	  y(y),
-	  w(w),
-	  h(h),
-	  onPress(onPress) {
+Button::Button(GUI& parent, float x, float y, float w, float h, const sds text)
+	: Widget(parent), text(sdsempty(), parent.textCol), x(x), y(y), w(w), h(h) {
 	this->setText(text);
 }
 
-void Button::setText(const char* text) {
+Button::Button(GUI& parent, float x, float y, float w, float h,
+			   const char* text)
+	: Button::Button(parent, x, y, w, h, sdsnew(text)) {}
+
+void Button::setText(const sds text) {
 	this->text.setText(text);
 
 	auto textWH = this->text.getWH();
@@ -35,12 +31,14 @@ void Button::setText(const char* text) {
 
 void Button::draw() const {
 	C2D_DrawRectSolid(x, y, 0, w, h,
-					  pressed ? parent.pressedCol : parent.primaryCol);
+					  held ? parent.pressedCol : parent.primaryCol);
 	this->text.draw();
 }
 
-void Button::update(touchPosition touch) {
-	pressed = inside(touch.px, touch.py);
+void Button::update(touchPosition touch, touchPosition previous) {
+	held = inside(touch.px, touch.py);
+	_pressed =
+		inside(previous.px, previous.py) && touch.px == 0 && touch.py == 0;
 }
 
 bool Button::inside(float posX, float posY) const {
@@ -48,6 +46,6 @@ bool Button::inside(float posX, float posY) const {
 		   posY > y && posY < y + h;
 }
 
-void Button::press() {
-	onPress();
+bool Button::pressed() {
+	return _pressed;
 }

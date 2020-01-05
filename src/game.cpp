@@ -8,6 +8,12 @@ Game::Game()
 	bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 }
 
+Game::~Game() {
+	C2D_SpriteSheetFree(spriteSheet);
+	C3D_RenderTargetDelete(top);
+	C3D_RenderTargetDelete(bottom);
+}
+
 void Game::update(double dt) {
 	currentState->update(dt);
 }

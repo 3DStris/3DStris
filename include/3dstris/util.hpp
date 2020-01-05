@@ -11,12 +11,6 @@ constexpr T mod(T a, T b) {
 	return (b + (a % b)) % b;
 }
 
-// from https://github.com/henrygab/UtilHeaders/blob/master/constexpr_strlen.h
-template <size_t N>
-constexpr size_t constexpr_strlen(char const (&)[N]) {
-	return N - 1;
-}
-
 // We're on C++11; no std::make_unique
 template <typename T, typename... Args>
 std::unique_ptr<T> make_unique(Args&&... args) {

@@ -17,7 +17,7 @@ class ConfigFailed : public State {
 
 	Color colBackground;
 
-	std::shared_ptr<Button> okButton;
-
 	GUI gui;
+
+	Button& okButton;
 };

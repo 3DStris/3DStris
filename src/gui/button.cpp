@@ -18,7 +18,7 @@ void Button::setText(const sds text) {
 	// 1   textW
 	// - = ----
 	// x   w-10
-	auto textScale = std::min((w - 10) / textWH.x, 1.0f);
+	auto textScale = std::min((w - 10) / textWH.x, 0.7f);
 
 	this->text.setScale({textScale, textScale});
 
@@ -32,13 +32,13 @@ void Button::setText(const sds text) {
 void Button::draw() const {
 	C2D_DrawRectSolid(x, y, 0, w, h,
 					  held ? parent.pressedCol : parent.primaryCol);
+	GUI::drawOutline(x, y, w, h);
 	this->text.draw();
 }
 
 void Button::update(touchPosition touch, touchPosition previous) {
 	held = inside(touch.px, touch.py);
-	_pressed =
-		inside(previous.px, previous.py) && touch.px == 0 && touch.py == 0;
+	_pressed = inside(previous.px, previous.py) && hidKeysUp() & KEY_TOUCH;
 }
 
 bool Button::inside(float posX, float posY) const {

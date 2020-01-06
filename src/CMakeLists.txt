@@ -33,7 +33,7 @@ set_header_list(
 	gui.hpp
 	gui/widget.hpp
 	gui/button.hpp
-	gui/slider.hpp
+	gui/floatinputfield.hpp
 	wallkicks.hpp)
 
 add_library(3dstris STATIC
@@ -50,7 +50,7 @@ add_library(3dstris STATIC
 	util/text.cpp
 	gui.cpp
 	gui/widget.cpp
-	gui/slider.cpp
+	gui/floatinputfield.cpp
 	gui/button.cpp
 	${HEADER_LIST})
 

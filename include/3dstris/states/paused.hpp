@@ -6,18 +6,21 @@
 
 class Paused : public State {
    public:
-	Paused();
+	Paused(State* parent);
 
 	void update(double dt) override;
 	void draw(bool bottom) override;
 
    private:
-	GUI gui;
-
 	Color colBackground;
 
 	Text pausedText;
 
-	std::shared_ptr<Button> unpauseButton;
-	std::shared_ptr<Button> menuButton;
+	State* parent;
+
+	GUI gui;
+
+	Button& restartButton;
+	Button& unpauseButton;
+	Button& menuButton;
 };

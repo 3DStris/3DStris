@@ -6,8 +6,8 @@
 
 class Text {
    public:
-	Text(const sds text = sdsempty(), Color color = BLACK);
-	Text(const char* text, Color color = BLACK);
+	Text(const sds text = sdsempty(), Color color = WHITE);
+	Text(const char* text, Color color = WHITE);
 	~Text();
 
 	Text(const Text& other);

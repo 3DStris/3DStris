@@ -18,11 +18,11 @@ class ConfigScreen : public State {
 	Text dasText;
 	Text arrText;
 
-	std::shared_ptr<Button> saveButton;
-	std::shared_ptr<Button> cancelButton;
+	Button& saveButton;
+	Button& cancelButton;
 
-	std::shared_ptr<FloatInputField> dasInputField;
-	std::shared_ptr<FloatInputField> arrInputField;
+	FloatInputField& dasInputField;
+	FloatInputField& arrInputField;
 
 	float getDas() const;
 	float getArr() const;

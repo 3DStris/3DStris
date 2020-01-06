@@ -3,8 +3,8 @@
 #include <citro2d.h>
 #include <3dstris/gui.hpp>
 #include <3dstris/state.hpp>
-#include <3dstris/states/playing.hpp>
 #include <3dstris/states/configscreen.hpp>
+#include <3dstris/states/playing.hpp>
 #include <3dstris/util.hpp>
 
 class MainMenu : public State {
@@ -21,9 +21,9 @@ class MainMenu : public State {
 
 	Color colBackground;
 
-	std::shared_ptr<Button> playButton;
-	std::shared_ptr<Button> optionsButton;
-	std::shared_ptr<Button> exitButton;
-
 	GUI gui;
+
+	Button& playButton;
+	Button& optionsButton;
+	Button& exitButton;
 };

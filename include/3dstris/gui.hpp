@@ -15,16 +15,14 @@ class GUI {
 		Color pressedCol = BUTTON_HELD, Color borderCol = BUTTON_BORDER);
 
 	template <typename T>
-	std::shared_ptr<Button> addButton(float x, float y, float w, float h,
-									  const T text) {
-		auto button = std::make_shared<Button>(*this, x, y, w, h, text);
-		widgets.push_back(button);
-		return button;
+	Button& addButton(float x, float y, float w, float h, const T text) {
+		widgets.push_back(make_unique<Button>(*this, x, y, w, h, text));
+		return static_cast<Button&>(*widgets.back());
 	}
 
 	template <typename T>
-	std::shared_ptr<Button> addButton(ButtonFlags flags, float x, float y,
-									  float w, float h, const T text) {
+	Button& addButton(ButtonFlags flags, float x, float y, float w, float h,
+					  const T text) {
 		if (flags == ButtonFlags::HCENTER || flags == ButtonFlags::CENTER)
 			x = width / 2.0f - w / 2.0f;
 		if (flags == ButtonFlags::VCENTER || flags == ButtonFlags::CENTER)
@@ -33,12 +31,11 @@ class GUI {
 	}
 
 	template <typename T>
-	std::shared_ptr<FloatInputField> addFloatInputField(
-		float x, float y, float w, float h, const T suffix = sdsempty()) {
-		auto slider =
-			std::make_shared<FloatInputField>(*this, x, y, w, h, suffix);
-		widgets.push_back(slider);
-		return slider;
+	FloatInputField& addFloatInputField(float x, float y, float w, float h,
+										const T suffix = sdsempty()) {
+		widgets.push_back(
+			make_unique<FloatInputField>(*this, x, y, w, h, suffix));
+		return static_cast<FloatInputField&>(*widgets.back());
 	}
 
 	void update(double dt);
@@ -51,6 +48,6 @@ class GUI {
 
    private:
 	int width, height;
-	std::vector<std::shared_ptr<Widget>> widgets;
+	std::vector<std::unique_ptr<Widget>> widgets;
 	touchPosition previousTouch;
 };

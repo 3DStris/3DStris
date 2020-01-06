@@ -6,21 +6,20 @@
 
 ConfigFailed::ConfigFailed()
 	: State(),
-	  failedText("Failed to load config; your settings have been reset.") {
+	  failedText("Failed to load config; your settings have been reset."),
+	  okButton(gui.addButton(ButtonFlags::CENTER, -1, -1, SCREEN_WIDTH - 100,
+							 SCREEN_HEIGHT - 100, "OK")) {
 	colBackground = C2D_Color32(34, 34, 34, 255);
 
 	failedText.setScale({0.6f, 0.6f});
 	failedText.setPos({(SCREEN_WIDTH - failedText.getWH().x) / 2,
 					   (SCREEN_HEIGHT - failedText.getWH().y) / 2});
-
-	okButton = gui.addButton(ButtonFlags::CENTER, -1, -1, SCREEN_WIDTH - 100,
-							 SCREEN_HEIGHT - 100, "OK");
 }
 
 void ConfigFailed::update(double dt) {
 	gui.update(dt);
 
-	if (okButton->pressed()) {
+	if (okButton.pressed()) {
 		this->game.setState(make_unique<MainMenu>());
 	}
 }

@@ -7,6 +7,10 @@ ConfigScreen::ConfigScreen()
 	: State(),
 	  dasText("DAS"),
 	  arrText("ARR"),
+	  saveButton(gui.addButton(ButtonFlags::NONE, 10, BSCREEN_HEIGHT - 55, 100,
+							   50, "Save")),
+	  cancelButton(gui.addButton(ButtonFlags::NONE, BSCREEN_WIDTH - 110,
+								 BSCREEN_HEIGHT - 55, 100, 50, "Cancel")),
 	  dasInputField(
 		  gui.addFloatInputField(15, 45, BSCREEN_WIDTH - 30, 25, "ms")),
 	  arrInputField(
@@ -19,20 +23,14 @@ ConfigScreen::ConfigScreen()
 	arrText.setPos({15, 100 - 35});
 	arrText.setScale({0.5f, 0.5f});
 
-	dasInputField->setValue(game.getConfig().das * 1000);
-	arrInputField->setValue(game.getConfig().arr * 1000);
-
-	saveButton = gui.addButton(ButtonFlags::NONE, 10, BSCREEN_HEIGHT - 55, 100,
-							   50, "Save");
-
-	cancelButton = gui.addButton(ButtonFlags::NONE, BSCREEN_WIDTH - 110,
-								 BSCREEN_HEIGHT - 55, 100, 50, "Cancel");
+	dasInputField.setValue(game.getConfig().das * 1000);
+	arrInputField.setValue(game.getConfig().arr * 1000);
 }
 
 void ConfigScreen::update(double dt) {
 	gui.update(dt);
 
-	if (saveButton->pressed()) {
+	if (saveButton.pressed()) {
 		auto& config = this->game.getConfig();
 		config.das = this->getDas() / 1000;
 		config.arr = this->getArr() / 1000;
@@ -42,18 +40,18 @@ void ConfigScreen::update(double dt) {
 		return;
 	}
 
-	if (cancelButton->pressed()) {
+	if (cancelButton.pressed()) {
 		this->game.popState();
 		return;
 	}
 }
 
 float ConfigScreen::getDas() const {
-	return dasInputField->getValue();
+	return dasInputField.getValue();
 }
 
 float ConfigScreen::getArr() const {
-	return arrInputField->getValue();
+	return arrInputField.getValue();
 }
 
 void ConfigScreen::draw(bool bottom) {

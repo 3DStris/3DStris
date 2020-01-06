@@ -8,9 +8,9 @@ ConfigScreen::ConfigScreen()
 	  dasText("DAS"),
 	  arrText("ARR"),
 	  dasInputField(
-		  gui.addFloatInputField(15, 45, BSCREEN_WIDTH - 30, 25, sdsnew("ms"))),
-	  arrInputField(gui.addFloatInputField(15, 95, BSCREEN_WIDTH - 30, 25,
-										   sdsnew("ms"))) {
+		  gui.addFloatInputField(15, 45, BSCREEN_WIDTH - 30, 25, "ms")),
+	  arrInputField(
+		  gui.addFloatInputField(15, 95, BSCREEN_WIDTH - 30, 25, "ms")) {
 	colBackground = C2D_Color32(34, 34, 34, 255);
 
 	dasText.setPos({15, 50 - 35});
@@ -61,6 +61,11 @@ void ConfigScreen::draw(bool bottom) {
 		C2D_TargetClear(this->game.getTop(), colBackground);
 	} else {
 		C2D_TargetClear(this->game.getBottom(), colBackground);
+
+		C2D_DrawRectSolid(10, 10, 0, BSCREEN_WIDTH - 20, BSCREEN_HEIGHT - 130,
+						  PANEL);
+		GUI::drawOutline(10, 10, BSCREEN_WIDTH - 20, BSCREEN_HEIGHT - 130, 2,
+						 PANEL_BORDER);
 
 		gui.draw();
 

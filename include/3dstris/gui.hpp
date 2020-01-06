@@ -32,8 +32,14 @@ class GUI {
 		return this->addButton(x, y, w, h, text);
 	}
 
+	template <typename T>
 	std::shared_ptr<FloatInputField> addFloatInputField(
-		float x, float y, float w, float h, const sds suffix = sdsempty());
+		float x, float y, float w, float h, const T suffix = sdsempty()) {
+		auto slider =
+			std::make_shared<FloatInputField>(*this, x, y, w, h, suffix);
+		widgets.push_back(slider);
+		return slider;
+	}
 
 	void update(double dt);
 	void draw();

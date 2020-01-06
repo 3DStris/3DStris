@@ -7,17 +7,23 @@ FloatInputField::FloatInputField(GUI& parent, float x, float y, float w,
 	updateText();
 }
 
+FloatInputField::FloatInputField(GUI& parent, float x, float y, float w,
+								 float h, const char* suffix)
+	: FloatInputField(parent, x, y, w, h, sdsnew(suffix)) {}
+
 FloatInputField::~FloatInputField() {
 	sdsfree(suffix);
 }
 
 void FloatInputField::draw() const {
-	C2D_DrawRectSolid(x, y - h / 2.0f, 0, w, h, parent.borderCol);
+	C2D_DrawRectSolid(x, y - h / 2.0f, 0, w, h, held ? FIELD_HELD : FIELD);
 	text.draw();
 }
 
-void FloatInputField::update(touchPosition touch, touchPosition) {
-	if (hidKeysDown() & KEY_TOUCH && inside(touch.px, touch.py)) {
+void FloatInputField::update(touchPosition touch, touchPosition previous) {
+	held = inside(touch.px, touch.py);
+
+	if (inside(previous.px, previous.py) && hidKeysUp() & KEY_TOUCH) {
 		SwkbdState swkbd;
 
 		sds initialText = sdscatprintf(sdsempty(), "%.4f", value);
@@ -42,7 +48,7 @@ void FloatInputField::update(touchPosition touch, touchPosition) {
 
 bool FloatInputField::inside(float posX, float posY) const {
 	return posX > x && posX < x + w &&  //
-		   posY > y && posY < y + h;
+		   posY > y - h / 2 && posY < y + h / 2;
 }
 
 float FloatInputField::getValue() const {

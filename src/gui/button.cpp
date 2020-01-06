@@ -38,8 +38,7 @@ void Button::draw() const {
 
 void Button::update(touchPosition touch, touchPosition previous) {
 	held = inside(touch.px, touch.py);
-	_pressed =
-		inside(previous.px, previous.py) && touch.px == 0 && touch.py == 0;
+	_pressed = inside(previous.px, previous.py) && hidKeysUp() & KEY_TOUCH;
 }
 
 bool Button::inside(float posX, float posY) const {

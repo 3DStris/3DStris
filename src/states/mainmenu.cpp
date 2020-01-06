@@ -15,8 +15,8 @@ MainMenu::MainMenu()
 	versionText.setPos({3, SCREEN_HEIGHT - versionText.getWH().y / 1.25f - 5});
 
 	playButton = gui.addButton(ButtonFlags::HCENTER, -1, 10, 100, 50, "Play");
-	configButton =
-		gui.addButton(ButtonFlags::HCENTER, -1, 100, 100, 50, "Config");
+	optionsButton =
+		gui.addButton(ButtonFlags::HCENTER, -1, 100, 100, 50, "Options");
 	exitButton = gui.addButton(ButtonFlags::HCENTER, -1, BSCREEN_HEIGHT - 50,
 							   100, 40, "Exit");
 }
@@ -34,7 +34,7 @@ void MainMenu::update(double dt) {
 		return;
 	}
 
-	if (configButton->pressed()) {
+	if (optionsButton->pressed()) {
 		this->game.pushState(make_unique<ConfigScreen>());
 		return;
 	}

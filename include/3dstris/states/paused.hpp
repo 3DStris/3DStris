@@ -18,6 +18,7 @@ class Paused : public State {
 
 	Text pausedText;
 
+	std::shared_ptr<Button> restartButton;
 	std::shared_ptr<Button> unpauseButton;
 	std::shared_ptr<Button> menuButton;
 

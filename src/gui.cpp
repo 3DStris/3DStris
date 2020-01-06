@@ -9,14 +9,6 @@ GUI::GUI(int width, int height, Color primaryCol, Color textCol,
 	  width(width),
 	  height(height) {}
 
-std::shared_ptr<FloatInputField> GUI::addFloatInputField(float x, float y,
-														 float w, float h,
-														 const sds suffix) {
-	auto slider = std::make_shared<FloatInputField>(*this, x, y, w, h, suffix);
-	widgets.push_back(slider);
-	return slider;
-}
-
 void GUI::update(double) {
 	touchPosition touch;
 	hidTouchRead(&touch);

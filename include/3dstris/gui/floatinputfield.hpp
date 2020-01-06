@@ -8,6 +8,8 @@ class FloatInputField : public Widget {
    public:
 	FloatInputField(GUI& parent, float x, float y, float w, float h,
 					const sds suffix = sdsempty());
+	FloatInputField(GUI& parent, float x, float y, float w, float h,
+					const char* suffix);
 	~FloatInputField() override;
 
 	void draw() const override;
@@ -26,5 +28,6 @@ class FloatInputField : public Widget {
 
 	float x, y, w, h;
 	float value;
-	bool pressed;
+
+	bool held;
 };

@@ -68,5 +68,5 @@ void DoubleInputField::updateText() {
 	auto textScale = std::min(this->text.getWH().y / h, 0.5f);
 	this->text.setScale({textScale, textScale});
 
-	this->text.setPos({x + 3, y - (h / text.getWH().y) * 4});
+	this->text.setPos({x + 3, y - text.getWH().y / 2.0f});
 }

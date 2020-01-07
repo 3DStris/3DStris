@@ -12,9 +12,9 @@ ConfigScreen::ConfigScreen()
 	  cancelButton(gui.addButton(ButtonFlags::NONE, BSCREEN_WIDTH - 110,
 								 BSCREEN_HEIGHT - 55, 100, 50, "Cancel")),
 	  dasInputField(
-		  gui.addFloatInputField(15, 45, BSCREEN_WIDTH - 30, 25, "ms")),
+		  gui.addFloatInputField(15, 32, BSCREEN_WIDTH - 30, 25, "ms")),
 	  arrInputField(
-		  gui.addFloatInputField(15, 95, BSCREEN_WIDTH - 30, 25, "ms")) {
+		  gui.addFloatInputField(15, 82, BSCREEN_WIDTH - 30, 25, "ms")) {
 	colBackground = C2D_Color32(34, 34, 34, 255);
 
 	dasText.setPos({15, 50 - 35});

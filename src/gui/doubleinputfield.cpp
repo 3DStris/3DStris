@@ -16,7 +16,7 @@ DoubleInputField::~DoubleInputField() {
 }
 
 void DoubleInputField::draw() const {
-	C2D_DrawRectSolid(x, y - h / 2.0f, 0, w, h, held ? FIELD_HELD : FIELD);
+	C2D_DrawRectSolid(x, y, 0, w, h, held ? FIELD_HELD : FIELD);
 	text.draw();
 }
 
@@ -50,7 +50,7 @@ void DoubleInputField::update(touchPosition touch, touchPosition previous) {
 
 bool DoubleInputField::inside(float posX, float posY) const {
 	return posX > x && posX < x + w &&  //
-		   posY > y - h / 2 && posY < y + h / 2;
+		   posY > y && posY < y + h;
 }
 
 double DoubleInputField::getValue() const {
@@ -68,5 +68,5 @@ void DoubleInputField::updateText() {
 	auto textScale = std::min(this->text.getWH().y / h, 0.5f);
 	this->text.setScale({textScale, textScale});
 
-	this->text.setPos({x + 3, y - text.getWH().y / 2.0f});
+	this->text.setPos({x + 3, y + h / 2.0f - text.getWH().y / 2.0f});
 }

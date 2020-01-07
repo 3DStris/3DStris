@@ -21,9 +21,9 @@ class ConfigScreen : public State {
 	Button& saveButton;
 	Button& cancelButton;
 
-	FloatInputField& dasInputField;
-	FloatInputField& arrInputField;
+	DoubleInputField& dasInputField;
+	DoubleInputField& arrInputField;
 
-	float getDas() const;
-	float getArr() const;
+	double getDas() const;
+	double getArr() const;
 };

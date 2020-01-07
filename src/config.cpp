@@ -45,7 +45,7 @@ Config::Config() {
 	FSFILE_Read(configHandle, nullptr, 0, configRead, fileSize);
 
 	try {
-		nlohmann::json configJson = nlohmann::json::parse(configRead);
+		const auto configJson = nlohmann::json::parse(configRead);
 		sdsfree(configRead);
 
 		das = configJson["das"].get<double>();

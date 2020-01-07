@@ -46,11 +46,11 @@ void ConfigScreen::update(double dt) {
 	}
 }
 
-float ConfigScreen::getDas() const {
+double ConfigScreen::getDas() const {
 	return dasInputField.getValue();
 }
 
-float ConfigScreen::getArr() const {
+double ConfigScreen::getArr() const {
 	return arrInputField.getValue();
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <3dstris/gui/button.hpp>
-#include <3dstris/gui/floatinputfield.hpp>
+#include <3dstris/gui/doubleinputfield.hpp>
 #include <3dstris/gui/widget.hpp>
 #include <3dstris/util.hpp>
 #include <vector>
@@ -31,11 +31,11 @@ class GUI {
 	}
 
 	template <typename T>
-	FloatInputField& addFloatInputField(float x, float y, float w, float h,
+	DoubleInputField& addFloatInputField(float x, float y, float w, float h,
 										const T suffix = sdsempty()) {
 		widgets.push_back(
-			make_unique<FloatInputField>(*this, x, y, w, h, suffix));
-		return static_cast<FloatInputField&>(*widgets.back());
+			make_unique<DoubleInputField>(*this, x, y, w, h, suffix));
+		return static_cast<DoubleInputField&>(*widgets.back());
 	}
 
 	void update(double dt);

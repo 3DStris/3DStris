@@ -4,21 +4,21 @@
 #include <3dstris/util/text.hpp>
 
 class GUI;
-class FloatInputField : public Widget {
+class DoubleInputField : public Widget {
    public:
-	FloatInputField(GUI& parent, float x, float y, float w, float h,
+	DoubleInputField(GUI& parent, float x, float y, float w, float h,
 					const sds suffix = sdsempty());
-	FloatInputField(GUI& parent, float x, float y, float w, float h,
+	DoubleInputField(GUI& parent, float x, float y, float w, float h,
 					const char* suffix);
-	~FloatInputField() override;
+	~DoubleInputField() override;
 
 	void draw() const override;
 	void update(touchPosition touch, touchPosition) override;
 
 	bool inside(float posX, float posY) const;
 
-	float getValue() const;
-	void setValue(float v);
+	double getValue() const;
+	void setValue(double v);
 
    private:
 	void updateText();
@@ -27,7 +27,7 @@ class FloatInputField : public Widget {
 	sds suffix;
 
 	float x, y, w, h;
-	float value;
+	double value;
 
 	bool held;
 };

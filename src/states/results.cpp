@@ -20,7 +20,6 @@ Results::Results(State* parent)
 void Results::update(double dt) {
 	gui.update(dt);
 
-	auto kDown = hidKeysDown();
 	if (restartButton.pressed()) {
 		this->game.setState(make_unique<Playing>(), false, true);
 		return;

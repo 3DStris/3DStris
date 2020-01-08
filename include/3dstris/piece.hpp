@@ -31,6 +31,8 @@ class Piece {
 
 	PieceType getType();
 
+	bool dead() const { return _dead; }
+
    private:
 	Board& board;
 
@@ -58,4 +60,6 @@ class Piece {
 
 	double arr;
 	double arrTimer;
+
+	bool _dead;
 };

@@ -34,6 +34,8 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 	arrTimer = arr;
 
 	rotation = 0;
+
+	_dead = collides(0, 0); // piece is "dead" if it collides as soon as it spawns
 }
 
 void Piece::reset(const PieceType type) {

@@ -13,8 +13,6 @@ class ConfigScreen : public State {
    private:
 	GUI gui;
 
-	Color colBackground;
-
 	Text dasText;
 	Text arrText;
 

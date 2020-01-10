@@ -15,8 +15,6 @@ class ConfigFailed : public State {
    private:
 	Text failedText;
 
-	Color colBackground;
-
 	GUI gui;
 
 	Button& okButton;

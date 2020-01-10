@@ -7,9 +7,9 @@ class GUI;
 class DoubleInputField : public Widget {
    public:
 	DoubleInputField(GUI& parent, float x, float y, float w, float h,
-					const sds suffix = sdsempty());
+					 const sds suffix = sdsempty());
 	DoubleInputField(GUI& parent, float x, float y, float w, float h,
-					const char* suffix);
+					 const char* suffix);
 	~DoubleInputField() override;
 
 	void draw() const override;
@@ -21,12 +21,14 @@ class DoubleInputField : public Widget {
 	void setValue(double v);
 
    private:
+	static constexpr Color FIELD = C2D_Color32(94, 94, 94, 255);
+	static constexpr Color FIELD_HELD = C2D_Color32(75, 75, 75, 255);
+
 	void updateText();
 
 	Text text;
 	sds suffix;
 
-	float x, y, w, h;
 	double value;
 
 	bool held;

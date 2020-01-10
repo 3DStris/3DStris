@@ -1,13 +1,21 @@
 #include <3dstris/gui.hpp>
 
 GUI::GUI(int width, int height, Color primaryCol, Color textCol,
-		 Color pressedCol, Color borderCol)
+		 Color pressedCol, Color outlineCol)
 	: primaryCol(primaryCol),
 	  textCol(textCol),
 	  pressedCol(pressedCol),
-	  borderCol(borderCol),
+	  outlineCol(outlineCol),
 	  width(width),
 	  height(height) {}
+
+int GUI::getWidth() const noexcept {
+	return width;
+}
+
+int GUI::getHeight() const noexcept {
+	return height;
+}
 
 void GUI::update(double) {
 	touchPosition touch;

@@ -6,12 +6,17 @@
 
 class Text {
    public:
+	enum Align { CENTER, VCENTER, HCENTER, SCREEN_CENTER };
+
 	Text(const sds text = sdsempty(), Color color = WHITE);
 	Text(const char* text, Color color = WHITE);
 	~Text();
 
 	Text(const Text& other);
 	Text& operator=(const Text& other);
+
+	void align(Align mode, Vector2 cpos, Vector2 cwh, bool bottom = false);
+	void align(Align mode, bool bottom = false);
 
 	void setText(const sds text);
 	sds getText();

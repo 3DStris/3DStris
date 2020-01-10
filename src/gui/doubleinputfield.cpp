@@ -2,13 +2,13 @@
 #include <3dstris/gui/doubleinputfield.hpp>
 
 DoubleInputField::DoubleInputField(GUI& parent, float x, float y, float w,
-								 float h, const sds suffix)
-	: Widget(parent), suffix(suffix), x(x), y(y), w(w), h(h), value(0.) {
+								   float h, const sds suffix)
+	: Widget(parent, {x, y}, {w, h}), suffix(suffix), value(0.) {
 	updateText();
 }
 
 DoubleInputField::DoubleInputField(GUI& parent, float x, float y, float w,
-								 float h, const char* suffix)
+								   float h, const char* suffix)
 	: DoubleInputField(parent, x, y, w, h, sdsnew(suffix)) {}
 
 DoubleInputField::~DoubleInputField() {
@@ -16,7 +16,7 @@ DoubleInputField::~DoubleInputField() {
 }
 
 void DoubleInputField::draw() const {
-	C2D_DrawRectSolid(x, y, 0, w, h, held ? FIELD_HELD : FIELD);
+	C2D_DrawRectSolid(pos.x, pos.y, 0, wh.x, wh.y, held ? FIELD_HELD : FIELD);
 	text.draw();
 }
 
@@ -49,8 +49,8 @@ void DoubleInputField::update(touchPosition touch, touchPosition previous) {
 }
 
 bool DoubleInputField::inside(float posX, float posY) const {
-	return posX > x && posX < x + w &&  //
-		   posY > y && posY < y + h;
+	return posX > pos.x && posX < pos.x + wh.x &&  //
+		   posY > pos.y && posY < pos.y + wh.y;
 }
 
 double DoubleInputField::getValue() const {
@@ -65,8 +65,9 @@ void DoubleInputField::setValue(double v) {
 void DoubleInputField::updateText() {
 	this->text.setText(sdscatprintf(sdsempty(), "%.9g%s", value, suffix));
 
-	auto textScale = std::min(this->text.getWH().y / h, 0.5f);
+	auto textScale = std::min(this->text.getWH().y / wh.y, 0.5f);
 	this->text.setScale({textScale, textScale});
 
-	this->text.setPos({x + 3, y + h / 2.0f - text.getWH().y / 2.0f});
+	this->text.align(Text::Align::VCENTER, pos, wh);
+	this->text.setX(pos.x + 3);
 }

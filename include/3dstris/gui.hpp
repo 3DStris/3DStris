@@ -2,49 +2,34 @@
 
 #include <3dstris/gui/button.hpp>
 #include <3dstris/gui/doubleinputfield.hpp>
+#include <3dstris/gui/panel.hpp>
 #include <3dstris/gui/widget.hpp>
 #include <3dstris/util.hpp>
 #include <vector>
 
-enum ButtonFlags { NONE, HCENTER, VCENTER, CENTER };
-
 class GUI {
    public:
 	GUI(int width = BSCREEN_WIDTH, int height = BSCREEN_HEIGHT,
-		Color primaryCol = BUTTON, Color textCol = WHITE,
-		Color pressedCol = BUTTON_HELD, Color borderCol = BUTTON_BORDER);
+		Color primaryCol = Button::BUTTON, Color textCol = WHITE,
+		Color pressedCol = Button::BUTTON_HELD,
+		Color outlineCol = Button::BUTTON_OUTLINE);
 
-	template <typename T>
-	Button& addButton(float x, float y, float w, float h, const T text) {
-		widgets.push_back(make_unique<Button>(*this, x, y, w, h, text));
-		return static_cast<Button&>(*widgets.back());
-	}
-
-	template <typename T>
-	Button& addButton(ButtonFlags flags, float x, float y, float w, float h,
-					  const T text) {
-		if (flags == ButtonFlags::HCENTER || flags == ButtonFlags::CENTER)
-			x = width / 2.0f - w / 2.0f;
-		if (flags == ButtonFlags::VCENTER || flags == ButtonFlags::CENTER)
-			y = height / 2.0f - h / 2.0f;
-		return this->addButton(x, y, w, h, text);
-	}
-
-	template <typename T>
-	DoubleInputField& addFloatInputField(float x, float y, float w, float h,
-										const T suffix = sdsempty()) {
-		widgets.push_back(
-			make_unique<DoubleInputField>(*this, x, y, w, h, suffix));
-		return static_cast<DoubleInputField&>(*widgets.back());
-	}
+	int getWidth() const noexcept;
+	int getHeight() const noexcept;
 
 	void update(double dt);
 	void draw();
 
-	static void drawOutline(float x, float y, float w, float h, u8 scale = 2,
-							Color color = BUTTON_BORDER);
+	template <typename T, typename... Targs>
+	T& add(Targs&&... args) {
+		widgets.push_back(make_unique<T>(*this, std::forward<Targs>(args)...));
+		return static_cast<T&>(*widgets.back());
+	}
 
-	Color primaryCol, textCol, pressedCol, borderCol;
+	static void drawOutline(float x, float y, float w, float h, u8 scale = 2,
+							Color color = Button::BUTTON_OUTLINE);
+
+	Color primaryCol, textCol, pressedCol, outlineCol;
 
    private:
 	int width, height;

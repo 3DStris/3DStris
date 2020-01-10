@@ -32,6 +32,35 @@ Text& Text::operator=(const Text& other) {
 	return *this;
 }
 
+void Text::align(Align mode, Vector2 cpos, Vector2 cwh, bool bottom) {
+	auto wh = this->getWH();
+	switch (mode) {
+		case CENTER: {
+			this->setPos({cpos.x + (cwh.x - wh.x) / 2.0f,
+						  cpos.y + (cwh.y - wh.y) / 2.0f});
+			break;
+		}
+		case VCENTER: {
+			this->setY(cpos.y + (cwh.y - wh.y) / 2.0f);
+			break;
+		}
+		case HCENTER: {
+			this->setX(cpos.x + (cwh.x - wh.x) / 2.0f);
+			break;
+		}
+		case SCREEN_CENTER: {
+			this->setPos(
+				{((!bottom ? SCREEN_WIDTH : BSCREEN_WIDTH) - wh.x) / 2.0f,
+				 ((!bottom ? SCREEN_HEIGHT : BSCREEN_HEIGHT) - wh.y) / 2.0f});
+			break;
+		}
+	}
+}
+
+void Text::align(Align mode, bool bottom) {
+	align(mode, {0, 0}, {0, 0}, bottom);
+}
+
 void Text::setText(sds text) {
 	sdsfree(this->text);
 	this->text = text;

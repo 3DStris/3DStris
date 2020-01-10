@@ -16,7 +16,7 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 	this->shape = shape;
 	this->type = type;
 
-	pos = {std::floor(board.width / 2.f) - std::floor(shape.size / 2.f), 0};
+	pos = {std::floor(board.width / 2.0f) - std::floor(shape.size / 2.0f), 0};
 
 	color = colors[type];
 	ghostColor = colorsGhost[type];
@@ -35,7 +35,8 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 
 	rotation = 0;
 
-	_dead = collides(0, 0); // piece is "dead" if it collides as soon as it spawns
+	_dead =
+		collides(0, 0);  // piece is "dead" if it collides as soon as it spawns
 }
 
 void Piece::reset(const PieceType type) {

@@ -24,9 +24,9 @@ set_header_list(
 	colors.hpp
 	config.hpp
 	state.hpp
-	ingame.hpp
 	states/mainmenu.hpp
 	states/modeselect.hpp
+	states/ingame.hpp
 	states/playing.hpp
 	states/sprint.hpp
 	states/paused.hpp
@@ -38,6 +38,7 @@ set_header_list(
 	gui/widget.hpp
 	gui/button.hpp
 	gui/doubleinputfield.hpp
+	gui/panel.hpp
 	wallkicks.hpp)
 
 add_library(3dstris STATIC
@@ -46,9 +47,9 @@ add_library(3dstris STATIC
 	game.cpp
 	config.cpp
 	state.cpp
-	ingame.cpp
 	states/mainmenu.cpp
 	states/modeselect.cpp
+	states/ingame.cpp
 	states/playing.cpp
 	states/sprint.cpp
 	states/paused.cpp
@@ -58,8 +59,9 @@ add_library(3dstris STATIC
 	util/text.cpp
 	gui.cpp
 	gui/widget.cpp
-	gui/doubleinputfield.cpp
 	gui/button.cpp
+	gui/doubleinputfield.cpp
+	gui/panel.cpp
 	${HEADER_LIST})
 
 add_t3s(3dstris "${3dstris_SOURCE_DIR}/resources/gfx/sprites.t3s")

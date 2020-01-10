@@ -2,7 +2,7 @@
 
 #include <3dstris/states/configscreen.hpp>
 #include <3dstris/states/mainmenu.hpp>
-#include <3dstris/states/sprint.hpp>
+#include <3dstris/states/modeselect.hpp>
 #include <3dstris/util.hpp>
 #include <3dstris/version.hpp>
 
@@ -31,7 +31,7 @@ void MainMenu::update(double dt) {
 	gui.update(dt);
 
 	if (playButton.pressed()) {
-		this->game.pushState(make_unique<Playing>(), false, true);
+		this->game.pushState(make_unique<ModeSelect>());
 		return;
 	}
 

@@ -22,9 +22,8 @@ void Paused::update(double dt) {
 
 	auto kDown = hidKeysDown();
 	if (restartButton.pressed()) {
-        parent->reset();
-        this->game.popState(false, true);
-        //this->game.setState(make_unique<Playing>(), false, true);
+		parent->reset();
+		this->game.popState(false, true);
 		return;
 	}
 
@@ -45,7 +44,7 @@ void Paused::draw(bool bottom) {
 
 		pausedText.draw();
 	} else {
-        C2D_TargetClear(this->game.getBottom(), BACKGROUND);
+		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
 
 		gui.draw();
 	}

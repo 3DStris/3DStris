@@ -26,6 +26,7 @@ set_header_list(
 	state.hpp
         ingame.hpp
         states/mainmenu.hpp
+        states/modeselect.hpp
 	states/playing.hpp
         states/sprint.hpp
 	states/paused.hpp
@@ -47,6 +48,7 @@ add_library(3dstris STATIC
 	state.cpp
         ingame.cpp
 	states/mainmenu.cpp
+        states/modeselect.cpp
         states/playing.cpp
         states/sprint.cpp
 	states/paused.cpp

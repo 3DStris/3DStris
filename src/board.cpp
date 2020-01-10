@@ -1,7 +1,13 @@
 #include <3dstris/board.hpp>
 
 Board::Board(u32 width, u32 height) : width(width), height(height) {
-	grid.resize(width * height, PieceType::None);
+    reset();
+}
+
+void Board::reset() {
+    _linesCleared = 0;
+    grid.resize(0);
+    grid.resize(width * height, PieceType::None);
 }
 
 bool Board::inside(u32 x, u32 y) {
@@ -80,6 +86,7 @@ void Board::clearLines() {
 			}
 		}
 		if (line) {
+            _linesCleared++;
 			for (u32 curY = y; curY >= 1; --curY) {
 				for (u32 x = 0; x < width; ++x) {
 					set(x, curY,

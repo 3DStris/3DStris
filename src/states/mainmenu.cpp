@@ -1,6 +1,8 @@
 #include <3dstris/sprites.h>
+
 #include <3dstris/states/configscreen.hpp>
 #include <3dstris/states/mainmenu.hpp>
+#include <3dstris/states/sprint.hpp>
 #include <3dstris/util.hpp>
 #include <3dstris/version.hpp>
 

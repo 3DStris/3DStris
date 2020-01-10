@@ -10,6 +10,8 @@ class Board {
 
 	Board(u32 width, u32 height);
 
+	void reset();
+
 	bool inside(u32 x, u32 y);
 	bool inside(int x, int y);
 	bool inside(Vector2 pos);
@@ -26,6 +28,9 @@ class Board {
 
 	void clearLines();
 
+	u32 linesCleared() { return _linesCleared; };
+
    private:
 	std::vector<PieceType> grid;
+	u32 _linesCleared;
 };

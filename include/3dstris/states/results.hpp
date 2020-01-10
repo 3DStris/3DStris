@@ -2,21 +2,21 @@
 
 #include <3dstris/gui.hpp>
 #include <3dstris/state.hpp>
+#include <3dstris/ingame.hpp>
 #include <3dstris/states/playing.hpp>
 
 class Results : public State {
    public:
-	Results(State* parent);
+    Results(Ingame* parent);
+    Results(Ingame* parent, double sprintTime);
 
 	void update(double dt) override;
 	void draw(bool bottom) override;
 
    private:
-	Color colBackground;
+    Text topText;
 
-	Text deadText;
-
-	State* parent;
+    Ingame* parent;
 
 	GUI gui;
 

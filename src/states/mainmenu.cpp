@@ -13,8 +13,8 @@ MainMenu::MainMenu()
 	  icon(C2D_SpriteSheetGetImage(game.getSpriteSheet(), sprites_icon_idx)),
 	  playButton(
 		  gui.add<Button>(-1, 10, 100, 50, "Play", Button::Flags::HCENTER)),
-	  optionsButton(
-		  gui.add<Button>(-1, 100, 100, 50, "Options", Button::Flags::HCENTER)),
+	  optionsButton(gui.add<Button>(-1, 100, 100, 50, "Settings",
+									Button::Flags::HCENTER)),
 	  exitButton(gui.add<Button>(-1, BSCREEN_HEIGHT - 50, 100, 40, "Exit",
 								 Button::Flags::HCENTER)) {
 	versionText.setScale({0.5f, 0.5f});

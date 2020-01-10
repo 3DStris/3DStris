@@ -24,11 +24,11 @@ set_header_list(
 	colors.hpp
 	config.hpp
 	state.hpp
-        ingame.hpp
-        states/mainmenu.hpp
-        states/modeselect.hpp
+	ingame.hpp
+	states/mainmenu.hpp
+	states/modeselect.hpp
 	states/playing.hpp
-        states/sprint.hpp
+	states/sprint.hpp
 	states/paused.hpp
 	states/results.hpp
 	states/configscreen.hpp
@@ -46,11 +46,11 @@ add_library(3dstris STATIC
 	game.cpp
 	config.cpp
 	state.cpp
-        ingame.cpp
+	ingame.cpp
 	states/mainmenu.cpp
-        states/modeselect.cpp
-        states/playing.cpp
-        states/sprint.cpp
+	states/modeselect.cpp
+	states/playing.cpp
+	states/sprint.cpp
 	states/paused.cpp
 	states/results.cpp
 	states/configscreen.cpp

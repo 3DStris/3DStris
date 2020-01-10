@@ -29,7 +29,7 @@ void Sprint::update(double dt) {
 
 	time += dt;
 
-	infoText.setText(sdscatprintf(sdsempty(), "lines: %d\ntime: %.3f",
+	infoText.setText(sdscatprintf(sdsempty(), "Lines: %d\nTime: %.3f",
 								  board.linesCleared(), time));
 
 	if (board.linesCleared() >= 20) {

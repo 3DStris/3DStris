@@ -3,17 +3,14 @@
 #include <3dstris/states/results.hpp>
 #include <3dstris/states/sprint.hpp>
 
-Sprint::Sprint()
-    : Ingame(),
-      lines("s"),
-      time(0.0) {
-    lines.setPos(10, 10);
+Sprint::Sprint() : Ingame(), infoText(""), time(0.0) {
+	infoText.setPos(10, 10);
 }
 
 void Sprint::reset() {
-    Ingame::reset();
+	Ingame::reset();
 
-    time = 0.0;
+	time = 0.0;
 }
 
 void Sprint::update(double dt) {
@@ -26,26 +23,28 @@ void Sprint::update(double dt) {
 	}
 
 	if (piece.dead()) {
-        game.pushState(make_unique<Results>(this));
+		game.pushState(make_unique<Results>(this));
 		return;
 	}
 
-    time += dt;
+	time += dt;
 
-    lines.setText(sdscatprintf(sdsempty(), "lines: %d\ntime: %.3f", board.linesCleared(), time));
+	infoText.setText(sdscatprintf(sdsempty(), "lines: %d\ntime: %.3f",
+								  board.linesCleared(), time));
 
-    if (board.linesCleared() >= 20) {
-        game.pushState(make_unique<Results>(this, time));
-        return;
-    }
+	if (board.linesCleared() >= 20) {
+		game.pushState(make_unique<Results>(this, time));
+		return;
+	}
 
-    Ingame::update(dt);
+	Ingame::update(dt);
 }
 
 void Sprint::draw(bool bottom) {
-    Ingame::draw(bottom);
-    if (bottom) {
-        C2D_TargetClear(this->game.getBottom(), BACKGROUND);
-        lines.draw();
-    }
+	Ingame::draw(bottom);
+	if (bottom) {
+		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
+
+		infoText.draw();
+	}
 }

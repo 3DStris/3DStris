@@ -1,8 +1,8 @@
 #pragma once
 
 #include <3dstris/board.hpp>
-#include <3dstris/shapes.hpp>
 #include <3dstris/ingame.hpp>
+#include <3dstris/shapes.hpp>
 #include <3dstris/util.hpp>
 #include <3dstris/util/text.hpp>
 #include <deque>
@@ -10,14 +10,14 @@
 
 class Sprint : public Ingame {
    public:
-    Sprint();
+	Sprint();
 
 	void update(double dt) override;
 	void draw(bool bottom) override;
 
-    void reset() override;
+	void reset() override;
 
    private:
-    Text lines;
-    double time;
+	Text infoText;
+	double time;
 };

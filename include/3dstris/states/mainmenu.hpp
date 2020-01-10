@@ -19,8 +19,6 @@ class MainMenu : public State {
 
 	C2D_Image icon;
 
-	Color colBackground;
-
 	GUI gui;
 
 	Button& playButton;

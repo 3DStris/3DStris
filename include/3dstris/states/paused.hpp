@@ -14,8 +14,6 @@ class Paused : public State {
    private:
 	static constexpr Color PAUSED = C2D_Color32(0, 0, 0, 190);
 
-	Color colBackground;
-
 	Text pausedText;
 
 	State* parent;

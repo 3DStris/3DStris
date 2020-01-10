@@ -18,8 +18,6 @@ ConfigScreen::ConfigScreen()
 		  gui.add<DoubleInputField>(15, 35, BSCREEN_WIDTH - 30, 25, "ms")),
 	  arrInputField(
 		  gui.add<DoubleInputField>(15, 85, BSCREEN_WIDTH - 30, 25, "ms")) {
-	colBackground = C2D_Color32(34, 34, 34, 255);
-
 	tipText.setScale({0.5f, 0.5f});
 	tipText.align(Text::Align::CENTER, tipPanel.getPos(), tipPanel.getWH());
 
@@ -62,12 +60,12 @@ double ConfigScreen::getArr() const {
 
 void ConfigScreen::draw(bool bottom) {
 	if (!bottom) {
-		C2D_TargetClear(this->game.getTop(), colBackground);
+		C2D_TargetClear(this->game.getTop(), BACKGROUND);
 
 		tipPanel.draw();
 		tipText.draw();
 	} else {
-		C2D_TargetClear(this->game.getBottom(), colBackground);
+		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
 
 		gui.draw();
 

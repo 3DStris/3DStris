@@ -1,20 +1,19 @@
 #include <3dstris/board.hpp>
 
 Board::Board(u32 width, u32 height) : width(width), height(height) {
-    reset();
+	reset();
 }
 
 void Board::reset() {
-    _linesCleared = 0;
-    grid.resize(0);
-    grid.resize(width * height, PieceType::None);
+	_linesCleared = 0;
+	grid.assign(width * height, PieceType::None);
 }
 
 bool Board::inside(u32 x, u32 y) {
 	return x < width && y < height;
 }
 bool Board::inside(int x, int y) {
-	return x >= 0 && y >= 0 &&  //
+	return x >= 0 && y >= 0 &&	//
 		   inside(u32(x), u32(y));
 }
 bool Board::inside(Vector2 pos) {
@@ -86,7 +85,7 @@ void Board::clearLines() {
 			}
 		}
 		if (line) {
-            _linesCleared++;
+			_linesCleared++;
 			for (u32 curY = y; curY >= 1; --curY) {
 				for (u32 x = 0; x < width; ++x) {
 					set(x, curY,

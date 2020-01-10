@@ -1,6 +1,8 @@
 #include <3dstris/sprites.h>
+
 #include <3dstris/states/configscreen.hpp>
 #include <3dstris/states/mainmenu.hpp>
+#include <3dstris/states/modeselect.hpp>
 #include <3dstris/util.hpp>
 #include <3dstris/version.hpp>
 
@@ -14,8 +16,6 @@ MainMenu::MainMenu()
 		  gui.addButton(ButtonFlags::HCENTER, -1, 100, 100, 50, "Options")),
 	  exitButton(gui.addButton(ButtonFlags::HCENTER, -1, BSCREEN_HEIGHT - 50,
 							   100, 40, "Exit")) {
-	colBackground = C2D_Color32(34, 34, 34, 255);
-
 	versionText.setScale({0.5f, 0.5f});
 	versionText.setPos({3, SCREEN_HEIGHT - versionText.getWH().y / 1.25f - 5});
 }
@@ -29,7 +29,7 @@ void MainMenu::update(double dt) {
 	gui.update(dt);
 
 	if (playButton.pressed()) {
-		this->game.pushState(make_unique<Playing>(), false, true);
+		this->game.pushState(make_unique<ModeSelect>());
 		return;
 	}
 
@@ -45,7 +45,7 @@ void MainMenu::update(double dt) {
 
 void MainMenu::draw(bool bottom) {
 	if (!bottom) {
-		C2D_TargetClear(this->game.getTop(), colBackground);
+		C2D_TargetClear(this->game.getTop(), BACKGROUND);
 
 		// The 48x48 icon sprite was converted into a 64x64
 		// one; subtract 16 to account for this
@@ -56,7 +56,7 @@ void MainMenu::draw(bool bottom) {
 
 		versionText.draw();
 	} else {
-		C2D_TargetClear(this->game.getBottom(), colBackground);
+		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
 
 		gui.draw();
 	}

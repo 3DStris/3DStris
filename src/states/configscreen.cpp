@@ -15,8 +15,6 @@ ConfigScreen::ConfigScreen()
 		  gui.addFloatInputField(15, 32, BSCREEN_WIDTH - 30, 25, "ms")),
 	  arrInputField(
 		  gui.addFloatInputField(15, 82, BSCREEN_WIDTH - 30, 25, "ms")) {
-	colBackground = C2D_Color32(34, 34, 34, 255);
-
 	dasText.setPos({15, 50 - 35});
 	dasText.setScale({0.5f, 0.5f});
 
@@ -56,9 +54,9 @@ double ConfigScreen::getArr() const {
 
 void ConfigScreen::draw(bool bottom) {
 	if (!bottom) {
-		C2D_TargetClear(this->game.getTop(), colBackground);
+		C2D_TargetClear(this->game.getTop(), BACKGROUND);
 	} else {
-		C2D_TargetClear(this->game.getBottom(), colBackground);
+		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
 
 		C2D_DrawRectSolid(10, 10, 0, BSCREEN_WIDTH - 20, BSCREEN_HEIGHT - 130,
 						  PANEL);

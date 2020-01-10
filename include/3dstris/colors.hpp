@@ -18,6 +18,8 @@ constexpr Color PANEL_BORDER = C2D_Color32(88, 88, 88, 255);
 
 constexpr Color PAUSED = C2D_Color32(0, 0, 0, 190);
 
+constexpr Color BACKGROUND = C2D_Color32(34, 34, 34, 255);
+
 namespace Colors {
 	constexpr Color I = C2D_Color32(65, 175, 222, 255);
 	constexpr Color O = C2D_Color32(247, 211, 62, 255);

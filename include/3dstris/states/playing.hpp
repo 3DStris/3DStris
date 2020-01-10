@@ -1,32 +1,10 @@
 #pragma once
 
-#include <3dstris/board.hpp>
-#include <3dstris/shapes.hpp>
-#include <3dstris/state.hpp>
-#include <3dstris/util.hpp>
-#include <deque>
-#include <random>
+#include <3dstris/ingame.hpp>
 
-class Playing : public State {
+class Playing : public Ingame {
    public:
 	Playing();
 
 	void update(double dt) override;
-	void draw(bool bottom) override;
-
-   private:
-	Color colBackground;
-
-	Board board;
-	const u32 tileSize;
-	Vector2 origin;
-
-	std::mt19937 bagRNG;
-	const u32 upcoming;
-	std::deque<PieceType> bag;
-
-	Piece piece;
-
-	PieceType hold;
-	bool hasHeld;
 };

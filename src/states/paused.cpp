@@ -2,7 +2,7 @@
 #include <3dstris/states/paused.hpp>
 #include <algorithm>
 
-Paused::Paused(State* parent)
+Paused::Paused(Ingame* parent)
 	: State(),
 	  pausedText("Paused"),
 	  parent(parent),
@@ -12,8 +12,6 @@ Paused::Paused(State* parent)
 		  gui.addButton(ButtonFlags::CENTER, -1, 10, 200, 115, "Resume")),
 	  menuButton(gui.addButton(ButtonFlags::HCENTER, -1,
 							   BSCREEN_HEIGHT - 40 - 10, 100, 45, "Menu")) {
-	colBackground = C2D_Color32(34, 34, 34, 255);
-
 	pausedText.setScale({2, 2});
 	pausedText.setPos({(SCREEN_WIDTH - pausedText.getWH().x) / 2,
 					   (SCREEN_HEIGHT - pausedText.getWH().y) / 2});
@@ -24,7 +22,8 @@ void Paused::update(double dt) {
 
 	auto kDown = hidKeysDown();
 	if (restartButton.pressed()) {
-		this->game.setState(make_unique<Playing>(), false, true);
+		parent->reset();
+		this->game.popState(false, true);
 		return;
 	}
 
@@ -45,7 +44,7 @@ void Paused::draw(bool bottom) {
 
 		pausedText.draw();
 	} else {
-		C2D_TargetClear(this->game.getBottom(), colBackground);
+		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
 
 		gui.draw();
 	}

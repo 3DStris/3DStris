@@ -1,10 +1,9 @@
 #pragma once
 
 #include <citro2d.h>
+
 #include <3dstris/gui.hpp>
 #include <3dstris/state.hpp>
-#include <3dstris/states/configscreen.hpp>
-#include <3dstris/states/playing.hpp>
 #include <3dstris/util.hpp>
 
 class MainMenu : public State {
@@ -18,8 +17,6 @@ class MainMenu : public State {
 	Text versionText;
 
 	C2D_Image icon;
-
-	Color colBackground;
 
 	GUI gui;
 

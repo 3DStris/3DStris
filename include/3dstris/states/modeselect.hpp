@@ -2,20 +2,23 @@
 
 #include <3dstris/gui.hpp>
 #include <3dstris/state.hpp>
+#include <3dstris/states/configscreen.hpp>
 #include <3dstris/states/playing.hpp>
 #include <3dstris/util.hpp>
 
-class ConfigFailed : public State {
+class ModeSelect : public State {
    public:
-	ConfigFailed();
+	ModeSelect();
 
 	void update(double dt) override;
 	void draw(bool bottom) override;
 
    private:
-	Text failedText;
+	Text topText;
 
 	GUI gui;
 
-	Button& okButton;
+	Button& normalButton;
+	Button& sprintButton;
+	Button& backButton;
 };

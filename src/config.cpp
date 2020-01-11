@@ -53,9 +53,7 @@ Config::Config() {
 	FSFILE_Read(configHandle, nullptr, 0, configRead, fileSize);
 
 	rapidjson::Document document;
-	if (document.Parse<rapidjson::kParseFullPrecisionFlag>(configRead)
-			.HasParseError() &&
-		!validateJson(document)) {
+	if (document.Parse(configRead).HasParseError() && !validateJson(document)) {
 		saveConfig();
 		configFailed = true;
 	}

@@ -1,4 +1,5 @@
 #include <3dstris/states/ingame.hpp>
+#include <algorithm>
 
 static std::array<PieceType, 7> genBag(std::mt19937& rng) {
 	std::array<PieceType, 7> pieces{PieceType::I, PieceType::O, PieceType::L,

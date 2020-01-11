@@ -1,11 +1,23 @@
 #pragma once
 
 #include <3ds.h>
-#include <nlohmann/json.hpp>
 
 struct Config {
 	Config();
 	~Config();
+
+	template <typename Writer>
+	void serialize(Writer& writer) const {
+		writer.StartObject();
+
+		writer.String("das");
+		writer.Double(das);
+
+		writer.String("arr");
+		writer.Double(arr);
+
+		writer.EndObject();
+	}
 
 	void saveConfig(bool overwrite = true);
 

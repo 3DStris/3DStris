@@ -11,11 +11,12 @@ MainMenu::MainMenu()
 	  versionText(
 		  sdscatfmt(sdsempty(), "v%s-%s", _3DSTRIS_VERSION, _3DSTRIS_GIT_HASH)),
 	  icon(C2D_SpriteSheetGetImage(game.getSpriteSheet(), sprites_icon_idx)),
-	  playButton(gui.addButton(ButtonFlags::HCENTER, -1, 10, 100, 50, "Play")),
-	  optionsButton(
-		  gui.addButton(ButtonFlags::HCENTER, -1, 100, 100, 50, "Options")),
-	  exitButton(gui.addButton(ButtonFlags::HCENTER, -1, BSCREEN_HEIGHT - 50,
-							   100, 40, "Exit")) {
+	  playButton(
+		  gui.add<Button>(-1, 10, 100, 50, "Play", Button::Flags::HCENTER)),
+	  optionsButton(gui.add<Button>(-1, 100, 100, 50, "Settings",
+									Button::Flags::HCENTER)),
+	  exitButton(gui.add<Button>(-1, BSCREEN_HEIGHT - 50, 100, 40, "Exit",
+								 Button::Flags::HCENTER)) {
 	versionText.setScale({0.5f, 0.5f});
 	versionText.setPos({3, SCREEN_HEIGHT - versionText.getWH().y / 1.25f - 5});
 }

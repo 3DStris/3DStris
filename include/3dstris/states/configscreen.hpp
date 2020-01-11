@@ -13,11 +13,15 @@ class ConfigScreen : public State {
    private:
 	GUI gui;
 
+	Text tipText;
 	Text dasText;
 	Text arrText;
 
 	Button& saveButton;
 	Button& cancelButton;
+
+	Panel& panel;
+	Panel tipPanel;
 
 	DoubleInputField& dasInputField;
 	DoubleInputField& arrInputField;

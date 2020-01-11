@@ -6,18 +6,6 @@ constexpr Color WHITE = C2D_Color32(255, 255, 255, 255);
 constexpr Color BLACK = C2D_Color32(0, 0, 0, 255);
 constexpr Color GRIDBLACK = C2D_Color32(0, 0, 0, 100);
 
-constexpr Color BUTTON = C2D_Color32(79, 79, 79, 255);
-constexpr Color BUTTON_BORDER = C2D_Color32(89, 89, 89, 255);
-constexpr Color BUTTON_HELD = C2D_Color32(64, 64, 64, 255);
-
-constexpr Color FIELD = C2D_Color32(94, 94, 94, 255);
-constexpr Color FIELD_HELD = C2D_Color32(75, 75, 75, 255);
-
-constexpr Color PANEL = C2D_Color32(60, 60, 60, 255);
-constexpr Color PANEL_BORDER = C2D_Color32(88, 88, 88, 255);
-
-constexpr Color PAUSED = C2D_Color32(0, 0, 0, 190);
-
 constexpr Color BACKGROUND = C2D_Color32(34, 34, 34, 255);
 
 namespace Colors {

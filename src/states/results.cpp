@@ -4,23 +4,20 @@
 
 Results::Results(Ingame* parent)
 	: State(),
-	  topText("Game over"),
+	  deadText("Game Over"),
 	  parent(parent),
-	  restartButton(gui.addButton(ButtonFlags::HCENTER, -1,
-								  BSCREEN_HEIGHT / 3.0f - 10, 150, 60,
-								  "Restart")),
-	  menuButton(gui.addButton(ButtonFlags::HCENTER, -1,
-							   BSCREEN_HEIGHT - 45 - 10, 100, 45, "Menu")) {
-	topText.setScale({2, 2});
-	topText.setPos({(SCREEN_WIDTH - topText.getWH().x) / 2,
-					(SCREEN_HEIGHT - topText.getWH().y) / 2});
+	  restartButton(gui.add<Button>(-1, BSCREEN_HEIGHT / 3.0f - 10, 150, 60,
+									"Restart", Button::Flags::HCENTER)),
+	  menuButton(gui.add<Button>(-1, BSCREEN_HEIGHT - 45 - 10, 100, 45, "Menu",
+								 Button::Flags::HCENTER)) {
+	deadText.setScale({2, 2});
+	deadText.align(Text::Align::SCREEN_CENTER);
 }
 
 Results::Results(Ingame* parent, double sprintTime) : Results(parent) {
-	topText.setText(sdscatprintf(sdsempty(), "Time: %.3fs", sprintTime));
-	topText.setScale({1.3, 1.3});
-	topText.setPos({(SCREEN_WIDTH - topText.getWH().x) / 2,
-					(SCREEN_HEIGHT - topText.getWH().y) / 2});
+	deadText.setText(sdscatprintf(sdsempty(), "Time: %.3fs", sprintTime));
+	deadText.setScale({1.3f, 1.3f});
+	deadText.align(Text::Align::SCREEN_CENTER);
 }
 
 void Results::update(double dt) {
@@ -40,9 +37,9 @@ void Results::update(double dt) {
 void Results::draw(bool bottom) {
 	if (!bottom) {
 		parent->draw(bottom);
-		C2D_DrawRectSolid(0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, PAUSED);
+		C2D_DrawRectSolid(0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, RESULTS);
 
-		topText.draw();
+		deadText.draw();
 	} else {
 		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
 

@@ -3,7 +3,7 @@
 #include <3dstris/states/results.hpp>
 #include <3dstris/states/sprint.hpp>
 
-Sprint::Sprint() : Ingame(), infoText(""), time(0.0) {
+Sprint::Sprint() : Ingame(), time(0.0) {
 	infoText.setPos(10, 10);
 }
 
@@ -15,7 +15,6 @@ void Sprint::reset() {
 
 void Sprint::update(double dt) {
 	u32 kDown = hidKeysDown();
-	u32 kHeld = hidKeysHeld();
 
 	if (kDown & KEY_START) {
 		game.pushState(make_unique<Paused>(this));

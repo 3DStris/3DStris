@@ -28,7 +28,7 @@ class Board {
 
 	void clearLines();
 
-	u32 linesCleared() { return _linesCleared; };
+	u32 linesCleared() { return _linesCleared; }
 
    private:
 	std::vector<PieceType> grid;

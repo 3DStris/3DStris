@@ -9,15 +9,13 @@
 ModeSelect::ModeSelect()
 	: State(),
 	  topText("Select mode"),
-	  normalButton(gui.addButton(ButtonFlags::VCENTER, BSCREEN_WIDTH / 4.0 - 50,
-								 -1, 100, 50, "Normal")),
-	  sprintButton(gui.addButton(ButtonFlags::VCENTER,
-								 3 * BSCREEN_WIDTH / 4.0 - 50, -1, 100, 50,
-								 "Sprint")),
-	  backButton(gui.addButton(ButtonFlags::HCENTER, -1, BSCREEN_HEIGHT - 50,
-							   100, 40, "Back")) {
-	topText.setPos({(SCREEN_WIDTH - topText.getWH().x) / 2.0f,
-					(SCREEN_HEIGHT - topText.getWH().y) / 2.0f});
+	  normalButton(gui.add<Button>(BSCREEN_WIDTH / 4.0 - 50, -1, 100, 50,
+								   "Normal", Button::Flags::VCENTER)),
+	  sprintButton(gui.add<Button>(3 * BSCREEN_WIDTH / 4.0 - 50, -1, 100, 50,
+								   "Sprint", Button::Flags::VCENTER)),
+	  backButton(gui.add<Button>(-1, BSCREEN_HEIGHT - 50, 100, 40, "Back",
+								 Button::Flags::HCENTER)) {
+	topText.align(Text::Align::SCREEN_CENTER);
 }
 void ModeSelect::update(double dt) {
 	gui.update(dt);

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <3dstris/ingame.hpp>
+#include <3dstris/states/ingame.hpp>
 #include <3dstris/util/text.hpp>
 
 class Sprint : public Ingame {

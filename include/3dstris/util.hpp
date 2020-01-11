@@ -31,6 +31,9 @@ struct Vector2 {
 	float y;
 };
 
+using Pos = Vector2;
+using WH = Vector2;
+
 struct Vector2d {
 	double x;
 	double y;

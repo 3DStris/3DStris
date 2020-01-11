@@ -6,7 +6,7 @@
 class GUI;
 class Widget {
    public:
-	Widget(GUI& parent, Vector2 pos, Vector2 wh);
+	Widget(GUI& parent, const Pos pos, const WH wh);
 	virtual ~Widget() = default;
 
 	Widget(const Widget&) = delete;
@@ -15,7 +15,8 @@ class Widget {
 	Widget& operator=(Widget&&) = delete;
 
 	virtual void draw() const = 0;
-	virtual void update(touchPosition touch, touchPosition previousTouch) = 0;
+	virtual void update(const touchPosition touch,
+						const touchPosition previousTouch) = 0;
 
 	Vector2 getPos() const noexcept { return pos; }
 	Vector2 getWH() const noexcept { return wh; }

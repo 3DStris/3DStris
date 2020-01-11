@@ -243,10 +243,12 @@ void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 		arrTimer = arr;
 	}
 
-	if (kDown & KEY_Y)
+	if (kDown & KEY_Y) {
 		rotate(true);
-	if (kDown & KEY_B)
+	}
+	if (kDown & KEY_B) {
 		rotate(false);
+	}
 }
 
 PieceType Piece::getType() {

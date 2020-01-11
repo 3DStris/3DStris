@@ -21,13 +21,13 @@ class Game {
 	C3D_RenderTarget* getTop();
 	C3D_RenderTarget* getBottom();
 
-	const C2D_SpriteSheet& getSpriteSheet();
+	const C2D_SpriteSheet& getSpriteSheet() const noexcept;
 
-	void pushState(std::unique_ptr<State> state, bool resetTop = false,
-				   bool resetBottom = false);
-	void setState(std::unique_ptr<State> state, bool resetTop = false,
-				  bool resetBottom = false);
-	void popState(bool resetTop = false, bool resetBottom = false);
+	void pushState(std::unique_ptr<State> state, const bool resetTop = false,
+				   const bool resetBottom = false);
+	void setState(std::unique_ptr<State> state, const bool resetTop = false,
+				  const bool resetBottom = false);
+	void popState(const bool resetTop = false, const bool resetBottom = false);
 	State& getState();
 
 	bool exit = false;

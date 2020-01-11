@@ -4,7 +4,7 @@
 #include <3dstris/states/sprint.hpp>
 
 Sprint::Sprint() : Ingame(), time(0.0) {
-	infoText.setPos(10, 10);
+	infoText.setPos({10, 10});
 }
 
 void Sprint::reset() {
@@ -13,7 +13,7 @@ void Sprint::reset() {
 	time = 0.0;
 }
 
-void Sprint::update(double dt) {
+void Sprint::update(const double dt) {
 	u32 kDown = hidKeysDown();
 
 	if (kDown & KEY_START) {
@@ -28,7 +28,7 @@ void Sprint::update(double dt) {
 
 	time += dt;
 
-	infoText.setText(sdscatprintf(sdsempty(), "Lines: %d\nTime: %.3f",
+	infoText.setText(sdscatprintf(sdsempty(), "Lines: %d\nTime: %.3fs",
 								  board.linesCleared(), time));
 
 	if (board.linesCleared() >= 20) {
@@ -39,7 +39,7 @@ void Sprint::update(double dt) {
 	Ingame::update(dt);
 }
 
-void Sprint::draw(bool bottom) {
+void Sprint::draw(const bool bottom) {
 	Ingame::draw(bottom);
 	if (bottom) {
 		C2D_TargetClear(this->game.getBottom(), BACKGROUND);

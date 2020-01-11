@@ -9,34 +9,14 @@ void Board::reset() {
 	grid.assign(width * height, PieceType::None);
 }
 
-bool Board::inside(u32 x, u32 y) {
-	return x < width && y < height;
-}
-bool Board::inside(int x, int y) {
-	return x >= 0 && y >= 0 &&  //
-		   inside(u32(x), u32(y));
-}
 bool Board::inside(Vector2 pos) {
 	return inside(int(pos.x), int(pos.y));
 }
 
-void Board::set(u32 x, u32 y, PieceType t) {
-	if (inside(x, y)) {
-		grid[y * width + x] = t;
-	}
-}
-void Board::set(int x, int y, PieceType t) {
-	if (inside(x, y)) {
-		set(u32(x), u32(y), t);
-	}
-}
 void Board::set(Vector2 pos, PieceType t) {
 	set(u32(pos.x), u32(pos.y), t);
 }
 
-PieceType Board::get(u32 x, u32 y) const {
-	return grid[y * width + x];
-}
 PieceType Board::get(Vector2 pos) const {
 	return get(u32(pos.x), u32(pos.y));
 }

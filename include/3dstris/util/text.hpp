@@ -8,37 +8,37 @@ class Text {
    public:
 	enum Align { CENTER, VCENTER, HCENTER, SCREEN_CENTER };
 
-	Text(const sds text = sdsempty(), Color color = WHITE);
-	Text(const char* text, Color color = WHITE);
+	Text(const sds text = sdsempty(), const Color color = WHITE);
+	Text(const char* text, const Color color = WHITE);
 	~Text();
 
 	Text(const Text& other);
 	Text& operator=(const Text& other);
 
-	void align(Align mode, Vector2 cpos, Vector2 cwh, bool bottom = false);
-	void align(Align mode, bool bottom = false);
+	void align(const Align mode, const Vector2 cpos, const Vector2 cwh,
+			   const bool bottom = false);
+	void align(const Align mode, const bool bottom = false);
 
 	void setText(const sds text);
-	sds getText();
+	sds getText() const noexcept;
 
-	void setX(float x);
-	float getX() const;
+	void setX(const float x) noexcept;
+	float getX() const noexcept;
 
-	void setY(float y);
-	float getY() const;
+	void setY(const float y) noexcept;
+	float getY() const noexcept;
 
-	void setPos(float x, float y);
-	void setPos(Vector2 pos);
+	void setPos(const Pos pos) noexcept;
 
 	Vector2 getWH() const;
 
-	void setColor(Color color);
-	Color getColor() const;
+	void setColor(const Color color);
+	Color getColor() const noexcept;
 
-	void setScaleX(float scale);
-	void setScaleY(float scale);
-	void setScale(Vector2 scale);
-	Vector2 getScale() const;
+	void setScaleX(const float scale) noexcept;
+	void setScaleY(const float scale) noexcept;
+	void setScale(const Vector2 scale) noexcept;
+	Vector2 getScale() const noexcept;
 
 	void draw() const;
 

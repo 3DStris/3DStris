@@ -9,15 +9,21 @@ ConfigScreen::ConfigScreen()
 		  "Use the bottom screen to change settings. Press \uE001 to cancel."),
 	  dasText("DAS"),
 	  arrText("ARR"),
-	  saveButton(gui.add<Button>(10, BSCREEN_HEIGHT - 55, 100, 50, "Save")),
-	  cancelButton(gui.add<Button>(BSCREEN_WIDTH - 110, BSCREEN_HEIGHT - 55,
-								   100, 50, "Cancel")),
-	  panel(gui.add<Panel>(10, 10, BSCREEN_WIDTH - 20, BSCREEN_HEIGHT - 130)),
-	  tipPanel(gui, 0, SCREEN_HEIGHT - 25, SCREEN_WIDTH, 25, false),
-	  dasInputField(
-		  gui.add<DoubleInputField>(15, 35, BSCREEN_WIDTH - 30, 25, "ms")),
-	  arrInputField(
-		  gui.add<DoubleInputField>(15, 85, BSCREEN_WIDTH - 30, 25, "ms")) {
+
+	  saveButton(
+		  gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 55}, WH{100, 50}, "Save")),
+	  cancelButton(
+		  gui.add<Button>(Pos{BSCREEN_WIDTH - 110, BSCREEN_HEIGHT - 55},
+						  WH{100, 50}, "Cancel")),
+
+	  panel(gui.add<Panel>(Pos{10, 10},
+						   WH{BSCREEN_WIDTH - 20, BSCREEN_HEIGHT - 130})),
+	  tipPanel(gui, {0, SCREEN_HEIGHT - 25}, {SCREEN_WIDTH, 25}, false),
+
+	  dasInputField(gui.add<DoubleInputField>(
+		  Pos{15, 35}, WH{BSCREEN_WIDTH - 30, 25}, "ms")),
+	  arrInputField(gui.add<DoubleInputField>(
+		  Pos{15, 85}, WH{BSCREEN_WIDTH - 30, 25}, "ms")) {
 	tipText.setScale({0.5f, 0.5f});
 	tipText.align(Text::Align::CENTER, tipPanel.getPos(), tipPanel.getWH());
 
@@ -31,7 +37,7 @@ ConfigScreen::ConfigScreen()
 	arrInputField.setValue(game.getConfig().arr * 1000);
 }
 
-void ConfigScreen::update(double dt) {
+void ConfigScreen::update(const double dt) {
 	gui.update(dt);
 
 	if (saveButton.pressed()) {
@@ -58,7 +64,7 @@ double ConfigScreen::getArr() const {
 	return arrInputField.getValue();
 }
 
-void ConfigScreen::draw(bool bottom) {
+void ConfigScreen::draw(const bool bottom) {
 	if (!bottom) {
 		C2D_TargetClear(this->game.getTop(), BACKGROUND);
 

@@ -12,7 +12,7 @@ Game::~Game() {
 	C3D_RenderTargetDelete(bottom);
 }
 
-void Game::update(double dt) {
+void Game::update(const double dt) {
 	getState().update(dt);
 }
 
@@ -36,25 +36,25 @@ C3D_RenderTarget* Game::getBottom() {
 	return bottom;
 }
 
-const C2D_SpriteSheet& Game::getSpriteSheet() {
+const C2D_SpriteSheet& Game::getSpriteSheet() const noexcept {
 	return spriteSheet;
 }
 
-void Game::pushState(std::unique_ptr<State> state, bool resetTop,
-					 bool resetBottom) {
+void Game::pushState(std::unique_ptr<State> state, const bool resetTop,
+					 const bool resetBottom) {
 	states.push_back(std::move(state));
 
 	reset(resetTop, resetBottom);
 }
 
-void Game::setState(std::unique_ptr<State> state, bool resetTop,
-					bool resetBottom) {
+void Game::setState(std::unique_ptr<State> state, const bool resetTop,
+					const bool resetBottom) {
 	states.clear();
 
 	pushState(std::move(state), resetTop, resetBottom);
 }
 
-void Game::popState(bool resetTop, bool resetBottom) {
+void Game::popState(const bool resetTop, const bool resetBottom) {
 	states.pop_back();
 
 	reset(resetTop, resetBottom);
@@ -64,7 +64,7 @@ State& Game::getState() {
 	return *states.back();
 }
 
-void Game::reset(bool top, bool bottom) {
+void Game::reset(const bool top, const bool bottom) {
 	if (top) {
 		C2D_TargetClear(this->top, BLACK);
 	}

@@ -6,17 +6,17 @@ Paused::Paused(State* parent)
 	: State(),
 	  pausedText("Paused"),
 	  parent(parent),
-	  restartButton(
-		  gui.add<Button>(-1, 6, 100, 45, "Restart", Button::Flags::HCENTER)),
-	  unpauseButton(
-		  gui.add<Button>(-1, 10, 200, 115, "Resume", Button::Flags::CENTER)),
-	  menuButton(gui.add<Button>(-1, BSCREEN_HEIGHT - 40 - 10, 100, 45, "Menu",
-								 Button::Flags::HCENTER)) {
+	  restartButton(gui.add<Button>(Pos{-1, 6}, WH{100, 45}, "Restart",
+									Button::Flags::HCENTER)),
+	  unpauseButton(gui.add<Button>(Pos{-1, 10}, WH{200, 115}, "Resume",
+									Button::Flags::CENTER)),
+	  menuButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 40 - 10}, WH{100, 45},
+								 "Menu", Button::Flags::HCENTER)) {
 	pausedText.setScale({2, 2});
 	pausedText.align(Text::Align::SCREEN_CENTER);
 }
 
-void Paused::update(double dt) {
+void Paused::update(const double dt) {
 	gui.update(dt);
 
 	auto kDown = hidKeysDown();
@@ -35,7 +35,7 @@ void Paused::update(double dt) {
 	}
 }
 
-void Paused::draw(bool bottom) {
+void Paused::draw(const bool bottom) {
 	if (!bottom) {
 		parent->draw(bottom);
 		C2D_DrawRectSolid(0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, PAUSED);

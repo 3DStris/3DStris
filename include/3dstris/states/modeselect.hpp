@@ -10,8 +10,8 @@ class ModeSelect : public State {
    public:
 	ModeSelect();
 
-	void update(double dt) override;
-	void draw(bool bottom) override;
+	void update(const double dt) override;
+	void draw(const bool bottom) override;
 
    private:
 	Text topText;

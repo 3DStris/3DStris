@@ -12,17 +12,18 @@ class Button : public Widget {
 	static constexpr Color BUTTON_OUTLINE = C2D_Color32(89, 89, 89, 255);
 	static constexpr Color BUTTON_HELD = C2D_Color32(64, 64, 64, 255);
 
-	Button(GUI& parent, float x, float y, float w, float h, sds text,
-		   Flags flags = NONE);
-	Button(GUI& parent, float x, float y, float w, float h, const char* text,
-		   Flags flags = NONE);
+	Button(GUI& parent, const Pos pos, const WH wh, const sds text,
+		   const Flags flags = NONE);
+	Button(GUI& parent, const Pos pos, const WH wh, const char* text,
+		   const Flags flags = NONE);
 
 	void setText(sds text);
 
 	void draw() const override;
-	void update(touchPosition touch, touchPosition previous) override;
+	void update(const touchPosition touch,
+				const touchPosition previous) override;
 
-	bool inside(float posX, float posY) const;
+	bool inside(const float posX, const float posY) const;
 	bool pressed();
 
    private:

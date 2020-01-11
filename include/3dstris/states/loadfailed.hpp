@@ -5,9 +5,9 @@
 #include <3dstris/states/playing.hpp>
 #include <3dstris/util.hpp>
 
-class ConfigFailed : public State {
+class LoadFailed : public State {
    public:
-	ConfigFailed();
+	LoadFailed(const bool config = true);
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;

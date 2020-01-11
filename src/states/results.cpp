@@ -19,6 +19,9 @@ Results::Results(Ingame* parent, const double sprintTime) : Results(parent) {
 	deadText.setText(sdscatprintf(sdsempty(), "Time: %.3fs", sprintTime));
 	deadText.setScale({1.3f, 1.3f});
 	deadText.align(Text::Align::SCREEN_CENTER);
+
+	game.getConfig().getGames().push({time_t(osGetTime()), sprintTime});
+	game.getConfig().getGames().save();
 }
 
 void Results::update(const double dt) {

@@ -1,3 +1,5 @@
+#include <3dstris/gui/panel.hpp>
+#include <3dstris/gui/u32inputfield.hpp>
 #include <3dstris/states/configscreen.hpp>
 #include <3dstris/states/mainmenu.hpp>
 #include <3dstris/util.hpp>
@@ -20,10 +22,10 @@ ConfigScreen::ConfigScreen()
 						   WH{BSCREEN_WIDTH - 20, BSCREEN_HEIGHT - 130})),
 	  tipPanel(gui, {0, SCREEN_HEIGHT - 25}, {SCREEN_WIDTH, 25}, false),
 
-	  dasInputField(gui.add<DoubleInputField>(
-		  Pos{15, 35}, WH{BSCREEN_WIDTH - 30, 25}, "ms")),
-	  arrInputField(gui.add<DoubleInputField>(
-		  Pos{15, 85}, WH{BSCREEN_WIDTH - 30, 25}, "ms")) {
+	  dasInputField(gui.add<U32InputField>(Pos{15, 35},
+										   WH{BSCREEN_WIDTH - 30, 25}, "ms")),
+	  arrInputField(gui.add<U32InputField>(Pos{15, 85},
+										   WH{BSCREEN_WIDTH - 30, 25}, "ms")) {
 	tipText.setScale({0.5f, 0.5f});
 	tipText.align(Text::Align::CENTER, tipPanel.getPos(), tipPanel.getWH());
 
@@ -33,8 +35,8 @@ ConfigScreen::ConfigScreen()
 	arrText.setPos({15, 100 - 35});
 	arrText.setScale({0.5f, 0.5f});
 
-	dasInputField.setValue(game.getConfig().das * 1000);
-	arrInputField.setValue(game.getConfig().arr * 1000);
+	dasInputField.setValue(game.getConfig().das);
+	arrInputField.setValue(game.getConfig().arr);
 }
 
 void ConfigScreen::update(const double dt) {
@@ -42,9 +44,9 @@ void ConfigScreen::update(const double dt) {
 
 	if (saveButton.pressed()) {
 		auto& config = this->game.getConfig();
-		config.das = this->getDas() / 1000;
-		config.arr = this->getArr() / 1000;
-		config.saveConfig();
+		config.das = this->getDas();
+		config.arr = this->getArr();
+		config.save();
 
 		this->game.popState();
 		return;
@@ -56,11 +58,11 @@ void ConfigScreen::update(const double dt) {
 	}
 }
 
-double ConfigScreen::getDas() const {
+u32 ConfigScreen::getDas() const {
 	return dasInputField.getValue();
 }
 
-double ConfigScreen::getArr() const {
+u32 ConfigScreen::getArr() const {
 	return arrInputField.getValue();
 }
 

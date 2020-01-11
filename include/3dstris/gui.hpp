@@ -1,8 +1,6 @@
 #pragma once
 
 #include <3dstris/gui/button.hpp>
-#include <3dstris/gui/doubleinputfield.hpp>
-#include <3dstris/gui/panel.hpp>
 #include <3dstris/gui/widget.hpp>
 #include <3dstris/util.hpp>
 #include <vector>
@@ -26,8 +24,8 @@ class GUI {
 		return static_cast<T&>(*widgets.back());
 	}
 
-	static void drawOutline(float x, float y, float w, float h, u8 scale = 2,
-							Color color = Button::BUTTON_OUTLINE);
+	static void drawOutline(const Pos pos, const WH wh, const u8 scale = 2,
+							const Color color = Button::BUTTON_OUTLINE);
 
 	Color primaryCol, textCol, pressedCol, outlineCol;
 

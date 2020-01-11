@@ -1,6 +1,7 @@
 #pragma once
 
 #include <3ds.h>
+#include <3dstris/games.hpp>
 
 struct Config {
 	Config();
@@ -11,24 +12,27 @@ struct Config {
 		writer.StartObject();
 
 		writer.String("das");
-		writer.Double(das);
+		writer.Uint(das);
 
 		writer.String("arr");
-		writer.Double(arr);
+		writer.Uint(arr);
 
 		writer.EndObject();
 	}
 
-	void saveConfig(bool overwrite = true);
+	void save(const bool overwrite = true);
+	Games& getGames() noexcept { return games; }
 
-	double das = 0.2;
-	double arr = 0.0;
+	u32 das = 200;
+	u32 arr = 0;
 
-	bool configFailed = false;
+	bool failed = false;
 
    private:
 	const FS_Path dirPath = fsMakePath(PATH_ASCII, "/3dstris");
 	const FS_Path configPath = fsMakePath(PATH_ASCII, "/3dstris/config.json");
+
+	Games games;
 
 	FS_Archive sdmcArchive;
 

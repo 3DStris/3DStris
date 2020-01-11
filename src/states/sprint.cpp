@@ -22,7 +22,7 @@ void Sprint::update(const double dt) {
 	}
 
 	if (piece.dead()) {
-		game.pushState(make_unique<Results>(this));
+		game.pushState(make_unique<Results>(this, time));
 		return;
 	}
 

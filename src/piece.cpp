@@ -27,10 +27,10 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 	setTimer = 0.0;
 	setAfter = 1.0;
 
-	das = Game::getInstance().getConfig().das;
+	das = Game::getInstance().getConfig().das / 1000.;
 	dasTimer = {0.0, 0.0};
 
-	arr = Game::getInstance().getConfig().arr;
+	arr = Game::getInstance().getConfig().arr / 1000.;
 	arrTimer = arr;
 
 	rotation = 0;

@@ -40,7 +40,7 @@ void Button::setText(const sds text) {
 void Button::draw() const {
 	C2D_DrawRectSolid(pos.x, pos.y, 0, wh.x, wh.y,
 					  held ? parent.pressedCol : parent.primaryCol);
-	GUI::drawOutline(pos.x, pos.y, wh.x, wh.y, 2, parent.outlineCol);
+	GUI::drawOutline(pos, wh, 2, parent.outlineCol);
 	this->text.draw();
 }
 

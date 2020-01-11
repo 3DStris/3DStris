@@ -6,19 +6,19 @@
 class GUI;
 class DoubleInputField : public Widget {
    public:
-	DoubleInputField(GUI& parent, float x, float y, float w, float h,
+	DoubleInputField(GUI& parent, const Pos pos, const WH wh,
 					 const sds suffix = sdsempty());
-	DoubleInputField(GUI& parent, float x, float y, float w, float h,
+	DoubleInputField(GUI& parent, const Pos pos, const WH wh,
 					 const char* suffix);
 	~DoubleInputField() override;
 
 	void draw() const override;
 	void update(touchPosition touch, touchPosition) override;
 
-	bool inside(float posX, float posY) const;
+	bool inside(const float posX, const float posY) const;
 
 	double getValue() const;
-	void setValue(double v);
+	void setValue(const double v);
 
    private:
 	static constexpr Color FIELD = C2D_Color32(94, 94, 94, 255);

@@ -6,5 +6,5 @@ class Playing : public Ingame {
    public:
 	Playing();
 
-	void update(double dt) override;
+	void update(const double dt) override;
 };

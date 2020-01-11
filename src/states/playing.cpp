@@ -5,7 +5,7 @@
 
 Playing::Playing() : Ingame() {}
 
-void Playing::update(double dt) {
+void Playing::update(const double dt) {
 	u32 kDown = hidKeysDown();
 
 	if (kDown & KEY_START) {

@@ -34,10 +34,12 @@ class Piece {
 	bool dead() const { return _dead; }
 
    private:
+	void updateMove(const double dt, const u32 kDown);
+
 	Board& board;
 
 	PieceType type;
-	Vector2 pos;
+	Pos pos;
 
 	int rotation;
 

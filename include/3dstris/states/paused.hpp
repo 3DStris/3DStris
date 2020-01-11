@@ -8,8 +8,8 @@ class Paused : public State {
    public:
 	Paused(State* parent);
 
-	void update(double dt) override;
-	void draw(bool bottom) override;
+	void update(const double dt) override;
+	void draw(const bool bottom) override;
 
    private:
 	static constexpr Color PAUSED = C2D_Color32(0, 0, 0, 190);

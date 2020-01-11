@@ -1,8 +1,8 @@
 #include <3dstris/gui.hpp>
 
-Panel::Panel(GUI& parent, float x, float y, float w, float h, bool outline,
+Panel::Panel(GUI& _parent, const Vector2 _pos, const Vector2 _wh, bool outline,
 			 const Color col, const Color outlineCol)
-	: Widget(parent, {x, y}, {w, h}),
+	: Widget(_parent, _pos, _wh),
 	  col(col),
 	  outlineCol(outlineCol),
 	  outline(outline) {}

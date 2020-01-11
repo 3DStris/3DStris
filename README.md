@@ -16,7 +16,7 @@ For building [you'll need to set up devkitPro][devkitpro-setup], CMake >= 3.12 a
 - [bannertool][bannertool-url]
 - [makerom][makerom-url]
 
-Make sure to clone recursively (required for `lib/3ds-cmake`):
+Make sure to clone recursively (required for third-party libs, check `lib/`):
 ```bash
 git clone --recursive https://github.com/matcool/3DStris
 # Or if you've already cloned

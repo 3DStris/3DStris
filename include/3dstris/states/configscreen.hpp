@@ -7,8 +7,8 @@ class ConfigScreen : public State {
    public:
 	ConfigScreen();
 
-	void update(double dt) override;
-	void draw(bool bottom) override;
+	void update(const double dt) override;
+	void draw(const bool bottom) override;
 
    private:
 	GUI gui;

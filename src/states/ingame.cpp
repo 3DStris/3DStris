@@ -15,8 +15,7 @@ Ingame::Ingame()
 	  bagRNG(u32(osGetTime())),
 	  upcoming(5),
 	  piece(board, PieceType::I) {
-	origin = {SCREEN_WIDTH / 2.0f - (board.width / 2.0f) * float(tileSize),
-			  10.0f};
+	origin = {(SCREEN_WIDTH - board.width * float(tileSize)) / 2.0f, 10.0f};
 	reset();
 }
 
@@ -33,7 +32,7 @@ void Ingame::reset() {
 	hasHeld = false;
 }
 
-void Ingame::update(double dt) {
+void Ingame::update(const double dt) {
 	u32 kDown = hidKeysDown();
 	u32 kHeld = hidKeysHeld();
 
@@ -64,7 +63,7 @@ void Ingame::update(double dt) {
 	}
 }
 
-void Ingame::draw(bool bottom) {
+void Ingame::draw(const bool bottom) {
 	if (!bottom) {
 		C2D_TargetClear(this->game.getTop(), BACKGROUND);
 		board.draw(origin, tileSize);
@@ -81,8 +80,9 @@ void Ingame::draw(bool bottom) {
 				 origin.y + y * tileSize},
 				tileSize, shapes[p], colors[p]);
 			y += shapes[p].size;
-			if (p == PieceType::O)
+			if (p == PieceType::O) {
 				++y;
+			}
 		}
 
 		// draw held piece

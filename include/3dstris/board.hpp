@@ -12,15 +12,24 @@ class Board {
 
 	void reset();
 
-	bool inside(u32 x, u32 y);
-	bool inside(int x, int y);
+	template <typename T>
+	bool inside(T x, T y) {
+		return x < width && y < height;
+	}
 	bool inside(Vector2 pos);
 
-	void set(u32 x, u32 y, PieceType t);
-	void set(int x, int y, PieceType t);
+	template <typename T>
+	void set(T x, T y, PieceType t) {
+		if (inside(x, y)) {
+			grid[y * width + x] = t;
+		}
+	}
 	void set(Vector2 pos, PieceType t);
 
-	PieceType get(u32 x, u32 y) const;
+	template <typename T>
+	PieceType get(T x, T y) const {
+		return grid[y * width + x];
+	}
 	PieceType get(Vector2 pos) const;
 
 	void draw(Vector2 origin, u32 tileSize, int outerThick = 2,

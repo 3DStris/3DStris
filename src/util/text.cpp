@@ -1,11 +1,11 @@
 #include <3dstris/util/text.hpp>
 
-Text::Text(const sds text, Color color)
+Text::Text(const sds text, const Color color)
 	: pos({0, 0}), scale({1, 1}), color(color), textBuffer(C2D_TextBufNew(64)) {
 	this->setText(text);
 }
 
-Text::Text(const char* text, Color color) : Text(sdsnew(text), color) {}
+Text::Text(const char* text, const Color color) : Text(sdsnew(text), color) {}
 
 Text::~Text() {
 	C2D_TextBufDelete(this->textBuffer);
@@ -32,7 +32,8 @@ Text& Text::operator=(const Text& other) {
 	return *this;
 }
 
-void Text::align(Align mode, Vector2 cpos, Vector2 cwh, bool bottom) {
+void Text::align(const Align mode, const Pos cpos, const Pos cwh,
+				 const bool bottom) {
 	auto wh = this->getWH();
 	switch (mode) {
 		case CENTER: {
@@ -57,11 +58,11 @@ void Text::align(Align mode, Vector2 cpos, Vector2 cwh, bool bottom) {
 	}
 }
 
-void Text::align(Align mode, bool bottom) {
+void Text::align(const Align mode, const bool bottom) {
 	align(mode, {0, 0}, {0, 0}, bottom);
 }
 
-void Text::setText(sds text) {
+void Text::setText(const sds text) {
 	sdsfree(this->text);
 	this->text = text;
 
@@ -71,33 +72,28 @@ void Text::setText(sds text) {
 	C2D_TextOptimize(&textObject);
 }
 
-sds Text::getText() {
+sds Text::getText() const noexcept {
 	return text;
 }
 
-void Text::setX(float x) {
+void Text::setX(const float x) noexcept {
 	pos.x = x;
 }
 
-float Text::getX() const {
+float Text::getX() const noexcept {
 	return pos.x;
 }
 
-void Text::setY(float y) {
+void Text::setY(const float y) noexcept {
 	pos.y = y;
 }
 
-float Text::getY() const {
+float Text::getY() const noexcept {
 	return pos.y;
 }
 
-void Text::setPos(float x, float y) {
-	pos.x = x;
-	pos.y = y;
-}
-
-void Text::setPos(Vector2 vector) {
-	pos = vector;
+void Text::setPos(Vector2 pos) noexcept {
+	this->pos = pos;
 }
 
 Vector2 Text::getWH() const {
@@ -110,23 +106,23 @@ void Text::setColor(Color color) {
 	this->color = color;
 }
 
-Color Text::getColor() const {
+Color Text::getColor() const noexcept {
 	return color;
 }
 
-void Text::setScaleX(float scale) {
+void Text::setScaleX(float scale) noexcept {
 	this->scale.x = scale;
 }
 
-void Text::setScaleY(float scale) {
+void Text::setScaleY(float scale) noexcept {
 	this->scale.y = scale;
 }
 
-void Text::setScale(Vector2 scale) {
+void Text::setScale(Vector2 scale) noexcept {
 	this->scale = scale;
 }
 
-Vector2 Text::getScale() const {
+Vector2 Text::getScale() const noexcept {
 	return scale;
 }
 

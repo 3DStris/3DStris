@@ -13,8 +13,8 @@ class State {
 	State& operator=(const State&) = delete;
 	State& operator=(State&&) = delete;
 
-	virtual void update(double dt) = 0;
-	virtual void draw(bool bottom) = 0;
+	virtual void update(const double dt) = 0;
+	virtual void draw(const bool bottom) = 0;
 
    protected:
 	Game& game;

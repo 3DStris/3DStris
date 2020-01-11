@@ -7,10 +7,10 @@
 class Results : public State {
    public:
 	Results(Ingame* parent);
-	Results(Ingame* parent, double sprintTime);
+	Results(Ingame* parent, const double sprintTime);
 
-	void update(double dt) override;
-	void draw(bool bottom) override;
+	void update(const double dt) override;
+	void draw(const bool bottom) override;
 
    private:
 	static constexpr Color RESULTS = C2D_Color32(0, 0, 0, 190);

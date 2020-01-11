@@ -207,46 +207,47 @@ void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 	dasTimer.x = (kHeld & KEY_LEFT) ? dasTimer.x + dt : 0;
 	dasTimer.y = (kHeld & KEY_RIGHT) ? dasTimer.y + dt : 0;
 
-	bool moved = false;
+	updateMove(dt, kDown);
 
-	if (dasTimer.x > das) {
-		if (arr == 0.0) {
-			while (move(Direction::left)) {
-			}
-		} else {
-			arrTimer -= dt;
-			if (arrTimer <= 0.0) {
-				move(Direction::left);
-				arrTimer = arr;
-			}
-		}
-		moved = true;
-	} else if (kDown & KEY_LEFT) {
-		move(Direction::left);
-		arrTimer = arr;
-		moved = true;
-	}
-
-	if (dasTimer.y > das && !moved) {
-		if (arr == 0.0) {
-			while (move(Direction::right)) {
-			}
-		} else {
-			arrTimer -= dt;
-			if (arrTimer <= 0.0) {
-				move(Direction::right);
-				arrTimer = arr;
-			}
-		}
-	} else if (kDown & KEY_RIGHT) {
-		move(Direction::right);
-		arrTimer = arr;
-	}
-
-	if (kDown & KEY_Y)
+	if (kDown & KEY_Y) {
 		rotate(true);
-	if (kDown & KEY_B)
+	}
+	if (kDown & KEY_B) {
 		rotate(false);
+	}
+}
+
+void Piece::updateMove(const double dt, const u32 kDown) {
+	auto _move = [this, &dt, &kDown](const Direction direction,
+									 const double timer, const u32 kNeeded) {
+		if (timer > das) {
+			if (arr == 0.0) {
+				while (move(direction)) {
+				}
+			} else {
+				arrTimer -= dt;
+				if (arrTimer <= 0.0) {
+					move(direction);
+					arrTimer = arr;
+				}
+			}
+
+			return true;
+		} else if (kDown & kNeeded) {
+			move(direction);
+			arrTimer = arr;
+
+			return true;
+		}
+
+		return false;
+	};
+
+	bool moved =
+		_move(left, dasTimer.x, KEY_LEFT);  // x is actually the left timer
+	if (!moved) {
+		_move(right, dasTimer.y, KEY_RIGHT);  // y is actually the right timer
+	}
 }
 
 PieceType Piece::getType() {

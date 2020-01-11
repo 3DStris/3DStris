@@ -1,15 +1,15 @@
 #include <3dstris/gui.hpp>
 #include <3dstris/gui/doubleinputfield.hpp>
 
-DoubleInputField::DoubleInputField(GUI& parent, float x, float y, float w,
-								   float h, const sds suffix)
-	: Widget(parent, {x, y}, {w, h}), suffix(suffix), value(0.) {
+DoubleInputField::DoubleInputField(GUI& _parent, const Vector2 _pos,
+								   const Vector2 _wh, const sds suffix)
+	: Widget(_parent, _pos, _wh), suffix(suffix), value(0.) {
 	updateText();
 }
 
-DoubleInputField::DoubleInputField(GUI& parent, float x, float y, float w,
-								   float h, const char* suffix)
-	: DoubleInputField(parent, x, y, w, h, sdsnew(suffix)) {}
+DoubleInputField::DoubleInputField(GUI& _parent, const Vector2 _pos,
+								   const Vector2 _wh, const char* suffix)
+	: DoubleInputField(_parent, _pos, _wh, sdsnew(suffix)) {}
 
 DoubleInputField::~DoubleInputField() {
 	sdsfree(suffix);
@@ -20,7 +20,8 @@ void DoubleInputField::draw() const {
 	text.draw();
 }
 
-void DoubleInputField::update(touchPosition touch, touchPosition previous) {
+void DoubleInputField::update(const touchPosition touch,
+							  const touchPosition previous) {
 	held = inside(touch.px, touch.py);
 
 	if (inside(previous.px, previous.py) && hidKeysUp() & KEY_TOUCH) {
@@ -48,7 +49,7 @@ void DoubleInputField::update(touchPosition touch, touchPosition previous) {
 	}
 }
 
-bool DoubleInputField::inside(float posX, float posY) const {
+bool DoubleInputField::inside(const float posX, const float posY) const {
 	return posX > pos.x && posX < pos.x + wh.x &&  //
 		   posY > pos.y && posY < pos.y + wh.y;
 }
@@ -57,7 +58,7 @@ double DoubleInputField::getValue() const {
 	return value;
 }
 
-void DoubleInputField::setValue(double v) {
+void DoubleInputField::setValue(const double v) {
 	value = v;
 	updateText();
 }

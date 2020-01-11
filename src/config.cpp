@@ -1,3 +1,5 @@
+#include <rapidjson/document.h>
+#include <rapidjson/prettywriter.h>
 #include <3dstris/config.hpp>
 #include <3dstris/game.hpp>
 #include <3dstris/states/configfailed.hpp>
@@ -15,6 +17,12 @@ static bool fileExists(FS_Archive& archive, const FS_Path& path) {
 	return !R_FAILED(
 			   FSUSER_OpenFile(&handle, archive, path, FS_OPEN_READ, 0)) &&
 		   !R_FAILED(FSFILE_Close(handle));
+}
+
+static bool validateJson(rapidjson::Document& doc) {
+	return doc.IsObject() &&								 //
+		   doc.HasMember("arr") && doc["arr"].IsDouble() &&  //
+		   doc.HasMember("das") && doc["das"].IsDouble();
 }
 
 Config::Config() {
@@ -44,16 +52,17 @@ Config::Config() {
 	sds configRead = sdsnewlen("", fileSize);
 	FSFILE_Read(configHandle, nullptr, 0, configRead, fileSize);
 
-	try {
-		const auto configJson = nlohmann::json::parse(configRead);
-		sdsfree(configRead);
-
-		das = configJson["das"].get<double>();
-		arr = configJson["arr"].get<double>();
-	} catch (const std::exception&) {
+	rapidjson::Document document;
+	if (document.Parse<rapidjson::kParseFullPrecisionFlag>(configRead)
+			.HasParseError() &&
+		!validateJson(document)) {
 		saveConfig();
 		configFailed = true;
 	}
+	sdsfree(configRead);
+
+	das = document["das"].GetDouble();
+	arr = document["arr"].GetDouble();
 }
 
 Config::~Config() {
@@ -73,9 +82,12 @@ void Config::saveConfig(bool overwrite) {
 						FS_OPEN_WRITE | FS_OPEN_READ, 0);
 	}
 
-	nlohmann::json config = {{"das", das}, {"arr", arr}};
-	const auto configString = config.dump(4, ' ', true);
+	rapidjson::StringBuffer sb;
+	rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(sb);
+	// writer.SetMaxDecimalPlaces(9);
 
-	FSFILE_Write(configHandle, nullptr, 0, configString.c_str(),
-				 strlen(configString.c_str()), FS_WRITE_FLUSH);
+	this->serialize(writer);
+
+	FSFILE_Write(configHandle, nullptr, 0, sb.GetString(), sb.GetLength(),
+				 FS_WRITE_FLUSH);
 }

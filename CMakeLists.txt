@@ -13,6 +13,7 @@ project(
 	DESCRIPTION "Tetris for the 3DS"
 	LANGUAGES CXX)
 
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib/3ds-cmake/cmake)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
@@ -44,11 +45,9 @@ find_package(Git)
 find_package(CTRULIB REQUIRED)
 find_package(CITRO3D REQUIRED)
 find_package(CITRO2D REQUIRED)
+find_package(RapidJSON REQUIRED)
 
 add_subdirectory(lib/sds)
-
-set(JSON_BuildTests OFF CACHE INTERNAL "")
-add_subdirectory(lib/json)
 
 add_subdirectory(src)
 add_subdirectory(apps)

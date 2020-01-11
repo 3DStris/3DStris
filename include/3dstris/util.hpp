@@ -16,7 +16,6 @@ template <typename T, typename... Args>
 std::unique_ptr<T> make_unique(Args&&... args) {
 	return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
-
 constexpr auto SCREEN_WIDTH = 400;
 constexpr auto SCREEN_HEIGHT = 240;
 

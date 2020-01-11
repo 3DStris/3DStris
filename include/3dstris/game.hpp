@@ -3,6 +3,8 @@
 #include <citro2d.h>
 #include <3dstris/config.hpp>
 #include <3dstris/state.hpp>
+#include <memory>
+#include <vector>
 
 class State;
 class Game {

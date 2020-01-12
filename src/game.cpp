@@ -28,6 +28,10 @@ Config& Game::getConfig() {
 	return config;
 }
 
+Games& Game::getGames() {
+	return config.getGames();
+}
+
 C3D_RenderTarget* Game::getTop() {
 	return top;
 }

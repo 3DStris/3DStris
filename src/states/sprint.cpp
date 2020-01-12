@@ -22,17 +22,19 @@ void Sprint::update(const double dt) {
 	}
 
 	if (piece.dead()) {
-		game.pushState(make_unique<Results>(this, time));
+		game.pushState(make_unique<Results>(this));
 		return;
 	}
 
 	time += dt;
 
-	infoText.setText(sdscatprintf(sdsempty(), "Lines: %d\nTime: %.3fs",
-								  board.linesCleared(), time));
+	infoText.setText(
+		sdscatprintf(sdsempty(), "Lines: %d\nTime: %.3fs\nPPS: %.3f",
+					 board.linesCleared(), time, board.droppedPieces() / time));
 
 	if (board.linesCleared() >= 20) {
-		game.pushState(make_unique<Results>(this, time));
+		game.pushState(make_unique<Results>(
+			this, SavedGame{osGetTime(), time, board.droppedPieces() / time}));
 		return;
 	}
 

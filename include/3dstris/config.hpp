@@ -21,7 +21,7 @@ struct Config {
 	}
 
 	void save(const bool overwrite = true);
-	Games& getGames() noexcept { return games; }
+	Games& getGames() noexcept;
 
 	u32 das = 200;
 	u32 arr = 0;

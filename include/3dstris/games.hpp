@@ -4,8 +4,10 @@
 #include <vector>
 
 struct SavedGame {
-	time_t date;
+	u64 date;
 	double time;
+
+	double pps;
 };
 
 class Games {
@@ -24,7 +26,10 @@ class Games {
 			writer.Double(game.time);
 
 			writer.String("date");
-			writer.Int64(game.date);
+			writer.Uint64(game.date);
+
+			writer.String("pps");
+			writer.Double(game.pps);
 
 			writer.EndObject();
 		}

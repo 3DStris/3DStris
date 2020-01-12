@@ -6,18 +6,18 @@ Board::Board(u32 width, u32 height) : width(width), height(height) {
 
 void Board::reset() {
 	_linesCleared = 0;
-	grid.assign(width * height, PieceType::None);
+	grid.assign(width * height, PieceType::NONE);
 }
 
-bool Board::inside(Vector2 pos) {
+bool Board::inside(Pos pos) {
 	return inside(int(pos.x), int(pos.y));
 }
 
-void Board::set(Vector2 pos, PieceType t) {
+void Board::set(Pos pos, PieceType t) {
 	set(u32(pos.x), u32(pos.y), t);
 }
 
-PieceType Board::get(Vector2 pos) const {
+PieceType Board::get(Pos pos) const {
 	return get(u32(pos.x), u32(pos.y));
 }
 
@@ -46,7 +46,7 @@ void Board::draw(Vector2 origin, u32 tileSize, int outerThick,
 	for (u32 y = 0; y < height; ++y) {
 		for (u32 x = 0; x < width; ++x) {
 			const PieceType& p = get(x, y);
-			if (p != PieceType::None) {
+			if (p != PieceType::NONE) {
 				C2D_DrawRectSolid(origin.x + x * tileSize,
 								  origin.y + y * tileSize, 0.0f, tileSize,
 								  tileSize, colors[p]);
@@ -59,7 +59,7 @@ void Board::clearLines() {
 	for (u32 y = 0; y < height; ++y) {
 		bool line = true;
 		for (u32 x = 0; x < width; ++x) {
-			if (get(x, y) == PieceType::None) {
+			if (get(x, y) == PieceType::NONE) {
 				line = false;
 				break;
 			}
@@ -69,7 +69,7 @@ void Board::clearLines() {
 			for (u32 curY = y; curY >= 1; --curY) {
 				for (u32 x = 0; x < width; ++x) {
 					set(x, curY,
-						curY == 1 ? PieceType::None : get(x, curY - 1));
+						curY == 1 ? PieceType::NONE : get(x, curY - 1));
 				}
 			}
 		}

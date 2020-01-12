@@ -4,11 +4,12 @@
 #include <3dstris/util.hpp>
 #include <3dstris/version.hpp>
 
-LoadFailed::LoadFailed(const bool config)
+LoadFailed::LoadFailed(const FailType type)
 	: State(),
 	  failedText(
-		  config ? "Failed to load config; your settings have been reset."
-				 : "Failed to load games; your saved games have been reset."),
+		  type == FailType::CONFIG
+			  ? "Failed to load config; your settings have been reset."
+			  : "Failed to load games; your saved games have been reset."),
 	  okButton(gui.add<Button>(Pos{-1, -1},
 							   WH{SCREEN_WIDTH - 100, SCREEN_HEIGHT - 100},
 							   "OK", Button::Flags::CENTER)) {

@@ -7,7 +7,7 @@
 class Results : public State {
    public:
 	Results(Ingame* parent);
-	Results(Ingame* parent, const double sprintTime);
+	Results(Ingame* parent, const SavedGame& saved);
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;

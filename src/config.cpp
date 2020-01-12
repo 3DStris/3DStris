@@ -92,3 +92,7 @@ void Config::save(const bool overwrite) {
 	FSFILE_Write(configHandle, nullptr, 0, sb.GetString(), sb.GetLength(),
 				 FS_WRITE_FLUSH);
 }
+
+Games& Config::getGames() noexcept {
+	return games;
+}

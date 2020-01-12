@@ -19,6 +19,7 @@ class Game {
 	void draw();
 
 	Config& getConfig();
+	Games& getGames();
 
 	C3D_RenderTarget* getTop();
 	C3D_RenderTarget* getBottom();

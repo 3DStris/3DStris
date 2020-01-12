@@ -21,8 +21,8 @@ int main() {
 	if (game.getConfig().failed) {
 		game.pushState(make_unique<LoadFailed>());
 	}
-	if (game.getConfig().getGames().failed) {
-		game.pushState(make_unique<LoadFailed>(false));
+	if (game.getGames().failed) {
+		game.pushState(make_unique<LoadFailed>(LoadFailed::FailType::GAMES));
 	}
 
 	while (aptMainLoop() && !game.exit) {

@@ -49,8 +49,11 @@ void Games::initialize(const FS_Archive sdmcArchive) {
 	} else {
 		for (const auto& object : document.GetArray()) {
 			if (object.FindMember("time") != object.MemberEnd() &&
-				object.FindMember("date") != object.MemberEnd()) {
-				push({object["date"].GetInt64(), object["time"].GetDouble()});
+				object.FindMember("date") != object.MemberEnd() &&
+				object.FindMember("pps") != object.MemberEnd()) {
+				push({object["date"].GetUint64(),  //
+					  object["time"].GetDouble(),  //
+					  object["pps"].GetDouble()});
 			}
 		}
 	}
@@ -85,7 +88,6 @@ void Games::save(const bool overwrite) {
 
 	this->serialize(writer);
 
-	u32 guy;
-	FSFILE_Write(gamesHandle, &guy, 0, sb.GetString(), sb.GetLength(),
+	FSFILE_Write(gamesHandle, nullptr, 0, sb.GetString(), sb.GetLength(),
 				 FS_WRITE_FLUSH);
 }

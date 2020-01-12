@@ -8,6 +8,7 @@ Game::Game() : spriteSheet(C2D_SpriteSheetLoad("romfs:/gfx/sprites.t3x")) {
 
 Game::~Game() {
 	C2D_SpriteSheetFree(spriteSheet);
+
 	C3D_RenderTargetDelete(top);
 	C3D_RenderTargetDelete(bottom);
 }

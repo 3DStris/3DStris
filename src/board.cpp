@@ -6,6 +6,7 @@ Board::Board(u32 width, u32 height) : width(width), height(height) {
 
 void Board::reset() {
 	_linesCleared = 0;
+	_droppedPieces = 0;
 	grid.assign(width * height, PieceType::NONE);
 }
 

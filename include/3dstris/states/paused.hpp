@@ -2,11 +2,11 @@
 
 #include <3dstris/gui.hpp>
 #include <3dstris/state.hpp>
-#include <3dstris/states/playing.hpp>
+#include <3dstris/states/ingame.hpp>
 
 class Paused : public State {
    public:
-	Paused(State* parent);
+	Paused(Ingame* parent);
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;
@@ -16,7 +16,7 @@ class Paused : public State {
 
 	Text pausedText;
 
-	State* parent;
+	Ingame* parent;
 
 	GUI gui;
 

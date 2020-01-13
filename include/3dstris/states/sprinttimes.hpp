@@ -36,8 +36,8 @@ class SprintTimes : public State {
 	u32 topCell = 0;
 	u32 selected = 0;
 
-	std::vector<SavedGame> games;
 	std::vector<std::unique_ptr<Text>> values;
+	SavedGames games;
 
 	Text infoText;
 };

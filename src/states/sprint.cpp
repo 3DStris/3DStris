@@ -37,7 +37,7 @@ void Sprint::update(const double dt) {
 		game.pushState(make_unique<SprintResults>(
 			this,
 			SavedGame{
-				(osGetTime() - 2208988800000) /
+				time_t((osGetTime() - 2208988800000)) /
 					1000,  // why? because the 3ds counts in milliseconds.. but
 						   // that's not where it ends; it also starts from
 						   // 1900! why, Nintendo?! why?!

@@ -3,6 +3,7 @@
 #include <sds.h>
 #include <3dstris/config.hpp>
 #include <3dstris/games.hpp>
+#include <algorithm>
 
 static bool fileExists(FS_Archive& archive, const FS_Path& path) {
 	Handle handle;
@@ -51,11 +52,12 @@ void Games::initialize(const FS_Archive sdmcArchive) {
 			if (object.FindMember("time") != object.MemberEnd() &&
 				object.FindMember("date") != object.MemberEnd() &&
 				object.FindMember("pps") != object.MemberEnd()) {
-				push({object["date"].GetUint64(),  //
-					  object["time"].GetDouble(),  //
-					  object["pps"].GetDouble()});
+				games.push_back({object["date"].GetInt64(),   //
+								 object["time"].GetDouble(),  //
+								 object["pps"].GetDouble()});
 			}
 		}
+		std::sort(games.begin(), games.end(), std::less<SavedGame>());
 	}
 }
 
@@ -63,12 +65,13 @@ Games::~Games() {
 	FSFILE_Close(gamesHandle);
 }
 
-const std::vector<SavedGame>& Games::all() const noexcept {
+const SavedGames& Games::all() const noexcept {
 	return games;
 }
 
 void Games::push(const SavedGame game) {
 	games.push_back(game);
+	std::sort(games.begin(), games.end(), std::less<SavedGame>());
 }
 
 void Games::save(const bool overwrite) {

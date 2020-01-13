@@ -34,7 +34,7 @@ void Sprint::update(const double dt) {
 					 board.linesCleared(), time, board.droppedPieces() / time));
 
 	if (board.linesCleared() >= 20) {
-		game.pushState(make_unique<Results>(
+		game.pushState(make_unique<SprintResults>(
 			this,
 			SavedGame{
 				(osGetTime() - 2208988800000) /

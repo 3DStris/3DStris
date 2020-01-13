@@ -27,6 +27,12 @@ class GUI {
 	static void drawOutline(const Pos pos, const WH wh, const u8 scale = 2,
 							const Color color = Button::BUTTON_OUTLINE);
 
+	static void drawHLine(const Pos pos, const float w, const u8 scale = 2,
+						  const Color color = Button::BUTTON_OUTLINE);
+
+	static void drawVLine(const Pos pos, const float h, const u8 scale = 2,
+						  const Color color = Button::BUTTON_OUTLINE);
+
 	Color primaryCol, textCol, pressedCol, outlineCol;
 
    private:

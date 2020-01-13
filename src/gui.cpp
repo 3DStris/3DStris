@@ -43,3 +43,15 @@ void GUI::drawOutline(const Pos pos, const WH wh, const u8 scale,
 	C2D_DrawRectSolid(pos.x - scale, pos.y + wh.y, 0.5f, wh.x + 2 * scale,
 					  scale, color);
 }
+
+void GUI::drawHLine(const Pos pos, const float w, const u8 scale,
+					const Color color) {
+	C2D_DrawRectSolid(pos.x - scale, pos.y - scale, 0.5f, w + 2 * scale, scale,
+					  color);
+}
+
+void GUI::drawVLine(const Pos pos, const float h, const u8 scale,
+					const Color color) {
+	C2D_DrawRectSolid(pos.x - scale, pos.y - scale, 0.5f, scale, h + 2 * scale,
+					  color);
+}

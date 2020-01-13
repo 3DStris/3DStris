@@ -1,5 +1,6 @@
 #include <3dstris/states/mainmenu.hpp>
 #include <3dstris/states/sprintresults.hpp>
+#include <3dstris/states/sprinttimes.hpp>
 
 SprintResults::SprintResults(Ingame* parent, const SavedGame& saved)
 	: State(),
@@ -20,6 +21,11 @@ SprintResults::SprintResults(Ingame* parent, const SavedGame& saved)
 
 void SprintResults::update(const double dt) {
 	gui.update(dt);
+
+	if (timesButton.pressed()) {
+		this->game.pushState(make_unique<SprintTimes>());
+		return;
+	}
 
 	if (restartButton.pressed()) {
 		parent->reset();

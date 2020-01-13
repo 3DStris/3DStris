@@ -34,7 +34,13 @@ void Sprint::update(const double dt) {
 
 	if (board.linesCleared() >= 20) {
 		game.pushState(make_unique<Results>(
-			this, SavedGame{osGetTime(), time, board.droppedPieces() / time}));
+			this,
+			SavedGame{
+				(osGetTime() - 2208988800000) /
+					1000,  // why? because the 3ds counts in milliseconds.. but
+						   // that's not where it ends; it also starts from
+						   // 1900! why, Nintendo?! why?!
+				time, board.droppedPieces() / time}));
 		return;
 	}
 

@@ -32,7 +32,7 @@ Text& Text::operator=(const Text& other) {
 	return *this;
 }
 
-void Text::align(const Align mode, const Pos cpos, const Pos cwh,
+void Text::align(const Align mode, const Pos cpos, const WH cwh,
 				 const bool bottom) {
 	auto wh = this->getWH();
 	switch (mode) {

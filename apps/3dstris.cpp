@@ -1,9 +1,11 @@
 #include <tex3ds.h>
+
 #include <3dstris/game.hpp>
 #include <3dstris/state.hpp>
 #include <3dstris/states/configscreen.hpp>
 #include <3dstris/states/loadfailed.hpp>
 #include <3dstris/states/mainmenu.hpp>
+#include <3dstris/states/sprinttimes.hpp>
 
 int main() {
 	TickCounter tickCounter;
@@ -17,7 +19,8 @@ int main() {
 	C2D_Prepare();
 
 	Game& game = Game::getInstance();
-	game.pushState(make_unique<MainMenu>());
+	//	game.pushState(make_unique<MainMenu>());
+	game.pushState(make_unique<SprintTimes>());
 	if (game.getConfig().failed) {
 		game.pushState(make_unique<LoadFailed>());
 	}

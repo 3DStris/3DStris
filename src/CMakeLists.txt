@@ -32,6 +32,8 @@ set_header_list(
 	states/sprint.hpp
 	states/paused.hpp
 	states/results.hpp
+	states/sprintresults.hpp
+	states/sprinttimes.hpp
 	states/configscreen.hpp
 	states/loadfailed.hpp
 	util/text.hpp
@@ -56,6 +58,8 @@ add_library(3dstris STATIC
 	states/sprint.cpp
 	states/paused.cpp
 	states/results.cpp
+	states/sprintresults.cpp
+	states/sprinttimes.cpp
 	states/configscreen.cpp
 	states/loadfailed.cpp
 	util/text.cpp

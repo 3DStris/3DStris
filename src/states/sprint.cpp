@@ -2,6 +2,7 @@
 #include <3dstris/states/paused.hpp>
 #include <3dstris/states/results.hpp>
 #include <3dstris/states/sprint.hpp>
+#include <3dstris/states/sprintresults.hpp>
 
 Sprint::Sprint() : Ingame(), time(0.0) {
 	infoText.setPos({10, 10});
@@ -32,8 +33,8 @@ void Sprint::update(const double dt) {
 		sdscatprintf(sdsempty(), "Lines: %d\nTime: %.3fs\nPPS: %.3f",
 					 board.linesCleared(), time, board.droppedPieces() / time));
 
-	if (board.linesCleared() >= 20) {
-		game.pushState(make_unique<Results>(
+	if (board.linesCleared() >= 2) {
+		game.pushState(make_unique<SprintResults>(
 			this, SavedGame{osGetTime(), time, board.droppedPieces() / time}));
 		return;
 	}

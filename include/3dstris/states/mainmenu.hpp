@@ -24,4 +24,5 @@ class MainMenu : public State {
 	Button& playButton;
 	Button& optionsButton;
 	Button& exitButton;
+	Button& gamesButton;
 };

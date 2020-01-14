@@ -10,6 +10,7 @@ SprintTimes::SprintTimes()
 								 "Back", Button::Flags::HCENTER)),
 	  timeLabel("Time"),
 	  dateLabel("Date"),
+	  noGamesText("You haven't played any sprint games yet."),
 	  games(game.getGames().all()) {
 	timeLabel.align(Text::Align::CENTER, Pos{TABLE_X, TABLE_Y},
 					WH{TIME_W, CELL_H});
@@ -18,6 +19,9 @@ SprintTimes::SprintTimes()
 	genValues();
 	infoText.setScale({0.8f, 0.8f});
 	infoText.setPos(Pos{10, 10});
+
+	noGamesText.setScale({0.75f, 0.75f});
+	noGamesText.align(Text::Align::SCREEN_CENTER);
 }
 
 void SprintTimes::genValues() {
@@ -51,6 +55,10 @@ void SprintTimes::update(const double dt) {
 
 	if (backButton.pressed()) {
 		this->game.popState();
+		return;
+	}
+
+	if (games.empty()) {
 		return;
 	}
 
@@ -91,6 +99,11 @@ void SprintTimes::draw(const bool bottom) {
 	if (!bottom) {
 		C2D_TargetClear(this->game.getTop(), BACKGROUND);
 
+		if (games.empty()) {
+			noGamesText.draw();
+			return;
+		}
+
 		panel.draw();
 		for (u16 i = 0; i < CELLS; ++i) {
 			GUI::drawHLine(Pos{TABLE_X, TABLE_Y + CELL_H * (i + 1.0f)},
@@ -111,7 +124,9 @@ void SprintTimes::draw(const bool bottom) {
 	} else {
 		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
 
-		infoText.draw();
+		if (!games.empty()) {
+			infoText.draw();
+		}
 		gui.draw();
 	}
 }

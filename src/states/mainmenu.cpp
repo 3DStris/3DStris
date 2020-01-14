@@ -3,6 +3,7 @@
 #include <3dstris/states/configscreen.hpp>
 #include <3dstris/states/mainmenu.hpp>
 #include <3dstris/states/modeselect.hpp>
+#include <3dstris/states/sprinttimes.hpp>
 #include <3dstris/util.hpp>
 #include <3dstris/version.hpp>
 
@@ -16,7 +17,9 @@ MainMenu::MainMenu()
 	  optionsButton(gui.add<Button>(Pos{-1, 100}, WH{100, 50}, "Settings",
 									Button::Flags::HCENTER)),
 	  exitButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 50}, WH{100, 40},
-								 "Exit", Button::Flags::HCENTER)) {
+								 "Exit", Button::Flags::HCENTER)),
+	  gamesButton(
+		  gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 45}, WH{70, 35}, "Games")) {
 	versionText.setScale({0.5f, 0.5f});
 	versionText.setPos({3, SCREEN_HEIGHT - versionText.getWH().y / 1.25f - 5});
 }
@@ -41,6 +44,10 @@ void MainMenu::update(const double dt) {
 
 	if (exitButton.pressed()) {
 		this->game.exit = true;
+	}
+
+	if (gamesButton.pressed()) {
+		this->game.pushState(make_unique<SprintTimes>());
 	}
 }
 

@@ -36,9 +36,7 @@ deploy:
 
   target_commitish: $TRAVIS_COMMIT
 
-  edge:
-    source: wenkokke/dpl
-    branch: master
+  edge: true
   skip_cleanup: true
   file:
     - "$TRAVIS_BUILD_DIR/build/apps/3dstris.3dsx"

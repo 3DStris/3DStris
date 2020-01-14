@@ -8,7 +8,7 @@ class Board {
 	u32 width;
 	u32 height;
 
-	Board(u32 width, u32 height);
+	Board(const u32 width, const u32 height);
 
 	void reset();
 
@@ -16,24 +16,24 @@ class Board {
 	bool inside(T x, T y) {
 		return x < width && y < height;
 	}
-	bool inside(Pos pos);
+	bool inside(const Pos pos);
 
 	template <typename T>
-	void set(T x, T y, PieceType t) {
+	void set(const T x, const T y, const PieceType t) {
 		if (inside(x, y)) {
 			grid[y * width + x] = t;
 		}
 	}
-	void set(Pos pos, PieceType t);
+	void set(const Pos pos, const PieceType t);
 
 	template <typename T>
-	PieceType get(T x, T y) const {
+	PieceType get(const T x, const T y) const {
 		return grid[y * width + x];
 	}
-	PieceType get(Pos pos) const;
+	PieceType get(const Pos pos) const;
 
-	void draw(Vector2 origin, u32 tileSize, int outerThick = 2,
-			  int gridThick = 1) const;
+	void draw(const Vector2 origin, const u32 tileSize, const u8 outerThick = 2,
+			  const u8 gridThick = 1) const;
 
 	void clearLines();
 

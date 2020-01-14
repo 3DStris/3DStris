@@ -18,8 +18,8 @@ class Game {
 
 	void draw();
 
-	Config& getConfig();
-	Games& getGames();
+	Config& getConfig() noexcept;
+	Games& getGames() noexcept;
 
 	C3D_RenderTarget* getTop();
 	C3D_RenderTarget* getBottom();

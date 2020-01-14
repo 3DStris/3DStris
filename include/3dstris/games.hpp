@@ -1,7 +1,6 @@
 #pragma once
 
 #include <3ds.h>
-#include <sds.h>
 #include <vector>
 
 struct SavedGame {

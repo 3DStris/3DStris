@@ -1,6 +1,6 @@
 #include <3dstris/board.hpp>
 
-Board::Board(u32 width, u32 height) : width(width), height(height) {
+Board::Board(const u32 width, const u32 height) : width(width), height(height) {
 	reset();
 }
 
@@ -10,20 +10,20 @@ void Board::reset() {
 	grid.assign(width * height, PieceType::NONE);
 }
 
-bool Board::inside(Pos pos) {
+bool Board::inside(const Pos pos) {
 	return inside(int(pos.x), int(pos.y));
 }
 
-void Board::set(Pos pos, PieceType t) {
+void Board::set(const Pos pos, const PieceType t) {
 	set(u32(pos.x), u32(pos.y), t);
 }
 
-PieceType Board::get(Pos pos) const {
+PieceType Board::get(const Pos pos) const {
 	return get(u32(pos.x), u32(pos.y));
 }
 
-void Board::draw(Vector2 origin, u32 tileSize, int outerThick,
-				 int gridThick) const {
+void Board::draw(const Vector2 origin, const u32 tileSize, const u8 outerThick,
+				 const u8 gridThick) const {
 	// top
 	straightLine(origin.x, origin.y, width * tileSize, 0, outerThick, BLACK);
 	// bottom

@@ -25,11 +25,11 @@ void Game::draw() {
 	getState().draw(true);
 }
 
-Config& Game::getConfig() {
+Config& Game::getConfig() noexcept {
 	return config;
 }
 
-Games& Game::getGames() {
+Games& Game::getGames() noexcept {
 	return config.getGames();
 }
 

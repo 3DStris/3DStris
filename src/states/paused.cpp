@@ -2,7 +2,7 @@
 #include <3dstris/states/paused.hpp>
 #include <algorithm>
 
-Paused::Paused(State* parent)
+Paused::Paused(Ingame* parent)
 	: State(),
 	  pausedText("Paused"),
 	  parent(parent),
@@ -21,7 +21,8 @@ void Paused::update(const double dt) {
 
 	auto kDown = hidKeysDown();
 	if (restartButton.pressed()) {
-		this->game.setState(make_unique<Playing>(), false, true);
+		parent->reset();
+		this->game.popState(false, true);
 		return;
 	}
 

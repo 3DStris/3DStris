@@ -2,7 +2,7 @@
 #include <rapidjson/prettywriter.h>
 #include <3dstris/config.hpp>
 #include <3dstris/game.hpp>
-#include <3dstris/states/configfailed.hpp>
+#include <3dstris/states/loadfailed.hpp>
 
 static bool directoryExists(FS_Archive& archive, const FS_Path& path) {
 	Handle handle;
@@ -20,9 +20,9 @@ static bool fileExists(FS_Archive& archive, const FS_Path& path) {
 }
 
 static bool validateJson(rapidjson::Document& doc) {
-	return doc.IsObject() &&								 //
-		   doc.HasMember("arr") && doc["arr"].IsDouble() &&  //
-		   doc.HasMember("das") && doc["das"].IsDouble();
+	return !doc.HasParseError() && doc.IsObject() &&	   //
+		   doc.HasMember("arr") && doc["arr"].IsUint() &&  //
+		   doc.HasMember("das") && doc["das"].IsUint();
 }
 
 Config::Config() {
@@ -43,8 +43,10 @@ Config::Config() {
 					FS_OPEN_WRITE | FS_OPEN_READ, 0);
 
 	if (!configFileExists) {
-		saveConfig(false);
+		save(false);
 	}
+
+	games.initialize(sdmcArchive);
 
 	u64 fileSize;
 	FSFILE_GetSize(configHandle, &fileSize);
@@ -53,14 +55,16 @@ Config::Config() {
 	FSFILE_Read(configHandle, nullptr, 0, configRead, fileSize);
 
 	rapidjson::Document document;
-	if (document.Parse(configRead).HasParseError() && !validateJson(document)) {
-		saveConfig();
-		configFailed = true;
-	}
+	document.Parse(configRead);
 	sdsfree(configRead);
 
-	das = document["das"].GetDouble();
-	arr = document["arr"].GetDouble();
+	if (!validateJson(document)) {
+		save();
+		failed = true;
+	} else {
+		das = document["das"].GetUint();
+		arr = document["arr"].GetUint();
+	}
 }
 
 Config::~Config() {
@@ -69,7 +73,7 @@ Config::~Config() {
 	FSUSER_CloseArchive(sdmcArchive);
 }
 
-void Config::saveConfig(bool overwrite) {
+void Config::save(const bool overwrite) {
 	if (overwrite) {
 		FSFILE_Close(configHandle);
 
@@ -82,10 +86,13 @@ void Config::saveConfig(bool overwrite) {
 
 	rapidjson::StringBuffer sb;
 	rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(sb);
-	// writer.SetMaxDecimalPlaces(9);
 
 	this->serialize(writer);
 
 	FSFILE_Write(configHandle, nullptr, 0, sb.GetString(), sb.GetLength(),
 				 FS_WRITE_FLUSH);
+}
+
+Games& Config::getGames() noexcept {
+	return games;
 }

@@ -15,10 +15,13 @@ Results::Results(Ingame* parent)
 	deadText.align(Text::Align::SCREEN_CENTER);
 }
 
-Results::Results(Ingame* parent, const double sprintTime) : Results(parent) {
-	deadText.setText(sdscatprintf(sdsempty(), "Time: %.3fs", sprintTime));
+Results::Results(Ingame* parent, const SavedGame& saved) : Results(parent) {
+	deadText.setText(sdscatprintf(sdsempty(), "Time: %.3fs", saved.time));
 	deadText.setScale({1.3f, 1.3f});
 	deadText.align(Text::Align::SCREEN_CENTER);
+
+	game.getGames().push(saved);
+	game.getGames().save();
 }
 
 void Results::update(const double dt) {

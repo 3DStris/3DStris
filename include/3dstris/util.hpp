@@ -38,9 +38,9 @@ struct Vector2d {
 	double y;
 };
 
-enum PieceType { I, O, L, J, S, T, Z, None };
+enum PieceType { I, O, L, J, S, T, Z, NONE };
 
-enum Direction { left, right, up, down };
+enum Direction { LEFT, RIGHT, UP, DOWN };
 
 static void straightLine(float x, float y, float w, float h, float thick,
 						 Color col) {

@@ -27,10 +27,10 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 	setTimer = 0.0;
 	setAfter = 1.0;
 
-	das = Game::getInstance().getConfig().das;
+	das = Game::getInstance().getConfig().das / 1000.;
 	dasTimer = {0.0, 0.0};
 
-	arr = Game::getInstance().getConfig().arr;
+	arr = Game::getInstance().getConfig().arr / 1000.;
 	arrTimer = arr;
 
 	rotation = 0;
@@ -51,6 +51,7 @@ void Piece::set() {
 			}
 		}
 	}
+	board.dropPiece();
 	board.clearLines();
 }
 
@@ -60,7 +61,7 @@ bool Piece::collides(const int offX, const int offY) const {
 			Vector2 offPos = {pos.x + x + offX, pos.y + y + offY};
 			if (shape.shape[y * shape.size + x] &&
 				(!board.inside(offPos) ||
-				 board.get(offPos) != PieceType::None)) {
+				 board.get(offPos) != PieceType::NONE)) {
 				return true;
 			}
 		}
@@ -104,16 +105,16 @@ void Piece::draw(const Vector2 origin, const u32 tileSize,
 bool Piece::move(const Direction dir) {
 	int xOff = 0, yOff = 0;
 	switch (dir) {
-		case Direction::left:
+		case Direction::LEFT:
 			xOff = -1;
 			break;
-		case Direction::right:
+		case Direction::RIGHT:
 			xOff = 1;
 			break;
-		case Direction::up:
+		case Direction::UP:
 			yOff = -1;
 			break;
-		case Direction::down:
+		case Direction::DOWN:
 			yOff = 1;
 			break;
 	}
@@ -149,7 +150,7 @@ void Piece::rotate(const bool ccw) {
 	int prevRotation = rotation;
 	rotation = mod(rotation + (ccw ? -1 : 1), 4);
 
-	Wallkick wkData = type == PieceType::I ? Wallkicks::I : Wallkicks::others;
+	Wallkick wkData = type == PieceType::I ? Wallkicks::I : Wallkicks::OTHERS;
 
 	/*
 	each test is stored as {spawn->ccw, spawn->cw, cw->spawn, cw->180, 180->cw,
@@ -183,7 +184,7 @@ void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 	if (kDown & KEY_DOWN ||
 		fallTimer > ((kHeld & KEY_DOWN) ? sDropAfter : fallAfter)) {
 		fallTimer = 0.0;
-		move(Direction::down);
+		move(Direction::DOWN);
 	}
 
 	if (collides(0, 1)) {
@@ -197,7 +198,7 @@ void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 	}
 
 	if (kDown & KEY_UP) {
-		while (move(Direction::down)) {
+		while (move(Direction::DOWN)) {
 		}
 		setTimer = setAfter;
 		set();
@@ -244,9 +245,9 @@ void Piece::updateMove(const double dt, const u32 kDown) {
 	};
 
 	bool moved =
-		_move(left, dasTimer.x, KEY_LEFT);  // x is actually the left timer
+		_move(LEFT, dasTimer.x, KEY_LEFT);  // x is actually the left timer
 	if (!moved) {
-		_move(right, dasTimer.y, KEY_RIGHT);  // y is actually the right timer
+		_move(RIGHT, dasTimer.y, KEY_RIGHT);  // y is actually the right timer
 	}
 }
 

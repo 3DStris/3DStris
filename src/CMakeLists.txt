@@ -23,6 +23,7 @@ set_header_list(
 	game.hpp
 	colors.hpp
 	config.hpp
+	games.hpp
 	state.hpp
 	states/mainmenu.hpp
 	states/modeselect.hpp
@@ -31,13 +32,15 @@ set_header_list(
 	states/sprint.hpp
 	states/paused.hpp
 	states/results.hpp
+	states/sprintresults.hpp
+	states/sprinttimes.hpp
 	states/configscreen.hpp
-	states/configfailed.hpp
+	states/loadfailed.hpp
 	util/text.hpp
 	gui.hpp
 	gui/widget.hpp
 	gui/button.hpp
-	gui/doubleinputfield.hpp
+	gui/u32inputfield.hpp
 	gui/panel.hpp
 	wallkicks.hpp)
 
@@ -46,6 +49,7 @@ add_library(3dstris STATIC
 	piece.cpp
 	game.cpp
 	config.cpp
+	games.cpp
 	state.cpp
 	states/mainmenu.cpp
 	states/modeselect.cpp
@@ -54,13 +58,15 @@ add_library(3dstris STATIC
 	states/sprint.cpp
 	states/paused.cpp
 	states/results.cpp
+	states/sprintresults.cpp
+	states/sprinttimes.cpp
 	states/configscreen.cpp
-	states/configfailed.cpp
+	states/loadfailed.cpp
 	util/text.cpp
 	gui.cpp
 	gui/widget.cpp
 	gui/button.cpp
-	gui/doubleinputfield.cpp
+	gui/u32inputfield.cpp
 	gui/panel.cpp
 	${HEADER_LIST})
 
@@ -70,7 +76,7 @@ target_include_directories(3dstris PUBLIC ../include)
 
 target_link_libraries(3dstris PUBLIC 3ds::ctrulib 3ds::citro3d 3ds::citro2d sds RapidJSON::RapidJSON)
 
-target_compile_options(3dstris PRIVATE -mword-relocations -march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft -std=gnu++11)
+target_compile_options(3dstris PRIVATE -mword-relocations -march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft -std=gnu++11 -Wno-psabi)
 
 source_group(TREE "${3dstris_SOURCE_DIR}/include"
 			 PREFIX "Header Files"

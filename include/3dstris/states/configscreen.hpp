@@ -1,6 +1,8 @@
 #pragma once
 
 #include <3dstris/gui.hpp>
+#include <3dstris/gui/panel.hpp>
+#include <3dstris/gui/u32inputfield.hpp>
 #include <3dstris/state.hpp>
 
 class ConfigScreen : public State {
@@ -23,9 +25,9 @@ class ConfigScreen : public State {
 	Panel& panel;
 	Panel tipPanel;
 
-	DoubleInputField& dasInputField;
-	DoubleInputField& arrInputField;
+	U32InputField& dasInputField;
+	U32InputField& arrInputField;
 
-	double getDas() const;
-	double getArr() const;
+	u32 getDas() const;
+	u32 getArr() const;
 };

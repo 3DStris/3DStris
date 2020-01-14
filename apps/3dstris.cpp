@@ -1,8 +1,9 @@
 #include <tex3ds.h>
+
 #include <3dstris/game.hpp>
 #include <3dstris/state.hpp>
-#include <3dstris/states/configfailed.hpp>
 #include <3dstris/states/configscreen.hpp>
+#include <3dstris/states/loadfailed.hpp>
 #include <3dstris/states/mainmenu.hpp>
 
 int main() {
@@ -17,10 +18,12 @@ int main() {
 	C2D_Prepare();
 
 	Game& game = Game::getInstance();
-	if (!game.getConfig().configFailed) {
-		game.pushState(make_unique<MainMenu>());
-	} else {
-		game.pushState(make_unique<ConfigFailed>());
+	game.pushState(make_unique<MainMenu>());
+	if (game.getConfig().failed) {
+		game.pushState(make_unique<LoadFailed>());
+	}
+	if (game.getGames().failed) {
+		game.pushState(make_unique<LoadFailed>(LoadFailed::FailType::GAMES));
 	}
 
 	while (aptMainLoop() && !game.exit) {

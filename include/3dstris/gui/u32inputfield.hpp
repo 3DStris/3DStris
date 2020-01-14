@@ -4,21 +4,20 @@
 #include <3dstris/util/text.hpp>
 
 class GUI;
-class DoubleInputField : public Widget {
+class U32InputField : public Widget {
    public:
-	DoubleInputField(GUI& parent, const Pos pos, const WH wh,
-					 const sds suffix = sdsempty());
-	DoubleInputField(GUI& parent, const Pos pos, const WH wh,
-					 const char* suffix);
-	~DoubleInputField() override;
+	U32InputField(GUI& parent, const Pos pos, const WH wh,
+				  const sds suffix = sdsempty());
+	U32InputField(GUI& parent, const Pos pos, const WH wh, const char* suffix);
+	~U32InputField() override;
 
 	void draw() const override;
-	void update(touchPosition touch, touchPosition) override;
+	void update(const touchPosition touch, const touchPosition) override;
 
 	bool inside(const float posX, const float posY) const;
 
-	double getValue() const;
-	void setValue(const double v);
+	u32 getValue() const;
+	void setValue(const u32 v);
 
    private:
 	static constexpr Color FIELD = C2D_Color32(94, 94, 94, 255);
@@ -29,7 +28,7 @@ class DoubleInputField : public Widget {
 	Text text;
 	sds suffix;
 
-	double value;
+	u32 value;
 
 	bool held;
 };

@@ -29,7 +29,7 @@ void Ingame::reset() {
 	piece.reset(bag.front());
 	bag.pop_front();
 
-	hold = PieceType::None;
+	hold = PieceType::NONE;
 	hasHeld = false;
 }
 
@@ -52,7 +52,7 @@ void Ingame::update(const double dt) {
 
 	if (!hasHeld && (kDown & KEY_X || kDown & KEY_A)) {
 		hasHeld = true;
-		if (hold == PieceType::None) {
+		if (hold == PieceType::NONE) {
 			hold = piece.getType();
 			piece.reset(bag.front());
 			bag.pop_front();
@@ -87,7 +87,7 @@ void Ingame::draw(const bool bottom) {
 		}
 
 		// draw held piece
-		if (hold != PieceType::None) {
+		if (hold != PieceType::NONE) {
 			Piece::draw({origin.x - (shapes[hold].size + 1) * tileSize,
 						 origin.y + tileSize},
 						tileSize, shapes[hold], colors[hold]);

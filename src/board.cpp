@@ -1,28 +1,29 @@
 #include <3dstris/board.hpp>
 
-Board::Board(u32 width, u32 height) : width(width), height(height) {
+Board::Board(const u32 width, const u32 height) : width(width), height(height) {
 	reset();
 }
 
 void Board::reset() {
 	_linesCleared = 0;
-	grid.assign(width * height, PieceType::None);
+	_droppedPieces = 0;
+	grid.assign(width * height, PieceType::NONE);
 }
 
-bool Board::inside(Vector2 pos) {
+bool Board::inside(const Pos pos) {
 	return inside(int(pos.x), int(pos.y));
 }
 
-void Board::set(Vector2 pos, PieceType t) {
+void Board::set(const Pos pos, const PieceType t) {
 	set(u32(pos.x), u32(pos.y), t);
 }
 
-PieceType Board::get(Vector2 pos) const {
+PieceType Board::get(const Pos pos) const {
 	return get(u32(pos.x), u32(pos.y));
 }
 
-void Board::draw(Vector2 origin, u32 tileSize, int outerThick,
-				 int gridThick) const {
+void Board::draw(const Vector2 origin, const u32 tileSize, const u8 outerThick,
+				 const u8 gridThick) const {
 	// top
 	straightLine(origin.x, origin.y, width * tileSize, 0, outerThick, BLACK);
 	// bottom
@@ -46,7 +47,7 @@ void Board::draw(Vector2 origin, u32 tileSize, int outerThick,
 	for (u32 y = 0; y < height; ++y) {
 		for (u32 x = 0; x < width; ++x) {
 			const PieceType& p = get(x, y);
-			if (p != PieceType::None) {
+			if (p != PieceType::NONE) {
 				C2D_DrawRectSolid(origin.x + x * tileSize,
 								  origin.y + y * tileSize, 0.0f, tileSize,
 								  tileSize, colors[p]);
@@ -59,7 +60,7 @@ void Board::clearLines() {
 	for (u32 y = 0; y < height; ++y) {
 		bool line = true;
 		for (u32 x = 0; x < width; ++x) {
-			if (get(x, y) == PieceType::None) {
+			if (get(x, y) == PieceType::NONE) {
 				line = false;
 				break;
 			}
@@ -69,7 +70,7 @@ void Board::clearLines() {
 			for (u32 curY = y; curY >= 1; --curY) {
 				for (u32 x = 0; x < width; ++x) {
 					set(x, curY,
-						curY == 1 ? PieceType::None : get(x, curY - 1));
+						curY == 1 ? PieceType::NONE : get(x, curY - 1));
 				}
 			}
 		}

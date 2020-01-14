@@ -5,9 +5,11 @@
 #include <3dstris/states/playing.hpp>
 #include <3dstris/util.hpp>
 
-class ConfigFailed : public State {
+class LoadFailed : public State {
    public:
-	ConfigFailed();
+	enum FailType { CONFIG, GAMES };
+
+	LoadFailed(const FailType type = CONFIG);
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;

@@ -8,10 +8,10 @@ SprintResults::SprintResults(Ingame* parent, const SavedGame& saved)
 	  parent(parent),
 	  restartButton(gui.add<Button>(Pos{-1, -1}, WH{150, 60}, "Restart",
 									Button::Flags::CENTER)),
-	  menuButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 45 - 10}, WH{100, 45},
-								 "Menu", Button::Flags::HCENTER)),
 	  timesButton(gui.add<Button>(Pos{-1, 15}, WH{80, 40}, "Times",
-								  Button::Flags::HCENTER)) {
+								  Button::Flags::HCENTER)),
+	  menuButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 45 - 10}, WH{100, 45},
+								 "Menu", Button::Flags::HCENTER)) {
 	timeText.setScale({1.3f, 1.3f});
 	timeText.align(Text::Align::SCREEN_CENTER);
 

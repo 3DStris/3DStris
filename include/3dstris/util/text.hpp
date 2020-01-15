@@ -40,7 +40,7 @@ class Text {
 	void setScale(const Vector2 scale) noexcept;
 	Vector2 getScale() const noexcept;
 
-	void draw() const;
+	void draw(const float depth = 1) const;
 
    private:
 	Vector2 pos;

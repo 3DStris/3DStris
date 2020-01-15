@@ -24,13 +24,13 @@ class GUI {
 		return static_cast<T&>(*widgets.back());
 	}
 
-	static void drawOutline(const Pos pos, const WH wh, const u8 scale = 2,
+	static void drawOutline(const Pos pos, const WH wh, const float scale = 2,
 							const Color color = Button::BUTTON_OUTLINE);
 
-	static void drawHLine(const Pos pos, const float w, const u8 scale = 2,
+	static void drawHLine(const Pos pos, const float w, const float scale = 2,
 						  const Color color = Button::BUTTON_OUTLINE);
 
-	static void drawVLine(const Pos pos, const float h, const u8 scale = 2,
+	static void drawVLine(const Pos pos, const float h, const float scale = 2,
 						  const Color color = Button::BUTTON_OUTLINE);
 
 	Color primaryCol, textCol, pressedCol, outlineCol;

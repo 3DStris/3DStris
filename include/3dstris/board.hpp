@@ -32,8 +32,8 @@ class Board {
 	}
 	PieceType get(const Pos pos) const;
 
-	void draw(const Vector2 origin, const u32 tileSize, const u8 outerThick = 2,
-			  const u8 gridThick = 1) const;
+	void draw(const Vector2 origin, const u32 tileSize,
+			  const float outerThick = 1.75, const float gridThick = 1) const;
 
 	void clearLines();
 

@@ -4,9 +4,11 @@
 
 constexpr Color WHITE = C2D_Color32(255, 255, 255, 255);
 constexpr Color BLACK = C2D_Color32(0, 0, 0, 255);
-constexpr Color GRIDBLACK = C2D_Color32(0, 0, 0, 100);
 
-constexpr Color BACKGROUND = C2D_Color32(34, 34, 34, 255);
+constexpr Color BOARD = C2D_Color32(10, 10, 10, 255);
+constexpr Color GRID = C2D_Color32(1, 1, 1, 100);
+
+constexpr Color BACKGROUND = C2D_Color32(36, 36, 36, 255);
 
 namespace Colors {
 	constexpr Color I = C2D_Color32(65, 175, 222, 255);

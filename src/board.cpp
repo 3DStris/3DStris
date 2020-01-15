@@ -1,4 +1,5 @@
 #include <3dstris/board.hpp>
+#include <3dstris/gui.hpp>
 
 Board::Board(const u32 width, const u32 height) : width(width), height(height) {
 	reset();
@@ -22,26 +23,19 @@ PieceType Board::get(const Pos pos) const {
 	return get(u32(pos.x), u32(pos.y));
 }
 
-void Board::draw(const Vector2 origin, const u32 tileSize, const u8 outerThick,
-				 const u8 gridThick) const {
-	// top
-	straightLine(origin.x, origin.y, width * tileSize, 0, outerThick, BLACK);
-	// bottom
-	straightLine(origin.x, origin.y + height * tileSize, width * tileSize, 0,
-				 outerThick, BLACK);
-	// left
-	straightLine(origin.x, origin.y, 0, height * tileSize, outerThick, BLACK);
-	// right
-	straightLine(origin.x + width * tileSize, origin.y, 0, height * tileSize,
-				 outerThick, BLACK);
+void Board::draw(const Vector2 origin, const u32 tileSize,
+				 const float outerThick, const float gridThick) const {
+	GUI::drawOutline(Pos{origin.x, origin.y},
+					 WH{float(width * tileSize), float(height * tileSize)},
+					 outerThick, BOARD, 0.1f);
 
 	for (u32 y = 1; y < height; ++y) {
-		straightLine(origin.x, origin.y + y * tileSize, width * tileSize, 0,
-					 gridThick, GRIDBLACK);
+		straightLine(Pos{origin.x, origin.y + y * tileSize},
+					 WH{float(width * tileSize), 0}, gridThick, GRID, 0);
 	}
 	for (u32 x = 1; x < width; ++x) {
-		straightLine(origin.x + x * tileSize, origin.y, 0.0f, height * tileSize,
-					 gridThick, GRIDBLACK);
+		straightLine(Pos{origin.x + x * tileSize, origin.y},
+					 WH{0, float(height * tileSize)}, gridThick, GRID, 0);
 	}
 
 	for (u32 y = 0; y < height; ++y) {
@@ -49,7 +43,7 @@ void Board::draw(const Vector2 origin, const u32 tileSize, const u8 outerThick,
 			const PieceType& p = get(x, y);
 			if (p != PieceType::NONE) {
 				C2D_DrawRectSolid(origin.x + x * tileSize,
-								  origin.y + y * tileSize, 0.0f, tileSize,
+								  origin.y + y * tileSize, 0.5f, tileSize,
 								  tileSize, colors[p]);
 			}
 		}

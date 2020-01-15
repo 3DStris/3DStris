@@ -41,7 +41,7 @@ void Results::update(const double dt) {
 void Results::draw(const bool bottom) {
 	if (!bottom) {
 		parent->draw(bottom);
-		C2D_DrawRectSolid(0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, RESULTS);
+		C2D_DrawRectSolid(0, 0, 1, SCREEN_WIDTH, SCREEN_HEIGHT, RESULTS);
 
 		deadText.draw();
 	} else {

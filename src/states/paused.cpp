@@ -39,7 +39,7 @@ void Paused::update(const double dt) {
 void Paused::draw(const bool bottom) {
 	if (!bottom) {
 		parent->draw(bottom);
-		C2D_DrawRectSolid(0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, PAUSED);
+		C2D_DrawRectSolid(0, 0, 1, SCREEN_WIDTH, SCREEN_HEIGHT, PAUSED);
 
 		pausedText.draw();
 	} else {

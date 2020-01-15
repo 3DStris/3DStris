@@ -79,11 +79,11 @@ void Piece::draw(const Vector2 origin, const u32 tileSize) const {
 		for (u32 x = 0; x < shape.size; ++x) {
 			if (shape.shape[y * shape.size + x]) {
 				C2D_DrawRectSolid(origin.x + (pos.x + x) * tileSize,
-								  origin.y + (pos.y + y) * tileSize, 0.0f,
+								  origin.y + (pos.y + y) * tileSize, 0.5f,
 								  tileSize, tileSize, color);
 				C2D_DrawRectSolid(origin.x + (pos.x + x) * tileSize,
 								  origin.y + (pos.y + ghostY + y) * tileSize,
-								  0.0f, tileSize, tileSize, ghostColor);
+								  0.5f, tileSize, tileSize, ghostColor);
 			}
 		}
 	}
@@ -95,7 +95,7 @@ void Piece::draw(const Vector2 origin, const u32 tileSize,
 		for (u32 x = 0; x < shape.size; ++x) {
 			if (shape.shape[y * shape.size + x]) {
 				C2D_DrawRectSolid(origin.x + x * tileSize,
-								  origin.y + y * tileSize, 0.0f, tileSize,
+								  origin.y + y * tileSize, 0.5f, tileSize,
 								  tileSize, color);
 			}
 		}

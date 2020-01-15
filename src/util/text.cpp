@@ -126,7 +126,7 @@ Vector2 Text::getScale() const noexcept {
 	return scale;
 }
 
-void Text::draw() const {
-	C2D_DrawText(&textObject, C2D_WithColor, pos.x, pos.y, 0.5f, scale.x,
+void Text::draw(const float depth) const {
+	C2D_DrawText(&textObject, C2D_WithColor, pos.x, pos.y, depth, scale.x,
 				 scale.y, color);
 }

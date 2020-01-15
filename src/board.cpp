@@ -27,7 +27,7 @@ void Board::draw(const Vector2 origin, const u32 tileSize,
 				 const float outerThick, const float gridThick) const {
 	GUI::drawOutline(Pos{origin.x, origin.y},
 					 WH{float(width * tileSize), float(height * tileSize)},
-					 outerThick, BOARD);
+					 outerThick, BOARD, 0.1f);
 
 	for (u32 y = 1; y < height; ++y) {
 		straightLine(Pos{origin.x, origin.y + y * tileSize},

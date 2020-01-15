@@ -35,12 +35,12 @@ void GUI::draw() {
 }
 
 void GUI::drawOutline(const Pos pos, const WH wh, const float scale,
-					  const Color color) {
-	C2D_DrawRectSolid(pos.x - scale, pos.y - scale, 0.1f, wh.x + 2 * scale,
+					  const Color color, const float depth) {
+	C2D_DrawRectSolid(pos.x - scale, pos.y - scale, depth, wh.x + 2 * scale,
 					  scale, color);
-	C2D_DrawRectSolid(pos.x - scale, pos.y, 0.1f, scale, wh.y, color);
-	C2D_DrawRectSolid(pos.x + wh.x, pos.y, 0.1f, scale, wh.y, color);
-	C2D_DrawRectSolid(pos.x - scale, pos.y + wh.y, 0.1f, wh.x + 2 * scale,
+	C2D_DrawRectSolid(pos.x - scale, pos.y, depth, scale, wh.y, color);
+	C2D_DrawRectSolid(pos.x + wh.x, pos.y, depth, scale, wh.y, color);
+	C2D_DrawRectSolid(pos.x - scale, pos.y + wh.y, depth, wh.x + 2 * scale,
 					  scale, color);
 }
 

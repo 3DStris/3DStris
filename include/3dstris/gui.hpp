@@ -25,7 +25,8 @@ class GUI {
 	}
 
 	static void drawOutline(const Pos pos, const WH wh, const float scale = 2,
-							const Color color = Button::BUTTON_OUTLINE);
+							const Color color = Button::BUTTON_OUTLINE,
+							const float depth = 1);
 
 	static void drawHLine(const Pos pos, const float w, const float scale = 2,
 						  const Color color = Button::BUTTON_OUTLINE);

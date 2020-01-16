@@ -15,4 +15,7 @@ class Sprint : public Ingame {
    private:
 	Text infoText;
 	double time;
+
+	const double startTime = 1.0;
+	double startTimer;
 };

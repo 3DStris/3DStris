@@ -11,6 +11,7 @@ ConfigScreen::ConfigScreen()
 		  "Use the bottom screen to change settings. Press \uE001 to cancel."),
 	  dasText("DAS"),
 	  arrText("ARR"),
+	  dropTimerText("Drop timer"),
 
 	  saveButton(
 		  gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 55}, WH{100, 50}, "Save")),
@@ -19,13 +20,15 @@ ConfigScreen::ConfigScreen()
 						  WH{100, 50}, "Cancel")),
 
 	  panel(gui.add<Panel>(Pos{10, 10},
-						   WH{BSCREEN_WIDTH - 20, BSCREEN_HEIGHT - 130})),
+						   WH{BSCREEN_WIDTH - 20, BSCREEN_HEIGHT - 80})),
 	  tipPanel(gui, {0, SCREEN_HEIGHT - 25}, {SCREEN_WIDTH, 25}, false),
 
 	  dasInputField(gui.add<U32InputField>(Pos{15, 35},
 										   WH{BSCREEN_WIDTH - 30, 25}, "ms")),
 	  arrInputField(gui.add<U32InputField>(Pos{15, 85},
-										   WH{BSCREEN_WIDTH - 30, 25}, "ms")) {
+										   WH{BSCREEN_WIDTH - 30, 25}, "ms")),
+	  dropTimerInputField(gui.add<U32InputField>(
+		  Pos{15, 135}, WH{BSCREEN_WIDTH - 30, 25}, "ms")) {
 	tipText.setScale({0.5f, 0.5f});
 	tipText.align(Text::Align::CENTER, tipPanel.getPos(), tipPanel.getWH());
 
@@ -35,8 +38,12 @@ ConfigScreen::ConfigScreen()
 	arrText.setPos({15, 100 - 35});
 	arrText.setScale({0.5f, 0.5f});
 
+	dropTimerText.setPos({15, 150 - 35});
+	dropTimerText.setScale({0.5f, 0.5f});
+
 	dasInputField.setValue(game.getConfig().das);
 	arrInputField.setValue(game.getConfig().arr);
+	dropTimerInputField.setValue(game.getConfig().dropTimer);
 }
 
 void ConfigScreen::update(const double dt) {
@@ -46,6 +53,7 @@ void ConfigScreen::update(const double dt) {
 		auto& config = this->game.getConfig();
 		config.das = this->getDas();
 		config.arr = this->getArr();
+		config.dropTimer = this->getDropTimer();
 		config.save();
 
 		this->game.popState();
@@ -66,6 +74,10 @@ u32 ConfigScreen::getArr() const {
 	return arrInputField.getValue();
 }
 
+u32 ConfigScreen::getDropTimer() const {
+	return dropTimerInputField.getValue();
+}
+
 void ConfigScreen::draw(const bool bottom) {
 	if (!bottom) {
 		C2D_TargetClear(this->game.getTop(), BACKGROUND);
@@ -79,5 +91,6 @@ void ConfigScreen::draw(const bool bottom) {
 
 		dasText.draw();
 		arrText.draw();
+		dropTimerText.draw();
 	}
 }

@@ -18,6 +18,7 @@ class ConfigScreen : public State {
 	Text tipText;
 	Text dasText;
 	Text arrText;
+	Text dropTimerText;
 
 	Button& saveButton;
 	Button& cancelButton;
@@ -27,7 +28,9 @@ class ConfigScreen : public State {
 
 	U32InputField& dasInputField;
 	U32InputField& arrInputField;
+	U32InputField& dropTimerInputField;
 
 	u32 getDas() const;
 	u32 getArr() const;
+	u32 getDropTimer() const;
 };

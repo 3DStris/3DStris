@@ -1,5 +1,6 @@
 #include <rapidjson/document.h>
 #include <rapidjson/prettywriter.h>
+
 #include <3dstris/config.hpp>
 #include <3dstris/game.hpp>
 #include <3dstris/states/loadfailed.hpp>
@@ -22,7 +23,8 @@ static bool fileExists(FS_Archive& archive, const FS_Path& path) {
 static bool validateJson(rapidjson::Document& doc) {
 	return !doc.HasParseError() && doc.IsObject() &&	   //
 		   doc.HasMember("arr") && doc["arr"].IsUint() &&  //
-		   doc.HasMember("das") && doc["das"].IsUint();
+		   doc.HasMember("das") && doc["das"].IsUint() &&  //
+		   doc.HasMember("dropTimer") && doc["dropTimer"].IsUint();
 }
 
 Config::Config() {
@@ -64,6 +66,7 @@ Config::Config() {
 	} else {
 		das = document["das"].GetUint();
 		arr = document["arr"].GetUint();
+		dropTimer = document["dropTimer"].GetUint();
 	}
 }
 

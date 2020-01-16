@@ -23,7 +23,7 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 
 	fallTimer = 0.0;
 	fallAfter = 1.0;
-	sDropAfter = 0.05;
+	sDropAfter = Game::getInstance().getConfig().dropTimer / 1000.;
 	setTimer = 0.0;
 	setAfter = 1.0;
 
@@ -36,7 +36,7 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 	rotation = 0;
 
 	_dead =
-		collides(0, 0);  // piece is "dead" if it collides as soon as it spawns
+		collides(0, 0);	 // piece is "dead" if it collides as soon as it spawns
 }
 
 void Piece::reset(const PieceType type) {
@@ -181,8 +181,12 @@ void Piece::rotate(const bool ccw) {
 
 void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 	fallTimer += dt;
-	if (kDown & KEY_DOWN ||
-		fallTimer > ((kHeld & KEY_DOWN) ? sDropAfter : fallAfter)) {
+	if (sDropAfter == 0.0 && kHeld & KEY_DOWN) {
+		while (move(Direction::DOWN)) {
+		}
+		fallTimer = 0.0;
+	} else if (kDown & KEY_DOWN ||
+			   fallTimer > ((kHeld & KEY_DOWN) ? sDropAfter : fallAfter)) {
 		fallTimer = 0.0;
 		move(Direction::DOWN);
 	}
@@ -245,7 +249,7 @@ void Piece::updateMove(const double dt, const u32 kDown) {
 	};
 
 	bool moved =
-		_move(LEFT, dasTimer.x, KEY_LEFT);  // x is actually the left timer
+		_move(LEFT, dasTimer.x, KEY_LEFT);	// x is actually the left timer
 	if (!moved) {
 		_move(RIGHT, dasTimer.y, KEY_RIGHT);  // y is actually the right timer
 	}

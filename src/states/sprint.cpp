@@ -11,7 +11,10 @@ Sprint::Sprint() : Ingame(), time(0.0) {
 void Sprint::reset() {
 	Ingame::reset();
 
+	infoText.setText(sdsempty());
+
 	time = 0.0;
+	startTimer = 0.0;
 }
 
 void Sprint::update(const double dt) {
@@ -22,8 +25,18 @@ void Sprint::update(const double dt) {
 		return;
 	}
 
+	if (kDown & KEY_SELECT) {
+		reset();
+		return;
+	}
+
 	if (piece.dead()) {
 		game.pushState(make_unique<Results>(this));
+		return;
+	}
+
+	if (startTimer < startTime) {
+		startTimer += dt;
 		return;
 	}
 

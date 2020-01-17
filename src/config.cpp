@@ -5,31 +5,35 @@
 #include <3dstris/game.hpp>
 #include <3dstris/states/loadfailed.hpp>
 
+#define MEMBER(member, type)                                         \
+	if (document.HasMember(#member) && document[#member].Is##type()) \
+		member = document[#member].Get##type();
+
 static bool directoryExists(FS_Archive& archive, const FS_Path& path) {
 	Handle handle;
 
-	return !R_FAILED(FSUSER_OpenDirectory(&handle, archive, path)) &&
-		   !R_FAILED(FSDIR_Close(handle));
+	return R_SUCCEEDED(FSUSER_OpenDirectory(&handle, archive, path)) &&
+		   R_SUCCEEDED(FSDIR_Close(handle));
 }
 
 static bool fileExists(FS_Archive& archive, const FS_Path& path) {
 	Handle handle;
 
-	return !R_FAILED(
+	return R_SUCCEEDED(
 			   FSUSER_OpenFile(&handle, archive, path, FS_OPEN_READ, 0)) &&
-		   !R_FAILED(FSFILE_Close(handle));
+		   R_SUCCEEDED(FSFILE_Close(handle));
 }
 
 static bool validateJson(rapidjson::Document& doc) {
-	return !doc.HasParseError() && doc.IsObject() &&	   //
-		   doc.HasMember("arr") && doc["arr"].IsUint() &&  //
-		   doc.HasMember("das") && doc["das"].IsUint() &&  //
-		   doc.HasMember("dropTimer") && doc["dropTimer"].IsUint();
+	return !doc.HasParseError();
 }
 
 Config::Config() {
 	FSUSER_OpenArchive(&sdmcArchive, ARCHIVE_SDMC, fsMakePath(PATH_EMPTY, ""));
 
+	if (!directoryExists(sdmcArchive, homebrewPath)) {
+		FSUSER_CreateDirectory(sdmcArchive, homebrewPath, 0);
+	}
 	if (!directoryExists(sdmcArchive, dirPath)) {
 		FSUSER_CreateDirectory(sdmcArchive, dirPath, 0);
 	}
@@ -45,7 +49,7 @@ Config::Config() {
 					FS_OPEN_WRITE | FS_OPEN_READ, 0);
 
 	if (!configFileExists) {
-		save(false);
+		save();
 	}
 
 	games.initialize(sdmcArchive);
@@ -64,9 +68,9 @@ Config::Config() {
 		save();
 		failed = true;
 	} else {
-		das = document["das"].GetUint();
-		arr = document["arr"].GetUint();
-		dropTimer = document["dropTimer"].GetUint();
+		MEMBER(das, Uint)
+		MEMBER(arr, Uint)
+		MEMBER(dropTimer, Uint)
 	}
 }
 
@@ -76,17 +80,7 @@ Config::~Config() {
 	FSUSER_CloseArchive(sdmcArchive);
 }
 
-void Config::save(const bool overwrite) {
-	if (overwrite) {
-		FSFILE_Close(configHandle);
-
-		FSUSER_DeleteFile(sdmcArchive, configPath);
-		FSUSER_CreateFile(sdmcArchive, configPath, 0, 0);
-
-		FSUSER_OpenFile(&configHandle, sdmcArchive, configPath,
-						FS_OPEN_WRITE | FS_OPEN_READ, 0);
-	}
-
+void Config::save() {
 	rapidjson::StringBuffer sb;
 	rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(sb);
 
@@ -94,6 +88,7 @@ void Config::save(const bool overwrite) {
 
 	FSFILE_Write(configHandle, nullptr, 0, sb.GetString(), sb.GetLength(),
 				 FS_WRITE_FLUSH);
+	FSFILE_SetSize(configHandle, sb.GetLength());
 }
 
 Games& Config::getGames() noexcept {

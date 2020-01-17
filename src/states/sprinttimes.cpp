@@ -114,13 +114,13 @@ void SprintTimes::draw(const bool bottom) {
 		timeLabel.draw();
 		dateLabel.draw();
 
-		for (auto& text : values) {
+		for (const auto& text : values) {
 			text->draw();
 		}
 
 		GUI::drawOutline(
 			Pos{TABLE_X, TABLE_Y + CELL_H * (selected + 1.0f - topCell)},
-			WH{TABLE_W, CELL_H}, 2, WHITE);
+			WH{TABLE_W, CELL_H - 2}, 2, WHITE);
 	} else {
 		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
 

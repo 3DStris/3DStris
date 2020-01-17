@@ -16,11 +16,11 @@ template <typename T, typename... Args>
 std::unique_ptr<T> make_unique(Args&&... args) {
 	return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
-constexpr auto SCREEN_WIDTH = 400;
-constexpr auto SCREEN_HEIGHT = 240;
+constexpr u16 SCREEN_WIDTH = 400;
+constexpr u16 SCREEN_HEIGHT = 240;
 
-constexpr auto BSCREEN_WIDTH = 320;
-constexpr auto BSCREEN_HEIGHT = 240;
+constexpr u16 BSCREEN_WIDTH = 320;
+constexpr u16 BSCREEN_HEIGHT = 240;
 
 using u32 = uint32_t;
 using Color = u32;

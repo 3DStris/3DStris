@@ -77,6 +77,7 @@ void Games::push(const SavedGame game) {
 void Games::save() {
 	rapidjson::StringBuffer sb;
 	rapidjson::Writer<rapidjson::StringBuffer> writer(sb);
+	writer.SetMaxDecimalPlaces(4);
 
 	this->serialize(writer);
 

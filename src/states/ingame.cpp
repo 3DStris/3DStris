@@ -74,8 +74,9 @@ void Ingame::draw(const bool bottom) {
 		u32 y = 1;
 		for (u32 i = 0; i < upcoming; ++i) {
 			const auto& p = bag[i];
-			if (p == PieceType::I)
+			if (p == PieceType::I) {
 				--y;
+			}
 			Piece::draw(
 				{origin.x + (board.width + 1 + (p == PieceType::O)) * tileSize,
 				 origin.y + y * tileSize},

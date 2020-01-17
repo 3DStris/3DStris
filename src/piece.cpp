@@ -36,7 +36,7 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 	rotation = 0;
 
 	_dead =
-		collides(0, 0);	 // piece is "dead" if it collides as soon as it spawns
+		collides(0, 0);  // piece is "dead" if it collides as soon as it spawns
 }
 
 void Piece::reset(const PieceType type) {
@@ -58,7 +58,7 @@ void Piece::set() {
 bool Piece::collides(const int offX, const int offY) const {
 	for (u32 y = 0; y < shape.size; ++y) {
 		for (u32 x = 0; x < shape.size; ++x) {
-			Vector2 offPos = {pos.x + x + offX, pos.y + y + offY};
+			Pos offPos = {pos.x + x + offX, pos.y + y + offY};
 			if (shape.shape[y * shape.size + x] &&
 				(!board.inside(offPos) ||
 				 board.get(offPos) != PieceType::NONE)) {
@@ -249,7 +249,7 @@ void Piece::updateMove(const double dt, const u32 kDown) {
 	};
 
 	bool moved =
-		_move(LEFT, dasTimer.x, KEY_LEFT);	// x is actually the left timer
+		_move(LEFT, dasTimer.x, KEY_LEFT);  // x is actually the left timer
 	if (!moved) {
 		_move(RIGHT, dasTimer.y, KEY_RIGHT);  // y is actually the right timer
 	}

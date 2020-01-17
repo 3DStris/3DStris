@@ -30,7 +30,7 @@ class Text {
 
 	void setPos(const Pos pos) noexcept;
 
-	Vector2 getWH() const;
+	WH getWH() const;
 
 	void setColor(const Color color);
 	Color getColor() const noexcept;
@@ -43,7 +43,7 @@ class Text {
 	void draw(const float depth = 1) const;
 
    private:
-	Vector2 pos;
+	Pos pos;
 	Vector2 scale;
 	sds text = nullptr;
 	Color color;

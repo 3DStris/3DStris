@@ -19,12 +19,12 @@ struct Config {
 		writer.Uint(arr);
 
 		writer.String("dropTimer");
-		writer.Uint(arr);
+		writer.Uint(dropTimer);
 
 		writer.EndObject();
 	}
 
-	void save(const bool overwrite = true);
+	void save();
 	Games& getGames() noexcept;
 
 	u32 das = 200;
@@ -34,8 +34,10 @@ struct Config {
 	bool failed = false;
 
    private:
-	const FS_Path dirPath = fsMakePath(PATH_ASCII, "/3dstris");
-	const FS_Path configPath = fsMakePath(PATH_ASCII, "/3dstris/config.json");
+	const FS_Path homebrewPath = fsMakePath(PATH_ASCII, "/3ds/");
+	const FS_Path dirPath = fsMakePath(PATH_ASCII, "/3ds/3dstris");
+	const FS_Path configPath =
+		fsMakePath(PATH_ASCII, "/3ds/3dstris/config.json");
 
 	Games games;
 

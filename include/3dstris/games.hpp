@@ -48,12 +48,12 @@ class Games {
 
 	const SavedGames& all() const noexcept;
 
-	void save(const bool overwrite = true);
+	void save();
 	void push(const SavedGame game);
 	bool failed;
 
    private:
-	FS_Path gamesPath = fsMakePath(PATH_ASCII, "/3dstris/games.json");
+	FS_Path gamesPath = fsMakePath(PATH_ASCII, "/3ds/3dstris/games.json");
 	SavedGames games;
 
 	FS_Archive sdmcArchive;

@@ -8,9 +8,9 @@
 static bool fileExists(FS_Archive& archive, const FS_Path& path) {
 	Handle handle;
 
-	return !R_FAILED(
+	return R_SUCCEEDED(
 			   FSUSER_OpenFile(&handle, archive, path, FS_OPEN_READ, 0)) &&
-		   !R_FAILED(FSFILE_Close(handle));
+		   R_SUCCEEDED(FSFILE_Close(handle));
 }
 
 static bool validateJson(rapidjson::Document& doc) {
@@ -29,7 +29,7 @@ void Games::initialize(const FS_Archive sdmcArchive) {
 					FS_OPEN_WRITE | FS_OPEN_READ, 0);
 
 	if (!gamesFileExists) {
-		save(false);
+		save();
 	}
 
 	u64 fileSize;
@@ -74,17 +74,7 @@ void Games::push(const SavedGame game) {
 	std::sort(games.begin(), games.end(), std::less<SavedGame>());
 }
 
-void Games::save(const bool overwrite) {
-	if (overwrite) {
-		FSFILE_Close(gamesHandle);
-
-		FSUSER_DeleteFile(sdmcArchive, gamesPath);
-		FSUSER_CreateFile(sdmcArchive, gamesPath, 0, 0);
-
-		FSUSER_OpenFile(&gamesHandle, sdmcArchive, gamesPath,
-						FS_OPEN_WRITE | FS_OPEN_READ, 0);
-	}
-
+void Games::save() {
 	rapidjson::StringBuffer sb;
 	rapidjson::Writer<rapidjson::StringBuffer> writer(sb);
 	writer.SetMaxDecimalPlaces(4);
@@ -93,4 +83,5 @@ void Games::save(const bool overwrite) {
 
 	FSFILE_Write(gamesHandle, nullptr, 0, sb.GetString(), sb.GetLength(),
 				 FS_WRITE_FLUSH);
+	FSFILE_SetSize(gamesHandle, sb.GetLength());
 }

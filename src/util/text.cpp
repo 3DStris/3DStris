@@ -1,7 +1,10 @@
 #include <3dstris/util/text.hpp>
 
 Text::Text(const sds text, const Color color)
-	: pos({0, 0}), scale({1, 1}), color(color), textBuffer(C2D_TextBufNew(64)) {
+	: pos({0, 0}),
+	  scale({1, 1}),
+	  color(color),
+	  textBuffer(C2D_TextBufNew(sdslen(text))) {
 	this->setText(text);
 }
 
@@ -16,7 +19,7 @@ Text::Text(const Text& other)
 	: pos(other.pos),
 	  scale(other.scale),
 	  color(other.color),
-	  textBuffer(C2D_TextBufNew(64)) {
+	  textBuffer(C2D_TextBufNew(sdslen(other.text))) {
 	this->setText(other.text);
 }
 
@@ -66,7 +69,10 @@ void Text::setText(const sds text) {
 	sdsfree(this->text);
 	this->text = text;
 
-	C2D_TextBufClear(this->textBuffer);
+	C2D_TextBufClear(textBuffer);
+	if (C2D_TextBufGetNumGlyphs(textBuffer) != sdslen(text)) {
+		textBuffer = C2D_TextBufResize(textBuffer, sdslen(text));
+	}
 
 	C2D_TextParse(&textObject, textBuffer, this->text);
 	C2D_TextOptimize(&textObject);

@@ -21,7 +21,7 @@ class Ingame : public State {
 	const u32 tileSize;
 	Vector2 origin;
 
-	std::mt19937 bagRNG;
+	std::mt19937_64 bagRNG;
 	const u32 upcoming;
 	std::deque<PieceType> bag;
 

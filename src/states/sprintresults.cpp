@@ -2,10 +2,12 @@
 #include <3dstris/states/sprintresults.hpp>
 #include <3dstris/states/sprinttimes.hpp>
 
-SprintResults::SprintResults(Ingame* parent, const SavedGame& saved)
+SprintResults::SprintResults(Ingame* parent, SavedGame&& saved)
 	: State(),
-	  timeText(sdscatprintf(sdsempty(), "Time: %.3fs", saved.time)),
 	  parent(parent),
+
+	  timeText(sdscatprintf(sdsempty(), "Time: %.3fs", saved.time)),
+
 	  restartButton(gui.add<Button>(Pos{-1, -1}, WH{150, 60}, "Restart",
 									Button::Flags::CENTER)),
 	  timesButton(gui.add<Button>(Pos{-1, 15}, WH{80, 40}, "Times",
@@ -15,7 +17,7 @@ SprintResults::SprintResults(Ingame* parent, const SavedGame& saved)
 	timeText.setScale({1.3f, 1.3f});
 	timeText.align(Text::Align::SCREEN_CENTER);
 
-	game.getGames().push(saved);
+	game.getGames().push(std::move(saved));
 	game.getGames().save();
 }
 

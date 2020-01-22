@@ -1,7 +1,7 @@
 #include <3dstris/states/ingame.hpp>
 #include <algorithm>
 
-static std::array<PieceType, 7> genBag(std::mt19937& rng) {
+static std::array<PieceType, 7> genBag(std::mt19937_64& rng) {
 	std::array<PieceType, 7> pieces{PieceType::I, PieceType::O, PieceType::L,
 									PieceType::J, PieceType::S, PieceType::T,
 									PieceType::Z};
@@ -13,10 +13,10 @@ Ingame::Ingame()
 	: State(),
 	  board(10, 20),
 	  tileSize((SCREEN_HEIGHT - 10) / board.height),
-	  bagRNG(u32(osGetTime())),
+	  bagRNG(osGetTime()),
 	  upcoming(5),
 	  piece(board, PieceType::I) {
-	origin = {(SCREEN_WIDTH - board.width * float(tileSize)) / 2.0f, 10.0f};
+	origin = {(SCREEN_WIDTH - board.width * tileSize) / 2.0f, 10.0f};
 	reset();
 }
 
@@ -67,6 +67,7 @@ void Ingame::update(const double dt) {
 void Ingame::draw(const bool bottom) {
 	if (!bottom) {
 		C2D_TargetClear(this->game.getTop(), BACKGROUND);
+
 		board.draw(origin, tileSize);
 		piece.draw(origin, tileSize);
 
@@ -74,13 +75,16 @@ void Ingame::draw(const bool bottom) {
 		u32 y = 1;
 		for (u32 i = 0; i < upcoming; ++i) {
 			const auto& p = bag[i];
+
 			if (p == PieceType::I) {
 				--y;
 			}
+
 			Piece::draw(
 				{origin.x + (board.width + 1 + (p == PieceType::O)) * tileSize,
 				 origin.y + y * tileSize},
 				tileSize, shapes[p], colors[p]);
+
 			y += shapes[p].size;
 			if (p == PieceType::O) {
 				++y;

@@ -6,21 +6,24 @@
 SprintTimes::SprintTimes()
 	: State(),
 	  panel(gui, Pos{TABLE_X, TABLE_Y}, WH{TABLE_W, TABLE_H}, true),
+
 	  backButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 60}, WH{100, 50},
 								 "Back", Button::Flags::HCENTER)),
+
 	  timeLabel("Time"),
 	  dateLabel("Date"),
-	  noGamesText("You haven't played any sprint games yet."),
-	  games(game.getGames().all()) {
+	  noGamesText("You haven't played any sprint games yet.", Pos{0, 0},
+				  {0.75f, 0.75f}),
+
+	  games(game.getGames().all()),
+
+	  infoText(sdsempty(), Pos{10, 10}, {0.8f, 0.8f}) {
 	timeLabel.align(Text::Align::CENTER, Pos{TABLE_X, TABLE_Y},
 					WH{TIME_W, CELL_H});
 	dateLabel.align(Text::Align::CENTER, Pos{TABLE_X + TIME_W, TABLE_Y},
 					WH{DATE_W, CELL_H});
 	genValues();
-	infoText.setScale({0.8f, 0.8f});
-	infoText.setPos(Pos{10, 10});
 
-	noGamesText.setScale({0.75f, 0.75f});
 	noGamesText.align(Text::Align::SCREEN_CENTER);
 }
 

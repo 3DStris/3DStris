@@ -49,7 +49,7 @@ class Games {
 	const SavedGames& all() const noexcept;
 
 	void save();
-	void push(const SavedGame game);
+	void push(SavedGame&& game);
 	bool failed;
 
    private:

@@ -69,7 +69,7 @@ const SavedGames& Games::all() const noexcept {
 	return games;
 }
 
-void Games::push(const SavedGame game) {
+void Games::push(SavedGame&& game) {
 	games.push_back(game);
 	std::sort(games.begin(), games.end(), std::less<SavedGame>());
 }

@@ -9,9 +9,9 @@ ConfigScreen::ConfigScreen()
 	: State(),
 	  tipText(
 		  "Use the bottom screen to change settings. Press \uE001 to cancel."),
-	  dasText("DAS"),
-	  arrText("ARR"),
-	  dropTimerText("Drop timer"),
+	  dasText("DAS", Pos{15, 50 - 35}, Vector2{0.5f, 0.5f}),
+	  arrText("ARR", Pos{15, 100 - 35}, Vector2{0.5f, 0.5f}),
+	  dropTimerText("Drop timer", Pos{15, 150 - 35}, Vector2{0.5f, 0.5f}),
 
 	  saveButton(
 		  gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 55}, WH{100, 50}, "Save")),
@@ -31,15 +31,6 @@ ConfigScreen::ConfigScreen()
 		  Pos{15, 135}, WH{BSCREEN_WIDTH - 30, 25}, "ms")) {
 	tipText.setScale({0.5f, 0.5f});
 	tipText.align(Text::Align::CENTER, tipPanel.getPos(), tipPanel.getWH());
-
-	dasText.setPos({15, 50 - 35});
-	dasText.setScale({0.5f, 0.5f});
-
-	arrText.setPos({15, 100 - 35});
-	arrText.setScale({0.5f, 0.5f});
-
-	dropTimerText.setPos({15, 150 - 35});
-	dropTimerText.setScale({0.5f, 0.5f});
 
 	dasInputField.setValue(game.getConfig().das);
 	arrInputField.setValue(game.getConfig().arr);

@@ -1,14 +1,17 @@
 #include <3dstris/util/text.hpp>
 
-Text::Text(const sds text, const Color color)
-	: pos({0, 0}),
-	  scale({1, 1}),
+Text::Text(const sds text, const Pos pos, const Vector2 scale,
+		   const Color color)
+	: pos(pos),
+	  scale(scale),
 	  color(color),
 	  textBuffer(C2D_TextBufNew(sdslen(text))) {
 	this->setText(text);
 }
 
-Text::Text(const char* text, const Color color) : Text(sdsnew(text), color) {}
+Text::Text(const char* text, const Pos pos, const Vector2 scale,
+		   const Color color)
+	: Text(sdsnew(text), pos, scale, color) {}
 
 Text::~Text() {
 	C2D_TextBufDelete(this->textBuffer);
@@ -40,29 +43,29 @@ void Text::align(const Align mode, const Pos cpos, const WH cwh,
 	auto wh = this->getWH();
 	switch (mode) {
 		case CENTER: {
-			this->setPos({cpos.x + (cwh.x - wh.x) / 2.0f,
-						  cpos.y + (cwh.y - wh.y) / 2.0f});
+			this->setPos(
+				Pos{cpos.x + (cwh.x - wh.x) / 2, cpos.y + (cwh.y - wh.y) / 2});
 			break;
 		}
 		case VCENTER: {
-			this->setY(cpos.y + (cwh.y - wh.y) / 2.0f);
+			this->setY(cpos.y + (cwh.y - wh.y) / 2);
 			break;
 		}
 		case HCENTER: {
-			this->setX(cpos.x + (cwh.x - wh.x) / 2.0f);
+			this->setX(cpos.x + (cwh.x - wh.x) / 2);
 			break;
 		}
 		case SCREEN_CENTER: {
 			this->setPos(
-				{((!bottom ? SCREEN_WIDTH : BSCREEN_WIDTH) - wh.x) / 2.0f,
-				 ((!bottom ? SCREEN_HEIGHT : BSCREEN_HEIGHT) - wh.y) / 2.0f});
+				Pos{((!bottom ? SCREEN_WIDTH : BSCREEN_WIDTH) - wh.x) / 2,
+					((!bottom ? SCREEN_HEIGHT : BSCREEN_HEIGHT) - wh.y) / 2});
 			break;
 		}
 	}
 }
 
 void Text::align(const Align mode, const bool bottom) {
-	align(mode, {0, 0}, {0, 0}, bottom);
+	align(mode, Pos{0, 0}, WH{0, 0}, bottom);
 }
 
 void Text::setText(const sds text) {

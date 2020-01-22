@@ -7,7 +7,7 @@
 
 class SprintResults : public State {
    public:
-	SprintResults(Ingame* parent, const SavedGame& saved);
+	SprintResults(Ingame* parent, SavedGame&& saved);
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;
@@ -15,9 +15,9 @@ class SprintResults : public State {
    private:
 	static constexpr Color RESULTS = C2D_Color32(0, 0, 0, 190);
 
-	Text timeText;
-
 	Ingame* parent;
+
+	Text timeText;
 
 	GUI gui;
 

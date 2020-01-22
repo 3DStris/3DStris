@@ -8,8 +8,10 @@ class Text {
    public:
 	enum Align { CENTER, VCENTER, HCENTER, SCREEN_CENTER };
 
-	Text(const sds text = sdsempty(), const Color color = WHITE);
-	Text(const char* text, const Color color = WHITE);
+	Text(const sds text = sdsempty(), const Pos pos = Pos{},
+		 const Vector2 scale = {1, 1}, const Color color = WHITE);
+	Text(const char* text, const Pos pos = Pos{}, const Vector2 scale = {1, 1},
+		 const Color color = WHITE);
 	~Text();
 
 	Text(const Text& other);

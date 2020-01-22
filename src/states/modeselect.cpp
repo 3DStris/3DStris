@@ -8,7 +8,8 @@
 
 ModeSelect::ModeSelect()
 	: State(),
-	  topText("Select mode"),
+	  topText("Select a mode"),
+
 	  normalButton(gui.add<Button>(Pos{BSCREEN_WIDTH / 4.0 - 50, -1},
 								   WH{100, 50}, "Normal",
 								   Button::Flags::VCENTER)),

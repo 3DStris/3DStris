@@ -3,7 +3,7 @@
 
 U32InputField::U32InputField(GUI& _parent, const Vector2 _pos,
 							 const Vector2 _wh, const sds suffix)
-	: Widget(_parent, _pos, _wh), suffix(suffix), value(0.) {
+	: Widget(_parent, _pos, _wh), suffix(suffix), value(0) {
 	updateText();
 }
 

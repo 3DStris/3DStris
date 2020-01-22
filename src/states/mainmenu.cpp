@@ -11,11 +11,13 @@ MainMenu::MainMenu()
 	: State(),
 	  versionText(
 		  sdscatfmt(sdsempty(), "v%s-%s", _3DSTRIS_VERSION, _3DSTRIS_GIT_HASH)),
+
 	  icon(C2D_SpriteSheetGetImage(game.getSpriteSheet(), sprites_icon_idx)),
+
 	  playButton(gui.add<Button>(Pos{-1, 10}, WH{100, 50}, "Play",
 								 Button::Flags::HCENTER)),
-	  optionsButton(gui.add<Button>(Pos{-1, 100}, WH{100, 50}, "Settings",
-									Button::Flags::HCENTER)),
+	  settingsButton(gui.add<Button>(Pos{-1, 100}, WH{100, 50}, "Settings",
+									 Button::Flags::HCENTER)),
 	  exitButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 50}, WH{100, 40},
 								 "Exit", Button::Flags::HCENTER)),
 	  gamesButton(
@@ -37,7 +39,7 @@ void MainMenu::update(const double dt) {
 		return;
 	}
 
-	if (optionsButton.pressed()) {
+	if (settingsButton.pressed()) {
 		this->game.pushState(make_unique<ConfigScreen>());
 		return;
 	}
@@ -57,10 +59,10 @@ void MainMenu::draw(const bool bottom) {
 
 		// The 48x48 icon sprite was converted into a 64x64
 		// one; subtract 16 to account for this
-		C2D_DrawImageAt(icon,
-						(SCREEN_WIDTH - (icon.tex->width - 16) * 3) / 2.0f,
-						(SCREEN_HEIGHT - (icon.tex->height - 16) * 3) / 2.0f, 0,
-						nullptr, 3, 3);
+		C2D_DrawImageAt(
+			icon, (SCREEN_WIDTH - (icon.tex->width - 16) * ICON_SCALE) / 2,
+			(SCREEN_HEIGHT - (icon.tex->height - 16) * ICON_SCALE) / 2, 0,
+			nullptr, ICON_SCALE, ICON_SCALE);
 
 		versionText.draw();
 	} else {

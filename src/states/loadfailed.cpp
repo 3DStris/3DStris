@@ -10,6 +10,7 @@ LoadFailed::LoadFailed(const FailType type)
 		  type == FailType::CONFIG
 			  ? "Failed to load config; your settings have been reset."
 			  : "Failed to load games; your saved games have been reset."),
+
 	  okButton(gui.add<Button>(Pos{-1, -1},
 							   WH{SCREEN_WIDTH - 100, SCREEN_HEIGHT - 100},
 							   "OK", Button::Flags::CENTER)) {

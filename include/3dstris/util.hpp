@@ -26,16 +26,22 @@ using u32 = uint32_t;
 using Color = u32;
 
 struct Vector2 {
-	float x;
-	float y;
+	Vector2(const float x, const float y) : x(x), y(y) {}
+	Vector2() {}
+
+	float x = 0;
+	float y = 0;
 };
 
 using Pos = Vector2;
 using WH = Vector2;
 
 struct Vector2d {
-	double x;
-	double y;
+	Vector2d(const double x, const double y) : x(x), y(y) {}
+	Vector2d() {}
+
+	double x = 0;
+	double y = 0;
 };
 
 enum PieceType { I, O, L, J, S, T, Z, NONE };

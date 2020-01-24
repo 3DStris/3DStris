@@ -2,25 +2,27 @@
 #include <3dstris/gui.hpp>
 
 Board::Board(const u32 width, const u32 height) : width(width), height(height) {
+	grid.reserve(width * height);
 	reset();
 }
 
 void Board::reset() {
+	grid.assign(width * height, PieceType::NONE);
+
 	_linesCleared = 0;
 	_droppedPieces = 0;
-	grid.assign(width * height, PieceType::NONE);
 }
 
-bool Board::inside(const Pos pos) {
+bool Board::inside(const Pos pos) const noexcept {
 	return inside(int(pos.x), int(pos.y));
 }
 
 void Board::set(const Pos pos, const PieceType t) {
-	set(u32(pos.x), u32(pos.y), t);
+	set(pos.x, pos.y, t);
 }
 
 PieceType Board::get(const Pos pos) const {
-	return get(u32(pos.x), u32(pos.y));
+	return get(pos.x, pos.y);
 }
 
 void Board::draw(const Vector2 origin, const u32 tileSize,
@@ -41,6 +43,10 @@ void Board::draw(const Vector2 origin, const u32 tileSize,
 	for (u32 y = 0; y < height; ++y) {
 		for (u32 x = 0; x < width; ++x) {
 			const PieceType& p = get(x, y);
+			if (p == PieceType::INVALID) {
+				return;
+			}
+
 			if (p != PieceType::NONE) {
 				C2D_DrawRectSolid(origin.x + x * tileSize,
 								  origin.y + y * tileSize, 0.5f, tileSize,
@@ -59,6 +65,7 @@ void Board::clearLines() {
 				break;
 			}
 		}
+
 		if (line) {
 			_linesCleared++;
 			for (u32 curY = y; curY >= 1; --curY) {

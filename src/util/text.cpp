@@ -101,11 +101,11 @@ float Text::getY() const noexcept {
 	return pos.y;
 }
 
-void Text::setPos(Vector2 pos) noexcept {
+void Text::setPos(const Pos pos) noexcept {
 	this->pos = pos;
 }
 
-Vector2 Text::getWH() const {
+WH Text::getWH() const {
 	float width, height;
 	C2D_TextGetDimensions(&textObject, scale.x, scale.y, &width, &height);
 	return {width, height};
@@ -119,15 +119,15 @@ Color Text::getColor() const noexcept {
 	return color;
 }
 
-void Text::setScaleX(float scale) noexcept {
+void Text::setScaleX(const float scale) noexcept {
 	this->scale.x = scale;
 }
 
-void Text::setScaleY(float scale) noexcept {
+void Text::setScaleY(const float scale) noexcept {
 	this->scale.y = scale;
 }
 
-void Text::setScale(Vector2 scale) noexcept {
+void Text::setScale(const Vector2 scale) noexcept {
 	this->scale = scale;
 }
 

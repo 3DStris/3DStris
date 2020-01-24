@@ -22,6 +22,9 @@ class SprintTimes : public State {
 	static const u16 TABLE_X = (SCREEN_WIDTH - TABLE_W) / 2;
 	static const u16 TABLE_Y = (SCREEN_HEIGHT - TABLE_H) / 2;
 
+	void updateInfoText(const SavedGame& game);
+	void updateSelectedText();
+
 	GUI gui;
 	Panel panel;
 	Button& backButton;
@@ -31,7 +34,6 @@ class SprintTimes : public State {
 
 	Text timeLabel;
 	Text dateLabel;
-	Text noGamesText;
 
 	u32 topCell = 0;
 	u32 selected = 0;
@@ -39,5 +41,8 @@ class SprintTimes : public State {
 	std::vector<std::unique_ptr<Text>> values;
 	SavedGames games;
 
+	Text titleText;
+	Text noGamesText;
 	Text infoText;
+	Text selectedText;
 };

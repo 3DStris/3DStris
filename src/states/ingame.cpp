@@ -16,7 +16,7 @@ Ingame::Ingame()
 	  bagRNG(osGetTime()),
 	  upcoming(5),
 	  piece(board, PieceType::I) {
-	origin = {(SCREEN_WIDTH - board.width * tileSize) / 2.0f, 10.0f};
+	origin = {(SCREEN_WIDTH - board.width * tileSize) / 2.0f, 10};
 	reset();
 }
 
@@ -34,8 +34,8 @@ void Ingame::reset() {
 }
 
 void Ingame::update(const double dt) {
-	u32 kDown = hidKeysDown();
-	u32 kHeld = hidKeysHeld();
+	const u32 kDown = hidKeysDown();
+	const u32 kHeld = hidKeysHeld();
 
 	piece.update(dt, kDown, kHeld);
 
@@ -85,7 +85,7 @@ void Ingame::draw(const bool bottom) {
 				 origin.y + y * tileSize},
 				tileSize, shapes[p], colors[p]);
 
-			y += shapes[p].size;
+			y += shapes[p].size();
 			if (p == PieceType::O) {
 				++y;
 			}
@@ -93,7 +93,7 @@ void Ingame::draw(const bool bottom) {
 
 		// draw held piece
 		if (hold != PieceType::NONE) {
-			Piece::draw({origin.x - (shapes[hold].size + 1) * tileSize,
+			Piece::draw({origin.x - (shapes[hold].size() + 1) * tileSize,
 						 origin.y + tileSize},
 						tileSize, shapes[hold], colors[hold]);
 		}

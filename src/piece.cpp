@@ -3,7 +3,7 @@
 
 // Ching cong
 Piece::Piece(Board& board, const PieceShape& shape, const PieceType type)
-	: board(board) {
+	: board(board), shape(shape) {
 	reset(shape, type);
 }
 
@@ -16,19 +16,19 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 	this->shape = shape;
 	this->type = type;
 
-	pos = {std::floor(board.width / 2.0f) - std::floor(shape.size / 2.0f), 0};
+	pos = {std::floor(board.width / 2.0f) - std::floor(shape.size() / 2.0f), 0};
 
 	color = colors[type];
 	ghostColor = colorsGhost[type];
 
-	fallTimer = 0.0;
-	fallAfter = 1.0;
+	fallTimer = 0;
+	fallAfter = 1;
 	sDropAfter = Game::getInstance().getConfig().dropTimer / 1000.;
-	setTimer = 0.0;
-	setAfter = 1.0;
+	setTimer = 0;
+	setAfter = 1;
 
 	das = Game::getInstance().getConfig().das / 1000.;
-	dasTimer = {0.0, 0.0};
+	dasTimer = {0, 0};
 
 	arr = Game::getInstance().getConfig().arr / 1000.;
 	arrTimer = arr;
@@ -44,9 +44,9 @@ void Piece::reset(const PieceType type) {
 }
 
 void Piece::set() {
-	for (u32 y = 0; y < shape.size; ++y) {
-		for (u32 x = 0; x < shape.size; ++x) {
-			if (shape.shape[y * shape.size + x]) {
+	for (u32 y = 0; y < shape.size(); ++y) {
+		for (u32 x = 0; x < shape.size(); ++x) {
+			if (shape.get(x, y)) {
 				board.set(u32(pos.x + x), u32(pos.y + y), type);
 			}
 		}
@@ -56,12 +56,11 @@ void Piece::set() {
 }
 
 bool Piece::collides(const int offX, const int offY) const {
-	for (u32 y = 0; y < shape.size; ++y) {
-		for (u32 x = 0; x < shape.size; ++x) {
-			Pos offPos = {pos.x + x + offX, pos.y + y + offY};
-			if (shape.shape[y * shape.size + x] &&
-				(!board.inside(offPos) ||
-				 board.get(offPos) != PieceType::NONE)) {
+	for (u32 y = 0; y < shape.size(); ++y) {
+		for (u32 x = 0; x < shape.size(); ++x) {
+			const Pos offPos = {pos.x + x + offX, pos.y + y + offY};
+			if (shape.get(x, y) && (!board.inside(offPos) ||
+									board.get(offPos) != PieceType::NONE)) {
 				return true;
 			}
 		}
@@ -75,9 +74,9 @@ void Piece::draw(const Vector2 origin, const u32 tileSize) const {
 	}
 	ghostY--;
 
-	for (u32 y = 0; y < shape.size; ++y) {
-		for (u32 x = 0; x < shape.size; ++x) {
-			if (shape.shape[y * shape.size + x]) {
+	for (u32 y = 0; y < shape.size(); ++y) {
+		for (u32 x = 0; x < shape.size(); ++x) {
+			if (shape.get(x, y)) {
 				C2D_DrawRectSolid(origin.x + (pos.x + x) * tileSize,
 								  origin.y + (pos.y + y) * tileSize, 0.5f,
 								  tileSize, tileSize, color);
@@ -91,9 +90,9 @@ void Piece::draw(const Vector2 origin, const u32 tileSize) const {
 
 void Piece::draw(const Vector2 origin, const u32 tileSize,
 				 const PieceShape& shape, const Color color) {
-	for (u32 y = 0; y < shape.size; ++y) {
-		for (u32 x = 0; x < shape.size; ++x) {
-			if (shape.shape[y * shape.size + x]) {
+	for (u32 y = 0; y < shape.size(); ++y) {
+		for (u32 x = 0; x < shape.size(); ++x) {
+			if (shape.get(x, y)) {
 				C2D_DrawRectSolid(origin.x + x * tileSize,
 								  origin.y + y * tileSize, 0.5f, tileSize,
 								  tileSize, color);
@@ -127,19 +126,20 @@ bool Piece::move(const Direction dir) {
 }
 
 void Piece::rotate(const bool ccw) {
-	if (type == PieceType::O)
+	if (type == PieceType::O) {
 		return;
-	PieceShape newShape;
-	newShape.shape.resize(shape.size * shape.size, false);
-	newShape.size = shape.size;
-	for (u32 y = 0; y < shape.size; ++y) {
-		for (u32 x = 0; x < shape.size; ++x) {
-			if (shape.shape[y * shape.size + x]) {
+	}
+
+	PieceShape newShape(shape.size());
+	for (u32 y = 0; y < shape.size(); ++y) {
+		for (u32 x = 0; x < shape.size(); ++x) {
+			if (shape.get(x, y)) {
 				if (ccw) {
-					newShape.shape[(shape.size - x - 1) * shape.size + y] =
-						true;
+					newShape.set(y, shape.size() - x - 1);
 				} else {
-					newShape.shape[x * shape.size + shape.size - y - 1] = true;
+					newShape
+						.getShape()[x * shape.size() + shape.size() - y - 1] =
+						true;
 				}
 			}
 		}
@@ -184,10 +184,10 @@ void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 	if (sDropAfter == 0.0 && kHeld & KEY_DOWN) {
 		while (move(Direction::DOWN)) {
 		}
-		fallTimer = 0.0;
+		fallTimer = 0;
 	} else if (kDown & KEY_DOWN ||
 			   fallTimer > ((kHeld & KEY_DOWN) ? sDropAfter : fallAfter)) {
-		fallTimer = 0.0;
+		fallTimer = 0;
 		move(Direction::DOWN);
 	}
 
@@ -224,7 +224,8 @@ void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 
 void Piece::updateMove(const double dt, const u32 kDown) {
 	auto _move = [this, &dt, &kDown](const Direction direction,
-									 const double timer, const u32 kNeeded) {
+									 const double timer,
+									 const u32 kNeeded) -> bool {
 		if (timer > das) {
 			if (arr == 0.0) {
 				while (move(direction)) {

@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.12...3.15)
 set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lib/3ds-cmake/DevkitArm3DS.cmake)
 
 set(3dstris_VERSION_MAJOR 0)
-set(3dstris_VERSION_MINOR 9)
-set(3dstris_VERSION_PATCH 4)
+set(3dstris_VERSION_MINOR 10)
+set(3dstris_VERSION_PATCH 0)
 set(3dstris_VERSION "${3dstris_VERSION_MAJOR}.${3dstris_VERSION_MINOR}.${3dstris_VERSION_PATCH}")
 
 project(
@@ -18,6 +18,8 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib/3ds-cmake/cmake)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 	set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-psabi -fno-rtti -fno-exceptions" CACHE STRING "C++ flags")
 
 	set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 	set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMake")

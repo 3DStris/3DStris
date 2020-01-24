@@ -25,13 +25,13 @@ struct Config {
 	}
 
 	void save();
-	Games& getGames() noexcept;
+	Games& getGames() noexcept { return games; }
 
 	u32 das = 200;
 	u32 arr = 0;
 	u32 dropTimer = 5;
 
-	bool failed = false;
+	bool failed() const noexcept { return _failed; }
 
    private:
 	const FS_Path homebrewPath = fsMakePath(PATH_ASCII, "/3ds/");
@@ -45,4 +45,6 @@ struct Config {
 
 	Handle dirHandle;
 	Handle configHandle;
+
+	bool _failed = false;
 };

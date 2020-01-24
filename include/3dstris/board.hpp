@@ -13,10 +13,10 @@ class Board {
 	void reset();
 
 	template <typename T>
-	bool inside(T x, T y) {
+	bool inside(T x, T y) const noexcept {
 		return x < width && y < height;
 	}
-	bool inside(const Pos pos);
+	bool inside(const Pos pos) const noexcept;
 
 	template <typename T>
 	void set(const T x, const T y, const PieceType t) {
@@ -28,7 +28,10 @@ class Board {
 
 	template <typename T>
 	PieceType get(const T x, const T y) const {
-		return grid[y * width + x];
+		if (inside(x, y)) {
+			return grid[y * width + x];
+		}
+		return PieceType::INVALID;
 	}
 	PieceType get(const Pos pos) const;
 

@@ -16,6 +16,7 @@ template <typename T, typename... Args>
 std::unique_ptr<T> make_unique(Args&&... args) {
 	return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
+
 constexpr u16 SCREEN_WIDTH = 400;
 constexpr u16 SCREEN_HEIGHT = 240;
 
@@ -44,7 +45,7 @@ struct Vector2d {
 	double y = 0;
 };
 
-enum PieceType { I, O, L, J, S, T, Z, NONE };
+enum PieceType { I, O, L, J, S, T, Z, NONE, INVALID };
 
 enum Direction { LEFT, RIGHT, UP, DOWN };
 

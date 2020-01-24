@@ -4,9 +4,41 @@
 #include <array>
 #include <vector>
 
-struct PieceShape {
-	std::vector<bool> shape;
-	u32 size;
+class PieceShape {
+   public:
+	using Shape = std::vector<bool>;
+
+	PieceShape(const size_t size) : shape(size * size), _size(size) {}
+	PieceShape(Shape&& shape, const size_t size) : shape(shape), _size(size) {}
+
+	template <typename T>
+	bool get(const T x, const T y) const noexcept {
+		return inside(x, y) ? shape[index(x, y)] : false;
+	}
+
+	template <typename T>
+	void set(const T x, const T y, const bool value = true) noexcept {
+		if (inside(x, y)) {
+			shape[index(x, y)] = value;
+		}
+	}
+
+	template <typename T>
+	bool inside(const T x, const T y) const noexcept {
+		return index(x, y) < shape.size();
+	}
+
+	size_t size() const noexcept { return _size; }
+	Shape& getShape() noexcept { return shape; }
+
+   private:
+	template <typename T>
+	constexpr size_t index(const T x, const T y) const {
+		return y * _size + x;
+	}
+
+	Shape shape;
+	size_t _size;
 };
 
 namespace Shapes {

@@ -5,7 +5,7 @@
 #include <3dstris/games.hpp>
 #include <algorithm>
 
-static bool fileExists(FS_Archive& archive, const FS_Path& path) {
+static bool fileExists(FS_Archive archive, const FS_Path& path) {
 	Handle handle;
 
 	return R_SUCCEEDED(
@@ -13,8 +13,15 @@ static bool fileExists(FS_Archive& archive, const FS_Path& path) {
 		   R_SUCCEEDED(FSFILE_Close(handle));
 }
 
-static bool validateJson(rapidjson::Document& doc) {
+static bool validateJson(const rapidjson::Document& doc) {
 	return !doc.HasParseError();
+}
+
+static bool validateGame(
+	const rapidjson::GenericValue<rapidjson::UTF8<char>>& game) {
+	return game.FindMember("time") != game.MemberEnd() &&
+		   game.FindMember("date") != game.MemberEnd() &&
+		   game.FindMember("pps") != game.MemberEnd();
 }
 
 void Games::initialize(const FS_Archive sdmcArchive) {
@@ -44,14 +51,10 @@ void Games::initialize(const FS_Archive sdmcArchive) {
 
 	if (!validateJson(document)) {
 		save();
-		failed = true;
-
-		return;
+		_failed = true;
 	} else {
 		for (const auto& object : document.GetArray()) {
-			if (object.FindMember("time") != object.MemberEnd() &&
-				object.FindMember("date") != object.MemberEnd() &&
-				object.FindMember("pps") != object.MemberEnd()) {
+			if (validateGame(object)) {
 				games.push_back({object["date"].GetInt64(),   //
 								 object["time"].GetDouble(),  //
 								 object["pps"].GetDouble()});

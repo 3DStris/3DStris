@@ -19,10 +19,10 @@ int main() {
 
 	Game& game = Game::getInstance();
 	game.pushState(make_unique<MainMenu>());
-	if (game.getConfig().failed) {
+	if (game.getConfig().failed()) {
 		game.pushState(make_unique<LoadFailed>());
 	}
-	if (game.getGames().failed) {
+	if (game.getGames().failed()) {
 		game.pushState(make_unique<LoadFailed>(LoadFailed::FailType::GAMES));
 	}
 

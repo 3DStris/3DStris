@@ -9,14 +9,14 @@
 	if (document.HasMember(#member) && document[#member].Is##type()) \
 		member = document[#member].Get##type();
 
-static bool directoryExists(FS_Archive& archive, const FS_Path& path) {
+static bool directoryExists(FS_Archive archive, const FS_Path& path) {
 	Handle handle;
 
 	return R_SUCCEEDED(FSUSER_OpenDirectory(&handle, archive, path)) &&
 		   R_SUCCEEDED(FSDIR_Close(handle));
 }
 
-static bool fileExists(FS_Archive& archive, const FS_Path& path) {
+static bool fileExists(FS_Archive archive, const FS_Path& path) {
 	Handle handle;
 
 	return R_SUCCEEDED(
@@ -24,7 +24,7 @@ static bool fileExists(FS_Archive& archive, const FS_Path& path) {
 		   R_SUCCEEDED(FSFILE_Close(handle));
 }
 
-static bool validateJson(rapidjson::Document& doc) {
+static bool validateJson(const rapidjson::Document& doc) {
 	return !doc.HasParseError();
 }
 
@@ -66,7 +66,7 @@ Config::Config() {
 
 	if (!validateJson(document)) {
 		save();
-		failed = true;
+		_failed = true;
 	} else {
 		MEMBER(das, Uint)
 		MEMBER(arr, Uint)
@@ -89,8 +89,4 @@ void Config::save() {
 	FSFILE_Write(configHandle, nullptr, 0, sb.GetString(), sb.GetLength(),
 				 FS_WRITE_FLUSH);
 	FSFILE_SetSize(configHandle, sb.GetLength());
-}
-
-Games& Config::getGames() noexcept {
-	return games;
 }

@@ -12,7 +12,7 @@ SprintTimes::SprintTimes()
 
 	  timeLabel("Time"),
 	  dateLabel("Date"),
-	  noGamesText("You haven't played any sprint games yet.", Pos{0, 0},
+	  noGamesText("You haven't played any Sprint games yet.", Pos{0, 0},
 				  {0.75f, 0.75f}),
 
 	  games(game.getGames().all()),

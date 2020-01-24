@@ -34,7 +34,6 @@ class SprintTimes : public State {
 
 	Text timeLabel;
 	Text dateLabel;
-	Text noGamesText;
 
 	u32 topCell = 0;
 	u32 selected = 0;
@@ -42,6 +41,8 @@ class SprintTimes : public State {
 	std::vector<std::unique_ptr<Text>> values;
 	SavedGames games;
 
+	Text titleText;
+	Text noGamesText;
 	Text infoText;
 	Text selectedText;
 };

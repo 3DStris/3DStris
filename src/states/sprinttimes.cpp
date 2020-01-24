@@ -12,11 +12,12 @@ SprintTimes::SprintTimes()
 
 	  timeLabel("Time"),
 	  dateLabel("Date"),
-	  noGamesText("You haven't played any Sprint games yet.", Pos{0, 0},
-				  {0.75f, 0.75f}),
 
 	  games(game.getGames().all()),
 
+	  titleText("Games", Pos{-1, 0}, {1.25f, 1.25f}),
+	  noGamesText("You haven't played any Sprint games yet.", Pos{0, 0},
+				  {0.75f, 0.75f}),
 	  infoText(sdsempty(), Pos{10, 10}, {0.8f, 0.8f}),
 	  selectedText(sdsempty(), Pos{-1, SCREEN_HEIGHT - TABLE_Y + 10},
 				   {0.65f, 0.65f}) {
@@ -26,9 +27,11 @@ SprintTimes::SprintTimes()
 					WH{DATE_W, CELL_H});
 	genValues();
 
+	titleText.align(Text::Align::HCENTER, Pos{0, 0},
+					{SCREEN_WIDTH, SCREEN_HEIGHT});
+	noGamesText.align(Text::Align::SCREEN_CENTER);
 	updateInfoText(games[selected]);
 	updateSelectedText();
-	noGamesText.align(Text::Align::SCREEN_CENTER);
 }
 
 void SprintTimes::genValues() {
@@ -111,6 +114,8 @@ void SprintTimes::draw(const bool bottom) {
 			noGamesText.draw();
 			return;
 		}
+
+		titleText.draw();
 
 		panel.draw();
 		for (u16 i = 0; i < CELLS; ++i) {

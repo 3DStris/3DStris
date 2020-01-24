@@ -15,7 +15,9 @@ class ConfigScreen : public State {
    private:
 	GUI gui;
 
+	Text titleText;
 	Text tipText;
+
 	Text dasText;
 	Text arrText;
 	Text dropTimerText;

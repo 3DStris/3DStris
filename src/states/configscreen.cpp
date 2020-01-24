@@ -7,8 +7,11 @@
 
 ConfigScreen::ConfigScreen()
 	: State(),
+	  titleText("Settings"),
 	  tipText(
-		  "Use the bottom screen to change settings. Press \uE001 to cancel."),
+		  "Use the bottom screen to change settings. Press \uE001 to cancel.",  // E001 = B button glyph
+		  Pos{}, {0.5f, 0.5f}),
+
 	  dasText("DAS", Pos{15, 50 - 35}, Vector2{0.5f, 0.5f}),
 	  arrText("ARR", Pos{15, 100 - 35}, Vector2{0.5f, 0.5f}),
 	  dropTimerText("Drop timer", Pos{15, 150 - 35}, Vector2{0.5f, 0.5f}),
@@ -29,7 +32,8 @@ ConfigScreen::ConfigScreen()
 										   WH{BSCREEN_WIDTH - 30, 25}, "ms")),
 	  dropTimerInputField(gui.add<U32InputField>(
 		  Pos{15, 135}, WH{BSCREEN_WIDTH - 30, 25}, "ms")) {
-	tipText.setScale({0.5f, 0.5f});
+	titleText.align(Text::Align::SCREEN_CENTER);
+
 	tipText.align(Text::Align::CENTER, tipPanel.getPos(), tipPanel.getWH());
 
 	dasInputField.setValue(game.getConfig().das);
@@ -72,6 +76,8 @@ u32 ConfigScreen::getDropTimer() const {
 void ConfigScreen::draw(const bool bottom) {
 	if (!bottom) {
 		C2D_TargetClear(this->game.getTop(), BACKGROUND);
+
+		titleText.draw();
 
 		tipPanel.draw();
 		tipText.draw();

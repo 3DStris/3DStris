@@ -34,8 +34,8 @@ void Ingame::reset() {
 }
 
 void Ingame::update(const double dt) {
-	u32 kDown = hidKeysDown();
-	u32 kHeld = hidKeysHeld();
+	const u32 kDown = hidKeysDown();
+	const u32 kHeld = hidKeysHeld();
 
 	piece.update(dt, kDown, kHeld);
 

@@ -15,7 +15,7 @@ SprintTimes::SprintTimes()
 
 	  games(game.getGames().all()),
 
-	  titleText("Games", Pos{-1, 0}, {1.25f, 1.25f}),
+	  titleText("Games", Pos{0, 5}),
 	  noGamesText("You haven't played any Sprint games yet.", Pos{0, 0},
 				  {0.75f, 0.75f}),
 	  infoText(sdsempty(), Pos{10, 10}, {0.8f, 0.8f}),

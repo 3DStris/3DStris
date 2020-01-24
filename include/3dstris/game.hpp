@@ -4,7 +4,6 @@
 #include <3dstris/config.hpp>
 #include <3dstris/state.hpp>
 #include <memory>
-#include <vector>
 
 class State;
 class Game {
@@ -14,7 +13,7 @@ class Game {
 		return game;
 	}
 
-	void update(double dt);
+	void update(const double dt);
 
 	void draw();
 
@@ -39,7 +38,9 @@ class Game {
 	Game();
 	~Game();
 
-	void reset(bool top, bool bottom);
+	void reset(const bool top, const bool bottom);
+
+	C2D_SpriteSheet spriteSheet;
 
 	Config config;
 
@@ -47,5 +48,4 @@ class Game {
 	C3D_RenderTarget* bottom;
 
 	std::vector<std::unique_ptr<State>> states;
-	C2D_SpriteSheet spriteSheet;
 };

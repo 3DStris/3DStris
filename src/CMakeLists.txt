@@ -76,8 +76,6 @@ target_include_directories(3dstris PUBLIC ../include)
 
 target_link_libraries(3dstris PUBLIC 3ds::ctrulib 3ds::citro3d 3ds::citro2d sds RapidJSON::RapidJSON)
 
-target_compile_options(3dstris PRIVATE -mword-relocations -march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft -std=gnu++11 -Wno-psabi)
-
 source_group(TREE "${3dstris_SOURCE_DIR}/include"
 			 PREFIX "Header Files"
 			 FILES ${HEADER_LIST})

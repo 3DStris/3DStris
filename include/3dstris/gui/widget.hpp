@@ -18,12 +18,12 @@ class Widget {
 	virtual void update(const touchPosition touch,
 						const touchPosition previousTouch) = 0;
 
-	Vector2 getPos() const noexcept { return pos; }
-	Vector2 getWH() const noexcept { return wh; }
+	Pos getPos() const noexcept { return pos; }
+	WH getWH() const noexcept { return wh; }
 
    protected:
 	GUI& parent;
 
-	Vector2 pos;
-	Vector2 wh;
+	Pos pos;
+	WH wh;
 };

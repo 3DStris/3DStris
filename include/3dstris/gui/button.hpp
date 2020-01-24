@@ -6,11 +6,11 @@
 class GUI;
 class Button : public Widget {
    public:
-	enum Flags { NONE, HCENTER, VCENTER, CENTER };
-
 	static constexpr Color BUTTON = C2D_Color32(79, 79, 79, 255);
 	static constexpr Color BUTTON_OUTLINE = C2D_Color32(89, 89, 89, 255);
 	static constexpr Color BUTTON_HELD = C2D_Color32(64, 64, 64, 255);
+
+	enum Flags { NONE, HCENTER, VCENTER, CENTER };
 
 	Button(GUI& parent, const Pos pos, const WH wh, const sds text,
 		   const Flags flags = NONE);
@@ -23,7 +23,7 @@ class Button : public Widget {
 	void update(const touchPosition touch,
 				const touchPosition previous) override;
 
-	bool inside(const float posX, const float posY) const;
+	bool inside(const float x, const float y) const noexcept;
 	bool pressed();
 
    private:

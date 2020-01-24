@@ -1,7 +1,5 @@
 add_executable(3dstris-bin 3dstris.cpp)
 
-target_compile_options(3dstris-bin PRIVATE -mword-relocations -march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft -Wno-psabi)
-
 target_link_libraries(3dstris-bin PUBLIC 3dstris)
 
 set(NAME "3DStris")

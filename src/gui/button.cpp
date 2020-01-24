@@ -51,9 +51,9 @@ void Button::update(const touchPosition touch, const touchPosition previous) {
 	_pressed = inside(previous.px, previous.py) && hidKeysUp() & KEY_TOUCH;
 }
 
-bool Button::inside(const float posX, const float posY) const {
-	return posX > pos.x && posX < pos.x + wh.x &&  //
-		   posY > pos.y && posY < pos.y + wh.y;
+bool Button::inside(const float x, const float y) const noexcept {
+	return x > pos.x && x < pos.x + wh.x &&  //
+		   y > pos.y && y < pos.y + wh.y;
 }
 
 bool Button::pressed() {

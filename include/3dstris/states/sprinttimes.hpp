@@ -22,6 +22,9 @@ class SprintTimes : public State {
 	static const u16 TABLE_X = (SCREEN_WIDTH - TABLE_W) / 2;
 	static const u16 TABLE_Y = (SCREEN_HEIGHT - TABLE_H) / 2;
 
+	void updateInfoText(const SavedGame& game);
+	void updateSelectedText();
+
 	GUI gui;
 	Panel panel;
 	Button& backButton;
@@ -40,4 +43,5 @@ class SprintTimes : public State {
 	SavedGames games;
 
 	Text infoText;
+	Text selectedText;
 };

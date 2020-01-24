@@ -17,22 +17,24 @@ SprintTimes::SprintTimes()
 
 	  games(game.getGames().all()),
 
-	  infoText(sdsempty(), Pos{10, 10}, {0.8f, 0.8f}) {
+	  infoText(sdsempty(), Pos{10, 10}, {0.8f, 0.8f}),
+	  selectedText(sdsempty(), Pos{-1, SCREEN_HEIGHT - TABLE_Y + 10},
+				   {0.65f, 0.65f}) {
 	timeLabel.align(Text::Align::CENTER, Pos{TABLE_X, TABLE_Y},
 					WH{TIME_W, CELL_H});
 	dateLabel.align(Text::Align::CENTER, Pos{TABLE_X + TIME_W, TABLE_Y},
 					WH{DATE_W, CELL_H});
 	genValues();
 
+	updateInfoText(games[selected]);
+	updateSelectedText();
 	noGamesText.align(Text::Align::SCREEN_CENTER);
 }
 
 void SprintTimes::genValues() {
 	values.clear();
 
-	u16 s = u16(games.size());
-	u32 ss = s < CELLS ? s : CELLS;
-	for (u32 i = 0; i < ss; ++i) {
+	for (u32 i = 0; i < std::min(games.size(), size_t(CELLS)); ++i) {
 		auto& saved = games[i + topCell];
 		auto time =
 			make_unique<Text>(sdscatprintf(sdsempty(), "%.3fs", saved.time));
@@ -66,36 +68,39 @@ void SprintTimes::update(const double dt) {
 	}
 
 	auto kDown = hidKeysDown();
-
 	if (kDown & KEY_DOWN) {
 		if (selected >= games.size() - 1) {
-			return;
+			selected = 0;
+			topCell = 0;
+
+			genValues();
+		} else {
+			++selected;
+			if (selected - topCell >= CELLS) {
+				++topCell;
+				genValues();
+			}
 		}
 
-		++selected;
-		if (selected - topCell >= CELLS) {
-			++topCell;
-			genValues();
-		}
+		updateInfoText(games[selected]);
+		updateSelectedText();
 	} else if (kDown & KEY_UP) {
 		if (selected <= 0) {
-			return;
-		}
+			selected = games.size() - 1;
+			topCell = selected - 2;
 
-		--selected;
-		if (int(selected - topCell) < 0) {
-			--topCell;
 			genValues();
+		} else {
+			--selected;
+			if (int(selected - topCell) < 0) {
+				--topCell;
+				genValues();
+			}
 		}
+
+		updateInfoText(games[selected]);
+		updateSelectedText();
 	}
-
-	const auto& selectedGame = games[selected];
-
-	char date[60];
-	selectedGame.dateString(date, 60);
-	infoText.setText(sdscatprintf(sdsempty(),
-								  "Time: %.3fs\nPPS: %.2f\nDate: %s",
-								  selectedGame.time, selectedGame.pps, date));
 }
 
 void SprintTimes::draw(const bool bottom) {
@@ -124,6 +129,8 @@ void SprintTimes::draw(const bool bottom) {
 		GUI::drawOutline(
 			Pos{TABLE_X, TABLE_Y + CELL_H * (selected + 1.0f - topCell)},
 			WH{TABLE_W, CELL_H - 2}, 2, WHITE);
+
+		selectedText.draw();
 	} else {
 		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
 
@@ -132,4 +139,19 @@ void SprintTimes::draw(const bool bottom) {
 		}
 		gui.draw();
 	}
+}
+
+void SprintTimes::updateSelectedText() {
+	selectedText.setText(
+		sdscatfmt(sdsempty(), "%u/%u", selected + 1, games.size()));
+	selectedText.align(Text::Align::HCENTER, Pos{0, 0},
+					   {SCREEN_WIDTH, SCREEN_HEIGHT});
+}
+
+void SprintTimes::updateInfoText(const SavedGame& game) {
+	char date[60];
+	game.dateString(date, 60);
+	infoText.setText(sdscatprintf(sdsempty(),
+								  "Time: %.3fs\nPPS: %.2f\nDate: %s", game.time,
+								  game.pps, date));
 }

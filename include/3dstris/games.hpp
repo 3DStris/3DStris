@@ -50,7 +50,8 @@ class Games {
 
 	void save();
 	void push(SavedGame&& game);
-	bool failed;
+
+	bool failed() const noexcept { return _failed; }
 
    private:
 	FS_Path gamesPath = fsMakePath(PATH_ASCII, "/3ds/3dstris/games.json");
@@ -59,4 +60,6 @@ class Games {
 	FS_Archive sdmcArchive;
 
 	Handle gamesHandle;
+
+	bool _failed = false;
 };

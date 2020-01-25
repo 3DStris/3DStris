@@ -13,7 +13,7 @@ class Board {
 	void reset();
 
 	template <typename T>
-	bool inside(T x, T y) const noexcept {
+	bool inside(const T x, const T y) const noexcept {
 		return x < width && y < height;
 	}
 	bool inside(const Pos pos) const noexcept;

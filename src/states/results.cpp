@@ -6,19 +6,21 @@ Results::Results(Ingame* parent)
 	: State(),
 	  parent(parent),
 
-	  deadText("Game Over"),
+	  deadText(game.translate("results.dead")),
 
-	  restartButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT / 3.0f - 10},
-									WH{150, 60}, "Restart",
-									Button::Flags::HCENTER)),
+	  restartButton(gui.add<Button>(
+		  Pos{-1, BSCREEN_HEIGHT / 3.0f - 10}, WH{150, 60},
+		  game.translate("results.restart"), Button::Flags::HCENTER)),
 	  menuButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 45 - 10}, WH{100, 45},
-								 "Menu", Button::Flags::HCENTER)) {
+								 game.translate("results.menu"),
+								 Button::Flags::HCENTER)) {
 	deadText.setScale({2, 2});
 	deadText.align(Text::Align::SCREEN_CENTER);
 }
 
 Results::Results(Ingame* parent, SavedGame&& saved) : Results(parent) {
-	deadText.setText(sdscatprintf(sdsempty(), "Time: %.3fs", saved.time));
+	deadText.setText(sdscatprintf(
+		sdsempty(), game.translate("results.sprint.time"), saved.time));
 	deadText.setScale({1.3f, 1.3f});
 	deadText.align(Text::Align::SCREEN_CENTER);
 

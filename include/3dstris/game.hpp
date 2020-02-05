@@ -20,6 +20,9 @@ class Game {
 	Config& getConfig() noexcept;
 	Games& getGames() noexcept;
 
+	sds translate(const char* key) const;
+	void loadLanguage(const L10n::Language language);
+
 	C3D_RenderTarget* getTop();
 	C3D_RenderTarget* getBottom();
 

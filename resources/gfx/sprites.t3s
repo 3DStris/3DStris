@@ -1,2 +1,8 @@
 --atlas -f rgba8888 -z auto
 icon.png
+flag/bg.png
+flag/br.png
+flag/de.png
+flag/pl.png
+flag/ru.png
+flag/us.png

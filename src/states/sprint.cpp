@@ -42,9 +42,9 @@ void Sprint::update(const double dt) {
 
 	time += dt;
 
-	infoText.setText(
-		sdscatprintf(sdsempty(), "Lines: %d\nTime: %.3fs\nPPS: %.3f",
-					 board.linesCleared(), time, board.droppedPieces() / time));
+	infoText.setText(sdscatprintf(sdsempty(), game.translate("sprint.info"),
+								  board.linesCleared(), time,
+								  board.droppedPieces() / time));
 
 	if (board.linesCleared() >= 20) {
 		game.pushState(make_unique<SprintResults>(

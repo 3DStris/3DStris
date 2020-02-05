@@ -4,14 +4,17 @@
 
 Paused::Paused(Ingame* parent)
 	: State(),
-	  pausedText("Paused"),
+	  pausedText(game.translate("paused.title")),
 	  parent(parent),
-	  restartButton(gui.add<Button>(Pos{-1, 6}, WH{100, 45}, "Restart",
+	  restartButton(gui.add<Button>(Pos{-1, 6}, WH{100, 45},
+									game.translate("results.restart"),
 									Button::Flags::HCENTER)),
-	  unpauseButton(gui.add<Button>(Pos{-1, 10}, WH{200, 115}, "Resume",
+	  unpauseButton(gui.add<Button>(Pos{-1, 10}, WH{200, 115},
+									game.translate("paused.resume"),
 									Button::Flags::CENTER)),
 	  menuButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 40 - 10}, WH{100, 45},
-								 "Menu", Button::Flags::HCENTER)) {
+								 game.translate("results.menu"),
+								 Button::Flags::HCENTER)) {
 	pausedText.setScale({2, 2});
 	pausedText.align(Text::Align::SCREEN_CENTER);
 }

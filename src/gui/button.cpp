@@ -10,6 +10,7 @@ Button::Button(GUI& _parent, const Vector2 _pos, const Vector2 _wh,
 	if (flags == Flags::VCENTER || flags == Flags::CENTER) {
 		pos.y = (parent.getHeight() - wh.y) / 2.0f;
 	}
+
 	this->setText(text);
 }
 
@@ -17,7 +18,7 @@ Button::Button(GUI& _parent, const Vector2 _pos, const Vector2 _wh,
 			   const char* text, const Flags flags)
 	: Button::Button(_parent, _pos, _wh, sdsnew(text), flags) {}
 
-void Button::setText(const sds text) {
+void Button::setText(sds text) {
 	this->text.setText(text);
 
 	auto textWH = this->text.getWH();

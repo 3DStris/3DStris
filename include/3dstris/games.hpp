@@ -54,7 +54,7 @@ class Games {
 	bool failed() const noexcept { return _failed; }
 
    private:
-	FS_Path gamesPath = fsMakePath(PATH_ASCII, "/3ds/3dstris/games.json");
+	const FS_Path gamesPath = fsMakePath(PATH_ASCII, "/3ds/3dstris/games.json");
 	SavedGames games;
 
 	FS_Archive sdmcArchive;

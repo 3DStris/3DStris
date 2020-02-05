@@ -1,6 +1,5 @@
 #include <rapidjson/document.h>
 #include <rapidjson/prettywriter.h>
-
 #include <3dstris/config.hpp>
 #include <3dstris/game.hpp>
 #include <3dstris/states/loadfailed.hpp>
@@ -8,6 +7,10 @@
 #define MEMBER(member, type)                                         \
 	if (document.HasMember(#member) && document[#member].Is##type()) \
 		member = document[#member].Get##type();
+
+#define STRINGMEMBER(member)                                         \
+	if (document.HasMember(#member) && document[#member].IsString()) \
+		member = sdsnew(document[#member].GetString());
 
 static bool directoryExists(FS_Archive archive, const FS_Path& path) {
 	Handle handle;
@@ -57,12 +60,12 @@ Config::Config() {
 	u64 fileSize;
 	FSFILE_GetSize(configHandle, &fileSize);
 
-	sds configRead = sdsnewlen("", fileSize);
-	FSFILE_Read(configHandle, nullptr, 0, configRead, fileSize);
+	sds content = sdsnewlen("", fileSize);
+	FSFILE_Read(configHandle, nullptr, 0, content, fileSize);
 
 	rapidjson::Document document;
-	document.Parse(configRead);
-	sdsfree(configRead);
+	document.Parse(content);
+	sdsfree(content);
 
 	if (!validateJson(document)) {
 		save();
@@ -71,7 +74,13 @@ Config::Config() {
 		MEMBER(das, Uint)
 		MEMBER(arr, Uint)
 		MEMBER(dropTimer, Uint)
+
+		if (document.HasMember("language") && document["language"].IsString()) {
+			language = L10n::stringToLanguage(document["language"].GetString());
+		}
 	}
+
+	l10n = make_unique<L10n>(language);
 }
 
 Config::~Config() {

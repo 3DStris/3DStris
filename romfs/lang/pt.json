@@ -1,0 +1,37 @@
+{
+	"save": "Salvar",
+	
+	"back": "Voltar",
+	"cancel": "Cancelar",
+	"exit": "Sair",
+
+	"sprint.info": "Linhas: %d\nTempo: %.3fs\nPPS: %.3f",
+	"sprint.times.title": "Jogos",
+	"sprint.times.nogames": "Você ainda não jogou nenhum Sprint ainda",
+	"sprint.times.table.time": "Tempo",
+	"sprint.times.table.date": "Data",
+	"sprint.times.info": "Tempo: %.3fs\nPPS: %.2f\nData: %s",
+
+	"results.restart": "Reiniciar",
+	"results.sprint.time": "Tempo: %.3fs",
+	"results.sprint.times": "Tempos",
+
+	"paused.title": "Pausado",
+	"paused.resume": "Resumir",
+
+	"mainmenu.play": "Jogar",
+	"mainmenu.settings": "Configurações",
+	"mainmenu.games": "Jogos",
+	"mainmenu.languages": "Idiomas",
+
+	"modeselect.title": "Selecione um modo",
+
+	"settings.title": "Configurações",
+	"settings.tip": "Use a tela abaixo para trocar as configurações. Aperte \uE001 para cancelar.",
+	"settings.droptimer": "Timer do drop",
+
+	"loadfailed.config": "As configurações foram resetadas devido a um erro",
+	"loadfailed.games": "Seus jogos foram resetados devido a um erro",
+	
+	"languageselect.select": "Selecione um idioma"
+}

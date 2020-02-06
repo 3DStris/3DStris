@@ -1,0 +1,44 @@
+{
+	"ok": "ОК",
+	"save": "Сохранить",
+	
+	"back": "Назад",
+	"cancel": "Отменить",
+	"exit": "Выйти",
+
+	"menu": "Меню",
+
+	"sprint.info": "Линии: %d\nВремя: %.3fs\nPPS: %.3f",
+	"sprint.times.title": "Игры",
+	"sprint.times.nogames": "Вы ещё не играли в Спринт.",
+	"sprint.times.table.time": "Время",
+	"sprint.times.table.date": "Дата",
+	"sprint.times.info": "Время: %.3fs\nPPS: %.2f\nДата: %s",
+
+	"results.dead": "Игра окончена",
+	"results.restart": "Заново",
+	"results.menu": "Меню",
+	"results.sprint.time": "Время: %.3fs",
+	"results.sprint.times": "Времена",
+
+	"paused.title": "На паузе",
+	"paused.resume": "Продолжить",
+
+	"mainmenu.play": "Играть",
+	"mainmenu.settings": "Настройки",
+	"mainmenu.games": "Игры",
+	"mainmenu.languages": "Языки",
+
+	"modeselect.title": "Выберете режим",
+	"modeselect.normal": "Нормальный",
+	"modeselect.sprint": "Спринт",
+
+	"settings.title": "Настройки",
+	"settings.tip": "Пользуетесь нижним экраном. Нажмите \uE001 что-бы отменить.",
+	"settings.droptimer": "Таймер падения",
+
+	"loadfailed.config": "Неудалось загрузить настройки; ваши настройки были сброшены.",
+	"loadfailed.games": "Неудалось загрузить игры; ваши настройки были сброшены.",
+	
+	"languageselect.select": "Выберите язык"
+}

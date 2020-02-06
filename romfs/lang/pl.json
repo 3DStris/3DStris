@@ -1,0 +1,46 @@
+{
+	"ok": "ОК",
+	"save": "Zapisz",
+	
+	"back": "Wróć",
+	"cancel": "Anuluj",
+	"exit": "Wyjście",
+
+	"menu": "Menu",
+
+	"sprint.info": "Linie: %d\nCzas: %.3fs\nPPS: %.3f",
+	"sprint.times.title": "Rozgrywki",
+	"sprint.times.nogames": "Brak rozgrywek w trybie Sprint.",
+	"sprint.times.table.time": "Czas",
+	"sprint.times.table.date": "Data",
+	"sprint.times.info": "Time: %.3fs\nPPS: %.2f\nDate: %s",
+
+	"results.dead": "Koniec Gry",
+	"results.restart": "Restart",
+	"results.menu": "Menu",
+	"results.sprint.time": "Czas: %.3fs",
+	"results.sprint.times": "Czasy",
+
+	"paused.title": "Pauza",
+	"paused.resume": "Wznów",
+
+	"mainmenu.play": "Graj",
+	"mainmenu.settings": "Ustawienia",
+	"mainmenu.games": "Rozgrywki",
+	"mainmenu.languages": "Języki",
+
+	"modeselect.title": "Wybierz tryb",
+	"modeselect.normal": "Normalny",
+	"modeselect.sprint": "Sprint",
+
+	"settings.title": "Ustawienia",
+	"settings.tip": "Użyj dolnego ekranu do zmiany ustawień. Naciśnij \uE001 by anulować.",
+	"settings.das": "DAS",
+	"settings.arr": "ARR",
+	"settings.droptimer": "Zegar dropów",
+
+	"loadfailed.config": "Nie udało się załadować konfiguracji; twoje ustawienia zostały zresetowane.",
+	"loadfailed.games": "Nie udało się załadować rozgrywek; twoje zapisane rozgrywki zostały zresetowane.",
+	
+	"languageselect.select": "Wybierz język"
+}

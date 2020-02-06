@@ -6,14 +6,12 @@
 
 LoadFailed::LoadFailed(const FailType type)
 	: State(),
-	  failedText(
-		  type == FailType::CONFIG
-			  ? "Failed to load config; your settings have been reset."
-			  : "Failed to load games; your saved games have been reset."),
+	  failedText(game.translate(type == FailType::CONFIG ? "loadfailed.config"
+														 : "loadfailed.games")),
 
 	  okButton(gui.add<Button>(Pos{-1, -1},
 							   WH{SCREEN_WIDTH - 100, SCREEN_HEIGHT - 100},
-							   "OK", Button::Flags::CENTER)) {
+							   game.translate("ok"), Button::Flags::CENTER)) {
 	auto textScale = std::min((SCREEN_WIDTH - 10) / failedText.getWH().x, 0.6f);
 	failedText.setScale({textScale, textScale});
 	failedText.align(Text::Align::SCREEN_CENTER);

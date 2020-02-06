@@ -8,15 +8,16 @@ SprintTimes::SprintTimes()
 	  panel(gui, Pos{TABLE_X, TABLE_Y}, WH{TABLE_W, TABLE_H}, true),
 
 	  backButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 60}, WH{100, 50},
-								 "Back", Button::Flags::HCENTER)),
+								 game.translate("back"),
+								 Button::Flags::HCENTER)),
 
-	  timeLabel("Time"),
-	  dateLabel("Date"),
+	  timeLabel(game.translate("sprint.times.table.time")),
+	  dateLabel(game.translate("sprint.times.table.date")),
 
 	  games(game.getGames().all()),
 
-	  titleText("Games", Pos{0, 5}),
-	  noGamesText("You haven't played any Sprint games yet.", Pos{0, 0},
+	  titleText(game.translate("results.sprint.times"), Pos{0, 5}),
+	  noGamesText(game.translate("sprint.times.nogames"), Pos{0, 0},
 				  {0.75f, 0.75f}),
 	  infoText(sdsempty(), Pos{10, 10}, {0.8f, 0.8f}),
 	  selectedText(sdsempty(), Pos{-1, SCREEN_HEIGHT - TABLE_Y + 10},
@@ -47,9 +48,9 @@ void SprintTimes::genValues() {
 					WH{TIME_W, CELL_H});
 		values.push_back(std::move(time));
 
-		char dateString[60];
-		saved.dateString(dateString, 60, "%F");
-		auto date = make_unique<Text>(sdscatfmt(sdsempty(), "%s", dateString));
+		sds dateString = sdsnewlen("", 40);
+		saved.dateString(dateString, 40, "%F");
+		auto date = make_unique<Text>(dateString);
 		date->setScale({0.7f, 0.7f});
 		date->align(Text::Align::CENTER,
 					Pos{TABLE_X + TIME_W, TABLE_Y + CELL_H * (i + 1.0f)},
@@ -153,10 +154,10 @@ void SprintTimes::updateSelectedText() {
 					   {SCREEN_WIDTH, SCREEN_HEIGHT});
 }
 
-void SprintTimes::updateInfoText(const SavedGame& game) {
+void SprintTimes::updateInfoText(const SavedGame& savedGame) {
 	char date[60];
-	game.dateString(date, 60);
+	savedGame.dateString(date, 60);
 	infoText.setText(sdscatprintf(sdsempty(),
-								  "Time: %.3fs\nPPS: %.2f\nDate: %s", game.time,
-								  game.pps, date));
+								  game.translate("sprint.times.info"),
+								  savedGame.time, savedGame.pps, date));
 }

@@ -1,6 +1,7 @@
 #include <3dstris/sprites.h>
 
 #include <3dstris/states/configscreen.hpp>
+#include <3dstris/states/languages.hpp>
 #include <3dstris/states/mainmenu.hpp>
 #include <3dstris/states/modeselect.hpp>
 #include <3dstris/states/sprinttimes.hpp>
@@ -14,14 +15,21 @@ MainMenu::MainMenu()
 
 	  icon(C2D_SpriteSheetGetImage(game.getSpriteSheet(), sprites_icon_idx)),
 
-	  playButton(gui.add<Button>(Pos{-1, 10}, WH{100, 50}, "Play",
+	  playButton(gui.add<Button>(Pos{-1, 10}, WH{100, 50},
+								 game.translate("mainmenu.play"),
 								 Button::Flags::HCENTER)),
-	  settingsButton(gui.add<Button>(Pos{-1, 100}, WH{100, 50}, "Settings",
+	  settingsButton(gui.add<Button>(Pos{-1, 100}, WH{100, 50},
+									 game.translate("mainmenu.settings"),
 									 Button::Flags::HCENTER)),
 	  exitButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 50}, WH{100, 40},
-								 "Exit", Button::Flags::HCENTER)),
-	  gamesButton(
-		  gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 45}, WH{70, 35}, "Games")) {
+								 game.translate("exit"),
+								 Button::Flags::HCENTER)),
+
+	  gamesButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 45}, WH{70, 35},
+								  game.translate("mainmenu.games"))),
+	  languagesButton(
+		  gui.add<Button>(Pos{BSCREEN_WIDTH - 85, BSCREEN_HEIGHT - 45},
+						  WH{75, 35}, game.translate("mainmenu.languages"))) {
 	versionText.setScale({0.5f, 0.5f});
 	versionText.setPos({3, SCREEN_HEIGHT - versionText.getWH().y / 1.25f - 5});
 }
@@ -38,18 +46,19 @@ void MainMenu::update(const double dt) {
 		this->game.pushState(make_unique<ModeSelect>());
 		return;
 	}
-
 	if (settingsButton.pressed()) {
 		this->game.pushState(make_unique<ConfigScreen>());
 		return;
 	}
-
 	if (exitButton.pressed()) {
 		this->game.exit = true;
 	}
 
 	if (gamesButton.pressed()) {
 		this->game.pushState(make_unique<SprintTimes>());
+	}
+	if (languagesButton.pressed()) {
+		this->game.pushState(make_unique<LanguageSelect>());
 	}
 }
 

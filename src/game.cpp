@@ -34,6 +34,14 @@ Games& Game::getGames() noexcept {
 	return config.getGames();
 }
 
+sds Game::translate(const char* key) const {
+	return config.getL10n().get(key);
+}
+
+void Game::loadLanguage(const L10n::Language language) {
+	config.getL10n().loadLanguage(language);
+}
+
 C3D_RenderTarget* Game::getTop() {
 	return top;
 }

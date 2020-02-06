@@ -32,6 +32,15 @@ make
 ```
 Binaries can be found in `build/apps/`.
 
+# Translation
+3DStris currently has translations available for the following languages:
+* English
+* Bulgarian by @geniiii
+* German by @itsdavvid
+* Polish by @itsdavvid
+* (Brazilian) Portuguese by @matcool
+* Russian by @oatmealine
+
 [devkitpro-setup]: https://www.3dbrew.org/wiki/Setting_up_Development_Environment
 [makerom-url]: https://github.com/jakcron/Project_CTR
 [bannertool-url]: https://github.com/Steveice10/bannertool

@@ -1,3 +1,0 @@
-files:
-  - source: /romfs/lang/en/
-    translation: /romfs/lang/%two_letters_code%/

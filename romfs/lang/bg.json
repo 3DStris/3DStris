@@ -1,0 +1,43 @@
+{
+	"ok": "ОК",
+	"save": "Запази",
+	
+	"back": "Назад",
+	"cancel": "Отмени",
+	"exit": "Изход",
+
+	"menu": "Меню",
+
+	"sprint.info": "Редове: %d\nВреме: %.3fs\nPPS: %.3f",
+	"sprint.times.title": "Игри",
+	"sprint.times.nogames": "Вие все още не сте играли Спринт.",
+	"sprint.times.table.time": "Време",
+	"sprint.times.table.date": "Дата",
+	"sprint.times.info": "Време: %.3fs\nPPS: %.2f\nДата: %s",
+
+	"results.restart": "Рестартирайте",
+	"results.menu": "Меню",
+	"results.sprint.time": "Време: %.3fs",
+	"results.sprint.times": "Игри",
+
+	"paused.title": "Пауза",
+	"paused.resume": "Продължи",
+
+	"mainmenu.play": "Играй",
+	"mainmenu.settings": "Настройки",
+	"mainmenu.games": "Игри",
+	"mainmenu.languages": "Езици",
+
+	"modeselect.title": "Изберете режим",
+	"modeselect.normal": "Нормален",
+	"modeselect.sprint": "Спринт",
+
+	"settings.title": "Настройки",
+	"settings.tip": "Натиснете \uE001 за да отмените промените.",
+	"settings.droptimer": "Таймер за пускане",
+
+	"loadfailed.config": "Неуспешно зареждане на конфигурацията; вашите настройки са нулирани.",
+	"loadfailed.games": "Неуспешно зареждане на игри; запазените ви игри са нулирани.",
+	
+	"languageselect.select": "Изберете език"
+}

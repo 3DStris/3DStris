@@ -8,16 +8,17 @@
 
 ModeSelect::ModeSelect()
 	: State(),
-	  topText("Select a mode"),
+	  topText(game.translate("modeselect.title")),
 
-	  normalButton(gui.add<Button>(Pos{BSCREEN_WIDTH / 4.0 - 50, -1},
-								   WH{100, 50}, "Normal",
-								   Button::Flags::VCENTER)),
-	  sprintButton(gui.add<Button>(Pos{3 * BSCREEN_WIDTH / 4.0 - 50, -1},
-								   WH{100, 50}, "Sprint",
-								   Button::Flags::VCENTER)),
+	  normalButton(gui.add<Button>(
+		  Pos{BSCREEN_WIDTH / 4.0 - 50, -1}, WH{100, 50},
+		  game.translate("modeselect.normal"), Button::Flags::VCENTER)),
+	  sprintButton(gui.add<Button>(
+		  Pos{3 * BSCREEN_WIDTH / 4.0 - 50, -1}, WH{100, 50},
+		  game.translate("modeselect.sprint"), Button::Flags::VCENTER)),
 	  backButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 50}, WH{100, 40},
-								 "Back", Button::Flags::HCENTER)) {
+								 game.translate("back"),
+								 Button::Flags::HCENTER)) {
 	topText.align(Text::Align::SCREEN_CENTER);
 }
 void ModeSelect::update(const double dt) {

@@ -1,0 +1,36 @@
+{
+	"save": "Speichern",
+	
+	"back": "Zurück",
+	"cancel": "Stornieren",
+	"exit": "Ausfahrt",
+
+	"sprint.info": "Linien: %d\nZeit: %.3fs\nPPS: %.3f",
+	"sprint.times.title": "Spiele",
+	"sprint.times.nogames": "Du hast noch keine Sprint-Spiele gespielt.",
+	"sprint.times.table.time": "Zeit",
+	"sprint.times.table.date": "Datum",
+	"sprint.times.info": "Zeit: %.3fs\nPPS: %.2f\nDatum: %s",
+
+	"results.restart": "Neustart",
+	"results.sprint.time": "Zeit: %.3fs",
+	"results.sprint.times": "Zeite",
+
+	"paused.title": "Pause",
+	"paused.resume": "Fortsetzen",
+
+	"mainmenu.play": "Spiel",
+	"mainmenu.settings": "Einstellungen",
+	"mainmenu.games": "Spiele",
+	"mainmenu.languages": "Sprachen",
+
+	"modeselect.title": "Wählen Sie einen Spielemodus",
+
+	"settings.title": "Einstellungen",
+	"settings.tip": "Verwenden Sie den unteren Bildschirm, um die Einstellungen zu ändern.",
+
+	"loadfailed.config": "Konfiguration könnte nicht geladen werden; ihre Einstellungen wurden zurückgesetzt.",
+	"loadfailed.games": "Spiele könnte nicht geladen werden; ihre gespeicherten Spiele wurden zurückgesetzt.",
+	
+	"languageselect.select": "Wählen Sie eine Sprache"
+}

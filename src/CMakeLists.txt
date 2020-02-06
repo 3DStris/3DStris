@@ -1,4 +1,3 @@
-# the commit's SHA1 (abbreviated to 7 characters), and whether the building workspace was dirty or not
 execute_process(COMMAND
 	"${GIT_EXECUTABLE}" describe --match=NeVeRmAtCh --always --abbrev=7 --dirty
 	WORKING_DIRECTORY "${3dstris_SOURCE_DIR}"
@@ -26,7 +25,6 @@ set_header_list(
 	games.hpp
 	state.hpp
 	states/mainmenu.hpp
-	states/modeselect.hpp
 	states/ingame.hpp
 	states/playing.hpp
 	states/sprint.hpp
@@ -36,10 +34,13 @@ set_header_list(
 	states/sprinttimes.hpp
 	states/configscreen.hpp
 	states/loadfailed.hpp
+	states/languages.hpp
 	util/text.hpp
+	util/l10n.hpp
 	gui.hpp
 	gui/widget.hpp
 	gui/button.hpp
+	gui/languagebutton.hpp
 	gui/u32inputfield.hpp
 	gui/panel.hpp
 	wallkicks.hpp)
@@ -62,10 +63,13 @@ add_library(3dstris STATIC
 	states/sprinttimes.cpp
 	states/configscreen.cpp
 	states/loadfailed.cpp
+	states/languages.cpp
 	util/text.cpp
+	util/l10n.cpp
 	gui.cpp
 	gui/widget.cpp
 	gui/button.cpp
+	gui/languagebutton.cpp
 	gui/u32inputfield.cpp
 	gui/panel.cpp
 	${HEADER_LIST})
@@ -74,7 +78,11 @@ add_t3s(3dstris "${3dstris_SOURCE_DIR}/resources/gfx/sprites.t3s")
 
 target_include_directories(3dstris PUBLIC ../include)
 
-target_link_libraries(3dstris PUBLIC 3ds::ctrulib 3ds::citro3d 3ds::citro2d sds RapidJSON::RapidJSON)
+target_link_libraries(3dstris PUBLIC
+	3ds::ctrulib 3ds::citro3d 3ds::citro2d
+	sds
+	RapidJSON::RapidJSON
+	phmap::phmap)
 
 source_group(TREE "${3dstris_SOURCE_DIR}/include"
 			 PREFIX "Header Files"

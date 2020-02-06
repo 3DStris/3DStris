@@ -8,10 +8,6 @@
 	if (document.HasMember(#member) && document[#member].Is##type()) \
 		member = document[#member].Get##type();
 
-#define STRINGMEMBER(member)                                         \
-	if (document.HasMember(#member) && document[#member].IsString()) \
-		member = sdsnew(document[#member].GetString());
-
 static bool directoryExists(FS_Archive archive, const FS_Path& path) {
 	Handle handle;
 

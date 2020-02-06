@@ -1,0 +1,46 @@
+{
+	"ok": "OK",
+	"save": "保存",
+	
+	"back": "戻る",
+	"cancel": "キャンセル",
+	"exit": "終了",
+
+	"menu": "メニュー",
+
+	"sprint.info": "行: %d\n時間: %.3fs\nPPS: %.3f",
+	"sprint.times.title": "ゲーム",
+	"sprint.times.nogames": "まだスプリントゲームはプレイされていません。",
+	"sprint.times.table.time": "時間",
+	"sprint.times.table.date": "日付",
+	"sprint.times.info": "時間: %.3fs\nPPS: %.2f\n日付: %s",
+
+	"results.dead": "ゲームオーバー",
+	"results.restart": "再起動",
+	"results.menu": "メニュー",
+	"results.sprint.time": "時間: %.3fs",
+	"results.sprint.times": "時間",
+
+	"paused.title": "一時停止",
+	"paused.resume": "再開",
+
+	"mainmenu.play": "プレイ",
+	"mainmenu.settings": "設定",
+	"mainmenu.games": "ゲーム",
+	"mainmenu.languages": "言語",
+
+	"modeselect.title": "モードの選択",
+	"modeselect.normal": "ノーマル",
+	"modeselect.sprint": "スプリント",
+
+	"settings.title": "設定",
+	"settings.tip": "下の画面を使用して設定を変更します。キャンセルするには\uE001を押します。",
+	"settings.das": "DAS",
+	"settings.arr": "ARR",
+	"settings.droptimer": "ドロップタイマー",
+
+	"loadfailed.config": "設定の読み込みに失敗しました。設定は再設定しました。",
+	"loadfailed.games": "ゲームの読み込みに失敗しますた。ゲームの保存は再設定しました。",
+	
+	"languageselect.select": "言語の選択"
+}

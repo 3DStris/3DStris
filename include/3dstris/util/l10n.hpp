@@ -14,7 +14,7 @@ class L10n {
 		}
 	};
 
-	enum Language { EN, BG, RU, PT, PL, DE };
+	enum Language { EN, BG, RU, PT, PL, DE, JP };
 
 	L10n(const Language language) { loadLanguage(language); }
 
@@ -63,7 +63,8 @@ class L10n {
 	static size_t getFlag(const Language language) {
 		static const phmap::flat_hash_map<Language, size_t> LANGUAGE_TO_ICON{
 			{EN, sprites_us_idx}, {BG, sprites_bg_idx}, {RU, sprites_ru_idx},
-			{PT, sprites_br_idx}, {PL, sprites_pl_idx}, {DE, sprites_de_idx}};
+			{PT, sprites_br_idx}, {PL, sprites_pl_idx}, {DE, sprites_de_idx},
+			{JP, sprites_jp_idx}};
 
 		return LANGUAGE_TO_ICON.at(language);
 	}

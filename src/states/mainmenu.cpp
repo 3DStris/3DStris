@@ -25,11 +25,11 @@ MainMenu::MainMenu()
 								 game.translate("exit"),
 								 Button::Flags::HCENTER)),
 
-	  gamesButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 45}, WH{70, 35},
+	  gamesButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 40 - 10}, WH{75, 40},
 								  game.translate("mainmenu.games"))),
-	  languagesButton(
-		  gui.add<Button>(Pos{BSCREEN_WIDTH - 85, BSCREEN_HEIGHT - 45},
-						  WH{75, 35}, game.translate("mainmenu.languages"))) {
+	  languagesButton(gui.add<Button>(
+		  Pos{BSCREEN_WIDTH - 80 - 10, BSCREEN_HEIGHT - 40 - 10}, WH{75, 40},
+		  game.translate("mainmenu.languages"))) {
 	versionText.setScale({0.5f, 0.5f});
 	versionText.setPos({3, SCREEN_HEIGHT - versionText.getWH().y / 1.25f - 5});
 }

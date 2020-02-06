@@ -7,10 +7,10 @@ LanguageSelect::LanguageSelect()
 	: State(),
 	  selectText(game.translate("languageselect.select")),
 
-	  saveButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 45}, WH{80, 35},
+	  saveButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 50}, WH{75, 40},
 								 game.translate("save"))),
-	  cancelButton(gui.add<Button>(Pos{BSCREEN_WIDTH - 90, BSCREEN_HEIGHT - 45},
-								   WH{80, 35}, game.translate("cancel"))) {
+	  cancelButton(gui.add<Button>(Pos{BSCREEN_WIDTH - 90, BSCREEN_HEIGHT - 50},
+								   WH{80, 40}, game.translate("cancel"))) {
 	selectText.align(Text::Align::SCREEN_CENTER);
 
 	// TODO: this piece of shit will eventually break (buttons will go off the

@@ -73,7 +73,7 @@ void Text::setText(const sds text) {
 	this->text = text;
 
 	C2D_TextBufClear(textBuffer);
-	if (C2D_TextBufGetNumGlyphs(textBuffer) != sdslen(text)) {
+	if (C2D_TextBufGetNumGlyphs(textBuffer) < sdslen(text)) {
 		textBuffer = C2D_TextBufResize(textBuffer, sdslen(text));
 	}
 

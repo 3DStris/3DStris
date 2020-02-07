@@ -12,10 +12,12 @@ class Text {
 		 const Vector2 scale = {1, 1}, const Color color = WHITE);
 	Text(const char* text, const Pos pos = Pos{}, const Vector2 scale = {1, 1},
 		 const Color color = WHITE);
-	~Text();
 
-	Text(const Text& other);
-	Text& operator=(const Text& other);
+	~Text();
+	Text(const Text& other) = delete;
+	Text(Text&& other);
+	Text& operator=(const Text& other) = delete;
+	Text& operator=(Text&& other) = delete;
 
 	void align(const Align mode, const Vector2 cpos, const Vector2 cwh,
 			   const bool bottom = false);

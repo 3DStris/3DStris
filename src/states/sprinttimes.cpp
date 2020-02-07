@@ -40,8 +40,8 @@ void SprintTimes::genValues() {
 
 	for (u32 i = 0; i < std::min(games.size(), size_t(CELLS)); ++i) {
 		auto& saved = games[i + topCell];
-		Text time(sdscatprintf(sdsempty(), "%.3fs", saved.time));
-		time.setScale({0.8f, 0.8f});
+		Text time(sdscatprintf(sdsempty(), "%.3fs", saved.time), Pos{},
+				  {0.8f, 0.8f});
 		time.align(Text::Align::CENTER,
 				   Pos{TABLE_X, TABLE_Y + CELL_H * (i + 1.0f)},
 				   WH{TIME_W, CELL_H});
@@ -49,8 +49,7 @@ void SprintTimes::genValues() {
 
 		sds dateString = sdsnewlen("", 40);
 		saved.dateString(dateString, 40, "%F");
-		Text date(dateString);
-		date.setScale({0.7f, 0.7f});
+		Text date(dateString, Pos{}, {0.7f, 0.7f});
 		date.align(Text::Align::CENTER,
 				   Pos{TABLE_X + TIME_W, TABLE_Y + CELL_H * (i + 1.0f)},
 				   WH{DATE_W, CELL_H});

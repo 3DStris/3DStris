@@ -18,24 +18,16 @@ Text::~Text() {
 	sdsfree(text);
 }
 
-Text::Text(const Text& other)
+Text::Text(Text&& other)
 	: pos(other.pos),
 	  scale(other.scale),
 	  color(other.color),
-	  textBuffer(C2D_TextBufNew(sdslen(other.text))) {
-	this->setText(other.text);
-}
+	  textObject(other.textObject),
+	  textBuffer(other.textBuffer) {
+	this->text = other.text;
 
-Text& Text::operator=(const Text& other) {
-	if (this != &other) {
-		this->pos = other.pos;
-		this->scale = other.scale;
-		this->color = other.color;
-
-		this->setText(other.text);
-	}
-
-	return *this;
+	other.textBuffer = nullptr;
+	other.text = nullptr;
 }
 
 void Text::align(const Align mode, const Pos cpos, const WH cwh,

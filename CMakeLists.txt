@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(3dstris_VERSION_MAJOR 0)
 set(3dstris_VERSION_MINOR 11)
-set(3dstris_VERSION_PATCH 1)
+set(3dstris_VERSION_PATCH 2)
 set(3dstris_VERSION "${3dstris_VERSION_MAJOR}.${3dstris_VERSION_MINOR}.${3dstris_VERSION_PATCH}")
 
 project(

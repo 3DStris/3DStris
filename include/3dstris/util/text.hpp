@@ -21,7 +21,7 @@ class Text {
 			   const bool bottom = false);
 	void align(const Align mode, const bool bottom = false);
 
-	void setText(const sds text);
+	void setText(sds text);
 	sds getText() const noexcept;
 
 	void setX(const float x) noexcept;

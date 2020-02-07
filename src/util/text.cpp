@@ -68,7 +68,7 @@ void Text::align(const Align mode, const bool bottom) {
 	align(mode, Pos{0, 0}, WH{0, 0}, bottom);
 }
 
-void Text::setText(const sds text) {
+void Text::setText(sds text) {
 	sdsfree(this->text);
 	this->text = text;
 

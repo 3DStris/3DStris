@@ -51,7 +51,7 @@ class Games {
 	void save();
 	void push(SavedGame&& game);
 
-	bool failed() const noexcept { return _failed; }
+	bool failed() const noexcept;
 
    private:
 	const FS_Path gamesPath = fsMakePath(PATH_ASCII, "/3ds/3dstris/games.json");

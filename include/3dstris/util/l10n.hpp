@@ -16,8 +16,6 @@ class L10n {
 
 	enum Language { EN, BG, RU, PT, PL, DE, JP };
 
-	L10n(const Language language) { loadLanguage(language); }
-
 	const static phmap::btree_map<Language, const char*> LANGUAGE_TO_STRING;
 	const static phmap::btree_map<const char*, Language, CompareString>
 		STRING_TO_LANGUAGE;
@@ -42,7 +40,6 @@ class L10n {
 		load(path);
 		sdsfree(path);
 	}
-
 	void load(const char* path);
 
 	rapidjson::Document loadJson(const char* path);

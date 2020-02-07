@@ -76,7 +76,7 @@ Config::Config() {
 		}
 	}
 
-	l10n = make_unique<L10n>(language);
+	l10n.loadLanguage(language);
 }
 
 Config::~Config() {
@@ -95,3 +95,18 @@ void Config::save() {
 				 FS_WRITE_FLUSH);
 	FSFILE_SetSize(configHandle, sb.GetLength());
 }
+
+Games& Config::getGames() noexcept {
+	return games;
+}
+
+L10n& Config::getL10n() noexcept {
+	return l10n;
+}
+const L10n& Config::getL10n() const noexcept {
+	return l10n;
+}
+
+bool Config::failed() const noexcept {
+	return _failed;
+};

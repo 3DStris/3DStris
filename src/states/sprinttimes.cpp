@@ -40,21 +40,20 @@ void SprintTimes::genValues() {
 
 	for (u32 i = 0; i < std::min(games.size(), size_t(CELLS)); ++i) {
 		auto& saved = games[i + topCell];
-		auto time =
-			make_unique<Text>(sdscatprintf(sdsempty(), "%.3fs", saved.time));
-		time->setScale({0.8f, 0.8f});
-		time->align(Text::Align::CENTER,
-					Pos{TABLE_X, TABLE_Y + CELL_H * (i + 1.0f)},
-					WH{TIME_W, CELL_H});
+		Text time(sdscatprintf(sdsempty(), "%.3fs", saved.time));
+		time.setScale({0.8f, 0.8f});
+		time.align(Text::Align::CENTER,
+				   Pos{TABLE_X, TABLE_Y + CELL_H * (i + 1.0f)},
+				   WH{TIME_W, CELL_H});
 		values.push_back(std::move(time));
 
 		sds dateString = sdsnewlen("", 40);
 		saved.dateString(dateString, 40, "%F");
-		auto date = make_unique<Text>(dateString);
-		date->setScale({0.7f, 0.7f});
-		date->align(Text::Align::CENTER,
-					Pos{TABLE_X + TIME_W, TABLE_Y + CELL_H * (i + 1.0f)},
-					WH{DATE_W, CELL_H});
+		Text date(dateString);
+		date.setScale({0.7f, 0.7f});
+		date.align(Text::Align::CENTER,
+				   Pos{TABLE_X + TIME_W, TABLE_Y + CELL_H * (i + 1.0f)},
+				   WH{DATE_W, CELL_H});
 		values.push_back(std::move(date));
 	}
 }
@@ -129,7 +128,7 @@ void SprintTimes::draw(const bool bottom) {
 		dateLabel.draw();
 
 		for (const auto& text : values) {
-			text->draw();
+			text.draw();
 		}
 
 		GUI::drawOutline(

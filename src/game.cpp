@@ -26,18 +26,9 @@ void Game::draw() {
 	getState().draw(true);
 }
 
-Config& Game::getConfig() noexcept {
-	return config;
-}
-
-Games& Game::getGames() noexcept {
-	return config.getGames();
-}
-
 sds Game::translate(const char* key) const {
 	return config.getL10n().get(key);
 }
-
 void Game::loadLanguage(const L10n::Language language) {
 	config.getL10n().loadLanguage(language);
 }
@@ -45,7 +36,6 @@ void Game::loadLanguage(const L10n::Language language) {
 C3D_RenderTarget* Game::getTop() {
 	return top;
 }
-
 C3D_RenderTarget* Game::getBottom() {
 	return bottom;
 }
@@ -86,4 +76,19 @@ void Game::reset(const bool top, const bool bottom) {
 		C2D_TargetClear(this->bottom, BLACK);
 	}
 	states.shrink_to_fit();
+}
+
+Config& Game::getConfig() noexcept {
+	return config;
+}
+
+Games& Game::getGames() noexcept {
+	return config.getGames();
+}
+
+L10n& Game::getL10n() noexcept {
+	return config.getL10n();
+}
+const L10n& Game::getL10n() const noexcept {
+	return config.getL10n();
 }

@@ -13,12 +13,16 @@ LanguageSelect::LanguageSelect()
 								   WH{80, 40}, game.translate("cancel"))) {
 	selectText.align(Text::Align::SCREEN_CENTER);
 
-	// TODO: this piece of shit will eventually break (buttons will go off the
-	// screen), needs a scrollable version
-	float y = 15;
+	float y = 10;
+	float x = 10;
 	for (const auto& lang : L10n::LANGUAGE_TO_STRING) {
-		gui.add<LanguageButton>(Pos{-1, y}, WH{80, 25}, lang.first, language);
-		y += 35;
+		gui.add<LanguageButton>(Pos{x, y}, WH{80, 25}, lang.first, language);
+
+		y += 25 + 10;
+		if (y + 35 + 25 > SCREEN_HEIGHT) {
+			y = 10;
+			x += 80 + 10;
+		}
 	}
 }
 

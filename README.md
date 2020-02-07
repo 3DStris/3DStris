@@ -19,7 +19,7 @@ For building [you'll need to set up devkitPro][devkitpro-setup], CMake >= 3.12 a
 
 Make sure to clone recursively (required for third-party libs, check `lib/`):
 ```bash
-git clone --recursive https://github.com/matcool/3DStris
+git clone --recursive https://github.com/3DStris/3DStris
 # Or if you've already cloned
 git submodule update --init
 ```

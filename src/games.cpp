@@ -88,3 +88,7 @@ void Games::save() {
 				 FS_WRITE_FLUSH);
 	FSFILE_SetSize(gamesHandle, sb.GetLength());
 }
+
+bool Games::failed() const noexcept {
+	return _failed;
+}

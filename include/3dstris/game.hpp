@@ -17,9 +17,6 @@ class Game {
 
 	void draw();
 
-	Config& getConfig() noexcept;
-	Games& getGames() noexcept;
-
 	sds translate(const char* key) const;
 	void loadLanguage(const L10n::Language language);
 
@@ -34,6 +31,11 @@ class Game {
 				  const bool resetBottom = false);
 	void popState(const bool resetTop = false, const bool resetBottom = false);
 	State& getState();
+
+	Config& getConfig() noexcept;
+	Games& getGames() noexcept;
+	L10n& getL10n() noexcept;
+	const L10n& getL10n() const noexcept;
 
 	bool exit = false;
 

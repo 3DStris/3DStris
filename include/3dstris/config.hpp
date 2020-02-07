@@ -31,17 +31,17 @@ struct Config {
 
 	void save();
 
-	Games& getGames() noexcept { return games; }
+	Games& getGames() noexcept;
 
-	L10n& getL10n() noexcept { return *l10n; }
-	const L10n& getL10n() const noexcept { return *l10n; }
+	L10n& getL10n() noexcept;
+	const L10n& getL10n() const noexcept;
+
+	bool failed() const noexcept;
 
 	u32 das = 200;
 	u32 arr = 0;
 	u32 dropTimer = 5;
 	L10n::Language language = L10n::EN;
-
-	bool failed() const noexcept { return _failed; }
 
    private:
 	const FS_Path homebrewPath = fsMakePath(PATH_ASCII, "/3ds/");
@@ -50,7 +50,7 @@ struct Config {
 		fsMakePath(PATH_ASCII, "/3ds/3dstris/config.json");
 
 	Games games;
-	std::unique_ptr<L10n> l10n;
+	L10n l10n;
 
 	FS_Archive sdmcArchive;
 

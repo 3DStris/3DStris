@@ -40,6 +40,7 @@ Binaries can be found in `build/apps/`.
 * Polish by @itsdavvid
 * (Brazilian) Portuguese by @matcool
 * Russian by @oatmealine
+* Japanese by @Epicpkmn11
 
 [devkitpro-setup]: https://www.3dbrew.org/wiki/Setting_up_Development_Environment
 [makerom-url]: https://github.com/jakcron/Project_CTR

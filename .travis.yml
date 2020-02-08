@@ -7,7 +7,7 @@ cache: ccache
 jobs:
   include:
     - os: linux
-      env: BUILD_TYPE=Debug
+      env: BUILD_TYPE=Release
 
 before_install:
   - ./.travis/install-devkitpro.sh

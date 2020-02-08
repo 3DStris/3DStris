@@ -84,6 +84,8 @@ target_link_libraries(3dstris PUBLIC
 	RapidJSON::RapidJSON
 	phmap::phmap)
 
+target_compile_options(3dstris PRIVATE $<$<CONFIG:RELEASE>:-O3>)
+
 source_group(TREE "${3dstris_SOURCE_DIR}/include"
 			 PREFIX "Header Files"
 			 FILES ${HEADER_LIST})

@@ -7,7 +7,7 @@ LanguageButton::LanguageButton(GUI& parent, const Pos pos, const WH wh,
 	: Button(parent, pos, wh, L10n::languageToString(language)),
 	  toSet(toSet),
 	  language(language),
-	  flag(C2D_SpriteSheetGetImage(Game::getInstance().getSpriteSheet(),
+	  flag(C2D_SpriteSheetGetImage(Game::get().getImageSheet(),
 								   L10n::getFlag(language))) {}
 
 void LanguageButton::draw() const {

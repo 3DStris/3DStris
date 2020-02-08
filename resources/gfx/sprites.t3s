@@ -1,9 +1,8 @@
 --atlas -f rgba8888 -z auto
-icon.png
-flag/bg.png
-flag/br.png
-flag/de.png
-flag/jp.png
-flag/pl.png
-flag/ru.png
-flag/us.png
+pieces/default/blue.png
+pieces/default/cyan.png
+pieces/default/green.png
+pieces/default/orange.png
+pieces/default/purple.png
+pieces/default/red.png
+pieces/default/yellow.png

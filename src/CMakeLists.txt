@@ -49,6 +49,7 @@ add_library(3dstris STATIC
 	board.cpp
 	piece.cpp
 	game.cpp
+	colors.cpp
 	config.cpp
 	games.cpp
 	state.cpp
@@ -74,6 +75,7 @@ add_library(3dstris STATIC
 	gui/panel.cpp
 	${HEADER_LIST})
 
+add_t3s(3dstris "${3dstris_SOURCE_DIR}/resources/gfx/images.t3s")
 add_t3s(3dstris "${3dstris_SOURCE_DIR}/resources/gfx/sprites.t3s")
 
 target_include_directories(3dstris PUBLIC ../include)

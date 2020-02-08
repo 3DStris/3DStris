@@ -8,7 +8,7 @@
 class State;
 class Game {
    public:
-	static Game& getInstance() {
+	static Game& get() {
 		static Game game;
 		return game;
 	}
@@ -23,7 +23,7 @@ class Game {
 	C3D_RenderTarget* getTop();
 	C3D_RenderTarget* getBottom();
 
-	const C2D_SpriteSheet& getSpriteSheet() const noexcept;
+	const C2D_SpriteSheet& getImageSheet() const noexcept;
 
 	void pushState(std::unique_ptr<State> state, const bool resetTop = false,
 				   const bool resetBottom = false);
@@ -45,7 +45,7 @@ class Game {
 
 	void reset(const bool top, const bool bottom);
 
-	C2D_SpriteSheet spriteSheet;
+	C2D_SpriteSheet imageSheet;
 
 	Config config;
 

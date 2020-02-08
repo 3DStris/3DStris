@@ -18,7 +18,7 @@ class Piece {
 
 	void draw(const Vector2 origin, const u32 tileSize) const;
 	static void draw(const Vector2 origin, const u32 tileSize,
-					 const PieceShape& shape, const Color color);
+					 const PieceShape& shape, const C2D_Image sprite);
 
 	bool move(const Direction dir);
 
@@ -43,8 +43,7 @@ class Piece {
 
 	int rotation;
 
-	Color color;
-	Color ghostColor;
+	C2D_Image sprite;
 	PieceShape shape;
 
 	double

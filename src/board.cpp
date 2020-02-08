@@ -48,9 +48,8 @@ void Board::draw(const Vector2 origin, const u32 tileSize,
 			}
 
 			if (p != PieceType::NONE) {
-				C2D_DrawRectSolid(origin.x + x * tileSize,
-								  origin.y + y * tileSize, 0.5f, tileSize,
-								  tileSize, colors[p]);
+				C2D_DrawImageAt(Textures::get(p), origin.x + x * tileSize,
+								origin.y + y * tileSize, 0.5f);
 			}
 		}
 	}

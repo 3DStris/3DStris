@@ -18,19 +18,18 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 
 	pos = {std::floor(board.width / 2.0f) - std::floor(shape.size() / 2.0f), 0};
 
-	color = colors[type];
-	ghostColor = colorsGhost[type];
+	sprite = Textures::get(type);
 
 	fallTimer = 0;
 	fallAfter = 1;
-	sDropAfter = Game::getInstance().getConfig().dropTimer / 1000.;
+	sDropAfter = Game::get().getConfig().dropTimer / 1000.;
 	setTimer = 0;
 	setAfter = 1;
 
-	das = Game::getInstance().getConfig().das / 1000.;
+	das = Game::get().getConfig().das / 1000.;
 	dasTimer = {0, 0};
 
-	arr = Game::getInstance().getConfig().arr / 1000.;
+	arr = Game::get().getConfig().arr / 1000.;
 	arrTimer = arr;
 
 	rotation = 0;
@@ -74,28 +73,26 @@ void Piece::draw(const Vector2 origin, const u32 tileSize) const {
 	}
 	ghostY--;
 
-	for (u32 y = 0; y < shape.size(); ++y) {
-		for (u32 x = 0; x < shape.size(); ++x) {
+	for (u8 y = 0; y < shape.size(); ++y) {
+		for (u8 x = 0; x < shape.size(); ++x) {
 			if (shape.get(x, y)) {
-				C2D_DrawRectSolid(origin.x + (pos.x + x) * tileSize,
-								  origin.y + (pos.y + y) * tileSize, 0.5f,
-								  tileSize, tileSize, color);
-				C2D_DrawRectSolid(origin.x + (pos.x + x) * tileSize,
-								  origin.y + (pos.y + ghostY + y) * tileSize,
-								  0.5f, tileSize, tileSize, ghostColor);
+				C2D_DrawImageAt(sprite, origin.x + (pos.x + x) * tileSize,
+								origin.y + (pos.y + y) * tileSize, 0.5f);
+				C2D_DrawImageAt(sprite, origin.x + (pos.x + x) * tileSize,
+								origin.y + (pos.y + ghostY + y) * tileSize,
+								0.5f, &Textures::GHOST);
 			}
 		}
 	}
 }
 
 void Piece::draw(const Vector2 origin, const u32 tileSize,
-				 const PieceShape& shape, const Color color) {
+				 const PieceShape& shape, const C2D_Image sprite) {
 	for (u32 y = 0; y < shape.size(); ++y) {
 		for (u32 x = 0; x < shape.size(); ++x) {
 			if (shape.get(x, y)) {
-				C2D_DrawRectSolid(origin.x + x * tileSize,
-								  origin.y + y * tileSize, 0.5f, tileSize,
-								  tileSize, color);
+				C2D_DrawImageAt(sprite, origin.x + x * tileSize,
+								origin.y + y * tileSize, 0.5f);
 			}
 		}
 	}

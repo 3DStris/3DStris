@@ -3,6 +3,7 @@ Basic Tetris clone for the 3DS.
 
 <p float="left">
 	<img src="resources/screenshots/mainmenu.png" width="400px"/>
+	<img src="resources/screenshots/sprint.png" width="400px"/>
 	<img src="resources/screenshots/ingame.png" width="400px"/>
 	<img src="resources/screenshots/banner.png" width="400px"/>
 </p>

@@ -12,10 +12,6 @@ ToggleButton::ToggleButton(GUI& parent, const Pos pos, const WH wh,
 	  text(text),
 	  value(defaultValue) {}
 
-void ToggleButton::draw() const {
-	Button::draw();
-}
-
 void ToggleButton::update(const touchPosition touch,
 						  const touchPosition previous) {
 	Button::update(touch, previous);

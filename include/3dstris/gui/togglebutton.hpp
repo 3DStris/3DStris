@@ -10,7 +10,6 @@ class ToggleButton : public Button {
 	ToggleButton(GUI& parent, const Pos pos, const WH wh, const sds text,
 				 const bool defaultValue);
 
-	void draw() const override;
 	void update(const touchPosition touch,
 				const touchPosition previous) override;
 

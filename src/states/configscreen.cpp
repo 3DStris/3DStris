@@ -7,7 +7,7 @@
 
 ConfigScreen::ConfigScreen()
 	: State(),
-	  titleText(game.translate("settings.title")),
+	  title(game.translate("settings.title")),
 	  tipText(game.translate("settings.tip")),
 
 	  dasText(game.translate("settings.das"), Pos{15, 50 - 35},
@@ -17,74 +17,65 @@ ConfigScreen::ConfigScreen()
 	  dropTimerText(game.translate("settings.droptimer"), Pos{15, 150 - 35},
 					Vector2{0.5f, 0.5f}),
 
-	  saveButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 55}, WH{100, 50},
-								 game.translate("save"))),
-	  cancelButton(
-		  gui.add<Button>(Pos{BSCREEN_WIDTH - 110, BSCREEN_HEIGHT - 55},
-						  WH{100, 50}, game.translate("cancel"))),
+	  save(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 55}, WH{100, 50},
+						   game.translate("save"))),
+	  cancel(gui.add<Button>(Pos{BSCREEN_WIDTH - 110, BSCREEN_HEIGHT - 55},
+							 WH{100, 50}, game.translate("cancel"))),
 
 	  panel(gui.add<Panel>(Pos{10, 10},
 						   WH{BSCREEN_WIDTH - 20, BSCREEN_HEIGHT - 80})),
-	  tipPanel(gui, {0, SCREEN_HEIGHT - 25}, {SCREEN_WIDTH, 25}, false),
+	  tip(gui, {0, SCREEN_HEIGHT - 25}, {SCREEN_WIDTH, 25}, false),
 
-	  dasInputField(gui.add<U32InputField>(Pos{15, 35},
-										   WH{BSCREEN_WIDTH - 30, 25}, "ms")),
-	  arrInputField(gui.add<U32InputField>(Pos{15, 85},
-										   WH{BSCREEN_WIDTH - 30, 25}, "ms")),
+	  das(gui.add<U32InputField>(Pos{15, 35}, WH{BSCREEN_WIDTH - 50 - 115, 25},
+								 "ms")),
+	  arr(gui.add<U32InputField>(Pos{15, 85}, WH{BSCREEN_WIDTH - 30, 25},
+								 "ms")),
 	  dropTimerInputField(gui.add<U32InputField>(
-		  Pos{15, 135}, WH{BSCREEN_WIDTH - 30, 25}, "ms")) {
-	titleText.align(Text::Align::SCREEN_CENTER);
+		  Pos{15, 135}, WH{BSCREEN_WIDTH - 30, 25}, "ms")),
+	  useTextures(gui.add<ToggleButton>(Pos{BSCREEN_WIDTH - 20 - 115, 35},
+										WH{115, 30},
+										game.translate("settings.usetextures"),
+										game.getConfig().useTextures)) {
+	title.align(Text::Align::SCREEN_CENTER);
 
-	auto textScale =
-		std::min((tipPanel.getWH().x - 10) / tipText.getWH().x, 0.5f);
+	auto tipTextScale =
+		std::min((tip.getWH().x - 10) / tipText.getWH().x, 0.5f);
+	tipText.setScale({tipTextScale, tipTextScale});
+	tipText.align(Text::Align::CENTER, tip.getPos(), tip.getWH());
 
-	tipText.setScale({textScale, textScale});
-	tipText.align(Text::Align::CENTER, tipPanel.getPos(), tipPanel.getWH());
-
-	dasInputField.setValue(game.getConfig().das);
-	arrInputField.setValue(game.getConfig().arr);
+	das.setValue(game.getConfig().das);
+	arr.setValue(game.getConfig().arr);
 	dropTimerInputField.setValue(game.getConfig().dropTimer);
 }
 
 void ConfigScreen::update(const double dt) {
 	gui.update(dt);
 
-	if (saveButton.pressed()) {
+	if (save.pressed()) {
 		auto& config = this->game.getConfig();
-		config.das = this->getDas();
-		config.arr = this->getArr();
-		config.dropTimer = this->getDropTimer();
+		config.das = das.getValue();
+		config.arr = arr.getValue();
+		config.dropTimer = dropTimerInputField.getValue();
+		config.useTextures = useTextures.getValue();
 		config.save();
 
 		this->game.popState();
 		return;
 	}
 
-	if (cancelButton.pressed() || hidKeysUp() & KEY_B) {
+	if (cancel.pressed() || hidKeysUp() & KEY_B) {
 		this->game.popState();
 		return;
 	}
-}
-
-u32 ConfigScreen::getDas() const {
-	return dasInputField.getValue();
-}
-
-u32 ConfigScreen::getArr() const {
-	return arrInputField.getValue();
-}
-
-u32 ConfigScreen::getDropTimer() const {
-	return dropTimerInputField.getValue();
 }
 
 void ConfigScreen::draw(const bool bottom) {
 	if (!bottom) {
 		C2D_TargetClear(this->game.getTop(), BACKGROUND);
 
-		titleText.draw();
+		title.draw();
 
-		tipPanel.draw();
+		tip.draw();
 		tipText.draw();
 	} else {
 		C2D_TargetClear(this->game.getBottom(), BACKGROUND);

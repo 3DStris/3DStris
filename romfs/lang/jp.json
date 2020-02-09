@@ -1,5 +1,4 @@
 {
-	"ok": "OK",
 	"save": "保存",
 	
 	"back": "戻る",
@@ -7,6 +6,9 @@
 	"exit": "終了",
 
 	"menu": "メニュー",
+	
+	"on": "はい",
+	"off": "いいえ",
 
 	"sprint.info": "行: %d\n時間: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "ゲーム",
@@ -35,9 +37,8 @@
 
 	"settings.title": "設定",
 	"settings.tip": "下の画面を使用して設定を変更します。キャンセルするには\uE001を押します。",
-	"settings.das": "DAS",
-	"settings.arr": "ARR",
 	"settings.droptimer": "ドロップタイマー",
+	"settings.usetextures": "テクスチャ",
 
 	"loadfailed.config": "設定の読み込みに失敗しました。設定は再設定しました。",
 	"loadfailed.games": "ゲームの読み込みに失敗しますた。ゲームの保存は再設定しました。",

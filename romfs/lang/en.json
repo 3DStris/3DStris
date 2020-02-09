@@ -1,12 +1,15 @@
 {
 	"ok": "OK",
 	"save": "Save",
-	
+
 	"back": "Back",
 	"cancel": "Cancel",
 	"exit": "Exit",
 
 	"menu": "Menu",
+
+	"on": "On",
+	"off": "Off",
 
 	"sprint.info": "Lines: %d\nTime: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Games",
@@ -38,9 +41,10 @@
 	"settings.das": "DAS",
 	"settings.arr": "ARR",
 	"settings.droptimer": "Drop timer",
+	"settings.usetextures": "Textures",
 
 	"loadfailed.config": "Failed to load config; your settings have been reset.",
 	"loadfailed.games": "Failed to load games; your saved games have been reset.",
-	
+
 	"languageselect.select": "Select a language"
 }

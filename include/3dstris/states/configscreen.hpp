@@ -2,6 +2,7 @@
 
 #include <3dstris/gui.hpp>
 #include <3dstris/gui/panel.hpp>
+#include <3dstris/gui/togglebutton.hpp>
 #include <3dstris/gui/u32inputfield.hpp>
 #include <3dstris/state.hpp>
 
@@ -15,24 +16,22 @@ class ConfigScreen : public State {
    private:
 	GUI gui;
 
-	Text titleText;
+	Text title;
 	Text tipText;
 
 	Text dasText;
 	Text arrText;
 	Text dropTimerText;
 
-	Button& saveButton;
-	Button& cancelButton;
+	Button& save;
+	Button& cancel;
 
 	Panel& panel;
-	Panel tipPanel;
+	Panel tip;
 
-	U32InputField& dasInputField;
-	U32InputField& arrInputField;
+	U32InputField& das;
+	U32InputField& arr;
 	U32InputField& dropTimerInputField;
 
-	u32 getDas() const;
-	u32 getArr() const;
-	u32 getDropTimer() const;
+	ToggleButton& useTextures;
 };

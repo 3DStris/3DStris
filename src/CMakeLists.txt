@@ -40,6 +40,7 @@ set_header_list(
 	gui.hpp
 	gui/widget.hpp
 	gui/button.hpp
+	gui/togglebutton.hpp
 	gui/languagebutton.hpp
 	gui/u32inputfield.hpp
 	gui/panel.hpp
@@ -70,6 +71,7 @@ add_library(3dstris STATIC
 	gui.cpp
 	gui/widget.cpp
 	gui/button.cpp
+	gui/togglebutton.cpp
 	gui/languagebutton.cpp
 	gui/u32inputfield.cpp
 	gui/panel.cpp

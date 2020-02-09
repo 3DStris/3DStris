@@ -20,6 +20,7 @@ Button::Button(GUI& _parent, const Vector2 _pos, const Vector2 _wh,
 
 void Button::setText(sds text) {
 	this->text.setText(text);
+	this->text.setScale({1, 1});
 
 	auto textWH = this->text.getWH();
 	// textW and textH are the text size at scale 1:1, do some math to figure
@@ -28,7 +29,6 @@ void Button::setText(sds text) {
 	// - = ----
 	// x   w-10
 	auto textScale = std::min((wh.x - 10) / textWH.x, 0.7f);
-
 	this->text.setScale({textScale, textScale});
 
 	textWH = this->text.getWH();

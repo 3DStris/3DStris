@@ -4,6 +4,9 @@
 	"back": "Voltar",
 	"cancel": "Cancelar",
 	"exit": "Sair",
+	
+	"on": "Sim",
+	"off": "Não",
 
 	"sprint.info": "Linhas: %d\nTempo: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Jogos",
@@ -29,6 +32,7 @@
 	"settings.title": "Configurações",
 	"settings.tip": "Use a tela abaixo para trocar as configurações. Aperte \uE001 para cancelar.",
 	"settings.droptimer": "Timer do drop",
+	"settings.usetextures": "Texturas",
 
 	"loadfailed.config": "As configurações foram resetadas devido a um erro",
 	"loadfailed.games": "Seus jogos foram resetados devido a um erro",

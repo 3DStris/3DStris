@@ -7,6 +7,9 @@
 	"exit": "Wyjście",
 
 	"menu": "Menu",
+	
+	"on": "Tak",
+	"off": "Nie",
 
 	"sprint.info": "Linie: %d\nCzas: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Rozgrywki",
@@ -38,6 +41,7 @@
 	"settings.das": "DAS",
 	"settings.arr": "ARR",
 	"settings.droptimer": "Zegar dropów",
+	"settings.usetextures": "Tekstury",
 
 	"loadfailed.config": "Nie udało się załadować konfiguracji; twoje ustawienia zostały zresetowane.",
 	"loadfailed.games": "Nie udało się załadować rozgrywek; twoje zapisane rozgrywki zostały zresetowane.",

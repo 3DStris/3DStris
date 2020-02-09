@@ -83,7 +83,7 @@ void Ingame::draw(const bool bottom) {
 			Piece::draw(
 				{origin.x + (board.width + 1 + (p == PieceType::O)) * tileSize,
 				 origin.y + y * tileSize},
-				tileSize, shapes[p], colors[p]);
+				tileSize, shapes[p], p);
 
 			y += shapes[p].size();
 			if (p == PieceType::O) {
@@ -95,7 +95,7 @@ void Ingame::draw(const bool bottom) {
 		if (hold != PieceType::NONE) {
 			Piece::draw({origin.x - (shapes[hold].size() + 1) * tileSize,
 						 origin.y + tileSize},
-						tileSize, shapes[hold], colors[hold]);
+						tileSize, shapes[hold], hold);
 		}
 	}
 }

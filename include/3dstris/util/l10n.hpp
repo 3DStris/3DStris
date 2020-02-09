@@ -1,6 +1,6 @@
 #pragma once
 
-#include <3dstris/sprites.h>
+#include <3dstris/images.h>
 #include <parallel_hashmap/btree.h>
 #include <parallel_hashmap/phmap.h>
 #include <rapidjson/document.h>
@@ -59,9 +59,9 @@ class L10n {
 
 	static size_t getFlag(const Language language) {
 		static const phmap::flat_hash_map<Language, size_t> LANGUAGE_TO_ICON{
-			{EN, sprites_us_idx}, {BG, sprites_bg_idx}, {RU, sprites_ru_idx},
-			{PT, sprites_br_idx}, {PL, sprites_pl_idx}, {DE, sprites_de_idx},
-			{JP, sprites_jp_idx}};
+			{EN, images_us_idx}, {BG, images_bg_idx}, {RU, images_ru_idx},
+			{PT, images_br_idx}, {PL, images_pl_idx}, {DE, images_de_idx},
+			{JP, images_jp_idx}};
 
 		return LANGUAGE_TO_ICON.at(language);
 	}

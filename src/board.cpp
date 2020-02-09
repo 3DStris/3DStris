@@ -48,9 +48,14 @@ void Board::draw(const Vector2 origin, const u32 tileSize,
 			}
 
 			if (p != PieceType::NONE) {
-				C2D_DrawRectSolid(origin.x + x * tileSize,
-								  origin.y + y * tileSize, 0.5f, tileSize,
-								  tileSize, colors[p]);
+				const auto pieceX = origin.x + x * tileSize;
+				const auto pieceY = origin.y + y * tileSize;
+				if (Game::get().getConfig().useTextures) {
+					C2D_DrawImageAt(Textures::get(p), pieceX, pieceY, 0.5f);
+				} else {
+					C2D_DrawRectSolid(pieceX, pieceY, 0.5f, tileSize, tileSize,
+									  Textures::getColor(p));
+				}
 			}
 		}
 	}

@@ -17,7 +17,7 @@ int main() {
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 	C2D_Prepare();
 
-	Game& game = Game::getInstance();
+	Game& game = Game::get();
 	game.pushState(make_unique<MainMenu>());
 	if (game.getConfig().failed()) {
 		game.pushState(make_unique<LoadFailed>());

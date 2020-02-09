@@ -1,14 +1,15 @@
+#include <3dstris/images.h>
 #include <3dstris/colors.hpp>
 #include <3dstris/game.hpp>
 
 Game::Game()
-	: spriteSheet(C2D_SpriteSheetLoad("romfs:/gfx/sprites.t3x")),
+	: imageSheet(C2D_SpriteSheetLoad("romfs:/gfx/images.t3x")),
 
 	  top(C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT)),
 	  bottom(C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT)) {}
 
 Game::~Game() {
-	C2D_SpriteSheetFree(spriteSheet);
+	C2D_SpriteSheetFree(imageSheet);
 
 	C3D_RenderTargetDelete(top);
 	C3D_RenderTargetDelete(bottom);
@@ -40,8 +41,8 @@ C3D_RenderTarget* Game::getBottom() {
 	return bottom;
 }
 
-const C2D_SpriteSheet& Game::getSpriteSheet() const noexcept {
-	return spriteSheet;
+const C2D_SpriteSheet& Game::getImageSheet() const noexcept {
+	return imageSheet;
 }
 
 void Game::pushState(std::unique_ptr<State> state, const bool resetTop,

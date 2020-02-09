@@ -1,4 +1,4 @@
-#include <3dstris/sprites.h>
+#include <3dstris/images.h>
 
 #include <3dstris/states/configscreen.hpp>
 #include <3dstris/states/languages.hpp>
@@ -13,7 +13,7 @@ MainMenu::MainMenu()
 	  versionText(
 		  sdscatfmt(sdsempty(), "v%s-%s", _3DSTRIS_VERSION, _3DSTRIS_GIT_HASH)),
 
-	  icon(C2D_SpriteSheetGetImage(game.getSpriteSheet(), sprites_icon_idx)),
+	  icon(C2D_SpriteSheetGetImage(game.getImageSheet(), images_icon_idx)),
 
 	  playButton(gui.add<Button>(Pos{-1, 10}, WH{100, 50},
 								 game.translate("mainmenu.play"),

@@ -40,6 +40,7 @@ set_header_list(
 	gui.hpp
 	gui/widget.hpp
 	gui/button.hpp
+	gui/togglebutton.hpp
 	gui/languagebutton.hpp
 	gui/u32inputfield.hpp
 	gui/panel.hpp
@@ -49,6 +50,7 @@ add_library(3dstris STATIC
 	board.cpp
 	piece.cpp
 	game.cpp
+	colors.cpp
 	config.cpp
 	games.cpp
 	state.cpp
@@ -69,11 +71,13 @@ add_library(3dstris STATIC
 	gui.cpp
 	gui/widget.cpp
 	gui/button.cpp
+	gui/togglebutton.cpp
 	gui/languagebutton.cpp
 	gui/u32inputfield.cpp
 	gui/panel.cpp
 	${HEADER_LIST})
 
+add_t3s(3dstris "${3dstris_SOURCE_DIR}/resources/gfx/images.t3s")
 add_t3s(3dstris "${3dstris_SOURCE_DIR}/resources/gfx/sprites.t3s")
 
 target_include_directories(3dstris PUBLIC ../include)
@@ -83,6 +87,8 @@ target_link_libraries(3dstris PUBLIC
 	sds
 	RapidJSON::RapidJSON
 	phmap::phmap)
+
+target_compile_options(3dstris PRIVATE $<$<CONFIG:RELEASE>:-O3>)
 
 source_group(TREE "${3dstris_SOURCE_DIR}/include"
 			 PREFIX "Header Files"

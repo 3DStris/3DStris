@@ -23,6 +23,9 @@ struct Config {
 		writer.String("dropTimer");
 		writer.Uint(dropTimer);
 
+		writer.String("useTextures");
+		writer.Bool(useTextures);
+
 		writer.String("language");
 		writer.String(L10n::languageToString(language));
 
@@ -41,6 +44,7 @@ struct Config {
 	u32 das = 200;
 	u32 arr = 0;
 	u32 dropTimer = 5;
+	bool useTextures = true;
 	L10n::Language language = L10n::EN;
 
    private:

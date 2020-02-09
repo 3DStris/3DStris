@@ -18,13 +18,37 @@ class Textures {
 		// man this is some fucking wizardry i don't know why this works but
 		// neither do i care
 		static Textures textures;
-
 		return textures.all[index];
+	}
+
+	static Color getColor(const size_t index, bool ghost = false) {
+		static DefaultColors defaultColors;
+		return defaultColors.get(index, ghost);
 	}
 
 	static C2D_ImageTint GHOST;
 
    private:
+	class DefaultColors {
+	   public:
+		friend Textures;
+
+		const static Color& get(const size_t index, bool ghost = false) {
+			// man this is some fucking wizardry i don't know why this works but
+			// neither do i care
+			static DefaultColors defaultTints;
+
+			return ghost ? defaultTints.ghost[index]
+						 : defaultTints.normal[index];
+		}
+
+		DefaultColors();
+
+	   private:
+		std::array<Color, 7> normal;
+		std::array<Color, 7> ghost;
+	};
+
 	const C2D_SpriteSheet spriteSheet;
 
 	std::array<C2D_Image, 7> all;

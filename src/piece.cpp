@@ -76,23 +76,38 @@ void Piece::draw(const Vector2 origin, const u32 tileSize) const {
 	for (u8 y = 0; y < shape.size(); ++y) {
 		for (u8 x = 0; x < shape.size(); ++x) {
 			if (shape.get(x, y)) {
-				C2D_DrawImageAt(sprite, origin.x + (pos.x + x) * tileSize,
-								origin.y + (pos.y + y) * tileSize, 0.5f);
-				C2D_DrawImageAt(sprite, origin.x + (pos.x + x) * tileSize,
-								origin.y + (pos.y + ghostY + y) * tileSize,
-								0.5f, &Textures::GHOST);
+				const auto pieceX = origin.x + (pos.x + x) * tileSize;
+				const auto pieceY = origin.y + (pos.y + y) * tileSize;
+				const auto ghostPieceY =
+					origin.y + (pos.y + ghostY + y) * tileSize;
+				if (Game::get().getConfig().useTextures) {
+					C2D_DrawImageAt(sprite, pieceX, pieceY, 0.5f);
+					C2D_DrawImageAt(sprite, pieceX, ghostPieceY, 0.5f,
+									&Textures::GHOST);
+				} else {
+					C2D_DrawRectSolid(pieceX, pieceY, 0.5f, tileSize, tileSize,
+									  Textures::getColor(type));
+					C2D_DrawRectSolid(pieceX, ghostPieceY, 0.5f, tileSize,
+									  tileSize, Textures::getColor(type, true));
+				}
 			}
 		}
 	}
 }
 
 void Piece::draw(const Vector2 origin, const u32 tileSize,
-				 const PieceShape& shape, const C2D_Image sprite) {
+				 const PieceShape& shape, const PieceType type) {
 	for (u32 y = 0; y < shape.size(); ++y) {
 		for (u32 x = 0; x < shape.size(); ++x) {
 			if (shape.get(x, y)) {
-				C2D_DrawImageAt(sprite, origin.x + x * tileSize,
-								origin.y + y * tileSize, 0.5f);
+				const auto pieceX = origin.x + x * tileSize;
+				const auto pieceY = origin.y + y * tileSize;
+				if (Game::get().getConfig().useTextures) {
+					C2D_DrawImageAt(Textures::get(type), pieceX, pieceY, 0.5f);
+				} else {
+					C2D_DrawRectSolid(pieceX, pieceY, 0.5f, tileSize, tileSize,
+									  Textures::getColor(type));
+				}
 			}
 		}
 	}

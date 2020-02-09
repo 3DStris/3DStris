@@ -18,7 +18,7 @@ class Piece {
 
 	void draw(const Vector2 origin, const u32 tileSize) const;
 	static void draw(const Vector2 origin, const u32 tileSize,
-					 const PieceShape& shape, const C2D_Image sprite);
+					 const PieceShape& shape, const PieceType type);
 
 	bool move(const Direction dir);
 

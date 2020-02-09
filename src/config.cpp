@@ -70,6 +70,7 @@ Config::Config() {
 		MEMBER(das, Uint)
 		MEMBER(arr, Uint)
 		MEMBER(dropTimer, Uint)
+		MEMBER(useTextures, Bool)
 
 		if (document.HasMember("language") && document["language"].IsString()) {
 			language = L10n::stringToLanguage(document["language"].GetString());

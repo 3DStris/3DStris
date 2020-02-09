@@ -31,7 +31,7 @@ class ConfigScreen : public State {
 
 	U32InputField& das;
 	U32InputField& arr;
-	U32InputField& dropTimerInputField;
+	U32InputField& dropTimer;
 
 	ToggleButton& useTextures;
 };

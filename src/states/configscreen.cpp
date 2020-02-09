@@ -30,8 +30,8 @@ ConfigScreen::ConfigScreen()
 								 "ms")),
 	  arr(gui.add<U32InputField>(Pos{15, 85}, WH{BSCREEN_WIDTH - 30, 25},
 								 "ms")),
-	  dropTimerInputField(gui.add<U32InputField>(
-		  Pos{15, 135}, WH{BSCREEN_WIDTH - 30, 25}, "ms")),
+	  dropTimer(gui.add<U32InputField>(Pos{15, 135}, WH{BSCREEN_WIDTH - 30, 25},
+									   "ms")),
 	  useTextures(gui.add<ToggleButton>(Pos{BSCREEN_WIDTH - 20 - 115, 35},
 										WH{115, 30},
 										game.translate("settings.usetextures"),
@@ -45,7 +45,7 @@ ConfigScreen::ConfigScreen()
 
 	das.setValue(game.getConfig().das);
 	arr.setValue(game.getConfig().arr);
-	dropTimerInputField.setValue(game.getConfig().dropTimer);
+	dropTimer.setValue(game.getConfig().dropTimer);
 }
 
 void ConfigScreen::update(const double dt) {
@@ -55,7 +55,7 @@ void ConfigScreen::update(const double dt) {
 		auto& config = this->game.getConfig();
 		config.das = das.getValue();
 		config.arr = arr.getValue();
-		config.dropTimer = dropTimerInputField.getValue();
+		config.dropTimer = dropTimer.getValue();
 		config.useTextures = useTextures.getValue();
 		config.save();
 

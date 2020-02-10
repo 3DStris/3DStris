@@ -10,7 +10,8 @@ LanguageSelect::LanguageSelect()
 	  saveButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 50}, WH{75, 40},
 								 game.translate("save"))),
 	  cancelButton(gui.add<Button>(Pos{BSCREEN_WIDTH - 90, BSCREEN_HEIGHT - 50},
-								   WH{80, 40}, game.translate("cancel"))) {
+								   WH{80, 40}, game.translate("cancel"))),
+	  language(game.getConfig().language) {
 	selectText.align(Text::Align::SCREEN_CENTER);
 
 	float y = 10;

@@ -18,7 +18,7 @@
 	"sprint.times.table.date": "Дата",
 	"sprint.times.info": "Време: %.3fs\nPPS: %.2f\nДата: %s",
 
-	"results.restart": "Рестартирайте",
+	"results.restart": "Рестартирай",
 	"results.menu": "Меню",
 	"results.sprint.time": "Време: %.3fs",
 	"results.sprint.times": "Игри",
@@ -37,11 +37,11 @@
 
 	"settings.title": "Настройки",
 	"settings.tip": "Натиснете \uE001 за да отмените промените.",
-	"settings.droptimer": "Таймер за пускане",
+	"settings.droptimer": "Таймер на падането",
 	"settings.usetextures": "Текстури",
 
-	"loadfailed.config": "Неуспешно зареждане на конфигурацията; вашите настройки са нулирани.",
-	"loadfailed.games": "Неуспешно зареждане на игри; запазените ви игри са нулирани.",
+	"loadfailed.config": "Неуспешно зареждане на конфигурацията; вашите настройки ще бъдат анулирани.",
+	"loadfailed.games": "Неуспешно зареждане на игри; запазените ви игри ще бъдат анулирани.",
 	
 	"languageselect.select": "Изберете език"
 }

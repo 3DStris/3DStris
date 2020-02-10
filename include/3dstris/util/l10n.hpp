@@ -14,7 +14,7 @@ class L10n {
 		}
 	};
 
-	enum Language { EN, BG, RU, PT, PL, DE, JP };
+	enum Language { EN, BG, RU, PT, PL, DE, JP, MK };
 
 	const static phmap::btree_map<Language, const char*> LANGUAGE_TO_STRING;
 	const static phmap::btree_map<const char*, Language, CompareString>
@@ -61,7 +61,7 @@ class L10n {
 		static const phmap::flat_hash_map<Language, size_t> LANGUAGE_TO_ICON{
 			{EN, images_us_idx}, {BG, images_bg_idx}, {RU, images_ru_idx},
 			{PT, images_br_idx}, {PL, images_pl_idx}, {DE, images_de_idx},
-			{JP, images_jp_idx}};
+			{JP, images_jp_idx}, {MK, images_mk_idx}};
 
 		return LANGUAGE_TO_ICON.at(language);
 	}

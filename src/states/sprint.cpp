@@ -4,8 +4,16 @@
 #include <3dstris/states/sprint.hpp>
 #include <3dstris/states/sprintresults.hpp>
 
-Sprint::Sprint() : Ingame(), time(0.0) {
+Sprint::Sprint()
+	: Ingame(),
+	  infoFormat(game.translate("sprint.info")),
+	  time(0.0),
+	  startTimer(0.0) {
 	infoText.setPos({10, 10});
+}
+
+Sprint::~Sprint() {
+	sdsfree(infoFormat);
 }
 
 void Sprint::reset() {
@@ -42,9 +50,8 @@ void Sprint::update(const double dt) {
 
 	time += dt;
 
-	infoText.setText(sdscatprintf(sdsempty(), game.translate("sprint.info"),
-								  board.linesCleared(), time,
-								  board.droppedPieces() / time));
+	infoText.setText(sdscatprintf(sdsempty(), infoFormat, board.linesCleared(),
+								  time, board.droppedPieces() / time));
 
 	if (board.linesCleared() >= 20) {
 		game.pushState(make_unique<SprintResults>(

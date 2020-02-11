@@ -8,7 +8,7 @@ Piece::Piece(Board& board, const PieceShape& shape, const PieceType type)
 }
 
 Piece::Piece(Board& board, const PieceType type)
-	: Piece(board, shapes[type], type) {
+	: Piece(board, Shapes::ALL[type], type) {
 	// Uhh
 }
 
@@ -39,7 +39,7 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 }
 
 void Piece::reset(const PieceType type) {
-	reset(shapes[type], type);
+	reset(Shapes::ALL[type], type);
 }
 
 void Piece::set() {

@@ -16,7 +16,7 @@
 	"sprint.times.nogames": "Brak rozgrywek w trybie Sprint.",
 	"sprint.times.table.time": "Czas",
 	"sprint.times.table.date": "Data",
-	"sprint.times.info": "Time: %.3fs\nPPS: %.2f\nDate: %s",
+	"sprint.times.info": "Czas: %.3fs\nPPS: %.2f\nData: %s",
 
 	"results.dead": "Koniec Gry",
 	"results.restart": "Restart",

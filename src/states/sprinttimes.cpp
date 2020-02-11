@@ -5,6 +5,8 @@
 
 SprintTimes::SprintTimes()
 	: State(),
+	  infoFormat(game.translate("sprint.times.info")),
+
 	  panel(gui, Pos{TABLE_X, TABLE_Y}, WH{TABLE_W, TABLE_H}, true),
 
 	  backButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 60}, WH{100, 50},
@@ -33,6 +35,10 @@ SprintTimes::SprintTimes()
 	noGamesText.align(Text::Align::SCREEN_CENTER);
 	updateInfoText(games[selected]);
 	updateSelectedText();
+}
+
+SprintTimes::~SprintTimes() {
+	sdsfree(infoFormat);
 }
 
 void SprintTimes::genValues() {
@@ -155,7 +161,6 @@ void SprintTimes::updateSelectedText() {
 void SprintTimes::updateInfoText(const SavedGame& savedGame) {
 	char date[60];
 	savedGame.dateString(date, 60);
-	infoText.setText(sdscatprintf(sdsempty(),
-								  game.translate("sprint.times.info"),
-								  savedGame.time, savedGame.pps, date));
+	infoText.setText(sdscatprintf(sdsempty(), infoFormat, savedGame.time,
+								  savedGame.pps, date));
 }

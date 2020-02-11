@@ -7,7 +7,6 @@
 class Results : public State {
    public:
 	Results(Ingame* parent);
-	Results(Ingame* parent, SavedGame&& saved);
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;

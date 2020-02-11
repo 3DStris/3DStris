@@ -8,6 +8,7 @@
 class SprintResults : public State {
    public:
 	SprintResults(Ingame* parent, SavedGame&& saved);
+	~SprintResults();
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;
@@ -17,6 +18,7 @@ class SprintResults : public State {
 
 	Ingame* parent;
 
+	const sds timeFormat;
 	Text timeText;
 
 	GUI gui;

@@ -8,6 +8,7 @@
 class SprintTimes : public State {
    public:
 	SprintTimes();
+	~SprintTimes();
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;
@@ -24,6 +25,8 @@ class SprintTimes : public State {
 
 	void updateInfoText(const SavedGame& game);
 	void updateSelectedText();
+
+	const sds infoFormat;
 
 	GUI gui;
 	Panel panel;

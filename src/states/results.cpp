@@ -18,16 +18,6 @@ Results::Results(Ingame* parent)
 	deadText.align(Text::Align::SCREEN_CENTER);
 }
 
-Results::Results(Ingame* parent, SavedGame&& saved) : Results(parent) {
-	deadText.setText(sdscatprintf(
-		sdsempty(), game.translate("results.sprint.time"), saved.time));
-	deadText.setScale({1.3f, 1.3f});
-	deadText.align(Text::Align::SCREEN_CENTER);
-
-	game.getGames().push(std::move(saved));
-	game.getGames().save();
-}
-
 void Results::update(const double dt) {
 	gui.update(dt);
 

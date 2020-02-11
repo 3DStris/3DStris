@@ -19,9 +19,9 @@ class ConfigScreen : public State {
 	Text title;
 	Text tipText;
 
-	Text dasText;
-	Text arrText;
-	Text dropTimerText;
+	Text dasLabel;
+	Text arrLabel;
+	Text dropTimerLabel;
 
 	Button& save;
 	Button& cancel;

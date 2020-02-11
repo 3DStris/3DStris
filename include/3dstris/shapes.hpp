@@ -85,8 +85,8 @@ namespace Shapes {
 		0, 0, 0
 	}, 3};
 	// clang-format on
-};  // namespace Shapes
 
-static std::array<PieceShape, 7> shapes{Shapes::I, Shapes::O, Shapes::L,
-										Shapes::J, Shapes::S, Shapes::T,
-										Shapes::Z};
+	static std::array<PieceShape, 7> ALL{Shapes::I, Shapes::O, Shapes::L,
+										 Shapes::J, Shapes::S, Shapes::T,
+										 Shapes::Z};
+};  // namespace Shapes

@@ -6,8 +6,8 @@ SprintResults::SprintResults(Ingame* parent, SavedGame&& saved)
 	: State(),
 	  parent(parent),
 
-	  timeText(sdscatprintf(sdsempty(), game.translate("results.sprint.time"),
-							saved.time)),
+	  timeFormat(game.translate("results.sprint.time")),
+	  timeText(sdscatprintf(sdsempty(), timeFormat, saved.time)),
 
 	  restartButton(gui.add<Button>(Pos{-1, -1}, WH{150, 60},
 									game.translate("results.restart"),
@@ -23,6 +23,10 @@ SprintResults::SprintResults(Ingame* parent, SavedGame&& saved)
 
 	game.getGames().push(std::move(saved));
 	game.getGames().save();
+}
+
+SprintResults::~SprintResults() {
+	sdsfree(timeFormat);
 }
 
 void SprintResults::update(const double dt) {

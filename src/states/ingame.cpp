@@ -2,9 +2,8 @@
 #include <algorithm>
 
 static std::array<PieceType, 7> genBag(std::mt19937_64& rng) {
-	std::array<PieceType, 7> pieces{PieceType::I, PieceType::O, PieceType::L,
-									PieceType::J, PieceType::S, PieceType::T,
-									PieceType::Z};
+	std::array<PieceType, 7> pieces{I, O, L, J, S, T, Z};
+
 	std::shuffle(pieces.begin(), pieces.end(), rng);
 	return pieces;
 }
@@ -15,7 +14,7 @@ Ingame::Ingame()
 	  tileSize((SCREEN_HEIGHT - 10) / board.height),
 	  bagRNG(osGetTime()),
 	  upcoming(5),
-	  piece(board, PieceType::I) {
+	  piece(board, I) {
 	origin = {(SCREEN_WIDTH - board.width * tileSize) / 2.0f, 10};
 	reset();
 }
@@ -24,7 +23,8 @@ void Ingame::reset() {
 	board.reset();
 
 	const auto _bag = genBag(bagRNG);
-	bag = std::deque<PieceType>(_bag.begin(), _bag.end());
+	bag.insert(bag.end(), std::make_move_iterator(_bag.begin()),
+			   std::make_move_iterator(_bag.end()));
 
 	piece.reset(bag.front());
 	bag.pop_front();
@@ -45,19 +45,20 @@ void Ingame::update(const double dt) {
 		bag.pop_front();
 		if (bag.size() < upcoming) {
 			for (const auto& p : genBag(bagRNG)) {
-				bag.push_back(p);
+				bag.push_back(std::move(p));
 			}
 		}
 	}
 
 	if (!hasHeld && (kDown & KEY_X || kDown & KEY_A)) {
 		hasHeld = true;
-		if (hold == PieceType::NONE) {
+		if (hold == NONE && piece.getType() != NONE &&
+			piece.getType() != INVALID) {
 			hold = piece.getType();
 			piece.reset(bag.front());
 			bag.pop_front();
 		} else {
-			PieceType tmp = piece.getType();
+			const auto tmp = piece.getType();
 			piece.reset(hold);
 			hold = tmp;
 		}
@@ -76,26 +77,26 @@ void Ingame::draw(const bool bottom) {
 		for (u32 i = 0; i < upcoming; ++i) {
 			const auto& p = bag[i];
 
-			if (p == PieceType::I) {
+			if (p == I) {
 				--y;
 			}
 
 			Piece::draw(
 				{origin.x + (board.width + 1 + (p == PieceType::O)) * tileSize,
 				 origin.y + y * tileSize},
-				tileSize, shapes[p], p);
+				tileSize, Shapes::ALL[p], p);
 
-			y += shapes[p].size();
+			y += Shapes::ALL[p].size();
 			if (p == PieceType::O) {
 				++y;
 			}
 		}
 
 		// draw held piece
-		if (hold != PieceType::NONE) {
-			Piece::draw({origin.x - (shapes[hold].size() + 1) * tileSize,
+		if (hold != NONE && hold != INVALID) {
+			Piece::draw({origin.x - (Shapes::ALL[hold].size() + 1) * tileSize,
 						 origin.y + tileSize},
-						tileSize, shapes[hold], hold);
+						tileSize, Shapes::ALL[hold], hold);
 		}
 	}
 }

@@ -6,6 +6,7 @@
 class Sprint : public Ingame {
    public:
 	Sprint();
+	~Sprint();
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;
@@ -13,6 +14,8 @@ class Sprint : public Ingame {
 	void reset() override;
 
    private:
+	const sds infoFormat;
+
 	Text infoText;
 	double time;
 

@@ -2,24 +2,22 @@ add_executable(3dstris-bin 3dstris.cpp)
 
 target_link_libraries(3dstris-bin PUBLIC 3dstris)
 
-set(NAME "3DStris")
-set(DESCRIPTION "Tetris for the 3DS")
 set(AUTHOR "3DStris Team")
-set(ICON_LOCATION "${3dstris_SOURCE_DIR}/resources/icon.png")
-set(ROMFS_LOCATION "${3dstris_SOURCE_DIR}/romfs")
+set(ICON_LOCATION ${PROJECT_SOURCE_DIR}/resources/icon.png)
+set(ROMFS_LOCATION ${PROJECT_SOURCE_DIR}/romfs)
 
 set(PRODUCT_CODE "CTR-B-3RIS")
 set(TITLE_ID "0xED474")
-set(RSF_LOCATION "${3dstris_SOURCE_DIR}/resources/3dstris.rsf")
-configure_file("${3dstris_SOURCE_DIR}/resources/3dstris.rsf.in"
-			   "${RSF_LOCATION}")
+set(RSF_LOCATION ${PROJECT_SOURCE_DIR}/resources/3dstris.rsf)
+configure_file(${RSF_LOCATION}.in
+			   ${RSF_LOCATION})
 
-set(BANNER_LOCATION "${3dstris_SOURCE_DIR}/resources/banner.cgfx")
-set(SOUND_LOCATION "${3dstris_SOURCE_DIR}/resources/sound.cwav")
+set(BANNER_LOCATION ${PROJECT_SOURCE_DIR}/resources/banner.cgfx)
+set(SOUND_LOCATION ${PROJECT_SOURCE_DIR}/resources/sound.cwav)
 
 add_3dsx_target(3dstris-bin
-	${NAME} # Name
-	${DESCRIPTION} # Description
+	${CMAKE_PROJECT_NAME} # Name
+	${CMAKE_PROJECT_DESCRIPTION} # Description
 	${AUTHOR} # Author(s)
 	${ROMFS_LOCATION} # RomFS
 	${ICON_LOCATION} # Icon
@@ -31,8 +29,8 @@ if (BUILD_CIA AND SMDHTOOL AND BANNERTOOL AND MAKEROM)
 		${BANNER_LOCATION} # Banner
 		${SOUND_LOCATION} # Sound
 		${ROMFS_LOCATION} # RomFS
-		${NAME} # Name
-		${DESCRIPTION} # Description
+		${CMAKE_PROJECT_NAME} # Name
+		${CMAKE_PROJECT_DESCRIPTION} # Description
 		${AUTHOR} # Author(s)
 		${ICON_LOCATION} # Icon
 	)

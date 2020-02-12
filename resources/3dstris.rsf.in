@@ -1,5 +1,5 @@
 BasicInfo:
-  Title                   : @NAME@
+  Title                   : @CMAKE_PROJECT_NAME@
   ProductCode             : @PRODUCT_CODE@
   Logo                    : Nintendo # Nintendo / Licensed / Distributed / iQue / iQueForSystem
 

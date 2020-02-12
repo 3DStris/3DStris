@@ -78,15 +78,24 @@ void Games::push(SavedGame&& game) {
 }
 
 void Games::save() {
-	rapidjson::StringBuffer sb;
-	rapidjson::Writer<rapidjson::StringBuffer> writer(sb);
-	writer.SetMaxDecimalPlaces(4);
+	s32 mainPrio;
+	svcGetThreadPriority(&mainPrio, CUR_THREAD_HANDLE);
 
-	this->serialize(writer);
+	threadCreate(
+		[](void* _games) {
+			const auto games = static_cast<Games*>(_games);
 
-	FSFILE_Write(gamesHandle, nullptr, 0, sb.GetString(), sb.GetLength(),
-				 FS_WRITE_FLUSH);
-	FSFILE_SetSize(gamesHandle, sb.GetLength());
+			rapidjson::StringBuffer sb;
+			rapidjson::Writer<rapidjson::StringBuffer> writer(sb);
+			writer.SetMaxDecimalPlaces(4);
+
+			games->serialize(writer);
+
+			FSFILE_Write(games->gamesHandle, nullptr, 0, sb.GetString(),
+						 sb.GetLength(), FS_WRITE_FLUSH);
+			FSFILE_SetSize(games->gamesHandle, sb.GetLength());
+		},
+		this, 1024, mainPrio - 1, -2, true);
 }
 
 bool Games::failed() const noexcept {

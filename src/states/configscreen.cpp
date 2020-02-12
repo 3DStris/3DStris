@@ -38,7 +38,7 @@ ConfigScreen::ConfigScreen()
 										game.getConfig().useTextures)) {
 	title.align(Text::Align::SCREEN_CENTER);
 
-	auto tipTextScale =
+	const auto tipTextScale =
 		std::min((tip.getWH().x - 10) / tipText.getWH().x, 0.5f);
 	tipText.setScale({tipTextScale, tipTextScale});
 	tipText.align(Text::Align::CENTER, tip.getPos(), tip.getWH());

@@ -49,6 +49,8 @@ void Games::initialize(const FS_Archive sdmcArchive) {
 	document.Parse<rapidjson::kParseFullPrecisionFlag>(configRead);
 	sdsfree(configRead);
 
+	games.reserve(document.GetArray().Size());
+
 	if (!validateJson(document)) {
 		save();
 		_failed = true;

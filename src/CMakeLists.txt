@@ -1,15 +1,15 @@
 execute_process(COMMAND
 	"${GIT_EXECUTABLE}" describe --match=NeVeRmAtCh --always --abbrev=7 --dirty
-	WORKING_DIRECTORY "${3dstris_SOURCE_DIR}"
+	WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
 	OUTPUT_VARIABLE GIT_SHA1
 	ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-configure_file("${3dstris_SOURCE_DIR}/include/3dstris/version.hpp.in"
-			   "${3dstris_SOURCE_DIR}/include/3dstris/version.hpp")
+configure_file("${PROJECT_SOURCE_DIR}/include/3dstris/version.hpp.in"
+			   "${PROJECT_SOURCE_DIR}/include/3dstris/version.hpp")
 
 macro(set_header_list)
 	foreach(header_file IN ITEMS ${ARGN})
-		list(APPEND HEADER_LIST "${3dstris_SOURCE_DIR}/include/3dstris/${header_file}")
+		list(APPEND HEADER_LIST "${PROJECT_SOURCE_DIR}/include/3dstris/${header_file}")
 	endforeach()
 endmacro()
 
@@ -77,8 +77,8 @@ add_library(3dstris STATIC
 	gui/panel.cpp
 	${HEADER_LIST})
 
-add_t3s(3dstris "${3dstris_SOURCE_DIR}/resources/gfx/images.t3s")
-add_t3s(3dstris "${3dstris_SOURCE_DIR}/resources/gfx/sprites.t3s")
+add_t3s(3dstris "${PROJECT_SOURCE_DIR}/resources/gfx/images.t3s")
+add_t3s(3dstris "${PROJECT_SOURCE_DIR}/resources/gfx/sprites.t3s")
 
 target_include_directories(3dstris PUBLIC ../include)
 
@@ -90,6 +90,6 @@ target_link_libraries(3dstris PUBLIC
 
 target_compile_options(3dstris PRIVATE $<$<CONFIG:RELEASE>:-O3>)
 
-source_group(TREE "${3dstris_SOURCE_DIR}/include"
+source_group(TREE "${PROJECT_SOURCE_DIR}/include"
 			 PREFIX "Header Files"
 			 FILES ${HEADER_LIST})

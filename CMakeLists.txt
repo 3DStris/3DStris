@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12...3.15)
 
-set(CMAKE_TOOLCHAIN_FILE ${PROJECT_SOURCE_DIR}/lib/3ds-cmake/DevkitArm3DS.cmake)
+set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/lib/3ds-cmake/DevkitArm3DS.cmake)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

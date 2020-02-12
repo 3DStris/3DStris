@@ -4,7 +4,6 @@ target_link_libraries(3dstris-bin PUBLIC 3dstris)
 
 set(AUTHOR "3DStris Team")
 set(ICON_LOCATION ${PROJECT_SOURCE_DIR}/resources/icon.png)
-message(WARNING ${PROJECT_SOURCE_DIR}/romfs)
 set(ROMFS_LOCATION ${PROJECT_SOURCE_DIR}/romfs)
 
 set(PRODUCT_CODE "CTR-B-3RIS")

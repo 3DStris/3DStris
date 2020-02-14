@@ -21,7 +21,6 @@ using SavedGames = std::vector<SavedGame>;
 
 class Games {
    public:
-	~Games();
 	void initialize(const FS_Archive sdmcArchive);
 
 	template <typename Writer>
@@ -54,12 +53,13 @@ class Games {
 	bool failed() const noexcept;
 
    private:
-	const FS_Path gamesPath = fsMakePath(PATH_ASCII, "/3ds/3dstris/games.json");
+	static constexpr auto GAMES_PATH = "sdmc:/3ds/3dstris/games.json";
+	const FS_Path gamesFSPath =
+		fsMakePath(PATH_ASCII, "/3ds/3dstris/games.json");
+
 	SavedGames games;
 
 	FS_Archive sdmcArchive;
-
-	Handle gamesHandle;
 
 	bool _failed = false;
 };

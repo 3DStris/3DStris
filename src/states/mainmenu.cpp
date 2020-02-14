@@ -11,7 +11,8 @@
 MainMenu::MainMenu()
 	: State(),
 	  versionText(
-		  sdscatfmt(sdsempty(), "v%s-%s", _3DSTRIS_VERSION, _3DSTRIS_GIT_HASH)),
+		  sdscatfmt(sdsempty(), "v%s-%s", _3DSTRIS_VERSION, _3DSTRIS_GIT_HASH),
+		  Pos{}, {0.5f, 0.5f}),
 
 	  icon(C2D_SpriteSheetGetImage(game.getImageSheet(), images_icon_idx)),
 
@@ -30,9 +31,9 @@ MainMenu::MainMenu()
 	  languagesButton(gui.add<Button>(
 		  Pos{BSCREEN_WIDTH - 80 - 10, BSCREEN_HEIGHT - 40 - 10}, WH{75, 40},
 		  game.translate("mainmenu.languages"))) {
-	versionText.setScale({0.5f, 0.5f});
 	versionText.setPos({3, SCREEN_HEIGHT - versionText.getWH().y / 1.25f - 5});
 }
+
 void MainMenu::update(const double dt) {
 	u32 kDown = hidKeysDown();
 
@@ -44,11 +45,9 @@ void MainMenu::update(const double dt) {
 
 	if (playButton.pressed()) {
 		this->game.pushState(make_unique<ModeSelect>());
-		return;
 	}
 	if (settingsButton.pressed()) {
 		this->game.pushState(make_unique<ConfigScreen>());
-		return;
 	}
 	if (exitButton.pressed()) {
 		this->game.exit = true;

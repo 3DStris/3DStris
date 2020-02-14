@@ -1,4 +1,6 @@
 #include <rapidjson/document.h>
+#include <rapidjson/filereadstream.h>
+#include <rapidjson/filewritestream.h>
 #include <rapidjson/writer.h>
 #include <sds.h>
 #include <3dstris/config.hpp>
@@ -27,34 +29,31 @@ static bool validateGame(
 void Games::initialize(const FS_Archive sdmcArchive) {
 	this->sdmcArchive = sdmcArchive;
 
-	bool gamesFileExists = fileExists(this->sdmcArchive, gamesPath);
+	bool gamesFileExists = fileExists(this->sdmcArchive, gamesFSPath);
 	if (!gamesFileExists) {
-		FSUSER_CreateFile(this->sdmcArchive, gamesPath, 0, 0);
+		FSUSER_CreateFile(this->sdmcArchive, gamesFSPath, 0, 0);
 	}
-
-	FSUSER_OpenFile(&gamesHandle, this->sdmcArchive, gamesPath,
-					FS_OPEN_WRITE | FS_OPEN_READ, 0);
 
 	if (!gamesFileExists) {
 		save();
 	}
 
-	u64 fileSize;
-	FSFILE_GetSize(gamesHandle, &fileSize);
+	FILE* file = fopen(GAMES_PATH, "r");
 
-	sds configRead = sdsnewlen("", fileSize);
-	FSFILE_Read(gamesHandle, nullptr, 0, configRead, fileSize);
+	char readBuffer[1024];
+	rapidjson::FileReadStream fileStream(file, readBuffer, sizeof(readBuffer));
 
 	rapidjson::Document document;
-	document.Parse<rapidjson::kParseFullPrecisionFlag>(configRead);
-	sdsfree(configRead);
+	document.ParseStream(fileStream);
 
-	games.reserve(document.GetArray().Size());
+	fclose(file);
 
 	if (!validateJson(document)) {
 		save();
 		_failed = true;
 	} else {
+		games.reserve(document.GetArray().Size());
+
 		for (const auto& object : document.GetArray()) {
 			if (validateGame(object)) {
 				games.push_back({object["date"].GetInt64(),   //
@@ -64,10 +63,6 @@ void Games::initialize(const FS_Archive sdmcArchive) {
 		}
 		std::sort(games.begin(), games.end(), std::less<SavedGame>());
 	}
-}
-
-Games::~Games() {
-	FSFILE_Close(gamesHandle);
 }
 
 const SavedGames& Games::all() const noexcept {
@@ -84,20 +79,20 @@ void Games::save() {
 	svcGetThreadPriority(&mainPrio, CUR_THREAD_HANDLE);
 
 	threadCreate(
-		[](void* _games) {
-			const auto games = static_cast<Games*>(_games);
+		[](void* games) {
+			FILE* file = fopen(GAMES_PATH, "w");
 
-			rapidjson::StringBuffer sb;
-			rapidjson::Writer<rapidjson::StringBuffer> writer(sb);
+			char writeBuffer[1024];
+			rapidjson::FileWriteStream fileStream(file, writeBuffer,
+												  sizeof(writeBuffer));
+
+			rapidjson::Writer<rapidjson::FileWriteStream> writer(fileStream);
 			writer.SetMaxDecimalPlaces(4);
+			static_cast<Games*>(games)->serialize(writer);
 
-			games->serialize(writer);
-
-			FSFILE_Write(games->gamesHandle, nullptr, 0, sb.GetString(),
-						 sb.GetLength(), FS_WRITE_FLUSH);
-			FSFILE_SetSize(games->gamesHandle, sb.GetLength());
+			fclose(file);
 		},
-		this, 1024, mainPrio - 1, -2, true);
+		this, 2048, mainPrio - 1, -2, true);
 }
 
 bool Games::failed() const noexcept {

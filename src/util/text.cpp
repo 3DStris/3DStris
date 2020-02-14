@@ -65,8 +65,10 @@ void Text::setText(sds text) {
 	this->text = text;
 
 	C2D_TextBufClear(textBuffer);
-	if (C2D_TextBufGetNumGlyphs(textBuffer) < sdslen(text)) {
-		textBuffer = C2D_TextBufResize(textBuffer, sdslen(text));
+
+	const size_t textLen = sdslen(text);
+	if (C2D_TextBufGetNumGlyphs(textBuffer) < textLen) {
+		textBuffer = C2D_TextBufResize(textBuffer, textLen);
 	}
 
 	C2D_TextParse(&textObject, textBuffer, this->text);

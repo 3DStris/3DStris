@@ -19,7 +19,7 @@ Textures::Textures()
 	  all({SPRITE(I, cyan), SPRITE(O, yellow), SPRITE(L, orange),
 		   SPRITE(J, blue), SPRITE(S, green), SPRITE(T, purple),
 		   SPRITE(Z, red)}) {
-	C2D_AlphaImageTint(&GHOST, 0.4f);
+	C2D_AlphaImageTint(&GHOST, 0.3902f);
 }
 
 Textures::~Textures() {

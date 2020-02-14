@@ -1,3 +1,4 @@
+#include <rapidjson/filereadstream.h>
 #include <3dstris/util/l10n.hpp>
 
 const phmap::btree_map<L10n::Language, const char*> L10n::LANGUAGE_TO_STRING = {
@@ -13,17 +14,19 @@ void L10n::load(const char* path) {
 		translations.clear();
 	}
 
-	const auto document = loadJson(path).GetObject();
-
-	for (const auto& tr : document) {
+	const auto document = loadJson(path);
+	const auto& trs = document.GetObject();
+	for (const auto& tr : trs) {
 		translations[tr.name.GetString()] = tr.value.GetString();
 	}
 
 	if (strcmp(path, EN_PATH) != 0) {
-		const auto enDocument = loadJson(EN_PATH).GetObject();
-		if (enDocument.MemberCount() != document.MemberCount()) {
-			for (const auto& tr : enDocument) {
-				const auto name = tr.name.GetString();
+		const auto enDocument = loadJson(EN_PATH);
+		const auto& enTrs = enDocument.GetObject();
+
+		if (enTrs.MemberCount() != trs.MemberCount()) {
+			for (const auto& tr : enTrs) {
+				const std::string name = tr.name.GetString();
 				if (!translations.count(name)) {
 					translations[name] = tr.value.GetString();
 				}
@@ -35,17 +38,13 @@ void L10n::load(const char* path) {
 rapidjson::Document L10n::loadJson(const char* path) {
 	FILE* file = fopen(path, "r");
 
-	fseek(file, 0, SEEK_END);
-	const size_t length = ftell(file);
-	rewind(file);
-
-	sds content = sdsnewlen("", length);
-	fread(content, sizeof(char), length, file);
-	fclose(file);
-
 	rapidjson::Document document;
-	document.Parse(content);
-	sdsfree(content);
+
+	char readBuffer[512];
+	rapidjson::FileReadStream fileStream(file, readBuffer, sizeof(readBuffer));
+	document.ParseStream(fileStream);
+
+	fclose(file);
 
 	return document;
 }

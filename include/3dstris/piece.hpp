@@ -2,7 +2,6 @@
 
 #include <3dstris/colors.hpp>
 #include <3dstris/shapes.hpp>
-#include <3dstris/util.hpp>
 #include <3dstris/wallkicks.hpp>
 
 class Board;
@@ -56,8 +55,7 @@ class Piece {
 						// colliding down
 
 	double das;
-	// Vector2 as it needs one for left and right
-	Vector2d dasTimer;
+	Vector2d dasTimer;  // Vector2 as it needs one for left and right
 
 	double arr;
 	double arrTimer;

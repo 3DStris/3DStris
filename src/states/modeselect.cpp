@@ -1,10 +1,6 @@
-#include <3dstris/sprites.h>
-
-#include <3dstris/states/mainmenu.hpp>
 #include <3dstris/states/modeselect.hpp>
+#include <3dstris/states/playing.hpp>
 #include <3dstris/states/sprint.hpp>
-#include <3dstris/util.hpp>
-#include <3dstris/version.hpp>
 
 ModeSelect::ModeSelect()
 	: State(),

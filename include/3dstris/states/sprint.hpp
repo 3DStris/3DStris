@@ -6,7 +6,7 @@
 class Sprint : public Ingame {
    public:
 	Sprint();
-	~Sprint();
+	~Sprint() override;
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;

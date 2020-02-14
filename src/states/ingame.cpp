@@ -1,4 +1,5 @@
 #include <3dstris/states/ingame.hpp>
+#include <3dstris/states/paused.hpp>
 #include <algorithm>
 
 static std::array<PieceType, 7> genBag(std::mt19937_64& rng) {
@@ -36,6 +37,11 @@ void Ingame::reset() {
 void Ingame::update(const double dt) {
 	const u32 kDown = hidKeysDown();
 	const u32 kHeld = hidKeysHeld();
+
+	if (kDown & KEY_START) {
+		game.pushState(make_unique<Paused>(this));
+		return;
+	}
 
 	piece.update(dt, kDown, kHeld);
 

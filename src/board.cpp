@@ -42,14 +42,11 @@ void Board::draw(const Vector2 origin, const u32 tileSize,
 
 	for (u32 y = 0; y < height; ++y) {
 		for (u32 x = 0; x < width; ++x) {
-			const PieceType& p = get(x, y);
-			if (p == PieceType::INVALID) {
-				return;
-			}
+			const PieceType p = get(x, y);
 
-			if (p != PieceType::NONE) {
-				const auto pieceX = origin.x + x * tileSize;
-				const auto pieceY = origin.y + y * tileSize;
+			if (p != NONE && p != INVALID) {
+				const float pieceX = origin.x + x * tileSize;
+				const float pieceY = origin.y + y * tileSize;
 				if (Game::get().getConfig().useTextures) {
 					C2D_DrawImageAt(Textures::get(p), pieceX, pieceY, 0.5f);
 				} else {
@@ -65,7 +62,7 @@ void Board::clearLines() {
 	for (u32 y = 0; y < height; ++y) {
 		bool line = true;
 		for (u32 x = 0; x < width; ++x) {
-			if (get(x, y) == PieceType::NONE) {
+			if (get(x, y) == NONE) {
 				line = false;
 				break;
 			}
@@ -75,8 +72,7 @@ void Board::clearLines() {
 			_linesCleared++;
 			for (u32 curY = y; curY >= 1; --curY) {
 				for (u32 x = 0; x < width; ++x) {
-					set(x, curY,
-						curY == 1 ? PieceType::NONE : get(x, curY - 1));
+					set(x, curY, curY == 1 ? NONE : get(x, curY - 1));
 				}
 			}
 		}

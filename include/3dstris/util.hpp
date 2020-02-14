@@ -1,7 +1,6 @@
 #pragma once
 
 #include <citro2d.h>
-
 #include <array>
 #include <memory>
 

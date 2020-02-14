@@ -1,7 +1,6 @@
 #include <3dstris/gui/languagebutton.hpp>
 #include <3dstris/states/languages.hpp>
 #include <3dstris/states/mainmenu.hpp>
-#include <algorithm>
 
 LanguageSelect::LanguageSelect()
 	: State(),

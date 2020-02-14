@@ -28,11 +28,6 @@ void Sprint::reset() {
 void Sprint::update(const double dt) {
 	u32 kDown = hidKeysDown();
 
-	if (kDown & KEY_START) {
-		game.pushState(make_unique<Paused>(this));
-		return;
-	}
-
 	if (kDown & KEY_SELECT) {
 		reset();
 		return;

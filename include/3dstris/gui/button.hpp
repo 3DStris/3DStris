@@ -3,7 +3,6 @@
 #include <3dstris/gui/widget.hpp>
 #include <3dstris/util/text.hpp>
 
-class GUI;
 class Button : public Widget {
    public:
 	static constexpr Color BUTTON = C2D_Color32(79, 79, 79, 255);

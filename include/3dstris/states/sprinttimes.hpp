@@ -2,8 +2,6 @@
 
 #include <3dstris/gui.hpp>
 #include <3dstris/gui/panel.hpp>
-#include <3dstris/state.hpp>
-#include <3dstris/util/text.hpp>
 
 class SprintTimes : public State {
    public:

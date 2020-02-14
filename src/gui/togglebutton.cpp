@@ -1,4 +1,3 @@
-#include <3dstris/game.hpp>
 #include <3dstris/gui/togglebutton.hpp>
 
 static sds getText(const sds text, const bool value) {
@@ -6,9 +5,9 @@ static sds getText(const sds text, const bool value) {
 					 Game::get().translate(value ? "on" : "off"));
 }
 
-ToggleButton::ToggleButton(GUI& parent, const Pos pos, const WH wh,
+ToggleButton::ToggleButton(GUI& _parent, const Pos _pos, const WH _wh,
 						   const sds text, const bool defaultValue)
-	: Button(parent, pos, wh, getText(text, defaultValue)),
+	: Button(_parent, _pos, _wh, getText(text, defaultValue)),
 	  text(text),
 	  value(defaultValue) {}
 

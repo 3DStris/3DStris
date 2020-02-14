@@ -59,8 +59,8 @@ void Sprint::update(const double dt) {
 			SavedGame{
 				time_t((osGetTime() - 2208988800000)) /
 					1000,  // why? because the 3ds counts in milliseconds.. but
-						   // that's not where it ends; it also starts from
-						   // 1900! why, Nintendo?! why?!
+						   // that's not where it ends; it also starts counting
+						   // from 1900. why, Nintendo?! why would you do this?!
 				time, board.droppedPieces() / time}));
 		return;
 	}

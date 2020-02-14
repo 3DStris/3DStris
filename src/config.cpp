@@ -1,5 +1,6 @@
-#include <rapidjson/document.h>
-#include <rapidjson/prettywriter.h>
+#include <rapidjson/filereadstream.h>
+#include <rapidjson/filewritestream.h>
+#include <rapidjson/writer.h>
 #include <3dstris/config.hpp>
 #include <3dstris/game.hpp>
 #include <3dstris/states/loadfailed.hpp>
@@ -28,6 +29,8 @@ static bool validateJson(const rapidjson::Document& doc) {
 }
 
 Config::Config() {
+	FS_Archive sdmcArchive;
+
 	FSUSER_OpenArchive(&sdmcArchive, ARCHIVE_SDMC, fsMakePath(PATH_EMPTY, ""));
 
 	if (!directoryExists(sdmcArchive, homebrewPath)) {
@@ -37,31 +40,27 @@ Config::Config() {
 		FSUSER_CreateDirectory(sdmcArchive, dirPath, 0);
 	}
 
-	FSUSER_OpenDirectory(&dirHandle, sdmcArchive, dirPath);
-
 	bool configFileExists = fileExists(sdmcArchive, configPath);
 	if (!configFileExists) {
 		FSUSER_CreateFile(sdmcArchive, configPath, 0, 0);
 	}
-
-	FSUSER_OpenFile(&configHandle, sdmcArchive, configPath,
-					FS_OPEN_WRITE | FS_OPEN_READ, 0);
 
 	if (!configFileExists) {
 		save();
 	}
 
 	games.initialize(sdmcArchive);
+	FSUSER_CloseArchive(sdmcArchive);
 
-	u64 fileSize;
-	FSFILE_GetSize(configHandle, &fileSize);
+	FILE* file = fopen(CONFIG_PATH, "r");
 
-	sds content = sdsnewlen("", fileSize);
-	FSFILE_Read(configHandle, nullptr, 0, content, fileSize);
+	char readBuffer[128];
+	rapidjson::FileReadStream fileStream(file, readBuffer, sizeof(readBuffer));
 
 	rapidjson::Document document;
-	document.Parse(content);
-	sdsfree(content);
+	document.ParseStream(fileStream);
+
+	fclose(file);
 
 	if (!validateJson(document)) {
 		save();
@@ -80,21 +79,18 @@ Config::Config() {
 	l10n.loadLanguage(language);
 }
 
-Config::~Config() {
-	FSFILE_Close(configHandle);
-	FSDIR_Close(dirHandle);
-	FSUSER_CloseArchive(sdmcArchive);
-}
-
 void Config::save() {
-	rapidjson::StringBuffer sb;
-	rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(sb);
+	FILE* file = fopen(CONFIG_PATH, "w");
 
+	char writeBuffer[128];
+	rapidjson::FileWriteStream fileStream(file, writeBuffer,
+										  sizeof(writeBuffer));
+
+	rapidjson::Writer<rapidjson::FileWriteStream> writer(fileStream);
+	writer.SetMaxDecimalPlaces(4);
 	this->serialize(writer);
 
-	FSFILE_Write(configHandle, nullptr, 0, sb.GetString(), sb.GetLength(),
-				 FS_WRITE_FLUSH);
-	FSFILE_SetSize(configHandle, sb.GetLength());
+	fclose(file);
 }
 
 Games& Config::getGames() noexcept {

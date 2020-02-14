@@ -8,7 +8,6 @@
 
 struct Config {
 	Config();
-	~Config();
 
 	template <typename Writer>
 	void serialize(Writer& writer) const {
@@ -48,6 +47,7 @@ struct Config {
 	L10n::Language language = L10n::EN;
 
    private:
+	static constexpr auto CONFIG_PATH = "sdmc:/3ds/3dstris/config.json";
 	const FS_Path homebrewPath = fsMakePath(PATH_ASCII, "/3ds/");
 	const FS_Path dirPath = fsMakePath(PATH_ASCII, "/3ds/3dstris");
 	const FS_Path configPath =
@@ -55,11 +55,6 @@ struct Config {
 
 	Games games;
 	L10n l10n;
-
-	FS_Archive sdmcArchive;
-
-	Handle dirHandle;
-	Handle configHandle;
 
 	bool _failed = false;
 };

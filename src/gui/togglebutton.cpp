@@ -12,6 +12,10 @@ ToggleButton::ToggleButton(GUI& parent, const Pos pos, const WH wh,
 	  text(text),
 	  value(defaultValue) {}
 
+ToggleButton::~ToggleButton() {
+	sdsfree(text);
+}
+
 void ToggleButton::update(const touchPosition touch,
 						  const touchPosition previous) {
 	Button::update(touch, previous);

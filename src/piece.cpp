@@ -156,10 +156,10 @@ void Piece::rotate(const bool ccw) {
 			}
 		}
 	}
-	PieceShape oldShape = shape;
+	const PieceShape oldShape = shape;
 	shape = newShape;
 
-	int prevRotation = rotation;
+	const int prevRotation = rotation;
 	rotation = mod(rotation + (ccw ? -1 : 1), 4);
 
 	Wallkick wkData = type == PieceType::I ? Wallkicks::I : Wallkicks::OTHERS;

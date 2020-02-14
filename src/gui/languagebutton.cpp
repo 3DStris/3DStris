@@ -1,4 +1,3 @@
-#include <3dstris/game.hpp>
 #include <3dstris/gui/languagebutton.hpp>
 
 LanguageButton::LanguageButton(GUI& parent, const Pos pos, const WH wh,

@@ -40,7 +40,7 @@ Config::Config() {
 		FSUSER_CreateDirectory(sdmcArchive, dirPath, 0);
 	}
 
-	bool configFileExists = fileExists(sdmcArchive, configPath);
+	const bool configFileExists = fileExists(sdmcArchive, configPath);
 	if (!configFileExists) {
 		FSUSER_CreateFile(sdmcArchive, configPath, 0, 0);
 	}

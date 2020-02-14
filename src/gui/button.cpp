@@ -1,9 +1,9 @@
 #include <3dstris/gui.hpp>
 
-Button::Button(GUI& _parent, const Vector2 _pos, const Vector2 _wh,
-			   const sds text, const Flags flags)
+Button::Button(GUI& _parent, const Pos _pos, const WH _wh, const sds text,
+			   const Flags flags)
 	: Widget(_parent, _pos, _wh),
-	  text(sdsempty(), Pos{}, Vector2{1, 1}, parent.textCol) {
+	  text(sdsempty(), Pos{}, {1, 1}, parent.textCol) {
 	if (flags == Flags::HCENTER || flags == Flags::CENTER) {
 		pos.x = (parent.getWidth() - wh.x) / 2.0f;
 	}
@@ -14,8 +14,8 @@ Button::Button(GUI& _parent, const Vector2 _pos, const Vector2 _wh,
 	this->setText(text);
 }
 
-Button::Button(GUI& _parent, const Vector2 _pos, const Vector2 _wh,
-			   const char* text, const Flags flags)
+Button::Button(GUI& _parent, const Pos _pos, const WH _wh, const char* text,
+			   const Flags flags)
 	: Button::Button(_parent, _pos, _wh, sdsnew(text), flags) {}
 
 void Button::setText(sds text) {

@@ -1,9 +1,4 @@
-#include <3dstris/gui/panel.hpp>
-#include <3dstris/gui/u32inputfield.hpp>
 #include <3dstris/states/configscreen.hpp>
-#include <3dstris/states/mainmenu.hpp>
-#include <3dstris/util.hpp>
-#include <3dstris/version.hpp>
 
 ConfigScreen::ConfigScreen()
 	: State(),
@@ -38,7 +33,7 @@ ConfigScreen::ConfigScreen()
 										game.getConfig().useTextures)) {
 	title.align(Text::Align::SCREEN_CENTER);
 
-	const auto tipTextScale =
+	const float tipTextScale =
 		std::min((tip.getWH().x - 10) / tipText.getWH().x, 0.5f);
 	tipText.setScale({tipTextScale, tipTextScale});
 	tipText.align(Text::Align::CENTER, tip.getPos(), tip.getWH());

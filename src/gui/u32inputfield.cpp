@@ -1,4 +1,3 @@
-#include <3dstris/gui.hpp>
 #include <3dstris/gui/u32inputfield.hpp>
 
 U32InputField::U32InputField(GUI& _parent, const Vector2 _pos,

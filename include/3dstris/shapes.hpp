@@ -1,6 +1,5 @@
 #pragma once
 
-#include <3dstris/util.hpp>
 #include <array>
 #include <vector>
 

@@ -1,6 +1,5 @@
 #include <3dstris/states/mainmenu.hpp>
 #include <3dstris/states/paused.hpp>
-#include <algorithm>
 
 Paused::Paused(Ingame* parent)
 	: State(),

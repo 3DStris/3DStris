@@ -1,7 +1,4 @@
-#include <3dstris/gui/panel.hpp>
 #include <3dstris/states/sprinttimes.hpp>
-#include <algorithm>
-#include <iomanip>
 
 SprintTimes::SprintTimes()
 	: State(),

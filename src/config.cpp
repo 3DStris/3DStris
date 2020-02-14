@@ -1,9 +1,7 @@
 #include <rapidjson/filereadstream.h>
 #include <rapidjson/filewritestream.h>
 #include <rapidjson/writer.h>
-#include <3dstris/config.hpp>
 #include <3dstris/game.hpp>
-#include <3dstris/states/loadfailed.hpp>
 
 #define MEMBER(member, type)                                         \
 	if (document.HasMember(#member) && document[#member].Is##type()) \

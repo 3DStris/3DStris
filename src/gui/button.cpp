@@ -4,10 +4,10 @@ Button::Button(GUI& _parent, const Pos _pos, const WH _wh, const sds text,
 			   const Flags flags)
 	: Widget(_parent, _pos, _wh),
 	  text(sdsempty(), Pos{}, {1, 1}, parent.textCol) {
-	if (flags == Flags::HCENTER || flags == Flags::CENTER) {
+	if (flags == HCENTER || flags == CENTER) {
 		pos.x = (parent.getWidth() - wh.x) / 2.0f;
 	}
-	if (flags == Flags::VCENTER || flags == Flags::CENTER) {
+	if (flags == VCENTER || flags == CENTER) {
 		pos.y = (parent.getHeight() - wh.y) / 2.0f;
 	}
 
@@ -28,7 +28,7 @@ void Button::setText(sds text) {
 	// 1   textW
 	// - = ----
 	// x   w-10
-	auto textScale = std::min((wh.x - 10) / textWH.x, 0.7f);
+	const float textScale = std::min((wh.x - 10) / textWH.x, 0.7f);
 	this->text.setScale({textScale, textScale});
 
 	textWH = this->text.getWH();

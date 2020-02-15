@@ -26,14 +26,14 @@ void U32InputField::update(const touchPosition touch,
 	if (inside(previous.px, previous.py) && hidKeysUp() & KEY_TOUCH) {
 		SwkbdState swkbd;
 
-		sds initialText = sdscatfmt(sdsempty(), "%u", value);
+		sds initialText = sdsfromlonglong(value);
 
 		char buf[7];
 		swkbdInit(&swkbd, SWKBD_TYPE_NUMPAD, 1, 6);
 		swkbdSetValidation(&swkbd, SWKBD_NOTEMPTY_NOTBLANK, 0, 0);
 		swkbdSetFeatures(&swkbd, SWKBD_FIXED_WIDTH);
 		swkbdSetInitialText(&swkbd, initialText);
-		swkbdInputText(&swkbd, buf, sizeof(buf));
+		swkbdInputText(&swkbd, buf, sizeof buf);
 
 		sdsfree(initialText);
 
@@ -64,7 +64,7 @@ void U32InputField::setValue(const u32 v) {
 void U32InputField::updateText() {
 	this->text.setText(sdscatfmt(sdsempty(), "%u%S", value, suffix));
 
-	auto textScale = std::min(this->text.getWH().y / wh.y, 0.5f);
+	const float textScale = std::min(this->text.getWH().y / wh.y, 0.5f);
 	this->text.setScale({textScale, textScale});
 
 	this->text.align(Text::Align::VCENTER, pos, wh);

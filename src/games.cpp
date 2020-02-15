@@ -41,7 +41,7 @@ void Games::initialize(const FS_Archive sdmcArchive) {
 	FILE* file = fopen(GAMES_PATH, "r");
 
 	char readBuffer[1024];
-	rapidjson::FileReadStream fileStream(file, readBuffer, sizeof(readBuffer));
+	rapidjson::FileReadStream fileStream(file, readBuffer, sizeof readBuffer);
 
 	rapidjson::Document document;
 	document.ParseStream(fileStream);
@@ -84,7 +84,7 @@ void Games::save() {
 
 			char writeBuffer[1024];
 			rapidjson::FileWriteStream fileStream(file, writeBuffer,
-												  sizeof(writeBuffer));
+												  sizeof writeBuffer);
 
 			rapidjson::Writer<rapidjson::FileWriteStream> writer(fileStream);
 			writer.SetMaxDecimalPlaces(4);

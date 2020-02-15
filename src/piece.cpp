@@ -60,8 +60,8 @@ bool Piece::collides(const int offX, const int offY) const {
 	for (u32 y = 0; y < shape.size(); ++y) {
 		for (u32 x = 0; x < shape.size(); ++x) {
 			const Pos offPos = {pos.x + x + offX, pos.y + y + offY};
-			if (shape.get(x, y) && (!board.inside(offPos) ||
-									board.get(offPos) != PieceType::NONE)) {
+			if (shape.get(x, y) &&
+				(!board.inside(offPos) || board.get(offPos) != NONE)) {
 				return true;
 			}
 		}
@@ -176,7 +176,6 @@ void Piece::rotate(const bool ccw) {
 	which makes it easy to index by using (ccw being true if the current
 	rotation is counter clockwise) 2 * prevRotation + (ccw ? 0 : 1)
 	*/
-
 	const int testOffset = 2 * prevRotation + !ccw;
 	for (u32 test = 0; test < WK_TESTS; test++) {
 		u32 i = test * 16 + u32(testOffset * 2);
@@ -188,6 +187,7 @@ void Piece::rotate(const bool ccw) {
 			return;
 		}
 	}
+
 	// all tests failed, don't rotate piece
 	shape = oldShape;
 	rotation = prevRotation;

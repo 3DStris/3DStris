@@ -53,7 +53,7 @@ Config::Config() {
 	FILE* file = fopen(CONFIG_PATH, "r");
 
 	char readBuffer[128];
-	rapidjson::FileReadStream fileStream(file, readBuffer, sizeof(readBuffer));
+	rapidjson::FileReadStream fileStream(file, readBuffer, sizeof readBuffer);
 
 	rapidjson::Document document;
 	document.ParseStream(fileStream);
@@ -82,7 +82,7 @@ void Config::save() {
 
 	char writeBuffer[128];
 	rapidjson::FileWriteStream fileStream(file, writeBuffer,
-										  sizeof(writeBuffer));
+										  sizeof writeBuffer);
 
 	rapidjson::Writer<rapidjson::FileWriteStream> writer(fileStream);
 	writer.SetMaxDecimalPlaces(4);

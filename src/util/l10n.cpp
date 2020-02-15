@@ -41,7 +41,7 @@ rapidjson::Document L10n::loadJson(const char* path) {
 	rapidjson::Document document;
 
 	char readBuffer[512];
-	rapidjson::FileReadStream fileStream(file, readBuffer, sizeof(readBuffer));
+	rapidjson::FileReadStream fileStream(file, readBuffer, sizeof readBuffer);
 	document.ParseStream(fileStream);
 
 	fclose(file);

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <3dstris/game.hpp>
 #include <3dstris/game/shapes.hpp>
 #include <3dstris/util.hpp>
 
@@ -32,6 +33,8 @@ class Piece {
 	bool dead() const { return _dead; }
 
    private:
+	const Game& game;
+
 	void updateMove(const double dt, const u32 kDown);
 
 	Board& board;

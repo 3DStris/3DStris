@@ -30,7 +30,7 @@ void Ingame::reset() {
 	piece.reset(bag.front());
 	bag.pop_front();
 
-	hold = PieceType::NONE;
+	hold = NONE;
 	hasHeld = false;
 }
 
@@ -56,7 +56,7 @@ void Ingame::update(const double dt) {
 		}
 	}
 
-	if (!hasHeld && (kDown & KEY_X || kDown & KEY_A)) {
+	if (!hasHeld && game.isPressed(kDown, Keybinds::HOLD)) {
 		hasHeld = true;
 		if (hold == NONE && piece.getType() != NONE &&
 			piece.getType() != INVALID) {

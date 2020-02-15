@@ -2,7 +2,6 @@
 
 #include <citro2d.h>
 #include <3dstris/config.hpp>
-#include <memory>
 
 class State;
 class Game {
@@ -15,6 +14,9 @@ class Game {
 	void update(const double dt);
 
 	void draw();
+
+	bool isPressed(const u32 kDown, const Keybinds::Action action) const
+		noexcept;
 
 	sds translate(const char* key) const;
 	void loadLanguage(const L10n::Language language);
@@ -32,6 +34,7 @@ class Game {
 	State& getState();
 
 	Config& getConfig() noexcept;
+	const Config& getConfig() const noexcept;
 	Games& getGames() noexcept;
 	L10n& getL10n() noexcept;
 	const L10n& getL10n() const noexcept;

@@ -48,6 +48,8 @@ Config::Config() {
 	}
 
 	games.initialize(sdmcArchive);
+	keybinds.initialize(sdmcArchive);
+
 	FSUSER_CloseArchive(sdmcArchive);
 
 	FILE* file = fopen(CONFIG_PATH, "r");
@@ -100,6 +102,10 @@ L10n& Config::getL10n() noexcept {
 }
 const L10n& Config::getL10n() const noexcept {
 	return l10n;
+}
+
+const Keybinds& Config::getKeybinds() const noexcept {
+	return keybinds;
 }
 
 bool Config::failed() const noexcept {

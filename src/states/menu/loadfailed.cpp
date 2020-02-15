@@ -2,9 +2,7 @@
 
 LoadFailed::LoadFailed(const FailType type)
 	: State(),
-	  failedText(game.translate(type == FailType::CONFIG ? "loadfailed.config"
-														 : "loadfailed.games")),
-
+	  failedText(game.translate(FAILTYPE_TO_KEY[type])),
 	  okButton(gui.add<Button>(Pos{-1, -1},
 							   WH{SCREEN_WIDTH - 100, SCREEN_HEIGHT - 100},
 							   game.translate("ok"), Button::Flags::CENTER)) {
@@ -33,3 +31,6 @@ void LoadFailed::draw(const bool bottom) {
 		gui.draw();
 	}
 }
+
+const char* LoadFailed::FAILTYPE_TO_KEY[] = {
+	"loadfailed.config", "loadfailed.games", "loadfailed.keybinds"};

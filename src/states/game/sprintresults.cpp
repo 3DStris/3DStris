@@ -1,6 +1,6 @@
-#include <3dstris/states/mainmenu.hpp>
-#include <3dstris/states/sprintresults.hpp>
-#include <3dstris/states/sprinttimes.hpp>
+#include <3dstris/states/game/sprintresults.hpp>
+#include <3dstris/states/menu/mainmenu.hpp>
+#include <3dstris/states/menu/sprinttimes.hpp>
 
 SprintResults::SprintResults(Ingame* parent, SavedGame&& saved)
 	: State(),

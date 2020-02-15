@@ -1,6 +1,6 @@
 #pragma once
 
-#include <3dstris/states/ingame.hpp>
+#include <3dstris/states/game/ingame.hpp>
 
 class Playing : public Ingame {
    public:

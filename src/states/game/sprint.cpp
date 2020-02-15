@@ -1,8 +1,8 @@
-#include <3dstris/states/mainmenu.hpp>
-#include <3dstris/states/paused.hpp>
-#include <3dstris/states/results.hpp>
-#include <3dstris/states/sprint.hpp>
-#include <3dstris/states/sprintresults.hpp>
+#include <3dstris/states/game/paused.hpp>
+#include <3dstris/states/game/results.hpp>
+#include <3dstris/states/game/sprint.hpp>
+#include <3dstris/states/game/sprintresults.hpp>
+#include <3dstris/states/menu/mainmenu.hpp>
 
 Sprint::Sprint()
 	: Ingame(),

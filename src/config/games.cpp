@@ -3,11 +3,10 @@
 #include <rapidjson/filewritestream.h>
 #include <rapidjson/writer.h>
 #include <sds.h>
-#include <3dstris/config.hpp>
-#include <3dstris/games.hpp>
+#include <3dstris/config/games.hpp>
 #include <algorithm>
 
-static bool fileExists(FS_Archive archive, const FS_Path& path) {
+static bool fileExists(const FS_Archive archive, const FS_Path& path) {
 	Handle handle;
 
 	return R_SUCCEEDED(

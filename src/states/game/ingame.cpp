@@ -1,5 +1,5 @@
-#include <3dstris/states/ingame.hpp>
-#include <3dstris/states/paused.hpp>
+#include <3dstris/states/game/ingame.hpp>
+#include <3dstris/states/game/paused.hpp>
 #include <algorithm>
 
 static std::array<PieceType, 7> genBag(std::mt19937_64& rng) {

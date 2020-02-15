@@ -1,6 +1,6 @@
 #pragma once
 
-#include <3dstris/piece.hpp>
+#include <3dstris/game/piece.hpp>
 
 class Board {
    public:

@@ -1,6 +1,6 @@
-#include <3dstris/states/modeselect.hpp>
-#include <3dstris/states/playing.hpp>
-#include <3dstris/states/sprint.hpp>
+#include <3dstris/states/game/playing.hpp>
+#include <3dstris/states/game/sprint.hpp>
+#include <3dstris/states/menu/modeselect.hpp>
 
 ModeSelect::ModeSelect()
 	: State(),

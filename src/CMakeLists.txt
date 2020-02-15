@@ -7,74 +7,11 @@ execute_process(COMMAND
 configure_file("${PROJECT_SOURCE_DIR}/include/3dstris/version.hpp.in"
 			   "${PROJECT_SOURCE_DIR}/include/3dstris/version.hpp")
 
-macro(set_header_list)
-	foreach(header_file IN ITEMS ${ARGN})
-		list(APPEND HEADER_LIST "${PROJECT_SOURCE_DIR}/include/3dstris/${header_file}")
-	endforeach()
-endmacro()
-
-set_header_list(
-	piece.hpp
-	util.hpp
-	shapes.hpp
-	board.hpp
-	version.hpp
-	game.hpp
-	colors.hpp
-	config.hpp
-	games.hpp
-	state.hpp
-	states/mainmenu.hpp
-	states/ingame.hpp
-	states/playing.hpp
-	states/sprint.hpp
-	states/paused.hpp
-	states/results.hpp
-	states/sprintresults.hpp
-	states/sprinttimes.hpp
-	states/configscreen.hpp
-	states/loadfailed.hpp
-	states/languages.hpp
-	util/text.hpp
-	util/l10n.hpp
-	gui.hpp
-	gui/widget.hpp
-	gui/button.hpp
-	gui/togglebutton.hpp
-	gui/languagebutton.hpp
-	gui/u32inputfield.hpp
-	gui/panel.hpp
-	wallkicks.hpp)
+file(GLOB_RECURSE SOURCE_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*.cpp")
+file(GLOB_RECURSE HEADER_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/include/3dstris/*.hpp")
 
 add_library(3dstris STATIC
-	board.cpp
-	piece.cpp
-	game.cpp
-	colors.cpp
-	config.cpp
-	games.cpp
-	state.cpp
-	states/mainmenu.cpp
-	states/modeselect.cpp
-	states/ingame.cpp
-	states/playing.cpp
-	states/sprint.cpp
-	states/paused.cpp
-	states/results.cpp
-	states/sprintresults.cpp
-	states/sprinttimes.cpp
-	states/configscreen.cpp
-	states/loadfailed.cpp
-	states/languages.cpp
-	util/text.cpp
-	util/l10n.cpp
-	gui.cpp
-	gui/widget.cpp
-	gui/button.cpp
-	gui/togglebutton.cpp
-	gui/languagebutton.cpp
-	gui/u32inputfield.cpp
-	gui/panel.cpp
+	${SOURCE_LIST}
 	${HEADER_LIST})
 
 add_t3s(3dstris "${PROJECT_SOURCE_DIR}/resources/gfx/images.t3s")

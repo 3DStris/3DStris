@@ -1,4 +1,4 @@
-#include <3dstris/states/loadfailed.hpp>
+#include <3dstris/states/menu/loadfailed.hpp>
 
 LoadFailed::LoadFailed(const FailType type)
 	: State(),

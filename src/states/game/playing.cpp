@@ -1,6 +1,6 @@
-#include <3dstris/states/paused.hpp>
-#include <3dstris/states/playing.hpp>
-#include <3dstris/states/results.hpp>
+#include <3dstris/states/game/paused.hpp>
+#include <3dstris/states/game/playing.hpp>
+#include <3dstris/states/game/results.hpp>
 
 Playing::Playing() : Ingame() {}
 

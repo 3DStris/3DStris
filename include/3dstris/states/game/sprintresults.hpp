@@ -1,25 +1,27 @@
 #pragma once
 
 #include <3dstris/gui.hpp>
-#include <3dstris/state.hpp>
-#include <3dstris/states/ingame.hpp>
+#include <3dstris/states/game/ingame.hpp>
 
-class Results : public State {
+class SprintResults : public State {
    public:
-	Results(Ingame* parent);
+	SprintResults(Ingame* parent, SavedGame&& saved);
+	~SprintResults() override;
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;
 
-   protected:
+   private:
 	static constexpr Color RESULTS = C2D_Color32(0, 0, 0, 190);
 
 	Ingame* parent;
 
-	Text deadText;
+	const sds timeFormat;
+	Text timeText;
 
 	GUI gui;
 
 	Button& restartButton;
+	Button& timesButton;
 	Button& menuButton;
 };

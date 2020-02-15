@@ -1,16 +1,11 @@
-#include <tex3ds.h>
-
-#include <3dstris/game.hpp>
-#include <3dstris/state.hpp>
-#include <3dstris/states/configscreen.hpp>
-#include <3dstris/states/loadfailed.hpp>
-#include <3dstris/states/mainmenu.hpp>
+#include <3dstris/states/menu/configscreen.hpp>
+#include <3dstris/states/menu/loadfailed.hpp>
+#include <3dstris/states/menu/mainmenu.hpp>
 
 int main() {
 	TickCounter tickCounter;
 	osTickCounterStart(&tickCounter);
 
-	// Init libs
 	gfxInitDefault();
 	romfsInit();
 	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
@@ -38,7 +33,6 @@ int main() {
 		C3D_FrameEnd(0);
 	}
 
-	// Deinit libs
 	C2D_Fini();
 	C3D_Fini();
 	gfxExit();

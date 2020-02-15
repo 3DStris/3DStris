@@ -1,10 +1,12 @@
-#include <3dstris/states/mainmenu.hpp>
-#include <3dstris/states/paused.hpp>
+#include <3dstris/states/game/paused.hpp>
+#include <3dstris/states/menu/mainmenu.hpp>
 
 Paused::Paused(Ingame* parent)
 	: State(),
-	  pausedText(game.translate("paused.title")),
 	  parent(parent),
+
+	  pausedText(game.translate("paused.title")),
+
 	  restartButton(gui.add<Button>(Pos{-1, 6}, WH{100, 45},
 									game.translate("results.restart"),
 									Button::Flags::HCENTER)),

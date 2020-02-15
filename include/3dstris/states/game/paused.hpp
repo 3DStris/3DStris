@@ -2,7 +2,7 @@
 
 #include <3dstris/gui.hpp>
 #include <3dstris/state.hpp>
-#include <3dstris/states/ingame.hpp>
+#include <3dstris/states/game/ingame.hpp>
 
 class Paused : public State {
    public:
@@ -14,9 +14,9 @@ class Paused : public State {
    private:
 	static constexpr Color PAUSED = C2D_Color32(0, 0, 0, 190);
 
-	Text pausedText;
-
 	Ingame* parent;
+
+	Text pausedText;
 
 	GUI gui;
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <3dstris/board.hpp>
+#include <3dstris/game/board.hpp>
 #include <3dstris/state.hpp>
 #include <deque>
 #include <random>

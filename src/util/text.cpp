@@ -105,7 +105,7 @@ WH Text::getWH() const {
 	return {width, height};
 }
 
-void Text::setColor(Color color) {
+void Text::setColor(const Color color) {
 	this->color = color;
 }
 

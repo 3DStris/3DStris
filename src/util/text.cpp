@@ -57,7 +57,7 @@ void Text::align(const Align mode, const Pos cpos, const WH cwh,
 }
 
 void Text::align(const Align mode, const bool bottom) {
-	align(mode, Pos{0, 0}, WH{0, 0}, bottom);
+	align(mode, Pos{}, WH{}, bottom);
 }
 
 void Text::setText(sds text) {

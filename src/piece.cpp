@@ -18,7 +18,9 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 
 	pos = {std::floor(board.width / 2.0f) - std::floor(shape.size() / 2.0f), 0};
 
-	sprite = Textures::get(type);
+	if (!Game::get().getConfig().useTextures) {
+		sprite = Textures::get(type);
+	}
 
 	fallTimer = 0;
 	fallAfter = 1;
@@ -175,11 +177,11 @@ void Piece::rotate(const bool ccw) {
 	rotation is counter clockwise) 2 * prevRotation + (ccw ? 0 : 1)
 	*/
 
-	int testOffset = 2 * prevRotation + !ccw;
+	const int testOffset = 2 * prevRotation + !ccw;
 	for (u32 test = 0; test < WK_TESTS; test++) {
 		u32 i = test * 16 + u32(testOffset * 2);
-		int offX = wkData[i];
-		int offY = wkData[i + 1];
+		const int offX = wkData[i];
+		const int offY = wkData[i + 1];
 		if (!collides(offX, offY)) {
 			pos.x += offX;
 			pos.y += offY;
@@ -235,9 +237,9 @@ void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 }
 
 void Piece::updateMove(const double dt, const u32 kDown) {
-	auto _move = [this, &dt, &kDown](const Direction direction,
-									 const double timer,
-									 const u32 kNeeded) -> bool {
+	const auto _move = [this, &dt, &kDown](const Direction direction,
+										   const double timer,
+										   const u32 kNeeded) -> bool {
 		if (timer > das) {
 			if (arr == 0.0) {
 				while (move(direction)) {
@@ -261,7 +263,7 @@ void Piece::updateMove(const double dt, const u32 kDown) {
 		return false;
 	};
 
-	bool moved =
+	const bool moved =
 		_move(LEFT, dasTimer.x, KEY_LEFT);  // x is actually the left timer
 	if (!moved) {
 		_move(RIGHT, dasTimer.y, KEY_RIGHT);  // y is actually the right timer

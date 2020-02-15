@@ -29,7 +29,7 @@ static bool validateGame(
 void Games::initialize(const FS_Archive sdmcArchive) {
 	this->sdmcArchive = sdmcArchive;
 
-	bool gamesFileExists = fileExists(this->sdmcArchive, gamesFSPath);
+	const bool gamesFileExists = fileExists(this->sdmcArchive, gamesFSPath);
 	if (!gamesFileExists) {
 		FSUSER_CreateFile(this->sdmcArchive, gamesFSPath, 0, 0);
 	}

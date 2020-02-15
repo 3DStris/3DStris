@@ -43,7 +43,7 @@ void SprintTimes::genValues() {
 	values.clear();
 
 	for (u32 i = 0; i < std::min(games.size(), size_t(CELLS)); ++i) {
-		auto& saved = games[i + topCell];
+		const SavedGame& saved = games[i + topCell];
 		Text time(sdscatprintf(sdsempty(), "%.3fs", saved.time), Pos{},
 				  {0.8f, 0.8f});
 		time.align(Text::Align::CENTER,
@@ -51,6 +51,8 @@ void SprintTimes::genValues() {
 				   WH{TIME_W, CELL_H});
 		values.push_back(std::move(time));
 
+		// why sds? because the Text i pass it to later will allocate
+		// a new sds if i pass a regular, stack-allocated char array anyways
 		sds dateString = sdsnewlen("", 40);
 		saved.dateString(dateString, 40, "%F");
 		Text date(dateString, Pos{}, {0.7f, 0.7f});
@@ -73,7 +75,7 @@ void SprintTimes::update(const double dt) {
 		return;
 	}
 
-	auto kDown = hidKeysDown();
+	const u32 kDown = hidKeysDown();
 	if (kDown & KEY_DOWN) {
 		if (selected >= games.size() - 1) {
 			selected = 0;

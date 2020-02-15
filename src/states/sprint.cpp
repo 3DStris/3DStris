@@ -26,7 +26,7 @@ void Sprint::reset() {
 }
 
 void Sprint::update(const double dt) {
-	u32 kDown = hidKeysDown();
+	const u32 kDown = hidKeysDown();
 
 	if (kDown & KEY_SELECT) {
 		reset();

@@ -81,19 +81,18 @@ void Ingame::draw(const bool bottom) {
 		// draw bag
 		u32 y = 1;
 		for (u32 i = 0; i < upcoming; ++i) {
-			const auto& p = bag[i];
+			const PieceType& p = bag[i];
 
 			if (p == I) {
 				--y;
 			}
 
-			Piece::draw(
-				{origin.x + (board.width + 1 + (p == PieceType::O)) * tileSize,
-				 origin.y + y * tileSize},
-				tileSize, Shapes::ALL[p], p);
+			Piece::draw({origin.x + (board.width + 1 + (p == O)) * tileSize,
+						 origin.y + y * tileSize},
+						tileSize, Shapes::ALL[p], p);
 
 			y += Shapes::ALL[p].size();
-			if (p == PieceType::O) {
+			if (p == O) {
 				++y;
 			}
 		}

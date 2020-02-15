@@ -21,13 +21,13 @@ Paused::Paused(Ingame* parent)
 void Paused::update(const double dt) {
 	gui.update(dt);
 
-	auto kDown = hidKeysDown();
 	if (restartButton.pressed()) {
 		parent->reset();
 		this->game.popState(false, true);
 		return;
 	}
 
+	const u32 kDown = hidKeysDown();
 	if (unpauseButton.pressed() || (kDown > KEY_A && kDown <= KEY_ZR)) {
 		this->game.popState(false, true);
 		return;

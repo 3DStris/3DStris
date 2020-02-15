@@ -33,7 +33,7 @@ MainMenu::MainMenu()
 }
 
 void MainMenu::update(const double dt) {
-	u32 kDown = hidKeysDown();
+	const u32 kDown = hidKeysDown();
 
 	if (kDown & KEY_START) {
 		this->game.exit = true;

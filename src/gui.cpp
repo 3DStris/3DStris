@@ -6,6 +6,7 @@ GUI::GUI(const u16 width, const u16 height, const Color primaryCol,
 	  textCol(textCol),
 	  pressedCol(pressedCol),
 	  outlineCol(outlineCol),
+
 	  width(width),
 	  height(height) {}
 

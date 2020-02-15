@@ -9,11 +9,11 @@
  ccw->spawn} More info on: https://harddrop.com/wiki/SRS
 */
 
-constexpr unsigned int WK_TESTS = 5;
+constexpr uint32_t WK_TESTS = 5;
 
 // 80 being 5 (number of tests) * 8 (number of conditions) * 2 (two numbers
 // in each condition (x and y))
-using Wallkick = std::array<int, 80>;
+using Wallkick = std::array<int8_t, 80>;
 
 namespace Wallkicks {
 	// clang-format off

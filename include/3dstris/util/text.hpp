@@ -49,8 +49,11 @@ class Text {
    private:
 	Pos pos;
 	Vector2 scale;
+
 	sds text = nullptr;
+
 	Color color;
+
 	C2D_Text textObject;
 	C2D_TextBuf textBuffer;
 };

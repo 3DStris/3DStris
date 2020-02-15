@@ -15,8 +15,8 @@ class LanguageButton : public Button {
 				const touchPosition previous) override;
 
    private:
-	L10n::Language& toSet;
 	L10n::Language language;
+	L10n::Language& toSet;
 
 	C2D_Image flag;
 };

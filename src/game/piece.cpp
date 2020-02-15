@@ -20,7 +20,7 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 
 	pos = {std::floor(board.width / 2.0f) - std::floor(shape.size() / 2.0f), 0};
 
-	if (!Game::get().getConfig().useTextures) {
+	if (Game::get().getConfig().useTextures) {
 		sprite = Textures::get(type);
 	}
 

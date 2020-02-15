@@ -47,33 +47,33 @@ void ConfigScreen::update(const double dt) {
 	gui.update(dt);
 
 	if (save.pressed()) {
-		auto& config = this->game.getConfig();
+		auto& config = game.getConfig();
 		config.das = das.getValue();
 		config.arr = arr.getValue();
 		config.dropTimer = dropTimer.getValue();
 		config.useTextures = useTextures.getValue();
 		config.save();
 
-		this->game.popState();
+		game.popState();
 		return;
 	}
 
 	if (cancel.pressed() || hidKeysUp() & KEY_B) {
-		this->game.popState();
+		game.popState();
 		return;
 	}
 }
 
 void ConfigScreen::draw(const bool bottom) {
 	if (!bottom) {
-		C2D_TargetClear(this->game.getTop(), BACKGROUND);
+		C2D_TargetClear(game.getTop(), BACKGROUND);
 
 		title.draw();
 
 		tip.draw();
 		tipText.draw();
 	} else {
-		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), BACKGROUND);
 
 		gui.draw();
 

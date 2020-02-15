@@ -49,11 +49,11 @@ void LanguageSelect::update(const double dt) {
 
 void LanguageSelect::draw(const bool bottom) {
 	if (!bottom) {
-		C2D_TargetClear(this->game.getTop(), BACKGROUND);
+		C2D_TargetClear(game.getTop(), BACKGROUND);
 
 		selectText.draw();
 	} else {
-		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), BACKGROUND);
 
 		gui.draw();
 	}

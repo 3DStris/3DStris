@@ -14,10 +14,10 @@ class U32InputField : public Widget {
 	void draw() const override;
 	void update(const touchPosition touch, const touchPosition) override;
 
-	bool inside(const float posX, const float posY) const;
+	bool inside(const float x, const float y) const;
 
 	u32 getValue() const;
-	void setValue(const u32 v);
+	void setValue(const u32 value);
 
    private:
 	static constexpr Color FIELD = C2D_Color32(94, 94, 94, 255);

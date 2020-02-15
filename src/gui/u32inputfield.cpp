@@ -47,26 +47,26 @@ void U32InputField::update(const touchPosition touch,
 	}
 }
 
-bool U32InputField::inside(const float posX, const float posY) const {
-	return posX > pos.x && posX < pos.x + wh.x &&  //
-		   posY > pos.y && posY < pos.y + wh.y;
+bool U32InputField::inside(const float x, const float y) const {
+	return x > pos.x && x < pos.x + wh.x &&  //
+		   y > pos.y && y < pos.y + wh.y;
 }
 
 u32 U32InputField::getValue() const {
 	return value;
 }
 
-void U32InputField::setValue(const u32 v) {
-	value = v;
+void U32InputField::setValue(const u32 value) {
+	this->value = value;
 	updateText();
 }
 
 void U32InputField::updateText() {
-	this->text.setText(sdscatfmt(sdsempty(), "%u%S", value, suffix));
+	text.setText(sdscatfmt(sdsempty(), "%u%S", value, suffix));
 
-	const float textScale = std::min(this->text.getWH().y / wh.y, 0.5f);
-	this->text.setScale({textScale, textScale});
+	const float textScale = std::min(text.getWH().y / wh.y, 0.5f);
+	text.setScale({textScale, textScale});
 
-	this->text.align(Text::Align::VCENTER, pos, wh);
-	this->text.setX(pos.x + 3);
+	text.align(Text::Align::VCENTER, pos, wh);
+	text.setX(pos.x + 3);
 }

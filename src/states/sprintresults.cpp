@@ -33,18 +33,18 @@ void SprintResults::update(const double dt) {
 	gui.update(dt);
 
 	if (timesButton.pressed()) {
-		this->game.pushState(make_unique<SprintTimes>());
+		game.pushState(make_unique<SprintTimes>());
 		return;
 	}
 
 	if (restartButton.pressed()) {
 		parent->reset();
-		this->game.popState(false, true);
+		game.popState(false, true);
 		return;
 	}
 
 	if (menuButton.pressed()) {
-		this->game.setState(make_unique<MainMenu>());
+		game.setState(make_unique<MainMenu>());
 	}
 }
 
@@ -55,7 +55,7 @@ void SprintResults::draw(const bool bottom) {
 
 		timeText.draw();
 	} else {
-		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), BACKGROUND);
 
 		gui.draw();
 	}

@@ -66,7 +66,7 @@ void Sprint::update(const double dt) {
 void Sprint::draw(const bool bottom) {
 	Ingame::draw(bottom);
 	if (bottom) {
-		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), BACKGROUND);
 
 		infoText.draw();
 	}

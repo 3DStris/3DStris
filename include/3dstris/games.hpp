@@ -59,7 +59,5 @@ class Games {
 
 	SavedGames games;
 
-	FS_Archive sdmcArchive;
-
 	bool _failed = false;
 };

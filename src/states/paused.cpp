@@ -23,18 +23,18 @@ void Paused::update(const double dt) {
 
 	if (restartButton.pressed()) {
 		parent->reset();
-		this->game.popState(false, true);
+		game.popState(false, true);
 		return;
 	}
 
 	const u32 kDown = hidKeysDown();
 	if (unpauseButton.pressed() || (kDown > KEY_A && kDown <= KEY_ZR)) {
-		this->game.popState(false, true);
+		game.popState(false, true);
 		return;
 	}
 
 	if (menuButton.pressed()) {
-		this->game.setState(make_unique<MainMenu>());
+		game.setState(make_unique<MainMenu>());
 	}
 }
 
@@ -45,7 +45,7 @@ void Paused::draw(const bool bottom) {
 
 		pausedText.draw();
 	} else {
-		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), BACKGROUND);
 
 		gui.draw();
 	}

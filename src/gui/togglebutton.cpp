@@ -22,7 +22,7 @@ void ToggleButton::update(const touchPosition touch,
 
 	if (pressed()) {
 		value = !value;
-		this->setText(getText(text, value));
+		setText(getText(text, value));
 	}
 }
 

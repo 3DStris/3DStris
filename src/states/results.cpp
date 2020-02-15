@@ -23,12 +23,12 @@ void Results::update(const double dt) {
 
 	if (restartButton.pressed()) {
 		parent->reset();
-		this->game.popState(false, true);
+		game.popState(false, true);
 		return;
 	}
 
 	if (menuButton.pressed()) {
-		this->game.setState(make_unique<MainMenu>());
+		game.setState(make_unique<MainMenu>());
 	}
 }
 
@@ -39,7 +39,7 @@ void Results::draw(const bool bottom) {
 
 		deadText.draw();
 	} else {
-		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), BACKGROUND);
 
 		gui.draw();
 	}

@@ -21,28 +21,28 @@ void ModeSelect::update(const double dt) {
 	gui.update(dt);
 
 	if (normalButton.pressed()) {
-		this->game.setState(make_unique<Playing>(), false, true);
+		game.setState(make_unique<Playing>(), false, true);
 		return;
 	}
 
 	if (sprintButton.pressed()) {
-		this->game.setState(make_unique<Sprint>(), false, false);
+		game.setState(make_unique<Sprint>(), false, false);
 		return;
 	}
 
 	if (backButton.pressed()) {
-		this->game.popState();
+		game.popState();
 		return;
 	}
 }
 
 void ModeSelect::draw(const bool bottom) {
 	if (!bottom) {
-		C2D_TargetClear(this->game.getTop(), BACKGROUND);
+		C2D_TargetClear(game.getTop(), BACKGROUND);
 
 		topText.draw();
 	} else {
-		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), BACKGROUND);
 
 		gui.draw();
 	}

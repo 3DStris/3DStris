@@ -67,7 +67,7 @@ void SprintTimes::update(const double dt) {
 	gui.update(dt);
 
 	if (backButton.pressed()) {
-		this->game.popState();
+		game.popState();
 		return;
 	}
 
@@ -113,7 +113,7 @@ void SprintTimes::update(const double dt) {
 
 void SprintTimes::draw(const bool bottom) {
 	if (!bottom) {
-		C2D_TargetClear(this->game.getTop(), BACKGROUND);
+		C2D_TargetClear(game.getTop(), BACKGROUND);
 
 		if (games.empty()) {
 			noGamesText.draw();
@@ -142,7 +142,7 @@ void SprintTimes::draw(const bool bottom) {
 
 		selectedText.draw();
 	} else {
-		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), BACKGROUND);
 
 		if (!games.empty()) {
 			infoText.draw();

@@ -36,32 +36,32 @@ void MainMenu::update(const double dt) {
 	const u32 kDown = hidKeysDown();
 
 	if (kDown & KEY_START) {
-		this->game.exit = true;
+		game.exit = true;
 		return;
 	}
 	gui.update(dt);
 
 	if (playButton.pressed()) {
-		this->game.pushState(make_unique<ModeSelect>());
+		game.pushState(make_unique<ModeSelect>());
 	}
 	if (settingsButton.pressed()) {
-		this->game.pushState(make_unique<ConfigScreen>());
+		game.pushState(make_unique<ConfigScreen>());
 	}
 	if (exitButton.pressed()) {
-		this->game.exit = true;
+		game.exit = true;
 	}
 
 	if (gamesButton.pressed()) {
-		this->game.pushState(make_unique<SprintTimes>());
+		game.pushState(make_unique<SprintTimes>());
 	}
 	if (languagesButton.pressed()) {
-		this->game.pushState(make_unique<LanguageSelect>());
+		game.pushState(make_unique<LanguageSelect>());
 	}
 }
 
 void MainMenu::draw(const bool bottom) {
 	if (!bottom) {
-		C2D_TargetClear(this->game.getTop(), BACKGROUND);
+		C2D_TargetClear(game.getTop(), BACKGROUND);
 
 		// The 48x48 icon sprite was converted into a 64x64
 		// one; subtract 16 to account for this
@@ -72,7 +72,7 @@ void MainMenu::draw(const bool bottom) {
 
 		versionText.draw();
 	} else {
-		C2D_TargetClear(this->game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), BACKGROUND);
 
 		gui.draw();
 	}

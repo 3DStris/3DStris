@@ -11,7 +11,7 @@ Button::Button(GUI& _parent, const Pos _pos, const WH _wh, const sds text,
 		pos.y = (parent.getHeight() - wh.y) / 2.0f;
 	}
 
-	this->setText(text);
+	setText(text);
 }
 
 Button::Button(GUI& _parent, const Pos _pos, const WH _wh, const char* text,
@@ -22,7 +22,7 @@ void Button::setText(sds text) {
 	this->text.setText(text);
 	this->text.setScale({1, 1});
 
-	Vector2 textWH = this->text.getWH();
+	WH textWH = this->text.getWH();
 	// textW and textH are the text size at scale 1:1, do some math to figure
 	// out scale that fits on the button
 	// 1   textW
@@ -44,7 +44,7 @@ void Button::draw() const {
 					  held ? parent.pressedCol : parent.primaryCol);
 	GUI::drawOutline(pos, wh, 2, parent.outlineCol);
 
-	this->text.draw();
+	text.draw();
 }
 
 void Button::update(const touchPosition touch, const touchPosition previous) {

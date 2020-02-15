@@ -1,13 +1,13 @@
 #include <3dstris/gui/u32inputfield.hpp>
 
-U32InputField::U32InputField(GUI& _parent, const Vector2 _pos,
-							 const Vector2 _wh, const sds suffix)
+U32InputField::U32InputField(GUI& _parent, const Pos _pos, const WH _wh,
+							 const sds suffix)
 	: Widget(_parent, _pos, _wh), suffix(suffix), value(0) {
 	updateText();
 }
 
-U32InputField::U32InputField(GUI& _parent, const Vector2 _pos,
-							 const Vector2 _wh, const char* suffix)
+U32InputField::U32InputField(GUI& _parent, const Pos _pos, const WH _wh,
+							 const char* suffix)
 	: U32InputField(_parent, _pos, _wh, sdsnew(suffix)) {}
 
 U32InputField::~U32InputField() {

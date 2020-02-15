@@ -22,7 +22,7 @@ void Button::setText(sds text) {
 	this->text.setText(text);
 	this->text.setScale({1, 1});
 
-	auto textWH = this->text.getWH();
+	Vector2 textWH = this->text.getWH();
 	// textW and textH are the text size at scale 1:1, do some math to figure
 	// out scale that fits on the button
 	// 1   textW

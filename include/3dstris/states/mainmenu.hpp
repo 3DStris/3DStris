@@ -1,6 +1,7 @@
 #pragma once
 
 #include <3dstris/gui.hpp>
+#include <3dstris/state.hpp>
 
 class MainMenu : public State {
    public:

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <3dstris/sprites.h>
-#include <3dstris/game.hpp>
 #include <3dstris/util.hpp>
 
 constexpr Color WHITE = C2D_Color32(255, 255, 255, 255);

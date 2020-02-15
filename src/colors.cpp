@@ -1,3 +1,4 @@
+#include <3dstris/sprites.h>
 #include <3dstris/colors.hpp>
 
 // i love macros

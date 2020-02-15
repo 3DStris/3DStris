@@ -1,3 +1,4 @@
+#include <3dstris/game.hpp>
 #include <3dstris/gui/togglebutton.hpp>
 
 static sds getText(const sds text, const bool value) {

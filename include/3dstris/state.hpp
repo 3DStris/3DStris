@@ -1,6 +1,7 @@
 #pragma once
 
-class Game;
+#include <3dstris/game.hpp>
+
 class State {
    public:
 	State();

@@ -1,6 +1,7 @@
 #include <3dstris/images.h>
 #include <3dstris/colors.hpp>
 #include <3dstris/game.hpp>
+#include <3dstris/state.hpp>
 
 Game::Game()
 	: imageSheet(C2D_SpriteSheetLoad("romfs:/gfx/images.t3x")),

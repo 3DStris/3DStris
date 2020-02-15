@@ -1,12 +1,14 @@
 #pragma once
 
+#include <3dstris/games.hpp>
 #include <3dstris/gui.hpp>
 #include <3dstris/gui/panel.hpp>
+#include <3dstris/state.hpp>
 
 class SprintTimes : public State {
    public:
 	SprintTimes();
-	~SprintTimes();
+	~SprintTimes() override;
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;

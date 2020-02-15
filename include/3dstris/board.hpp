@@ -1,7 +1,6 @@
 #pragma once
 
 #include <3dstris/piece.hpp>
-#include <vector>
 
 class Board {
    public:

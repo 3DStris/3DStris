@@ -1,7 +1,7 @@
 #pragma once
 
 #include <3dstris/gui.hpp>
-#include <3dstris/states/languages.hpp>
+#include <3dstris/state.hpp>
 
 class LanguageSelect : public State {
    public:

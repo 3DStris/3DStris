@@ -1,3 +1,4 @@
+#include <3dstris/game.hpp>
 #include <3dstris/states/sprinttimes.hpp>
 
 SprintTimes::SprintTimes()

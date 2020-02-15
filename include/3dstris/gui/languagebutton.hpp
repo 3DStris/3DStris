@@ -1,8 +1,8 @@
 #pragma once
 
 #include <3dstris/gui/button.hpp>
+#include <3dstris/util/l10n.hpp>
 
-class GUI;
 class LanguageButton : public Button {
    public:
 	LanguageButton(GUI& parent, const Pos pos, const WH wh,

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <3dstris/gui/widget.hpp>
-#include <3dstris/util/text.hpp>
 
 class GUI;
 class Panel : public Widget {

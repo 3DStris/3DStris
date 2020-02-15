@@ -1,8 +1,7 @@
 #pragma once
 
-#include <3dstris/colors.hpp>
-#include <3dstris/shapes.hpp>
-#include <3dstris/wallkicks.hpp>
+#include <3dstris/game/shapes.hpp>
+#include <3dstris/util.hpp>
 
 class Board;
 class Piece {

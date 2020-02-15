@@ -1,9 +1,9 @@
 #include <3dstris/images.h>
-#include <3dstris/states/configscreen.hpp>
-#include <3dstris/states/languages.hpp>
-#include <3dstris/states/mainmenu.hpp>
-#include <3dstris/states/modeselect.hpp>
-#include <3dstris/states/sprinttimes.hpp>
+#include <3dstris/states/menu/configscreen.hpp>
+#include <3dstris/states/menu/languageselect.hpp>
+#include <3dstris/states/menu/mainmenu.hpp>
+#include <3dstris/states/menu/modeselect.hpp>
+#include <3dstris/states/menu/sprinttimes.hpp>
 #include <3dstris/version.hpp>
 
 MainMenu::MainMenu()

@@ -1,4 +1,4 @@
-#include <3dstris/states/configscreen.hpp>
+#include <3dstris/states/menu/configscreen.hpp>
 
 ConfigScreen::ConfigScreen()
 	: State(),

@@ -1,7 +1,7 @@
 #pragma once
 
+#include <3dstris/config/l10n.hpp>
 #include <3dstris/gui/button.hpp>
-#include <3dstris/util/l10n.hpp>
 
 class LanguageButton : public Button {
    public:

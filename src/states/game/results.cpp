@@ -1,5 +1,5 @@
-#include <3dstris/states/mainmenu.hpp>
-#include <3dstris/states/results.hpp>
+#include <3dstris/states/game/results.hpp>
+#include <3dstris/states/menu/mainmenu.hpp>
 #include <algorithm>
 
 Results::Results(Ingame* parent)

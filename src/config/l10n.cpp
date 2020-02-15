@@ -1,5 +1,5 @@
 #include <rapidjson/filereadstream.h>
-#include <3dstris/util/l10n.hpp>
+#include <3dstris/config/l10n.hpp>
 
 const phmap::btree_map<L10n::Language, const char*> L10n::LANGUAGE_TO_STRING = {
 	{EN, "en"}, {BG, "bg"}, {RU, "ru"}, {PT, "pt"},

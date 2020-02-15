@@ -1,6 +1,5 @@
 #pragma once
 
-#include <3dstris/games.hpp>
 #include <3dstris/gui.hpp>
 #include <3dstris/gui/panel.hpp>
 #include <3dstris/state.hpp>

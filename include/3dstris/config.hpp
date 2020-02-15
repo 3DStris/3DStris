@@ -1,9 +1,7 @@
 #pragma once
 
-#include <3ds.h>
-#include <sds.h>
-#include <3dstris/games.hpp>
-#include <3dstris/util/l10n.hpp>
+#include <3dstris/config/games.hpp>
+#include <3dstris/config/l10n.hpp>
 #include <memory>
 
 struct Config {

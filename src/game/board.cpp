@@ -1,5 +1,5 @@
-#include <3dstris/board.hpp>
 #include <3dstris/game.hpp>
+#include <3dstris/game/board.hpp>
 #include <3dstris/gui.hpp>
 
 Board::Board(const u32 width, const u32 height) : width(width), height(height) {

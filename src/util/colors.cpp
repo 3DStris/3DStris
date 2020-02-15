@@ -1,5 +1,5 @@
 #include <3dstris/sprites.h>
-#include <3dstris/colors.hpp>
+#include <3dstris/util/colorstextures.hpp>
 
 // i love macros
 // name's there for convenience's sake

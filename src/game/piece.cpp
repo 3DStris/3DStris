@@ -1,5 +1,7 @@
-#include <3dstris/board.hpp>
 #include <3dstris/game.hpp>
+#include <3dstris/game/board.hpp>
+#include <3dstris/game/wallkicks.hpp>
+#include <3dstris/util/colorstextures.hpp>
 
 // Ching cong
 Piece::Piece(Board& board, const PieceShape& shape, const PieceType type)

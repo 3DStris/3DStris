@@ -1,6 +1,7 @@
 #pragma once
 
 #include <3dstris/gui.hpp>
+#include <3dstris/gui/panel.hpp>
 #include <3dstris/state.hpp>
 
 class KeybindButton;
@@ -20,6 +21,9 @@ class KeybindSelect : public State {
 	Keybinds::Binds binds;
 
 	GUI gui;
+
+	Panel tip;
+	Text tipText;
 
 	Button& saveButton;
 	Button& resetButton;

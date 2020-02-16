@@ -8,6 +8,9 @@ KeybindSelect::KeybindSelect()
 
 	  binds(game.getKeybinds().all()),
 
+	  tip(gui, {0, SCREEN_HEIGHT - 25}, {SCREEN_WIDTH, 25}, false),
+	  tipText(game.translate("keybindselect.tip")),
+
 	  saveButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 50}, WH{75, 40},
 								 game.translate("save"))),
 	  resetButton(
@@ -15,6 +18,11 @@ KeybindSelect::KeybindSelect()
 						  WH{75, 40}, game.translate("Reset"))),
 	  cancelButton(gui.add<Button>(Pos{BSCREEN_WIDTH - 90, BSCREEN_HEIGHT - 50},
 								   WH{80, 40}, game.translate("cancel"))) {
+	const float tipTextScale =
+		std::min((tip.getWH().x - 10) / tipText.getWH().x, 0.5f);
+	tipText.setScale({tipTextScale, tipTextScale});
+	tipText.align(Text::Align::CENTER, tip.getPos(), tip.getWH());
+
 	selectText.align(Text::Align::SCREEN_CENTER);
 
 	constexpr float BUTTON_WIDTH = 80;
@@ -73,6 +81,9 @@ void KeybindSelect::update(const double dt) {
 void KeybindSelect::draw(const bool bottom) {
 	if (!bottom) {
 		C2D_TargetClear(game.getTop(), BACKGROUND);
+
+		tip.draw();
+		tipText.draw();
 
 		selectText.draw();
 	} else {

@@ -51,6 +51,7 @@
 	"languageselect.select": "Select a language",
 	
 	"keybindselect.title": "Keybinds",
+	"keybindselect.tip": "Press START to cancel. Press SELECT to reset.",
 	"keybindselect.left": "Left",
 	"keybindselect.right": "Right",
 	"keybindselect.rotatecw": "Rotate CW",

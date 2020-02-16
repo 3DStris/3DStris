@@ -22,15 +22,19 @@ SprintTimes::SprintTimes()
 	  infoText(sdsempty(), Pos{10, 10}, {0.8f, 0.8f}),
 	  selectedText(sdsempty(), Pos{-1, SCREEN_HEIGHT - TABLE_Y + 10},
 				   {0.65f, 0.65f}) {
+	if (games.empty()) {
+		noGamesText.align(Text::Align::SCREEN_CENTER);
+		return;
+	}
+
+	titleText.align(Text::Align::HCENTER, Pos{0, 0},
+					{SCREEN_WIDTH, SCREEN_HEIGHT});
 	timeLabel.align(Text::Align::CENTER, Pos{TABLE_X, TABLE_Y},
 					WH{TIME_W, CELL_H});
 	dateLabel.align(Text::Align::CENTER, Pos{TABLE_X + TIME_W, TABLE_Y},
 					WH{DATE_W, CELL_H});
 	genValues();
 
-	titleText.align(Text::Align::HCENTER, Pos{0, 0},
-					{SCREEN_WIDTH, SCREEN_HEIGHT});
-	noGamesText.align(Text::Align::SCREEN_CENTER);
 	updateInfoText(games[selected]);
 	updateSelectedText();
 }

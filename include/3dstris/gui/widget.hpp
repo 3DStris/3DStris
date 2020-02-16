@@ -1,6 +1,5 @@
 #pragma once
 
-#include <3ds.h>
 #include <3dstris/util.hpp>
 
 class GUI;

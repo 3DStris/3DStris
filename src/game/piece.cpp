@@ -5,7 +5,7 @@
 
 // Ching cong
 Piece::Piece(Board& board, const PieceShape& shape, const PieceType type)
-	: board(board), shape(shape) {
+	: game(Game::get()), board(board), shape(shape) {
 	reset(shape, type);
 }
 
@@ -20,20 +20,20 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 
 	pos = {std::floor(board.width / 2.0f) - std::floor(shape.size() / 2.0f), 0};
 
-	if (Game::get().getConfig().useTextures) {
+	if (game.getConfig().useTextures) {
 		sprite = Textures::get(type);
 	}
 
 	fallTimer = 0;
 	fallAfter = 1;
-	sDropAfter = Game::get().getConfig().dropTimer / 1000.;
+	sDropAfter = game.getConfig().dropTimer / 1000.;
 	setTimer = 0;
 	setAfter = 1;
 
-	das = Game::get().getConfig().das / 1000.;
+	das = game.getConfig().das / 1000.;
 	dasTimer = {0, 0};
 
-	arr = Game::get().getConfig().arr / 1000.;
+	arr = game.getConfig().arr / 1000.;
 	arrTimer = arr;
 
 	rotation = 0;
@@ -84,7 +84,7 @@ void Piece::draw(const Vector2 origin, const u32 tileSize) const {
 				const auto pieceY = origin.y + (pos.y + y) * tileSize;
 				const auto ghostPieceY =
 					origin.y + (pos.y + ghostY + y) * tileSize;
-				if (Game::get().getConfig().useTextures) {
+				if (game.getConfig().useTextures) {
 					C2D_DrawImageAt(sprite, pieceX, pieceY, 0.5f);
 					C2D_DrawImageAt(sprite, pieceX, ghostPieceY, 0.5f,
 									&Textures::GHOST);
@@ -120,16 +120,16 @@ void Piece::draw(const Vector2 origin, const u32 tileSize,
 bool Piece::move(const Direction dir) {
 	int xOff = 0, yOff = 0;
 	switch (dir) {
-		case Direction::LEFT:
+		case LEFT:
 			xOff = -1;
 			break;
-		case Direction::RIGHT:
+		case RIGHT:
 			xOff = 1;
 			break;
-		case Direction::UP:
+		case UP:
 			yOff = -1;
 			break;
-		case Direction::DOWN:
+		case DOWN:
 			yOff = 1;
 			break;
 	}
@@ -142,7 +142,7 @@ bool Piece::move(const Direction dir) {
 }
 
 void Piece::rotate(const bool ccw) {
-	if (type == PieceType::O) {
+	if (type == O) {
 		return;
 	}
 
@@ -166,7 +166,8 @@ void Piece::rotate(const bool ccw) {
 	const int prevRotation = rotation;
 	rotation = mod(rotation + (ccw ? -1 : 1), 4);
 
-	Wallkick wkData = type == PieceType::I ? Wallkicks::I : Wallkicks::OTHERS;
+	const Wallkick wkData =
+		type == PieceType::I ? Wallkicks::I : Wallkicks::OTHERS;
 
 	/*
 	each test is stored as {spawn->ccw, spawn->cw, cw->spawn, cw->180, 180->cw,
@@ -197,14 +198,16 @@ void Piece::rotate(const bool ccw) {
 
 void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 	fallTimer += dt;
-	if (sDropAfter == 0.0 && kHeld & KEY_DOWN) {
-		while (move(Direction::DOWN)) {
+
+	const bool softDropHeld = game.isPressed(kHeld, Keybinds::SOFT_DROP);
+	if (sDropAfter == 0.0 && softDropHeld) {
+		while (move(DOWN)) {
 		}
 		fallTimer = 0;
-	} else if (kDown & KEY_DOWN ||
-			   fallTimer > ((kHeld & KEY_DOWN) ? sDropAfter : fallAfter)) {
+	} else if (softDropHeld ||
+			   fallTimer > (softDropHeld ? sDropAfter : fallAfter)) {
 		fallTimer = 0;
-		move(Direction::DOWN);
+		move(DOWN);
 	}
 
 	if (collides(0, 1)) {
@@ -217,31 +220,30 @@ void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 		setTimer = 0.0;
 	}
 
-	if (kDown & KEY_UP) {
-		while (move(Direction::DOWN)) {
+	if (game.isPressed(kDown, Keybinds::HARD_DROP)) {
+		while (move(DOWN)) {
 		}
 		setTimer = setAfter;
 		set();
 		return;
 	}
 
-	dasTimer.x = (kHeld & KEY_LEFT) ? dasTimer.x + dt : 0;
-	dasTimer.y = (kHeld & KEY_RIGHT) ? dasTimer.y + dt : 0;
+	dasTimer.x = game.isPressed(kHeld, Keybinds::LEFT) ? dasTimer.x + dt : 0;
+	dasTimer.y = game.isPressed(kHeld, Keybinds::RIGHT) ? dasTimer.y + dt : 0;
 
 	updateMove(dt, kDown);
 
-	if (kDown & KEY_Y) {
+	if (game.isPressed(kDown, Keybinds::ROTATE_CCW)) {
 		rotate(true);
-	}
-	if (kDown & KEY_B) {
+	} else if (game.isPressed(kDown, Keybinds::ROTATE_CW)) {
 		rotate(false);
 	}
 }
 
 void Piece::updateMove(const double dt, const u32 kDown) {
-	const auto _move = [this, &dt, &kDown](const Direction direction,
-										   const double timer,
-										   const u32 kNeeded) -> bool {
+	const auto _move = [this, &dt, &kDown](
+						   const Direction direction, const double timer,
+						   const Keybinds::Action needed) -> bool {
 		if (timer > das) {
 			if (arr == 0.0) {
 				while (move(direction)) {
@@ -255,7 +257,7 @@ void Piece::updateMove(const double dt, const u32 kDown) {
 			}
 
 			return true;
-		} else if (kDown & kNeeded) {
+		} else if (game.isPressed(kDown, needed)) {
 			move(direction);
 			arrTimer = arr;
 
@@ -265,10 +267,11 @@ void Piece::updateMove(const double dt, const u32 kDown) {
 		return false;
 	};
 
-	const bool moved =
-		_move(LEFT, dasTimer.x, KEY_LEFT);  // x is actually the left timer
+	const bool moved = _move(LEFT, dasTimer.x,
+							 Keybinds::LEFT);  // x is actually the left timer
 	if (!moved) {
-		_move(RIGHT, dasTimer.y, KEY_RIGHT);  // y is actually the right timer
+		_move(RIGHT, dasTimer.y,
+			  Keybinds::RIGHT);  // y is actually the right timer
 	}
 }
 

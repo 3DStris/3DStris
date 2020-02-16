@@ -10,6 +10,8 @@
 
 	"on": "On",
 	"off": "Off",
+	
+	"reset": "Reset",
 
 	"sprint.info": "Lines: %d\nTime: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Games",
@@ -29,6 +31,7 @@
 
 	"mainmenu.play": "Play",
 	"mainmenu.settings": "Settings",
+	"mainmenu.keybinds": "Keybinds",
 	"mainmenu.games": "Games",
 	"mainmenu.languages": "Languages",
 
@@ -44,7 +47,18 @@
 	"settings.usetextures": "Textures",
 
 	"loadfailed.config": "Failed to load config; your settings have been reset.",
+	"loadfailed.keybinds": "Failed to load keybinds; your bindings have been reset.",
 	"loadfailed.games": "Failed to load games; your saved games have been reset.",
 
-	"languageselect.select": "Select a language"
+	"languageselect.select": "Select a language",
+	
+	"keybindselect.title": "Keybinds",
+	"keybindselect.tip": "Press START to cancel. Press SELECT to reset.",
+	"keybindselect.left": "Left",
+	"keybindselect.right": "Right",
+	"keybindselect.rotatecw": "Rotate CW",
+	"keybindselect.rotateccw": "Rotate CCW",
+	"keybindselect.softdrop": "Soft Drop",
+	"keybindselect.harddrop": "Hard Drop",
+	"keybindselect.hold": "Hold"
 }

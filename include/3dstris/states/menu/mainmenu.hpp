@@ -23,6 +23,7 @@ class MainMenu : public State {
 	Button& settingsButton;
 	Button& exitButton;
 
+	Button& keybindsButton;
 	Button& gamesButton;
 	Button& languagesButton;
 };

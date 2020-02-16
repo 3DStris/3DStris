@@ -10,6 +10,8 @@
 	
 	"on": "Да",
 	"off": "Не",
+	
+	"reset": "Врати се по основно",
 
 	"sprint.info": "Редови: %d\nВреме: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Игри",
@@ -28,6 +30,7 @@
 
 	"mainmenu.play": "Играй",
 	"mainmenu.settings": "Поставки",
+	"mainmenu.keybinds": "Контроли",
 	"mainmenu.games": "Игри",
 	"mainmenu.languages": "Jазици",
 
@@ -40,8 +43,19 @@
 	"settings.droptimer": "Таjмер за паганье",
 	"settings.usetextures": "Текстури",
 
-	"loadfailed.config": "Не успеа да се вчита конфигурациjата; вашите поставувања ке бидат поништени.",
-	"loadfailed.games": "Не успеа да се вчитаат игри; вашите зачувани игри ке бидат поништени.",
+	"loadfailed.config": "Не успеа да се вчита конфигурациjата; вашите поставуваньа ке бидат вратени по основно.",
+	"loadfailed.keybinds": "Не успеа да се вчита конфигурациjата; вашите контроли ке бидат вратени по основно.",
+	"loadfailed.games": "Не успеа да се вчитаат игри; вашите зачувани игри ке бидат вратени по основно.",
 	
-	"languageselect.select": "Изберете jазик"
+	"languageselect.select": "Изберете jазик",
+	
+	"keybindselect.title": "Контроли",
+	"keybindselect.tip": "START за да ги отфрлите измените, SELECT за да ги вратите по основно.",
+	"keybindselect.left": "Лево",
+	"keybindselect.right": "Десно",
+	"keybindselect.rotatecw": "Вртенье во насока обратна од СНЧ",
+	"keybindselect.rotateccw": "Вртенье во насока на СНЧ",
+	"keybindselect.softdrop": "Лесно паганье",
+	"keybindselect.harddrop": "Твърдо паганье",
+	"keybindselect.hold": "Държане"
 }

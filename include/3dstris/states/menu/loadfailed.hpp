@@ -7,7 +7,7 @@
 
 class LoadFailed : public State {
    public:
-	enum FailType { CONFIG, GAMES };
+	enum FailType { CONFIG, GAMES, KEYBINDS };
 
 	LoadFailed(const FailType type = CONFIG);
 
@@ -15,6 +15,8 @@ class LoadFailed : public State {
 	void draw(const bool bottom) override;
 
    private:
+	static const char* FAILTYPE_TO_KEY[];
+
 	Text failedText;
 
 	GUI gui;

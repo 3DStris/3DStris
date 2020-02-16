@@ -1,6 +1,7 @@
 #pragma once
 
 #include <3dstris/config/games.hpp>
+#include <3dstris/config/keybinds.hpp>
 #include <3dstris/config/l10n.hpp>
 #include <memory>
 
@@ -36,6 +37,9 @@ struct Config {
 	L10n& getL10n() noexcept;
 	const L10n& getL10n() const noexcept;
 
+	Keybinds& getKeybinds() noexcept;
+	const Keybinds& getKeybinds() const noexcept;
+
 	bool failed() const noexcept;
 
 	u32 das = 200;
@@ -53,6 +57,7 @@ struct Config {
 
 	Games games;
 	L10n l10n;
+	Keybinds keybinds;
 
 	bool _failed = false;
 };

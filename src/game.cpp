@@ -28,6 +28,11 @@ void Game::draw() {
 	getState().draw(true);
 }
 
+bool Game::isPressed(const u32 kDown, const Keybinds::Action action) const
+	noexcept {
+	return kDown & config.getKeybinds().get(action);
+}
+
 sds Game::translate(const char* key) const {
 	return config.getL10n().get(key);
 }
@@ -83,6 +88,9 @@ void Game::reset(const bool top, const bool bottom) {
 Config& Game::getConfig() noexcept {
 	return config;
 }
+const Config& Game::getConfig() const noexcept {
+	return config;
+}
 
 Games& Game::getGames() noexcept {
 	return config.getGames();
@@ -93,4 +101,11 @@ L10n& Game::getL10n() noexcept {
 }
 const L10n& Game::getL10n() const noexcept {
 	return config.getL10n();
+}
+
+Keybinds& Game::getKeybinds() noexcept {
+	return config.getKeybinds();
+}
+const Keybinds& Game::getKeybinds() const noexcept {
+	return config.getKeybinds();
 }

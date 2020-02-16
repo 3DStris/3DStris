@@ -10,10 +10,12 @@
 	
 	"on": "Да",
 	"off": "Не",
+	
+	"reset": "Анулиране",
 
 	"sprint.info": "Редове: %d\nВреме: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Игри",
-	"sprint.times.nogames": "Вие все още не сте играли Спринт.",
+	"sprint.times.nogames": "Все още не сте играли Спринт.",
 	"sprint.times.table.time": "Време",
 	"sprint.times.table.date": "Дата",
 	"sprint.times.info": "Време: %.3fs\nPPS: %.2f\nДата: %s",
@@ -28,6 +30,7 @@
 
 	"mainmenu.play": "Играй",
 	"mainmenu.settings": "Настройки",
+	"mainmenu.keybinds": "Контроли",
 	"mainmenu.games": "Игри",
 	"mainmenu.languages": "Езици",
 
@@ -41,7 +44,18 @@
 	"settings.usetextures": "Текстури",
 
 	"loadfailed.config": "Неуспешно зареждане на конфигурацията; вашите настройки ще бъдат анулирани.",
+	"loadfailed.keybinds": "Неуспешно зареждане на контролите; вашите контроли ще бъдат анулирани.",
 	"loadfailed.games": "Неуспешно зареждане на игри; запазените ви игри ще бъдат анулирани.",
 	
-	"languageselect.select": "Изберете език"
+	"languageselect.select": "Изберете език",
+	
+	"keybindselect.title": "Контроли",
+	"keybindselect.tip": "START за да отмените промените, SELECT за да ги анулирате.",
+	"keybindselect.left": "Ляво",
+	"keybindselect.right": "Дясно",
+	"keybindselect.rotatecw": "Завърти по ЧС",
+	"keybindselect.rotateccw": "Завърти обратно на ЧС",
+	"keybindselect.softdrop": "Леко падане",
+	"keybindselect.harddrop": "Твърдо падане",
+	"keybindselect.hold": "Държане"
 }

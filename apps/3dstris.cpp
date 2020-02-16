@@ -18,7 +18,10 @@ int main() {
 		game.pushState(make_unique<LoadFailed>());
 	}
 	if (game.getGames().failed()) {
-		game.pushState(make_unique<LoadFailed>(LoadFailed::FailType::GAMES));
+		game.pushState(make_unique<LoadFailed>(LoadFailed::GAMES));
+	}
+	if (game.getKeybinds().failed()) {
+		game.pushState(make_unique<LoadFailed>(LoadFailed::KEYBINDS));
 	}
 
 	while (aptMainLoop() && !game.exit) {

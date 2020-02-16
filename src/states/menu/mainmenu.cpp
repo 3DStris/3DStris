@@ -1,5 +1,6 @@
 #include <3dstris/images.h>
 #include <3dstris/states/menu/configscreen.hpp>
+#include <3dstris/states/menu/keybindselect.hpp>
 #include <3dstris/states/menu/languageselect.hpp>
 #include <3dstris/states/menu/mainmenu.hpp>
 #include <3dstris/states/menu/modeselect.hpp>
@@ -24,6 +25,8 @@ MainMenu::MainMenu()
 								 game.translate("exit"),
 								 Button::Flags::HCENTER)),
 
+	  keybindsButton(gui.add<Button>(Pos{10, 10}, WH{75, 40},
+									 game.translate("mainmenu.keybinds"))),
 	  gamesButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 40 - 10}, WH{75, 40},
 								  game.translate("mainmenu.games"))),
 	  languagesButton(gui.add<Button>(
@@ -51,6 +54,9 @@ void MainMenu::update(const double dt) {
 		game.exit = true;
 	}
 
+	if (keybindsButton.pressed()) {
+		game.pushState(make_unique<KeybindSelect>());
+	}
 	if (gamesButton.pressed()) {
 		game.pushState(make_unique<SprintTimes>());
 	}

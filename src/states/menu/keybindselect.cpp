@@ -10,9 +10,11 @@ KeybindSelect::KeybindSelect()
 
 	  saveButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 50}, WH{75, 40},
 								 game.translate("save"))),
+	  resetButton(
+		  gui.add<Button>(Pos{(BSCREEN_WIDTH - 75) / 2, BSCREEN_HEIGHT - 50},
+						  WH{75, 40}, game.translate("Reset"))),
 	  cancelButton(gui.add<Button>(Pos{BSCREEN_WIDTH - 90, BSCREEN_HEIGHT - 50},
-								   WH{80, 40}, game.translate("cancel"))),
-	  language(game.getConfig().language) {
+								   WH{80, 40}, game.translate("cancel"))) {
 	selectText.align(Text::Align::SCREEN_CENTER);
 
 	constexpr float BUTTON_WIDTH = 80;
@@ -24,7 +26,7 @@ KeybindSelect::KeybindSelect()
 	for (const auto& bind : binds) {
 		buttons.push_back(
 			gui.add<KeybindButton>(Pos{x, y}, WH{BUTTON_WIDTH, BUTTON_HEIGHT},
-								   bind.second, binds[bind.first]));
+								   bind.first, binds[bind.first]));
 		labels.push_back(
 			Text(game.translate(Keybinds::KEYBIND_TO_KEY[bind.first]),
 				 Pos{x, y - textH - 4}, {0.4f, 0.4f}));
@@ -55,6 +57,12 @@ void KeybindSelect::update(const double dt) {
 
 		game.setState(make_unique<MainMenu>());
 		return;
+	}
+
+	if (resetButton.pressed()) {
+		for (const auto& button : buttons) {
+			button.get().reset();
+		}
 	}
 
 	if (cancelButton.pressed()) {

@@ -22,6 +22,6 @@ class KeybindSelect : public State {
 	GUI gui;
 
 	Button& saveButton;
+	Button& resetButton;
 	Button& cancelButton;
-	L10n::Language language;
 };

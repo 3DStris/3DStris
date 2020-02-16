@@ -23,16 +23,12 @@ const char* Keybinds::KEYBIND_TO_KEY[]{
 	"keybindselect.softdrop", "keybindselect.harddrop",
 	"keybindselect.hold"};
 
-Keybinds::Keybinds()
-	: binds({
-		  {LEFT, KEY_LEFT},
-		  {RIGHT, KEY_RIGHT},
-		  {ROTATE_CW, KEY_B},
-		  {ROTATE_CCW, KEY_Y},
-		  {SOFT_DROP, KEY_DOWN},
-		  {HARD_DROP, KEY_UP},
-		  {HOLD, KEY_A | KEY_X},
-	  }) {}
+const Keybinds::Binds Keybinds::DEFAULT_BINDS{
+	{LEFT, KEY_LEFT},	 {RIGHT, KEY_RIGHT},	{ROTATE_CW, KEY_B},
+	{ROTATE_CCW, KEY_Y},  {SOFT_DROP, KEY_DOWN}, {HARD_DROP, KEY_UP},
+	{HOLD, KEY_A | KEY_X}};
+
+Keybinds::Keybinds() : binds(DEFAULT_BINDS) {}
 
 void Keybinds::initialize(const FS_Archive sdmcArchive) {
 	const bool gamesFileExists = fileExists(sdmcArchive, keybindsFSPath);

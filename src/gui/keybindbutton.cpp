@@ -22,8 +22,12 @@ const phmap::flat_hash_map<Keybinds::Key, const char*>
 		KEY(TOUCH, "\uE01D"), {KEY_A | KEY_X, "\uE000/\uE001"}};
 
 KeybindButton::KeybindButton(GUI& _parent, const Pos _pos, const WH _wh,
-							 const Keybinds::Key key, Keybinds::Key& toSet)
-	: Button(_parent, _pos, _wh, sdsempty()), key(key), toSet(toSet) {
+							 const Keybinds::Action action,
+							 Keybinds::Key& toSet)
+	: Button(_parent, _pos, _wh, sdsempty()),
+	  action(action),
+	  key(toSet),
+	  toSet(toSet) {
 	updateText();
 }
 
@@ -39,11 +43,14 @@ void KeybindButton::update(const touchPosition touch,
 		key = hidKeysDown();
 		do {
 			hidScanInput();
-			const u32 down = hidKeysDown();
-			if (down & (KEY_START | KEY_SELECT)) {
+			Keybinds::Key kDown = hidKeysDown();
+			if (kDown & KEY_START) {
+				return;
+			} else if (kDown & KEY_SELECT) {
+				reset();
 				return;
 			}
-			key = down;
+			key = kDown;
 
 			svcSleepThread(500000);  // 0.5ms
 		} while (key == 0);
@@ -63,6 +70,11 @@ void KeybindButton::save() {
 	if (key != 0) {
 		toSet = key;
 	}
+}
+
+void KeybindButton::reset() {
+	key = Keybinds::DEFAULT_BINDS.at(action);
+	updateText();
 }
 
 void KeybindButton::updateText() {

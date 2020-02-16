@@ -19,6 +19,7 @@ class Keybinds {
 	using Binds = phmap::btree_map<Action, Key>;
 
 	const static char* KEYBIND_TO_KEY[];
+	const static Binds DEFAULT_BINDS;
 
 	Keybinds();
 

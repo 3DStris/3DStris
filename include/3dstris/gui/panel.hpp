@@ -12,8 +12,8 @@ class Panel : public Widget {
 	void update(const touchPosition, const touchPosition) override;
 
    protected:
-	static constexpr Color PANEL = C2D_Color32(60, 60, 60, 255);
-	static constexpr Color PANEL_OUTLINE = C2D_Color32(88, 88, 88, 255);
+	static constexpr Color PANEL = C2D_Color32(35, 37, 55, 255);
+	static constexpr Color PANEL_OUTLINE = C2D_Color32(33, 35, 51, 255);
 
    private:
 	Color col;

@@ -20,8 +20,8 @@ class U32InputField : public Widget {
 	void setValue(const u32 value);
 
    private:
-	static constexpr Color FIELD = C2D_Color32(94, 94, 94, 255);
-	static constexpr Color FIELD_HELD = C2D_Color32(75, 75, 75, 255);
+	static constexpr Color FIELD = C2D_Color32(30, 32, 47, 255);
+	static constexpr Color FIELD_HELD = C2D_Color32(28, 30, 44, 255);
 
 	void updateText();
 

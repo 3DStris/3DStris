@@ -28,27 +28,29 @@ KeybindSelect::KeybindSelect()
 	constexpr float BUTTON_WIDTH = 80;
 	constexpr float BUTTON_HEIGHT = 25;
 
-	float y = 15;
 	float x = 10;
-	float textH = 10;
+	float y = 15;
+	float textW;
 	for (const auto& bind : binds) {
 		buttons.push_back(
 			gui.add<KeybindButton>(Pos{x, y}, WH{BUTTON_WIDTH, BUTTON_HEIGHT},
 								   bind.first, binds[bind.first]));
-		labels.push_back(
-			Text(game.translate(Keybinds::KEYBIND_TO_KEY[bind.first]),
-				 Pos{x, y - textH - 4}, {0.4f, 0.4f}));
-		textH = labels.back().getWH().y;
+		Text label(game.translate(Keybinds::KEYBIND_TO_KEY[bind.first]),
+				   Pos{x - 3, y - 3}, {0.4f, 0.4f});
 
-		const float textW = labels.back().getWH().x;
+		textW = std::max(label.getWH().x, textW);
+		const float textH = label.getWH().y;
+
+		label.setY(label.getY() - textH);
+		labels.push_back(std::move(label));
 
 		y += BUTTON_HEIGHT + 10 + textH;
 		if (y + BUTTON_HEIGHT + 35 > SCREEN_HEIGHT ||
 			y + BUTTON_HEIGHT + 35 + textH > SCREEN_HEIGHT) {
 			y = 15;
 
-			const float xOffset = BUTTON_WIDTH + 10;
-			x += x + textW > x + xOffset ? textW + 10 : xOffset;
+			constexpr float X_OFFSET = BUTTON_WIDTH + 10;
+			x += x + textW > x + X_OFFSET ? textW + 10 : X_OFFSET;
 		}
 	}
 }

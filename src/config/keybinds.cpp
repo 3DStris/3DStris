@@ -17,6 +17,12 @@ static bool validateJson(const rapidjson::Document& doc) {
 	return !doc.HasParseError();
 }
 
+const char* Keybinds::KEYBIND_TO_KEY[]{
+	"keybindselect.left",	 "keybindselect.right",
+	"keybindselect.rotatecw", "keybindselect.rotateccw",
+	"keybindselect.softdrop", "keybindselect.harddrop",
+	"keybindselect.hold"};
+
 Keybinds::Keybinds()
 	: binds({
 		  {LEFT, KEY_LEFT},
@@ -55,7 +61,7 @@ void Keybinds::initialize(const FS_Archive sdmcArchive) {
 		for (const auto& object : document.GetObject()) {
 			const Action index =
 				static_cast<Action>(atoi(object.name.GetString()));
-			const u32 key = object.value.GetUint();
+			const Key key = object.value.GetUint();
 			if (binds[index] != key) {
 				binds[index] = key;
 			}
@@ -65,6 +71,12 @@ void Keybinds::initialize(const FS_Archive sdmcArchive) {
 
 Keybinds::Key Keybinds::get(const Action action) const noexcept {
 	return binds.at(action);
+}
+Keybinds::Binds& Keybinds::all() noexcept {
+	return binds;
+}
+const Keybinds::Binds& Keybinds::all() const noexcept {
+	return binds;
 }
 
 void Keybinds::save() {

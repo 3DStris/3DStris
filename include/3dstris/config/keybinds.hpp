@@ -5,8 +5,6 @@
 
 class Keybinds {
    public:
-	using Key = u32;
-
 	enum Action {
 		LEFT,
 		RIGHT,
@@ -16,6 +14,11 @@ class Keybinds {
 		HARD_DROP,
 		HOLD
 	};
+
+	using Key = u32;
+	using Binds = phmap::btree_map<Action, Key>;
+
+	const static char* KEYBIND_TO_KEY[];
 
 	Keybinds();
 
@@ -35,13 +38,15 @@ class Keybinds {
 	}
 
 	Key get(const Action action) const noexcept;
+	Binds& all() noexcept;
+	const Binds& all() const noexcept;
 
 	void save();
 
 	bool failed() const noexcept;
 
    private:
-	phmap::btree_map<Action, Key> binds;
+	Binds binds;
 
 	static constexpr auto KEYBINDS_PATH = "sdmc:/3ds/3dstris/keybinds.json";
 	const FS_Path keybindsFSPath =

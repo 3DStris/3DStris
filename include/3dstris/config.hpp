@@ -37,6 +37,7 @@ struct Config {
 	L10n& getL10n() noexcept;
 	const L10n& getL10n() const noexcept;
 
+	Keybinds& getKeybinds() noexcept;
 	const Keybinds& getKeybinds() const noexcept;
 
 	bool failed() const noexcept;

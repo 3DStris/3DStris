@@ -104,6 +104,9 @@ const L10n& Config::getL10n() const noexcept {
 	return l10n;
 }
 
+Keybinds& Config::getKeybinds() noexcept {
+	return keybinds;
+}
 const Keybinds& Config::getKeybinds() const noexcept {
 	return keybinds;
 }

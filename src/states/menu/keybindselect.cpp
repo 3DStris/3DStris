@@ -14,8 +14,8 @@ KeybindSelect::KeybindSelect()
 	  saveButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 50}, WH{75, 40},
 								 game.translate("save"))),
 	  resetButton(
-		  gui.add<Button>(Pos{(BSCREEN_WIDTH - 75) / 2, BSCREEN_HEIGHT - 50},
-						  WH{75, 40}, game.translate("Reset"))),
+		  gui.add<Button>(Pos{(BSCREEN_WIDTH - 115) / 2, BSCREEN_HEIGHT - 50},
+						  WH{115, 40}, game.translate("reset"))),
 	  cancelButton(gui.add<Button>(Pos{BSCREEN_WIDTH - 90, BSCREEN_HEIGHT - 50},
 								   WH{80, 40}, game.translate("cancel"))) {
 	const float tipTextScale =
@@ -48,7 +48,7 @@ KeybindSelect::KeybindSelect()
 			y = 15;
 
 			const float xOffset = BUTTON_WIDTH + 10;
-			x += x + textW > x + xOffset ? xOffset + textW : xOffset;
+			x += x + textW > x + xOffset ? textW + 10 : xOffset;
 		}
 	}
 }

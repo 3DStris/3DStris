@@ -20,7 +20,7 @@ int main() {
 	if (game.getGames().failed()) {
 		game.pushState(make_unique<LoadFailed>(LoadFailed::GAMES));
 	}
-	if (game.getConfig().getKeybinds().failed()) {
+	if (game.getKeybinds().failed()) {
 		game.pushState(make_unique<LoadFailed>(LoadFailed::KEYBINDS));
 	}
 

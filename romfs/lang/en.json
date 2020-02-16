@@ -29,6 +29,7 @@
 
 	"mainmenu.play": "Play",
 	"mainmenu.settings": "Settings",
+	"mainmenu.keybinds": "Keybinds",
 	"mainmenu.games": "Games",
 	"mainmenu.languages": "Languages",
 
@@ -44,6 +45,7 @@
 	"settings.usetextures": "Textures",
 
 	"loadfailed.config": "Failed to load config; your settings have been reset.",
+	"loadfailed.keybinds": "Failed to load keybinds; your bindings have been reset.",
 	"loadfailed.games": "Failed to load games; your saved games have been reset.",
 
 	"languageselect.select": "Select a language",

@@ -6,7 +6,7 @@ KeybindSelect::KeybindSelect()
 	: State(),
 	  selectText(game.translate("keybindselect.title")),
 
-	  binds(game.getConfig().getKeybinds().all()),
+	  binds(game.getKeybinds().all()),
 
 	  saveButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 50}, WH{75, 40},
 								 game.translate("save"))),
@@ -50,8 +50,8 @@ void KeybindSelect::update(const double dt) {
 		for (const auto& button : buttons) {
 			button.get().save();
 		}
-		game.getConfig().getKeybinds().all() = binds;
-		game.getConfig().getKeybinds().save();
+		game.getKeybinds().all() = binds;
+		game.getKeybinds().save();
 
 		game.setState(make_unique<MainMenu>());
 		return;

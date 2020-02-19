@@ -72,6 +72,8 @@ Config::Config() {
 		}
 	}
 
+	LOG_INFO("Loaded config");
+
 	l10n.loadLanguage(language);
 }
 

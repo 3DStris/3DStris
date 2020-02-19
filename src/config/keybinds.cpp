@@ -56,6 +56,8 @@ void Keybinds::initialize(const FS_Archive sdmcArchive) {
 			}
 		}
 	}
+
+	LOG_INFO("Loaded keybinds");
 }
 
 Keybinds::Key Keybinds::get(const Action action) const noexcept {

@@ -54,6 +54,8 @@ void Games::initialize(const FS_Archive sdmcArchive) {
 		}
 		std::sort(games.begin(), games.end(), std::less<SavedGame>());
 	}
+
+	LOG_INFO("Loaded games");
 }
 
 const SavedGames& Games::all() const noexcept {

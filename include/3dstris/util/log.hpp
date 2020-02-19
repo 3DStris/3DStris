@@ -46,7 +46,7 @@ class Log {
 		}
 
 		// Get current time
-		const time_t t = (osGetTime() - 1) / 1000;
+		const time_t t = (osGetTime() - 2208988800000) / 1000;
 		const tm* lt = localtime(&t);
 
 		// Log to stderr

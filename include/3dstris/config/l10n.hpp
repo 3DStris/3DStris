@@ -42,11 +42,11 @@ class L10n {
 		sdsfree(path);
 		LOG_INFO("Loaded language");
 	}
-	void load(const char* path);
+	void load(const char* __restrict path);
 
 	rapidjson::Document loadJson(const char* path);
 
-	sds get(const char* key) const {
+	sds get(const char* __restrict key) const {
 		if (translations.count(key)) {
 			return sdsnew(translations.at(key).c_str());
 		}

@@ -9,7 +9,7 @@ const phmap::btree_map<const char*, L10n::Language, L10n::CompareString>
 	L10n::STRING_TO_LANGUAGE = {{"en", EN}, {"bg", BG}, {"ru", RU}, {"pt", PT},
 								{"pl", PL}, {"de", DE}, {"jp", JP}, {"mk", MK}};
 
-void L10n::load(const char* path) {
+void L10n::load(const char* __restrict path) {
 	if (!translations.empty()) {
 		translations.clear();
 	}
@@ -35,7 +35,7 @@ void L10n::load(const char* path) {
 	}
 }
 
-rapidjson::Document L10n::loadJson(const char* path) {
+rapidjson::Document L10n::loadJson(const char* __restrict path) {
 	FILE* file = fopen(path, "r");
 
 	rapidjson::Document document;

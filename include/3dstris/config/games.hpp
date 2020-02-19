@@ -10,7 +10,7 @@ struct SavedGame {
 	double pps;
 
 	void dateString(char* buf, size_t size,
-					const char* format = "%F %T") const {
+					const char* __restrict format = "%F %T") const {
 		strftime(buf, size, format, localtime(&date));
 	}
 

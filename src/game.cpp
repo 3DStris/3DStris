@@ -33,7 +33,7 @@ bool Game::isPressed(const u32 kDown, const Keybinds::Action action) const
 	return kDown & config.getKeybinds().get(action);
 }
 
-sds Game::translate(const char* key) const {
+sds Game::translate(const char* __restrict key) const {
 	return config.getL10n().get(key);
 }
 void Game::loadLanguage(const L10n::Language language) {

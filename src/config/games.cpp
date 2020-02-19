@@ -3,7 +3,6 @@
 #include <rapidjson/filewritestream.h>
 #include <rapidjson/writer.h>
 #include <sds.h>
-
 #include <3dstris/config/games.hpp>
 #include <3dstris/util/log.hpp>
 #include <algorithm>
@@ -54,7 +53,7 @@ void Games::initialize(const FS_Archive sdmcArchive) {
 
 		for (const auto& object : document.GetArray()) {
 			if (validateGame(object)) {
-				games.push_back({object["date"].GetInt64(),	  //
+				games.push_back({object["date"].GetInt64(),   //
 								 object["time"].GetDouble(),  //
 								 object["pps"].GetDouble()});
 			}

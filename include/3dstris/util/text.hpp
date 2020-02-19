@@ -9,8 +9,8 @@ class Text {
 
 	Text(const sds text = sdsempty(), const Pos pos = Pos{},
 		 const Vector2 scale = {1, 1}, const Color color = WHITE);
-	Text(const char* text, const Pos pos = Pos{}, const Vector2 scale = {1, 1},
-		 const Color color = WHITE);
+	Text(const char* __restrict text, const Pos pos = Pos{},
+		 const Vector2 scale = {1, 1}, const Color color = WHITE);
 
 	~Text();
 	Text(const Text& other) = delete;

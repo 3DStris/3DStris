@@ -9,7 +9,7 @@ Text::Text(const sds text, const Pos pos, const Vector2 scale,
 	setText(text);
 }
 
-Text::Text(const char* text, const Pos pos, const Vector2 scale,
+Text::Text(const char* __restrict text, const Pos pos, const Vector2 scale,
 		   const Color color)
 	: Text(sdsnew(text), pos, scale, color) {}
 

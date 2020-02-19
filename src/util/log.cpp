@@ -21,7 +21,12 @@
  */
 #include <3dstris/util/log.hpp>
 
+Log::Log() {
+	svcCreateMutex(&mutex, false);
+}
+
 Log::~Log() {
+	svcCloseHandle(mutex);
 	fclose(fp);
 }
 

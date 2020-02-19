@@ -9,6 +9,7 @@
 
 #include <3ds.h>
 #include <stdio.h>
+#include <limits>
 
 enum Level { TRACE, DEBUG, INFO, WARN, ERROR, FATAL };
 
@@ -30,16 +31,16 @@ class Log {
 	void setLevel(const Level level);
 	void setQuiet(const bool enable);
 
-	void log(const Level level, const char* file, int line,
-			 const char* string) {
+	void log(const Level level, const char* __restrict file, int line,
+			 const char* __restrict string) {
 		log(level, file, line, "%s", string);
 	}
 
 	template <typename... Args>
-	void log(const Level level, const char* file, int line, const char* fmt,
-			 Args&&... args) {
+	void log(const Level level, const char* __restrict file, int line,
+			 const char* __restrict fmt, Args&&... args) {
 		static const char* LEVELS[] = {"TRACE", "DEBUG", "INFO",
-									   "WARN",	"ERROR", "FATAL"};
+									   "WARN",  "ERROR", "FATAL"};
 
 		if (level < this->level) {
 			return;
@@ -48,6 +49,8 @@ class Log {
 		// Get current time
 		const time_t t = (osGetTime() - 2208988800000) / 1000;
 		const tm* lt = localtime(&t);
+
+		svcWaitSynchronization(mutex, std::numeric_limits<s64>::max());
 
 		// Log to stderr
 		if (!quiet) {
@@ -68,13 +71,17 @@ class Log {
 			fputs("\n", fp);
 			fflush(fp);
 		}
+
+		svcReleaseMutex(mutex);
 	}
 
    private:
 	Log();
 	~Log();
 
-	Level level;
+	Handle mutex;
+
 	FILE* fp;
+	Level level;
 	bool quiet = true;
 };

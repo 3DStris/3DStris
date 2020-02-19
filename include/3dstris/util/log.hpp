@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2017 rxi
  *
  * This library is free software; you can redistribute it and/or modify it
@@ -48,14 +48,15 @@ class Log {
 
 		// Get current time
 		const time_t t = (osGetTime() - 2208988800000) / 1000;
-		const tm* lt = localtime(&t);
+		tm lt;
+		localtime_r(&t, &lt);
 
 		svcWaitSynchronization(mutex, std::numeric_limits<s64>::max());
 
 		// Log to stderr
 		if (!quiet) {
 			char buf[16];
-			buf[strftime(buf, sizeof buf, "%H:%M:%S", lt)] = '\0';
+			buf[strftime(buf, sizeof buf, "%H:%M:%S", &lt)] = '\0';
 			fprintf(stderr, "%s %-5s %s:%d: ", buf, LEVELS[level], file, line);
 			fprintf(stderr, fmt, args...);
 			fputs("\n", stderr);
@@ -65,7 +66,7 @@ class Log {
 		// Log to file
 		if (fp) {
 			char buf[32];
-			buf[strftime(buf, sizeof buf, "%Y-%m-%d %H:%M:%S", lt)] = '\0';
+			buf[strftime(buf, sizeof buf, "%Y-%m-%d %H:%M:%S", &lt)] = '\0';
 			fprintf(fp, "%s %-5s %s:%d: ", buf, LEVELS[level], file, line);
 			fprintf(fp, fmt, args...);
 			fputs("\n", fp);

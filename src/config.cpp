@@ -5,9 +5,13 @@
 #include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>
 
-#define MEMBER(member, type)                                         \
-	if (document.HasMember(#member) && document[#member].Is##type()) \
-		member = document[#member].Get##type();
+#define MEMBER(member, type)                                                \
+	LOG_INFO("Setting config member " #member);                             \
+	if (document.HasMember(#member) && document[#member].Is##type()) {      \
+		member = document[#member].Get##type();                             \
+	} else {                                                                \
+		LOG_WARN("Failed to set config member " #member "; using default"); \
+	}
 
 static bool validateJson(const rapidjson::Document& doc) {
 	return !doc.HasParseError() && doc.IsObject();
@@ -51,6 +55,7 @@ Config::Config() {
 	fclose(file);
 
 	if (!validateJson(document)) {
+		LOG_ERROR("Failed to load config");
 		save();
 		_failed = true;
 	} else {
@@ -59,8 +64,11 @@ Config::Config() {
 		MEMBER(dropTimer, Uint)
 		MEMBER(useTextures, Bool)
 
+		LOG_INFO("Setting config member language");
 		if (document.HasMember("language") && document["language"].IsString()) {
 			language = L10n::stringToLanguage(document["language"].GetString());
+		} else {
+			LOG_WARN("Failed to set config member language; using default");
 		}
 	}
 
@@ -68,6 +76,8 @@ Config::Config() {
 }
 
 void Config::save() {
+	LOG_INFO("Saving config");
+
 	FILE* file = fopen(CONFIG_PATH, "w");
 
 	char writeBuffer[128];
@@ -79,6 +89,8 @@ void Config::save() {
 	this->serialize(writer);
 
 	fclose(file);
+
+	LOG_INFO("Saved config");
 }
 
 Games& Config::getGames() noexcept {

@@ -43,6 +43,7 @@ void Keybinds::initialize(const FS_Archive sdmcArchive) {
 	fclose(file);
 
 	if (!validateJson(document)) {
+		LOG_ERROR("Failed to load keybinds");
 		save();
 		_failed = true;
 	} else {

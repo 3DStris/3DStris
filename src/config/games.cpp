@@ -38,6 +38,7 @@ void Games::initialize(const FS_Archive sdmcArchive) {
 	fclose(file);
 
 	if (!validateJson(document)) {
+		LOG_ERROR("Failed to load games");
 		save();
 		_failed = true;
 	} else {

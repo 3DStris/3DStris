@@ -56,7 +56,7 @@ class Log {
 		// Log to stderr
 		if (!quiet) {
 			char buf[16];
-			buf[strftime(buf, sizeof buf, "%H:%M:%S", &lt)] = '\0';
+			buf[strftime(buf, sizeof buf, "%T", &lt)] = '\0';
 			fprintf(stderr, "%s %-5s %s:%d: ", buf, LEVELS[level], file, line);
 			fprintf(stderr, fmt, args...);
 			fputs("\n", stderr);
@@ -66,7 +66,7 @@ class Log {
 		// Log to file
 		if (fp) {
 			char buf[32];
-			buf[strftime(buf, sizeof buf, "%Y-%m-%d %H:%M:%S", &lt)] = '\0';
+			buf[strftime(buf, sizeof buf, "%F %T", &lt)] = '\0';
 			fprintf(fp, "%s %-5s %s:%d: ", buf, LEVELS[level], file, line);
 			fprintf(fp, fmt, args...);
 			fputs("\n", fp);

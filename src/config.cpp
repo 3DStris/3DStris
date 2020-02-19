@@ -1,9 +1,9 @@
 #include <rapidjson/filereadstream.h>
 #include <rapidjson/filewritestream.h>
 #include <rapidjson/writer.h>
-
 #include <3dstris/game.hpp>
 #include <3dstris/util/log.hpp>
+#include <3dstris/version.hpp>
 
 #define MEMBER(member, type)                                         \
 	if (document.HasMember(#member) && document[#member].Is##type()) \
@@ -42,6 +42,7 @@ Config::Config() {
 		FSUSER_CreateDirectory(sdmcArchive, dirPath, 0);
 	}
 
+	// TODO: move the log stuff out of here
 	if (!fileExists(sdmcArchive, logPath)) {
 		LOG_INFO("Creating log file");
 		FSUSER_CreateFile(sdmcArchive, logPath, 0, 0);
@@ -49,6 +50,7 @@ Config::Config() {
 	}
 
 	Log::get().setFile(fopen(LOG_PATH, "w"));
+	LOG_INFO("3DStris v%s", _3DSTRIS_VERSION);
 
 	if (!fileExists(sdmcArchive, configPath)) {
 		LOG_INFO("Creating config file");

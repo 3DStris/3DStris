@@ -55,7 +55,10 @@ struct Config {
 	const FS_Path configPath =
 		fsMakePath(PATH_ASCII, "/3ds/3dstris/config.json");
 
-	Games games;
+    static constexpr auto LOG_PATH = "sdmc:/3ds/3dstris/log.log";
+    const FS_Path logPath = fsMakePath(PATH_ASCII, "/3ds/3dstris/log.log");
+
+    Games games;
 	L10n l10n;
 	Keybinds keybinds;
 

@@ -3,7 +3,9 @@
 #include <rapidjson/filewritestream.h>
 #include <rapidjson/writer.h>
 #include <sds.h>
+
 #include <3dstris/config/keybinds.hpp>
+#include <3dstris/util/log.hpp>
 
 static bool fileExists(const FS_Archive archive, const FS_Path& path) {
 	Handle handle;
@@ -18,25 +20,23 @@ static bool validateJson(const rapidjson::Document& doc) {
 }
 
 const char* Keybinds::KEYBIND_TO_KEY[]{
-	"keybindselect.left",	 "keybindselect.right",
+	"keybindselect.left",	  "keybindselect.right",
 	"keybindselect.rotatecw", "keybindselect.rotateccw",
 	"keybindselect.softdrop", "keybindselect.harddrop",
 	"keybindselect.hold"};
 
 const Keybinds::Binds Keybinds::DEFAULT_BINDS{
-	{LEFT, KEY_LEFT},	 {RIGHT, KEY_RIGHT},	{ROTATE_CW, KEY_B},
+	{LEFT, KEY_LEFT},	  {RIGHT, KEY_RIGHT},	 {ROTATE_CW, KEY_B},
 	{ROTATE_CCW, KEY_Y},  {SOFT_DROP, KEY_DOWN}, {HARD_DROP, KEY_UP},
 	{HOLD, KEY_A | KEY_X}};
 
 Keybinds::Keybinds() : binds(DEFAULT_BINDS) {}
 
 void Keybinds::initialize(const FS_Archive sdmcArchive) {
-	const bool gamesFileExists = fileExists(sdmcArchive, keybindsFSPath);
-	if (!gamesFileExists) {
+	LOG_INFO("Loading keybinds");
+	if (!fileExists(sdmcArchive, keybindsFSPath)) {
+		LOG_INFO("Creating keybinds file");
 		FSUSER_CreateFile(sdmcArchive, keybindsFSPath, 0, 0);
-	}
-
-	if (!gamesFileExists) {
 		save();
 	}
 
@@ -76,6 +76,8 @@ const Keybinds::Binds& Keybinds::all() const noexcept {
 }
 
 void Keybinds::save() {
+	LOG_INFO("Saving keybinds");
+
 	FILE* file = fopen(KEYBINDS_PATH, "w");
 
 	char writeBuffer[64];
@@ -86,6 +88,8 @@ void Keybinds::save() {
 	this->serialize(writer);
 
 	fclose(file);
+
+	LOG_INFO("Saved keybinds");
 }
 
 bool Keybinds::failed() const noexcept {

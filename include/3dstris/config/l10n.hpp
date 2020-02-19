@@ -6,6 +6,8 @@
 #include <rapidjson/document.h>
 #include <sds.h>
 
+#include <3dstris/util/log.hpp>
+
 class L10n {
    public:
 	struct CompareString {
@@ -16,16 +18,14 @@ class L10n {
 
 	enum Language { EN, BG, RU, PT, PL, DE, JP, MK };
 
-	const static phmap::btree_map<Language, const char*> LANGUAGE_TO_STRING;
+	const static std::array<char[2 + 1], 8> LANGUAGE_TO_STRING;
 	const static phmap::btree_map<const char*, Language, CompareString>
 		STRING_TO_LANGUAGE;
 
 	static const char* languageToString(const Language language) {
-		try {
-			return LANGUAGE_TO_STRING.at(language);
-		} catch (...) {
-			return "en";
-		}
+		return static_cast<u8>(language) < LANGUAGE_TO_STRING.size()
+				   ? LANGUAGE_TO_STRING.at(language)
+				   : "en";
 	}
 	static Language stringToLanguage(const char* language) {
 		try {
@@ -36,9 +36,11 @@ class L10n {
 	}
 
 	void loadLanguage(const Language language) {
+		LOG_INFO("Loading language %s", languageToString(language));
 		sds path = getPath(language);
 		load(path);
 		sdsfree(path);
+		LOG_INFO("Loaded language");
 	}
 	void load(const char* path);
 

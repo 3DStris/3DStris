@@ -1,9 +1,9 @@
 #include <rapidjson/filereadstream.h>
+
 #include <3dstris/config/l10n.hpp>
 
-const phmap::btree_map<L10n::Language, const char*> L10n::LANGUAGE_TO_STRING = {
-	{EN, "en"}, {BG, "bg"}, {RU, "ru"}, {PT, "pt"},
-	{PL, "pl"}, {DE, "de"}, {JP, "jp"}, {MK, "mk"}};
+const std::array<char[2 + 1], 8> L10n::LANGUAGE_TO_STRING = {
+	"en", "bg", "ru", "pt", "pl", "de", "jp", "mk"};
 
 const phmap::btree_map<const char*, L10n::Language, L10n::CompareString>
 	L10n::STRING_TO_LANGUAGE = {{"en", EN}, {"bg", BG}, {"ru", RU}, {"pt", PT},

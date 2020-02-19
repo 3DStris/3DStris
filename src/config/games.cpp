@@ -3,7 +3,9 @@
 #include <rapidjson/filewritestream.h>
 #include <rapidjson/writer.h>
 #include <sds.h>
+
 #include <3dstris/config/games.hpp>
+#include <3dstris/util/log.hpp>
 #include <algorithm>
 
 static bool fileExists(const FS_Archive archive, const FS_Path& path) {
@@ -26,12 +28,10 @@ static bool validateGame(
 }
 
 void Games::initialize(const FS_Archive sdmcArchive) {
-	const bool gamesFileExists = fileExists(sdmcArchive, gamesFSPath);
-	if (!gamesFileExists) {
+	LOG_INFO("Loading games");
+	if (!fileExists(sdmcArchive, gamesFSPath)) {
+		LOG_INFO("Creating games file");
 		FSUSER_CreateFile(sdmcArchive, gamesFSPath, 0, 0);
-	}
-
-	if (!gamesFileExists) {
 		save();
 	}
 
@@ -49,11 +49,12 @@ void Games::initialize(const FS_Archive sdmcArchive) {
 		save();
 		_failed = true;
 	} else {
+		LOG_DEBUG("Reserving space for %u games", document.GetArray().Size());
 		games.reserve(document.GetArray().Size());
 
 		for (const auto& object : document.GetArray()) {
 			if (validateGame(object)) {
-				games.push_back({object["date"].GetInt64(),   //
+				games.push_back({object["date"].GetInt64(),	  //
 								 object["time"].GetDouble(),  //
 								 object["pps"].GetDouble()});
 			}
@@ -72,6 +73,8 @@ void Games::push(SavedGame&& game) {
 }
 
 void Games::save() {
+	LOG_INFO("Saving games");
+
 	s32 mainPrio;
 	svcGetThreadPriority(&mainPrio, CUR_THREAD_HANDLE);
 
@@ -88,6 +91,8 @@ void Games::save() {
 			static_cast<Games*>(games)->serialize(writer);
 
 			fclose(file);
+
+			LOG_INFO("Saved games");
 		},
 		this, 2048, mainPrio - 1, -2, true);
 }

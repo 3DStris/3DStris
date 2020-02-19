@@ -1,7 +1,9 @@
 #include <rapidjson/filereadstream.h>
 #include <rapidjson/filewritestream.h>
 #include <rapidjson/writer.h>
+
 #include <3dstris/game.hpp>
+#include <3dstris/util/log.hpp>
 
 #define MEMBER(member, type)                                         \
 	if (document.HasMember(#member) && document[#member].Is##type()) \
@@ -32,18 +34,25 @@ Config::Config() {
 	FSUSER_OpenArchive(&sdmcArchive, ARCHIVE_SDMC, fsMakePath(PATH_EMPTY, ""));
 
 	if (!directoryExists(sdmcArchive, homebrewPath)) {
+		LOG_INFO("Creating /3ds/");
 		FSUSER_CreateDirectory(sdmcArchive, homebrewPath, 0);
 	}
 	if (!directoryExists(sdmcArchive, dirPath)) {
+		LOG_INFO("Creating 3DStris dir");
 		FSUSER_CreateDirectory(sdmcArchive, dirPath, 0);
 	}
 
-	const bool configFileExists = fileExists(sdmcArchive, configPath);
-	if (!configFileExists) {
-		FSUSER_CreateFile(sdmcArchive, configPath, 0, 0);
+	if (!fileExists(sdmcArchive, logPath)) {
+		LOG_INFO("Creating log file");
+		FSUSER_CreateFile(sdmcArchive, logPath, 0, 0);
+		save();
 	}
 
-	if (!configFileExists) {
+	Log::get().setFile(fopen(LOG_PATH, "w"));
+
+	if (!fileExists(sdmcArchive, configPath)) {
+		LOG_INFO("Creating config file");
+		FSUSER_CreateFile(sdmcArchive, configPath, 0, 0);
 		save();
 	}
 

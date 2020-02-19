@@ -13,7 +13,7 @@ int main() {
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 	C2D_Prepare();
 
-#ifdef DEBUG
+#ifndef NDEBUG
 	consoleDebugInit(debugDevice_3DMOO);
 	Log::get().setLevel(DEBUG);
 	Log::get().setQuiet(false);

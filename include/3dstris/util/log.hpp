@@ -85,6 +85,6 @@ class Log {
 	Handle mutex;
 
 	FILE* fp;
-	Level level;
+	Level level = INFO;
 	bool quiet = true;
 };

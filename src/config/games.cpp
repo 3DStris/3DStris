@@ -16,7 +16,7 @@ static bool fileExists(const FS_Archive archive, const FS_Path& path) {
 }
 
 static bool validateJson(const rapidjson::Document& doc) {
-	return !doc.HasParseError();
+	return !doc.HasParseError() && doc.IsArray();
 }
 
 static bool validateGame(
@@ -48,7 +48,7 @@ void Games::initialize(const FS_Archive sdmcArchive) {
 		save();
 		_failed = true;
 	} else {
-		LOG_DEBUG("Reserving space for %u games", document.GetArray().Size());
+		LOG_DEBUG("Reserving space for %u games", document.Size());
 		games.reserve(document.GetArray().Size());
 
 		for (const auto& object : document.GetArray()) {

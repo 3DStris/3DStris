@@ -42,7 +42,7 @@ class Log {
 		static const char* LEVELS[] = {"TRACE", "DEBUG", "INFO",
 									   "WARN",  "ERROR", "FATAL"};
 
-		if (level < this->level) {
+		if (level < this->level || (quiet && !fp)) {
 			return;
 		}
 

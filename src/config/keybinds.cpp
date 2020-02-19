@@ -16,17 +16,17 @@ static bool fileExists(const FS_Archive archive, const FS_Path& path) {
 }
 
 static bool validateJson(const rapidjson::Document& doc) {
-	return !doc.HasParseError();
+	return !doc.HasParseError() && doc.IsObject();
 }
 
 const char* Keybinds::KEYBIND_TO_KEY[]{
-	"keybindselect.left",	  "keybindselect.right",
+	"keybindselect.left",	 "keybindselect.right",
 	"keybindselect.rotatecw", "keybindselect.rotateccw",
 	"keybindselect.softdrop", "keybindselect.harddrop",
 	"keybindselect.hold"};
 
 const Keybinds::Binds Keybinds::DEFAULT_BINDS{
-	{LEFT, KEY_LEFT},	  {RIGHT, KEY_RIGHT},	 {ROTATE_CW, KEY_B},
+	{LEFT, KEY_LEFT},	 {RIGHT, KEY_RIGHT},	{ROTATE_CW, KEY_B},
 	{ROTATE_CCW, KEY_Y},  {SOFT_DROP, KEY_DOWN}, {HARD_DROP, KEY_UP},
 	{HOLD, KEY_A | KEY_X}};
 

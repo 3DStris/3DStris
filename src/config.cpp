@@ -2,6 +2,7 @@
 #include <rapidjson/filewritestream.h>
 #include <rapidjson/writer.h>
 #include <3dstris/game.hpp>
+#include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>
 #include <3dstris/version.hpp>
 
@@ -9,23 +10,8 @@
 	if (document.HasMember(#member) && document[#member].Is##type()) \
 		member = document[#member].Get##type();
 
-static bool directoryExists(FS_Archive archive, const FS_Path& path) {
-	Handle handle;
-
-	return R_SUCCEEDED(FSUSER_OpenDirectory(&handle, archive, path)) &&
-		   R_SUCCEEDED(FSDIR_Close(handle));
-}
-
-static bool fileExists(FS_Archive archive, const FS_Path& path) {
-	Handle handle;
-
-	return R_SUCCEEDED(
-			   FSUSER_OpenFile(&handle, archive, path, FS_OPEN_READ, 0)) &&
-		   R_SUCCEEDED(FSFILE_Close(handle));
-}
-
 static bool validateJson(const rapidjson::Document& doc) {
-	return !doc.HasParseError();
+	return !doc.HasParseError() && doc.IsObject();
 }
 
 Config::Config() {
@@ -42,15 +28,7 @@ Config::Config() {
 		FSUSER_CreateDirectory(sdmcArchive, dirPath, 0);
 	}
 
-	// TODO: move the log stuff out of here
-	if (!fileExists(sdmcArchive, logPath)) {
-		LOG_INFO("Creating log file");
-		FSUSER_CreateFile(sdmcArchive, logPath, 0, 0);
-		save();
-	}
-
-	Log::get().setFile(fopen(LOG_PATH, "w"));
-	LOG_INFO("3DStris v%s", _3DSTRIS_VERSION);
+	Log::get().load(sdmcArchive);
 
 	if (!fileExists(sdmcArchive, configPath)) {
 		LOG_INFO("Creating config file");

@@ -4,16 +4,9 @@
 #include <rapidjson/writer.h>
 #include <sds.h>
 #include <3dstris/config/games.hpp>
+#include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>
 #include <algorithm>
-
-static bool fileExists(const FS_Archive archive, const FS_Path& path) {
-	Handle handle;
-
-	return R_SUCCEEDED(
-			   FSUSER_OpenFile(&handle, archive, path, FS_OPEN_READ, 0)) &&
-		   R_SUCCEEDED(FSFILE_Close(handle));
-}
 
 static bool validateJson(const rapidjson::Document& doc) {
 	return !doc.HasParseError() && doc.IsArray();

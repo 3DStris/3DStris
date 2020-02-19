@@ -20,7 +20,9 @@
  * IN THE SOFTWARE.
  */
 
+#include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>
+#include <3dstris/version.hpp>
 
 Log::Log() {
 	svcCreateMutex(&mutex, false);
@@ -29,6 +31,20 @@ Log::Log() {
 Log::~Log() {
 	svcCloseHandle(mutex);
 	fclose(fp);
+}
+
+void Log::load(const FS_Archive sdmcArchive) {
+	static constexpr auto LOG_PATH = "sdmc:/3ds/3dstris/log.log";
+	static const FS_Path logPath =
+		fsMakePath(PATH_ASCII, "/3ds/3dstris/log.log");
+
+	if (!fileExists(sdmcArchive, logPath)) {
+		LOG_INFO("Creating log file");
+		FSUSER_CreateFile(sdmcArchive, logPath, 0, 0);
+	}
+
+	setFile(fopen(LOG_PATH, "w"));
+	LOG_INFO("3DStris v%s", _3DSTRIS_VERSION);
 }
 
 void Log::setFile(FILE* fp) {

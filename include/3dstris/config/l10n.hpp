@@ -49,11 +49,11 @@ class L10n {
 	rapidjson::Document loadJson(const char* path);
 
 	sds get(const char* __restrict key) const {
-		if (translations.GetObject().HasMember(key)) {
-			return sdsnew(translations.GetObject()[key].GetString());
+		if (translations.HasMember(key)) {
+			return sdsnew(translations[key].GetString());
 		} else if (!enTranslations.IsNull()) {
-			if (enTranslations.GetObject().HasMember(key)) {
-				return sdsnew(enTranslations.GetObject()[key].GetString());
+			if (enTranslations.HasMember(key)) {
+				return sdsnew(enTranslations[key].GetString());
 			}
 		}
 

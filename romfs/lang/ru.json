@@ -20,7 +20,6 @@
 
 	"results.dead": "Игра окончена",
 	"results.restart": "Заново",
-	"results.menu": "Меню",
 	"results.sprint.time": "Время: %.3fs",
 	"results.sprint.times": "Времена",
 

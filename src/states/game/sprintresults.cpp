@@ -16,7 +16,7 @@ SprintResults::SprintResults(Ingame* parent, SavedGame&& saved)
 								  game.translate("results.sprint.times"),
 								  Button::Flags::HCENTER)),
 	  menuButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 45 - 10}, WH{100, 45},
-								 game.translate("results.menu"),
+								 game.translate("menu"),
 								 Button::Flags::HCENTER)) {
 	timeText.setScale({1.3f, 1.3f});
 	timeText.align(Text::Align::SCREEN_CENTER);

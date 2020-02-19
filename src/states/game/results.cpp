@@ -12,7 +12,7 @@ Results::Results(Ingame* parent)
 		  Pos{-1, BSCREEN_HEIGHT / 3.0f - 10}, WH{150, 60},
 		  game.translate("results.restart"), Button::Flags::HCENTER)),
 	  menuButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 45 - 10}, WH{100, 45},
-								 game.translate("results.menu"),
+								 game.translate("menu"),
 								 Button::Flags::HCENTER)) {
 	deadText.setScale({2, 2});
 	deadText.align(Text::Align::SCREEN_CENTER);

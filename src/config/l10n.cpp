@@ -2,6 +2,8 @@
 
 #include <3dstris/config/l10n.hpp>
 
+constexpr std::array<L10n::Language, 8> L10n::LANGUAGES;
+
 const std::array<char[2 + 1], 8> L10n::LANGUAGE_TO_STRING = {
 	"en", "bg", "ru", "pt", "pl", "de", "jp", "mk"};
 
@@ -10,29 +12,11 @@ const phmap::btree_map<const char*, L10n::Language, L10n::CompareString>
 								{"pl", PL}, {"de", DE}, {"jp", JP}, {"mk", MK}};
 
 void L10n::load(const char* __restrict path) {
-	if (!translations.empty()) {
-		translations.clear();
+	if (enTranslations.IsNull() && strcmp(path, EN_PATH) != 0) {
+		enTranslations = loadJson(EN_PATH);
 	}
 
-	const auto document = loadJson(path);
-	const auto& trs = document.GetObject();
-	for (const auto& tr : trs) {
-		translations[tr.name.GetString()] = tr.value.GetString();
-	}
-
-	if (strcmp(path, EN_PATH) != 0) {
-		const auto enDocument = loadJson(EN_PATH);
-		const auto& enTrs = enDocument.GetObject();
-
-		if (enTrs.MemberCount() != trs.MemberCount()) {
-			for (const auto& tr : enTrs) {
-				const std::string name = tr.name.GetString();
-				if (!translations.count(name)) {
-					translations[name] = tr.value.GetString();
-				}
-			}
-		}
-	}
+	translations = loadJson(path);
 }
 
 rapidjson::Document L10n::loadJson(const char* __restrict path) {

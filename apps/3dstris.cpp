@@ -22,15 +22,12 @@ int main() {
 	Game& game = Game::get();
 	game.pushState(make_unique<MainMenu>());
 	if (game.getConfig().failed()) {
-		LOG_INFO("Config failed to load");
 		game.pushState(make_unique<LoadFailed>());
 	}
 	if (game.getGames().failed()) {
-		LOG_INFO("Games failed to load");
 		game.pushState(make_unique<LoadFailed>(LoadFailed::GAMES));
 	}
 	if (game.getKeybinds().failed()) {
-		LOG_INFO("Keybinds failed to load");
 		game.pushState(make_unique<LoadFailed>(LoadFailed::KEYBINDS));
 	}
 

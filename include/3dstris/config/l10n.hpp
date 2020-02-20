@@ -61,8 +61,10 @@ class L10n {
 	}
 
 	static sds getPath(const Language language) {
-		return sdscatfmt(sdsempty(), "romfs:/lang/%s.json",
-						 languageToString(language));
+		return language == Language::EN
+				   ? sdsnew(EN_PATH)
+				   : sdscatfmt(sdsempty(), "romfs:/lang/%s.json",
+							   languageToString(language));
 	}
 
 	static size_t getFlag(const Language language) {

@@ -12,7 +12,10 @@ const phmap::btree_map<const char*, L10n::Language, L10n::CompareString>
 								{"pl", PL}, {"de", DE}, {"jp", JP}, {"mk", MK}};
 
 void L10n::load(const char* __restrict path) {
-	if (enTranslations.IsNull() && strcmp(path, EN_PATH) != 0) {
+	if (!enTranslations.IsNull() && strcmp(path, EN_PATH) == 0) {
+		translations = std::move(enTranslations);
+		return;
+	} else if (enTranslations.IsNull()) {
 		enTranslations = loadJson(EN_PATH);
 	}
 

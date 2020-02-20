@@ -51,12 +51,14 @@ void Sprint::update(const double dt) {
 	if (board.linesCleared() >= 20) {
 		game.pushState(make_unique<SprintResults>(
 			this,
-			SavedGame{
-				time_t((osGetTime() - 2208988800000)) /
-					1000,  // why? because the 3ds counts in milliseconds.. but
-						   // that's not where it ends; it also starts counting
-						   // from 1900. why, Nintendo?! why would you do this?!
-				time, board.droppedPieces() / time}));
+			SavedGame{time_t(osGetTime() / 1000 -
+							 2208988800),  // osGetTime() returns milliseconds
+										   // since 1/1/1900. We divide by 1000
+										   // and subtract the difference from
+										   // 1/1/1900 to 1/1/1970 to have the
+										   // timestamp be in seconds and in
+										   // Unix time (epoch), respectively
+					  time, board.droppedPieces() / time}));
 		return;
 	}
 

@@ -49,7 +49,7 @@ class Log {
 		}
 
 		// Get current time
-		const time_t t = (osGetTime() - 2208988800000) / 1000;
+		const time_t t = osGetTime() / 1000 - 2208988800;
 		tm lt;
 		localtime_r(&t, &lt);
 

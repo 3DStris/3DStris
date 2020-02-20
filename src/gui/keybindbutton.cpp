@@ -78,9 +78,5 @@ void KeybindButton::reset() {
 }
 
 void KeybindButton::updateText() {
-	try {
-		setText(sdsnew(KEY_TO_GLYPH.at(key)));
-	} catch (...) {
-		setText(sdsnew("?"));
-	}
+	setText(sdsnew(KEY_TO_GLYPH.contains(key) ? KEY_TO_GLYPH.at(key) : "?"));
 }

@@ -1,6 +1,7 @@
 #include <3dstris/states/menu/configscreen.hpp>
 #include <3dstris/states/menu/loadfailed.hpp>
 #include <3dstris/states/menu/mainmenu.hpp>
+#include <3dstris/util/log.hpp>
 
 int main() {
 	TickCounter tickCounter;
@@ -11,6 +12,12 @@ int main() {
 	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 	C2D_Prepare();
+
+#ifndef NDEBUG
+	consoleDebugInit(debugDevice_3DMOO);
+	Log::get().setLevel(DEBUG);
+	Log::get().setQuiet(false);
+#endif
 
 	Game& game = Game::get();
 	game.pushState(make_unique<MainMenu>());

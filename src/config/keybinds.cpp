@@ -4,17 +4,11 @@
 #include <rapidjson/writer.h>
 #include <sds.h>
 #include <3dstris/config/keybinds.hpp>
-
-static bool fileExists(const FS_Archive archive, const FS_Path& path) {
-	Handle handle;
-
-	return R_SUCCEEDED(
-			   FSUSER_OpenFile(&handle, archive, path, FS_OPEN_READ, 0)) &&
-		   R_SUCCEEDED(FSFILE_Close(handle));
-}
+#include <3dstris/util/fs.hpp>
+#include <3dstris/util/log.hpp>
 
 static bool validateJson(const rapidjson::Document& doc) {
-	return !doc.HasParseError();
+	return !doc.HasParseError() && doc.IsObject();
 }
 
 const char* Keybinds::KEYBIND_TO_KEY[]{
@@ -31,12 +25,10 @@ const Keybinds::Binds Keybinds::DEFAULT_BINDS{
 Keybinds::Keybinds() : binds(DEFAULT_BINDS) {}
 
 void Keybinds::initialize(const FS_Archive sdmcArchive) {
-	const bool gamesFileExists = fileExists(sdmcArchive, keybindsFSPath);
-	if (!gamesFileExists) {
+	LOG_INFO("Loading keybinds");
+	if (!fileExists(sdmcArchive, keybindsFSPath)) {
+		LOG_INFO("Creating keybinds file");
 		FSUSER_CreateFile(sdmcArchive, keybindsFSPath, 0, 0);
-	}
-
-	if (!gamesFileExists) {
 		save();
 	}
 
@@ -51,6 +43,7 @@ void Keybinds::initialize(const FS_Archive sdmcArchive) {
 	fclose(file);
 
 	if (!validateJson(document)) {
+		LOG_ERROR("Failed to load keybinds");
 		save();
 		_failed = true;
 	} else {
@@ -63,6 +56,8 @@ void Keybinds::initialize(const FS_Archive sdmcArchive) {
 			}
 		}
 	}
+
+	LOG_INFO("Loaded keybinds");
 }
 
 Keybinds::Key Keybinds::get(const Action action) const noexcept {
@@ -76,6 +71,8 @@ const Keybinds::Binds& Keybinds::all() const noexcept {
 }
 
 void Keybinds::save() {
+	LOG_INFO("Saving keybinds");
+
 	FILE* file = fopen(KEYBINDS_PATH, "w");
 
 	char writeBuffer[64];
@@ -86,6 +83,8 @@ void Keybinds::save() {
 	this->serialize(writer);
 
 	fclose(file);
+
+	LOG_INFO("Saved keybinds");
 }
 
 bool Keybinds::failed() const noexcept {

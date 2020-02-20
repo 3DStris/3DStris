@@ -22,7 +22,6 @@
 
 	"results.dead": "Game Over",
 	"results.restart": "Restart",
-	"results.menu": "Menu",
 	"results.sprint.time": "Time: %.3fs",
 	"results.sprint.times": "Times",
 

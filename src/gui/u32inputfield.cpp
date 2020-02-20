@@ -7,7 +7,7 @@ U32InputField::U32InputField(GUI& _parent, const Pos _pos, const WH _wh,
 }
 
 U32InputField::U32InputField(GUI& _parent, const Pos _pos, const WH _wh,
-							 const char* suffix)
+							 const char* __restrict suffix)
 	: U32InputField(_parent, _pos, _wh, sdsnew(suffix)) {}
 
 U32InputField::~U32InputField() {

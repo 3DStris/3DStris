@@ -15,8 +15,8 @@ LanguageSelect::LanguageSelect()
 
 	float y = 10;
 	float x = 10;
-	for (const auto& lang : L10n::LANGUAGE_TO_STRING) {
-		gui.add<LanguageButton>(Pos{x, y}, WH{80, 25}, lang.first, language);
+	for (const auto& lang : L10n::LANGUAGES) {
+		gui.add<LanguageButton>(Pos{x, y}, WH{80, 25}, lang, language);
 
 		y += 25 + 10;
 		if (y + 35 + 25 > SCREEN_HEIGHT) {

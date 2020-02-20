@@ -1,12 +1,9 @@
 {
-	"ok": "ОК",
 	"save": "Zapisz",
 	
 	"back": "Wróć",
 	"cancel": "Anuluj",
 	"exit": "Wyjście",
-
-	"menu": "Menu",
 	
 	"on": "Tak",
 	"off": "Nie",
@@ -19,8 +16,6 @@
 	"sprint.times.info": "Czas: %.3fs\nPPS: %.2f\nData: %s",
 
 	"results.dead": "Koniec Gry",
-	"results.restart": "Restart",
-	"results.menu": "Menu",
 	"results.sprint.time": "Czas: %.3fs",
 	"results.sprint.times": "Czasy",
 
@@ -34,12 +29,9 @@
 
 	"modeselect.title": "Wybierz tryb",
 	"modeselect.normal": "Normalny",
-	"modeselect.sprint": "Sprint",
 
 	"settings.title": "Ustawienia",
 	"settings.tip": "Użyj dolnego ekranu do zmiany ustawień. Naciśnij \uE001 by anulować.",
-	"settings.das": "DAS",
-	"settings.arr": "ARR",
 	"settings.droptimer": "Zegar dropów",
 	"settings.usetextures": "Tekstury",
 

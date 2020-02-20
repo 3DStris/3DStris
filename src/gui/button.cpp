@@ -14,8 +14,8 @@ Button::Button(GUI& _parent, const Pos _pos, const WH _wh, const sds text,
 	setText(text);
 }
 
-Button::Button(GUI& _parent, const Pos _pos, const WH _wh, const char* text,
-			   const Flags flags)
+Button::Button(GUI& _parent, const Pos _pos, const WH _wh,
+			   const char* __restrict text, const Flags flags)
 	: Button::Button(_parent, _pos, _wh, sdsnew(text), flags) {}
 
 void Button::setText(sds text) {

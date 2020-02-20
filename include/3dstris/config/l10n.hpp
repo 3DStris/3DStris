@@ -6,6 +6,8 @@
 #include <rapidjson/document.h>
 #include <sds.h>
 
+#include <3dstris/util/log.hpp>
+
 class L10n {
    public:
 	struct CompareString {
@@ -15,17 +17,17 @@ class L10n {
 	};
 
 	enum Language { EN, BG, RU, PT, PL, DE, JP, MK };
+	static constexpr std::array<Language, 8> LANGUAGES{EN, BG, RU, PT,
+													   PL, DE, JP, MK};
 
-	const static phmap::btree_map<Language, const char*> LANGUAGE_TO_STRING;
+	const static std::array<char[2 + 1], 8> LANGUAGE_TO_STRING;
 	const static phmap::btree_map<const char*, Language, CompareString>
 		STRING_TO_LANGUAGE;
 
 	static const char* languageToString(const Language language) {
-		try {
-			return LANGUAGE_TO_STRING.at(language);
-		} catch (...) {
-			return "en";
-		}
+		return static_cast<u8>(language) < LANGUAGE_TO_STRING.size()
+				   ? LANGUAGE_TO_STRING[language]
+				   : LANGUAGE_TO_STRING.front();
 	}
 	static Language stringToLanguage(const char* language) {
 		try {
@@ -36,43 +38,48 @@ class L10n {
 	}
 
 	void loadLanguage(const Language language) {
+		LOG_INFO("Loading language %s", languageToString(language));
 		sds path = getPath(language);
 		load(path);
 		sdsfree(path);
+		LOG_INFO("Loaded language");
 	}
-	void load(const char* path);
+	void load(const char* __restrict path);
 
 	rapidjson::Document loadJson(const char* path);
 
-	sds get(const char* key) const {
-		if (translations.count(key)) {
-			return sdsnew(translations.at(key).c_str());
+	sds get(const char* __restrict key) const {
+		if (translations.HasMember(key)) {
+			return sdsnew(translations[key].GetString());
+		} else if (!enTranslations.IsNull()) {
+			if (enTranslations.HasMember(key)) {
+				return sdsnew(enTranslations[key].GetString());
+			}
 		}
 
 		return sdsnew(key);
 	}
 
 	static sds getPath(const Language language) {
-		return sdscatfmt(sdsempty(), "romfs:/lang/%s.json",
-						 languageToString(language));
+		return language == Language::EN
+				   ? sdsnew(EN_PATH)
+				   : sdscatfmt(sdsempty(), "romfs:/lang/%s.json",
+							   languageToString(language));
 	}
 
 	static size_t getFlag(const Language language) {
-		static const phmap::flat_hash_map<Language, size_t> LANGUAGE_TO_ICON{
-			{EN, images_us_idx}, {BG, images_bg_idx}, {RU, images_ru_idx},
-			{PT, images_br_idx}, {PL, images_pl_idx}, {DE, images_de_idx},
-			{JP, images_jp_idx}, {MK, images_mk_idx}};
+		static const std::array<size_t, 8> LANGUAGE_TO_ICON{
+			images_us_idx, images_bg_idx, images_ru_idx, images_br_idx,
+			images_pl_idx, images_de_idx, images_jp_idx, images_mk_idx};
 
-		return LANGUAGE_TO_ICON.at(language);
+		return static_cast<u8>(language) < LANGUAGE_TO_STRING.size()
+				   ? LANGUAGE_TO_ICON[language]
+				   : LANGUAGE_TO_ICON.front();
 	}
 
    private:
 	static constexpr auto EN_PATH = "romfs:/lang/en.json";
 
-	phmap::btree_map<std::string,
-					 std::string>
-		translations;  // oh dear c++ gods, please forgive me, for
-					   // i have used std::string... (okay but
-					   // honestly, trying to use char pointers
-					   // with this isn't fun)
+	rapidjson::Document enTranslations;
+	rapidjson::Document translations;
 };

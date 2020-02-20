@@ -19,7 +19,6 @@
 
 	"results.dead": "ゲームオーバー",
 	"results.restart": "再起動",
-	"results.menu": "メニュー",
 	"results.sprint.time": "時間: %.3fs",
 	"results.sprint.times": "時間",
 

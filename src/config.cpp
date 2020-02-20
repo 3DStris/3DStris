@@ -1,29 +1,20 @@
 #include <rapidjson/filereadstream.h>
 #include <rapidjson/filewritestream.h>
 #include <rapidjson/writer.h>
-#include <3dstris/game.hpp>
+#include <3dstris/config.hpp>
+#include <3dstris/util/fs.hpp>
+#include <3dstris/util/log.hpp>
 
-#define MEMBER(member, type)                                         \
-	if (document.HasMember(#member) && document[#member].Is##type()) \
-		member = document[#member].Get##type();
-
-static bool directoryExists(FS_Archive archive, const FS_Path& path) {
-	Handle handle;
-
-	return R_SUCCEEDED(FSUSER_OpenDirectory(&handle, archive, path)) &&
-		   R_SUCCEEDED(FSDIR_Close(handle));
-}
-
-static bool fileExists(FS_Archive archive, const FS_Path& path) {
-	Handle handle;
-
-	return R_SUCCEEDED(
-			   FSUSER_OpenFile(&handle, archive, path, FS_OPEN_READ, 0)) &&
-		   R_SUCCEEDED(FSFILE_Close(handle));
-}
+#define MEMBER(member, type)                                                \
+	LOG_INFO("Setting config member " #member);                             \
+	if (document.HasMember(#member) && document[#member].Is##type()) {      \
+		member = document[#member].Get##type();                             \
+	} else {                                                                \
+		LOG_WARN("Failed to set config member " #member "; using default"); \
+	}
 
 static bool validateJson(const rapidjson::Document& doc) {
-	return !doc.HasParseError();
+	return !doc.HasParseError() && doc.IsObject();
 }
 
 Config::Config() {
@@ -32,18 +23,19 @@ Config::Config() {
 	FSUSER_OpenArchive(&sdmcArchive, ARCHIVE_SDMC, fsMakePath(PATH_EMPTY, ""));
 
 	if (!directoryExists(sdmcArchive, homebrewPath)) {
+		LOG_INFO("Creating /3ds/");
 		FSUSER_CreateDirectory(sdmcArchive, homebrewPath, 0);
 	}
 	if (!directoryExists(sdmcArchive, dirPath)) {
+		LOG_INFO("Creating 3DStris dir");
 		FSUSER_CreateDirectory(sdmcArchive, dirPath, 0);
 	}
 
-	const bool configFileExists = fileExists(sdmcArchive, configPath);
-	if (!configFileExists) {
-		FSUSER_CreateFile(sdmcArchive, configPath, 0, 0);
-	}
+	Log::get().load(sdmcArchive);
 
-	if (!configFileExists) {
+	if (!fileExists(sdmcArchive, configPath)) {
+		LOG_INFO("Creating config file");
+		FSUSER_CreateFile(sdmcArchive, configPath, 0, 0);
 		save();
 	}
 
@@ -63,6 +55,7 @@ Config::Config() {
 	fclose(file);
 
 	if (!validateJson(document)) {
+		LOG_ERROR("Failed to load config");
 		save();
 		_failed = true;
 	} else {
@@ -71,15 +64,22 @@ Config::Config() {
 		MEMBER(dropTimer, Uint)
 		MEMBER(useTextures, Bool)
 
+		LOG_INFO("Setting config member language");
 		if (document.HasMember("language") && document["language"].IsString()) {
 			language = L10n::stringToLanguage(document["language"].GetString());
+		} else {
+			LOG_WARN("Failed to set config member language; using default");
 		}
 	}
+
+	LOG_INFO("Loaded config");
 
 	l10n.loadLanguage(language);
 }
 
 void Config::save() {
+	LOG_INFO("Saving config");
+
 	FILE* file = fopen(CONFIG_PATH, "w");
 
 	char writeBuffer[128];
@@ -91,6 +91,8 @@ void Config::save() {
 	this->serialize(writer);
 
 	fclose(file);
+
+	LOG_INFO("Saved config");
 }
 
 Games& Config::getGames() noexcept {

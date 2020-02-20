@@ -21,7 +21,6 @@
 	"sprint.times.info": "Време: %.3fs\nPPS: %.2f\nДата: %s",
 
 	"results.restart": "Рестартирай",
-	"results.menu": "Меню",
 	"results.sprint.time": "Време: %.3fs",
 	"results.sprint.times": "Игри",
 

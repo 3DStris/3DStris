@@ -18,7 +18,7 @@ class Game {
 	bool isPressed(const u32 kDown, const Keybinds::Action action) const
 		noexcept;
 
-	sds translate(const char* key) const;
+	sds translate(const char* __restrict key) const;
 	void loadLanguage(const L10n::Language language);
 
 	C3D_RenderTarget* getTop();

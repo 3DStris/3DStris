@@ -14,7 +14,7 @@ Paused::Paused(Ingame* parent)
 									game.translate("paused.resume"),
 									Button::Flags::CENTER)),
 	  menuButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 40 - 10}, WH{100, 45},
-								 game.translate("results.menu"),
+								 game.translate("menu"),
 								 Button::Flags::HCENTER)) {
 	pausedText.setScale({2, 2});
 	pausedText.align(Text::Align::SCREEN_CENTER);

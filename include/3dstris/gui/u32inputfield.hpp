@@ -8,7 +8,8 @@ class U32InputField : public Widget {
    public:
 	U32InputField(GUI& parent, const Pos pos, const WH wh,
 				  const sds suffix = sdsempty());
-	U32InputField(GUI& parent, const Pos pos, const WH wh, const char* suffix);
+	U32InputField(GUI& parent, const Pos pos, const WH wh,
+				  const char* __restrict suffix);
 	~U32InputField() override;
 
 	void draw() const override;

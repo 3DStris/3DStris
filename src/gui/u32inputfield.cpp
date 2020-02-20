@@ -25,21 +25,21 @@ void U32InputField::update(const touchPosition touch,
 
 	if (inside(previous.px, previous.py) && hidKeysUp() & KEY_TOUCH) {
 		SwkbdState swkbd;
-
-		sds initialText = sdsfromlonglong(value);
-
-		char buf[7];
 		swkbdInit(&swkbd, SWKBD_TYPE_NUMPAD, 1, 6);
 		swkbdSetValidation(&swkbd, SWKBD_NOTEMPTY_NOTBLANK, 0, 0);
 		swkbdSetFeatures(&swkbd, SWKBD_FIXED_WIDTH);
+
+		sds initialText = sdsfromlonglong(value);
 		swkbdSetInitialText(&swkbd, initialText);
+
+		char buf[6 + 1];
 		swkbdInputText(&swkbd, buf, sizeof buf);
 
 		sdsfree(initialText);
 
 		char* end;
 		errno = 0;
-		u32 tempValue = strtoul(buf, &end, 10);
+		const u32 tempValue = strtoul(buf, &end, 10);
 		if (end[0] == '\0' && errno == 0) {
 			value = tempValue;
 			updateText();

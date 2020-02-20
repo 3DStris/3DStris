@@ -6,10 +6,10 @@
  Wall kick data is stored as:
  Test n
    {spawn->ccw, spawn->cw, cw->spawn, cw->180, 180->cw, 180->ccw, ccw->180,
- ccw->spawn} More info on: https://harddrop.com/wiki/SRS
+ ccw->spawn} More info at: https://harddrop.com/wiki/SRS
 */
 
-constexpr uint32_t WK_TESTS = 5;
+constexpr uint8_t WK_TESTS = 5;
 
 // 80 being 5 (number of tests) * 8 (number of conditions) * 2 (two numbers
 // in each condition (x and y))

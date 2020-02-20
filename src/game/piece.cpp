@@ -47,8 +47,8 @@ void Piece::reset(const PieceType type) {
 }
 
 void Piece::set() {
-	for (u32 y = 0; y < shape.size(); ++y) {
-		for (u32 x = 0; x < shape.size(); ++x) {
+	for (u8 y = 0; y < shape.size(); ++y) {
+		for (u8 x = 0; x < shape.size(); ++x) {
 			if (shape.get(x, y)) {
 				board.set(u32(pos.x + x), u32(pos.y + y), type);
 			}
@@ -59,8 +59,8 @@ void Piece::set() {
 }
 
 bool Piece::collides(const int offX, const int offY) const {
-	for (u32 y = 0; y < shape.size(); ++y) {
-		for (u32 x = 0; x < shape.size(); ++x) {
+	for (u8 y = 0; y < shape.size(); ++y) {
+		for (u8 x = 0; x < shape.size(); ++x) {
 			const Pos offPos = {pos.x + x + offX, pos.y + y + offY};
 			if (shape.get(x, y) &&
 				(!board.inside(offPos) || board.get(offPos) != NONE)) {
@@ -101,8 +101,8 @@ void Piece::draw(const Vector2 origin, const u32 tileSize) const {
 
 void Piece::draw(const Vector2 origin, const u32 tileSize,
 				 const PieceShape& shape, const PieceType type) {
-	for (u32 y = 0; y < shape.size(); ++y) {
-		for (u32 x = 0; x < shape.size(); ++x) {
+	for (u8 y = 0; y < shape.size(); ++y) {
+		for (u8 x = 0; x < shape.size(); ++x) {
 			if (shape.get(x, y)) {
 				const auto pieceX = origin.x + x * tileSize;
 				const auto pieceY = origin.y + y * tileSize;
@@ -170,18 +170,18 @@ void Piece::rotate(const bool ccw) {
 		type == PieceType::I ? Wallkicks::I : Wallkicks::OTHERS;
 
 	/*
-	each test is stored as {spawn->ccw, spawn->cw, cw->spawn, cw->180, 180->cw,
-	180->ccw, ccw->180, ccw->spawn} considering spawn = 0, cw = 1, 180 = 2, ccw
-	= 3 (aka add one when rotating clockwise, remove when counter clockwise, and
-	always mod 4) it becomes {0->3, 0->1, 1->0, 1->2, 2->1, 2->3, 3->2, 3->0}
-	its in that order so that:
-	[.., state->state after ccw, state->state after cw, ..]
-	which makes it easy to index by using (ccw being true if the current
-	rotation is counter clockwise) 2 * prevRotation + (ccw ? 0 : 1)
+	 each test is stored as {spawn->ccw, spawn->cw, cw->spawn, cw->180,
+	 180->cw, 180->ccw, ccw->180, ccw->spawn} considering spawn = 0, cw = 1, 180
+	 = 2, ccw = 3 (aka add one when rotating clockwise, remove when counter
+	 clockwise, and always mod 4) it becomes {0->3, 0->1, 1->0, 1->2, 2->1,
+	 2->3, 3->2, 3->0} it's in that order so that:
+	 [.., state->state after ccw, state->state after cw, ..]
+	 which makes it easy to index by using: 2 * prevRotation + (ccw ? 0 : 1)
+	 (ccw being true if the current rotation is counter clockwise)
 	*/
 	const int testOffset = 2 * prevRotation + !ccw;
-	for (u32 test = 0; test < WK_TESTS; test++) {
-		u32 i = test * 16 + u32(testOffset * 2);
+	for (u8 test = 0; test < WK_TESTS; test++) {
+		const u32 i = test * 16 + u32(testOffset * 2);
 		const int offX = wkData[i];
 		const int offY = wkData[i + 1];
 		if (!collides(offX, offY)) {
@@ -264,12 +264,12 @@ void Piece::updateMove(const double dt, const u32 kDown) {
 			return true;
 		}
 
+		// didn't move;
 		return false;
 	};
 
-	const bool moved = _move(LEFT, dasTimer.x,
-							 Keybinds::LEFT);  // x is actually the left timer
-	if (!moved) {
+	if (!_move(LEFT, dasTimer.x,  // x is actually the left timer
+			   Keybinds::LEFT)) {
 		_move(RIGHT, dasTimer.y,
 			  Keybinds::RIGHT);  // y is actually the right timer
 	}

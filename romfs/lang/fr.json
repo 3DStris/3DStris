@@ -1,26 +1,19 @@
 {
-	"ok": "OK",
 	"save": "Sauver",
 
 	"back": "Retour",
 	"cancel": "Annuler",
 	"exit": "Quitter",
 
-	"menu": "Menu",
-
 	"on": "Oui",
 	"off": "Non",
 	
-	"reset": "Reset",
-
 	"sprint.info": "Lignes: %d\nTemps: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Parties",
 	"sprint.times.nogames": "Vous n'avez encore jamais joué en mode Sprint.",
 	"sprint.times.table.time": "Temps",
-	"sprint.times.table.date": "Date",
 	"sprint.times.info": "Temps: %.3fs\nPPS: %.2f\nDate: %s",
 
-	"results.dead": "Game Over",
 	"results.restart": "Redémarrer",
 	"results.sprint.time": "Temps: %.3fs",
 	"results.sprint.times": "Temps",
@@ -35,15 +28,10 @@
 	"mainmenu.languages": "Langue",
 
 	"modeselect.title": "Choix du mode",
-	"modeselect.normal": "Normal",
-	"modeselect.sprint": "Sprint",
 
 	"settings.title": "Paramètres",
 	"settings.tip": "Utilisez l'écran inférieur pour modifier les paramètres. Appuyez sur \uE001 pour annuler.",
-	"settings.das": "DAS",
-	"settings.arr": "ARR",
 	"settings.droptimer": "Minuteur",
-	"settings.usetextures": "Textures",
 
 	"loadfailed.config": "Echec de chargement de la configuration; paramètres réinitialisés.",
 	"loadfailed.keybinds": "Echec de chargement des touches; touches réinitialisées.",

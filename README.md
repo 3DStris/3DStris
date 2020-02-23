@@ -10,7 +10,8 @@ Basic Tetris clone for the 3DS.
 
 # Downloads
 Automatically generated builds can be found [here][releases-url].  
-3DStris is also available on [TinyDB][tinydb-url].
+3DStris is also available on [TinyDB][tinydb-url].  
+You can view the GitHub release stats [here][stats-url].
 
 # Building
 ## Setup
@@ -54,3 +55,4 @@ Binaries can be found in `build/apps/`.
 [codefactor-badge]: https://www.codefactor.io/repository/github/3dstris/3dstris/badge
 [codefactor-url]: https://www.codefactor.io/repository/github/3dstris/3dstris
 [tinydb-url]: https://tinydb.eiphax.tech
+[stats-url]: https://3dstris.geni.site

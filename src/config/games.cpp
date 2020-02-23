@@ -169,7 +169,7 @@ void Games::save() {
 
 			LOG_INFO("Saved games");
 		},
-		this, 2048, mainPrio - 1, -2, true);
+		this, 2048, mainPrio + 1, -2, true);
 }
 
 bool Games::failed() const noexcept {

@@ -36,13 +36,14 @@ Binaries can be found in `build/apps/`.
 # Translation
 3DStris currently has translations available for the following languages:
 * English
-* Bulgarian by @geniiii
-* German by @itsdavvid
-* Polish by @itsdavvid
-* (Brazilian) Portuguese by @matcool
-* Russian by @oatmealine
-* Japanese by @Epicpkmn11
-* Macedonian by @geniiii
+* Bulgarian by [@geniiii](https://github.com/geniiii)
+* German by [@itsdavvid](https://github.com/itsdavvid)
+* Polish by [@itsdavvid](https://github.com/itsdavvid)
+* (Brazilian) Portuguese by [@matcool](https://github.com/matcool)
+* Russian by [@oatmealine](https://github.com/oatmealine)
+* Japanese by [@Epicpkmn11](https://github.com/Epicpkmn11)
+* Macedonian by [@geniiii](https://github.com/geniiii)
+* French by [@badablek](https://github.com/badablek)
 
 [devkitpro-setup]: https://www.3dbrew.org/wiki/Setting_up_Development_Environment
 [makerom-url]: https://github.com/jakcron/Project_CTR

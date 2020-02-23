@@ -5,7 +5,6 @@
 #include <parallel_hashmap/phmap.h>
 #include <rapidjson/document.h>
 #include <sds.h>
-
 #include <3dstris/util/log.hpp>
 
 class L10n {
@@ -16,11 +15,12 @@ class L10n {
 		}
 	};
 
-	enum Language { EN, BG, RU, PT, PL, DE, JP, MK };
-	static constexpr std::array<Language, 8> LANGUAGES{EN, BG, RU, PT,
-													   PL, DE, JP, MK};
+	static constexpr u8 LANGUAGE_COUNT = 9;
+	enum Language { EN, BG, RU, PT, PL, DE, JP, MK, FR };
+	static constexpr std::array<Language, LANGUAGE_COUNT> LANGUAGES{
+		EN, BG, RU, PT, PL, DE, JP, MK, FR};
 
-	const static std::array<char[2 + 1], 8> LANGUAGE_TO_STRING;
+	const static std::array<char[2 + 1], LANGUAGE_COUNT> LANGUAGE_TO_STRING;
 	const static phmap::btree_map<const char*, Language, CompareString>
 		STRING_TO_LANGUAGE;
 
@@ -68,9 +68,10 @@ class L10n {
 	}
 
 	static size_t getFlag(const Language language) {
-		static const std::array<size_t, 8> LANGUAGE_TO_ICON{
-			images_us_idx, images_bg_idx, images_ru_idx, images_br_idx,
-			images_pl_idx, images_de_idx, images_jp_idx, images_mk_idx};
+		static const std::array<size_t, LANGUAGE_COUNT> LANGUAGE_TO_ICON{
+			images_us_idx, images_bg_idx, images_ru_idx,
+			images_br_idx, images_pl_idx, images_de_idx,
+			images_jp_idx, images_mk_idx, images_fr_idx};
 
 		return static_cast<u8>(language) < LANGUAGE_TO_STRING.size()
 				   ? LANGUAGE_TO_ICON[language]

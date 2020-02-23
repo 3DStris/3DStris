@@ -1,6 +1,7 @@
 #pragma once
 
 #include <3ds.h>
+#include <mpack/mpack.h>
 #include <vector>
 
 struct SavedGame {
@@ -21,29 +22,9 @@ using SavedGames = std::vector<SavedGame>;
 
 class Games {
    public:
-	void initialize(const FS_Archive sdmcArchive);
+	Games();
 
-	template <typename Writer>
-	void serialize(Writer& writer) const {
-		writer.StartArray();
-
-		for (const auto& game : games) {
-			writer.StartObject();
-
-			writer.String("time");
-			writer.Double(game.time);
-
-			writer.String("date");
-			writer.Int64(game.date);
-
-			writer.String("pps");
-			writer.Double(game.pps);
-
-			writer.EndObject();
-		}
-
-		writer.EndArray();
-	}
+	void serialize(mpack_writer_t& writer) const;
 
 	const SavedGames& all() const noexcept;
 
@@ -53,9 +34,7 @@ class Games {
 	bool failed() const noexcept;
 
    private:
-	static constexpr auto GAMES_PATH = "sdmc:/3ds/3dstris/games.json";
-	const FS_Path gamesFSPath =
-		fsMakePath(PATH_ASCII, "/3ds/3dstris/games.json");
+	static constexpr auto GAMES_PATH = "sdmc:/3ds/3dstris/games.mp";
 
 	SavedGames games;
 

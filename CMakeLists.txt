@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(3DStris_VERSION_MAJOR 1)
-set(3DStris_VERSION_MINOR 4)
+set(3DStris_VERSION_MINOR 5)
 set(3DStris_VERSION_PATCH 0)
 set(3DStris_VERSION ${3DStris_VERSION_MAJOR}.${3DStris_VERSION_MINOR}.${3DStris_VERSION_PATCH})
 
@@ -54,6 +54,7 @@ find_package(RapidJSON REQUIRED)
 find_package(phmap REQUIRED)
 
 add_subdirectory(lib/sds)
+add_subdirectory(lib/mpack)
 
 add_subdirectory(src)
 add_subdirectory(apps)

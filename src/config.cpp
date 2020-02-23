@@ -1,96 +1,95 @@
-#include <rapidjson/filereadstream.h>
-#include <rapidjson/filewritestream.h>
-#include <rapidjson/writer.h>
 #include <3dstris/config.hpp>
 #include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>
 
-#define MEMBER(member, type)                                                \
-	LOG_INFO("Setting config member " #member);                             \
-	if (document.HasMember(#member) && document[#member].Is##type()) {      \
-		member = document[#member].Get##type();                             \
-	} else {                                                                \
-		LOG_WARN("Failed to set config member " #member "; using default"); \
+#define MEMBER_CHECK_TYPE(member, check_type, type)                    \
+	LOG_INFO("Setting config member " #member);                        \
+	{                                                                  \
+		const auto node = mpack_node_map_cstr_optional(root, #member); \
+		if (mpack_node_type(node) != mpack_type_##check_type)          \
+			LOG_WARN("Failed to set config member " #member            \
+					 "; using default");                               \
+		else                                                           \
+			member = mpack_node_##type(node);                          \
 	}
+#define MEMBER(member, type) MEMBER_CHECK_TYPE(member, type, type)
 
-static bool validateJson(const rapidjson::Document& doc) {
-	return !doc.HasParseError() && doc.IsObject();
-}
+#define SERIALIZE_MEMBER(type, value)  \
+	mpack_write_cstr(&writer, #value); \
+	mpack_write_##type(&writer, value);
 
 Config::Config() {
-	FS_Archive sdmcArchive;
-
-	FSUSER_OpenArchive(&sdmcArchive, ARCHIVE_SDMC, fsMakePath(PATH_EMPTY, ""));
-
-	if (!directoryExists(sdmcArchive, homebrewPath)) {
-		LOG_INFO("Creating /3ds/");
-		FSUSER_CreateDirectory(sdmcArchive, homebrewPath, 0);
-	}
-	if (!directoryExists(sdmcArchive, dirPath)) {
-		LOG_INFO("Creating 3DStris dir");
-		FSUSER_CreateDirectory(sdmcArchive, dirPath, 0);
-	}
-
-	Log::get().load(sdmcArchive);
-
-	if (!fileExists(sdmcArchive, configPath)) {
+	if (!exists(CONFIG_PATH)) {
 		LOG_INFO("Creating config file");
-		FSUSER_CreateFile(sdmcArchive, configPath, 0, 0);
 		save();
+		l10n.loadLanguage(language);
+
+		return;
 	}
 
-	games.initialize(sdmcArchive);
-	keybinds.initialize(sdmcArchive);
+	mpack_tree_t tree;
+	mpack_tree_init_filename(&tree, CONFIG_PATH, 0);
+	mpack_tree_parse(&tree);
+	mpack_node_t root = mpack_tree_root(&tree);
 
-	FSUSER_CloseArchive(sdmcArchive);
+	MEMBER_CHECK_TYPE(das, uint, u16)
+	MEMBER_CHECK_TYPE(arr, uint, u16)
+	MEMBER_CHECK_TYPE(dropTimer, uint, u16)
+	MEMBER(useTextures, bool)
 
-	FILE* file = fopen(CONFIG_PATH, "r");
-
-	char readBuffer[128];
-	rapidjson::FileReadStream fileStream(file, readBuffer, sizeof readBuffer);
-
-	rapidjson::Document document;
-	document.ParseStream(fileStream);
-
-	fclose(file);
-
-	if (!validateJson(document)) {
-		LOG_ERROR("Failed to load config");
-		save();
-		_failed = true;
-	} else {
-		MEMBER(das, Uint)
-		MEMBER(arr, Uint)
-		MEMBER(dropTimer, Uint)
-		MEMBER(useTextures, Bool)
-
-		LOG_INFO("Setting config member language");
-		if (document.HasMember("language") && document["language"].IsString()) {
-			language = L10n::stringToLanguage(document["language"].GetString());
-		} else {
+	LOG_INFO("Setting config member language");
+	{
+		const auto node = mpack_node_map_cstr_optional(root, "language");
+		if (mpack_node_type(node) != mpack_type_uint) {
 			LOG_WARN("Failed to set config member language; using default");
+		} else {
+			language = static_cast<L10n::Language>(mpack_node_u8(node));
 		}
 	}
 
-	LOG_INFO("Loaded config");
+	if (mpack_tree_destroy(&tree) != mpack_ok) {
+		LOG_ERROR("Failed to decode config");
+		save();
+		_failed = true;
+	} else {
+		LOG_INFO("Loaded config");
+	}
 
 	l10n.loadLanguage(language);
+}
+
+void Config::serialize(mpack_writer_t& writer) const {
+	mpack_start_map(&writer, 5);
+
+	SERIALIZE_MEMBER(u16, das)
+	SERIALIZE_MEMBER(u16, arr)
+	SERIALIZE_MEMBER(u16, dropTimer)
+	SERIALIZE_MEMBER(bool, useTextures)
+	SERIALIZE_MEMBER(u8, language)
+
+	mpack_finish_map(&writer);
 }
 
 void Config::save() {
 	LOG_INFO("Saving config");
 
-	FILE* file = fopen(CONFIG_PATH, "w");
+	char* data;
+	size_t size;
+	mpack_writer_t writer;
+	mpack_writer_init_growable(&writer, &data, &size);
 
-	char writeBuffer[128];
-	rapidjson::FileWriteStream fileStream(file, writeBuffer,
-										  sizeof writeBuffer);
-
-	rapidjson::Writer<rapidjson::FileWriteStream> writer(fileStream);
-	writer.SetMaxDecimalPlaces(4);
 	this->serialize(writer);
 
+	if (mpack_writer_destroy(&writer) != mpack_ok) {
+		LOG_ERROR("Failed to encode config");
+		return;
+	}
+
+	FILE* file = fopen(CONFIG_PATH, "w");
+	fwrite(data, sizeof(char), size, file);
 	fclose(file);
+
+	delete[] data;
 
 	LOG_INFO("Saved config");
 }

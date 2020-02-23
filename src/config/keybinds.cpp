@@ -1,15 +1,6 @@
-#include <rapidjson/document.h>
-#include <rapidjson/filereadstream.h>
-#include <rapidjson/filewritestream.h>
-#include <rapidjson/writer.h>
-#include <sds.h>
 #include <3dstris/config/keybinds.hpp>
 #include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>
-
-static bool validateJson(const rapidjson::Document& doc) {
-	return !doc.HasParseError() && doc.IsObject();
-}
 
 const char* Keybinds::KEYBIND_TO_KEY[]{
 	"keybindselect.left",	 "keybindselect.right",
@@ -22,42 +13,51 @@ const Keybinds::Binds Keybinds::DEFAULT_BINDS{
 	{ROTATE_CCW, KEY_Y},  {SOFT_DROP, KEY_DOWN}, {HARD_DROP, KEY_UP},
 	{HOLD, KEY_A | KEY_X}};
 
-Keybinds::Keybinds() : binds(DEFAULT_BINDS) {}
-
-void Keybinds::initialize(const FS_Archive sdmcArchive) {
+Keybinds::Keybinds() : binds(DEFAULT_BINDS) {
 	LOG_INFO("Loading keybinds");
-	if (!fileExists(sdmcArchive, keybindsFSPath)) {
+	if (!exists(KEYBINDS_PATH)) {
 		LOG_INFO("Creating keybinds file");
-		FSUSER_CreateFile(sdmcArchive, keybindsFSPath, 0, 0);
 		save();
+
+		return;
 	}
 
-	FILE* file = fopen(KEYBINDS_PATH, "r");
+	mpack_tree_t tree;
+	mpack_tree_init_filename(&tree, KEYBINDS_PATH, 0);
+	mpack_tree_parse(&tree);
+	mpack_node_t root = mpack_tree_root(&tree);
 
-	char readBuffer[64];
-	rapidjson::FileReadStream fileStream(file, readBuffer, sizeof readBuffer);
+	for (size_t i = 0; i < mpack_node_map_count(root); ++i) {
+		const auto _key = mpack_node_map_key_at(root, i);
+		const auto _value = mpack_node_map_value_at(root, i);
+		if (mpack_node_type(_key) != mpack_type_uint ||
+			mpack_node_type(_value) != mpack_type_uint) {
+			continue;
+		}
 
-	rapidjson::Document document;
-	document.ParseStream(fileStream);
+		const auto key = static_cast<Action>(mpack_node_u8(_key));
+		const auto value = mpack_node_u32(_value);
+		binds[key] = value;
+	}
 
-	fclose(file);
-
-	if (!validateJson(document)) {
-		LOG_ERROR("Failed to load keybinds");
+	if (mpack_tree_destroy(&tree) != mpack_ok) {
+		LOG_ERROR("Failed to decode keybinds");
 		save();
 		_failed = true;
 	} else {
-		for (const auto& object : document.GetObject()) {
-			const Action index =
-				static_cast<Action>(atoi(object.name.GetString()));
-			const Key key = object.value.GetUint();
-			if (binds[index] != key) {
-				binds[index] = key;
-			}
-		}
+		LOG_INFO("Loaded keybinds");
+	}
+}
+
+void Keybinds::serialize(mpack_writer_t& writer) const {
+	mpack_start_map(&writer, binds.size());
+
+	for (const auto& bind : binds) {
+		mpack_write_u8(&writer, bind.first);
+		mpack_write_u32(&writer, bind.second);
 	}
 
-	LOG_INFO("Loaded keybinds");
+	mpack_finish_map(&writer);
 }
 
 Keybinds::Key Keybinds::get(const Action action) const noexcept {
@@ -73,16 +73,23 @@ const Keybinds::Binds& Keybinds::all() const noexcept {
 void Keybinds::save() {
 	LOG_INFO("Saving keybinds");
 
-	FILE* file = fopen(KEYBINDS_PATH, "w");
+	char* data;
+	size_t size;
+	mpack_writer_t writer;
+	mpack_writer_init_growable(&writer, &data, &size);
 
-	char writeBuffer[64];
-	rapidjson::FileWriteStream fileStream(file, writeBuffer,
-										  sizeof writeBuffer);
-
-	rapidjson::Writer<rapidjson::FileWriteStream> writer(fileStream);
 	this->serialize(writer);
 
+	if (mpack_writer_destroy(&writer) != mpack_ok) {
+		LOG_ERROR("Failed to encode keybinds");
+		return;
+	}
+
+	FILE* file = fopen(KEYBINDS_PATH, "w");
+	fwrite(data, sizeof(char), size, file);
 	fclose(file);
+
+	delete[] data;
 
 	LOG_INFO("Saved keybinds");
 }

@@ -54,6 +54,7 @@ find_package(RapidJSON REQUIRED)
 find_package(phmap REQUIRED)
 
 add_subdirectory(lib/sds)
+add_subdirectory(lib/mpack)
 
 add_subdirectory(src)
 add_subdirectory(apps)

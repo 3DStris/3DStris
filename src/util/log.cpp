@@ -25,26 +25,34 @@
 #include <3dstris/version.hpp>
 
 Log::Log() {
+	const static FS_Path HOMEBREW_PATH =
+		fsMakePath(PATH_ASCII, "/3ds/3dstris/");
+	const static FS_Path GAME_PATH = fsMakePath(PATH_ASCII, "/3ds/3dstris/");
+	static constexpr auto LOG_PATH = "sdmc:/3ds/3dstris/log.log";
+
 	svcCreateMutex(&mutex, false);
+
+	FS_Archive sdmcArchive;
+	FSUSER_OpenArchive(&sdmcArchive, ARCHIVE_SDMC, fsMakePath(PATH_EMPTY, ""));
+
+	if (!directoryExists(sdmcArchive, HOMEBREW_PATH)) {
+		LOG_INFO("Creating /3ds/");
+		FSUSER_CreateDirectory(sdmcArchive, HOMEBREW_PATH, 0);
+	}
+	if (!directoryExists(sdmcArchive, GAME_PATH)) {
+		LOG_INFO("Creating 3DStris dir");
+		FSUSER_CreateDirectory(sdmcArchive, GAME_PATH, 0);
+	}
+
+	FSUSER_CloseArchive(sdmcArchive);
+
+	setFile(fopen(LOG_PATH, "w"));
+	log(INFO, __FILE__, __LINE__, "3DStris v%s", _3DSTRIS_VERSION);
 }
 
 Log::~Log() {
 	svcCloseHandle(mutex);
 	fclose(fp);
-}
-
-void Log::load(const FS_Archive sdmcArchive) {
-	static constexpr auto LOG_PATH = "sdmc:/3ds/3dstris/log.log";
-	static const FS_Path logPath =
-		fsMakePath(PATH_ASCII, "/3ds/3dstris/log.log");
-
-	if (!fileExists(sdmcArchive, logPath)) {
-		LOG_INFO("Creating log file");
-		FSUSER_CreateFile(sdmcArchive, logPath, 0, 0);
-	}
-
-	setFile(fopen(LOG_PATH, "w"));
-	LOG_INFO("3DStris v%s", _3DSTRIS_VERSION);
 }
 
 void Log::setFile(FILE* fp) {

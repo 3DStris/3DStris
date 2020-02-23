@@ -31,8 +31,6 @@ class Log {
 	void setLevel(const Level level);
 	void setQuiet(const bool enable);
 
-	void load(const FS_Archive sdmcArchive);
-
 	void log(const Level level, const char* __restrict file, int line,
 			 const char* __restrict string) {
 		log(level, file, line, "%s", string);

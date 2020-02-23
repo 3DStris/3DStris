@@ -23,7 +23,8 @@ target_link_libraries(3dstris PUBLIC
 	3ds::ctrulib 3ds::citro3d 3ds::citro2d
 	sds
 	RapidJSON::RapidJSON
-	phmap::phmap)
+	phmap::phmap
+	mpack::mpack)
 
 target_compile_options(3dstris PRIVATE $<$<CONFIG:RELEASE>:-O3>)
 

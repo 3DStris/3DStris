@@ -21,7 +21,7 @@ target_include_directories(3dstris PUBLIC ../include)
 
 target_link_libraries(3dstris PUBLIC
 	3ds::ctrulib 3ds::citro3d 3ds::citro2d
-	sds
+	sds::sds
 	RapidJSON::RapidJSON
 	phmap::phmap
 	mpack::mpack)

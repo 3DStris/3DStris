@@ -11,8 +11,6 @@ class MainMenu : public State {
 	void draw(const bool bottom) override;
 
    private:
-	static constexpr u8 ICON_SCALE = 3;
-
 	Text versionText;
 
 	C2D_Image icon;

@@ -67,6 +67,8 @@ void MainMenu::update(const double dt) {
 
 void MainMenu::draw(const bool bottom) {
 	if (!bottom) {
+		static constexpr u8 ICON_SCALE = 3;
+
 		C2D_TargetClear(game.getTop(), BACKGROUND);
 
 		// The 48x48 icon sprite was converted into a 64x64

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <parallel_hashmap/phmap.h>
 #include <3dstris/config/keybinds.hpp>
 #include <3dstris/config/l10n.hpp>
 #include <3dstris/gui/button.hpp>

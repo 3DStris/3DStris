@@ -2,7 +2,6 @@
 
 #include <3dstris/images.h>
 #include <parallel_hashmap/btree.h>
-#include <parallel_hashmap/phmap.h>
 #include <rapidjson/document.h>
 #include <sds.h>
 #include <3dstris/util/log.hpp>

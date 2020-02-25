@@ -1,5 +1,4 @@
 #include <rapidjson/filereadstream.h>
-
 #include <3dstris/config/l10n.hpp>
 
 constexpr std::array<L10n::Language, L10n::LANGUAGE_COUNT> L10n::LANGUAGES;

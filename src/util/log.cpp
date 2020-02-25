@@ -25,8 +25,7 @@
 #include <3dstris/version.hpp>
 
 Log::Log() {
-	const static FS_Path HOMEBREW_PATH =
-		fsMakePath(PATH_ASCII, "/3ds/3dstris/");
+	const static FS_Path HOMEBREW_PATH = fsMakePath(PATH_ASCII, "/3ds/");
 	const static FS_Path GAME_PATH = fsMakePath(PATH_ASCII, "/3ds/3dstris/");
 	static constexpr auto LOG_PATH = "sdmc:/3ds/3dstris/log.log";
 
@@ -36,11 +35,11 @@ Log::Log() {
 	FSUSER_OpenArchive(&sdmcArchive, ARCHIVE_SDMC, fsMakePath(PATH_EMPTY, ""));
 
 	if (!directoryExists(sdmcArchive, HOMEBREW_PATH)) {
-		LOG_INFO("Creating /3ds/");
+		log(INFO, __FILE__, __LINE__, "Creating /3ds/");
 		FSUSER_CreateDirectory(sdmcArchive, HOMEBREW_PATH, 0);
 	}
 	if (!directoryExists(sdmcArchive, GAME_PATH)) {
-		LOG_INFO("Creating 3DStris dir");
+		log(INFO, __FILE__, __LINE__, "Creating 3DStris dir");
 		FSUSER_CreateDirectory(sdmcArchive, GAME_PATH, 0);
 	}
 

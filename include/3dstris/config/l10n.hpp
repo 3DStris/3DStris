@@ -26,7 +26,7 @@ class L10n {
 
 		return static_cast<u8>(language) < LANGUAGE_TO_STRING.size()
 				   ? LANGUAGE_TO_STRING[language]
-				   : LANGUAGE_TO_STRING.front();
+				   : "un";
 	}
 	static Language stringToLanguage(const char* language) {
 		const static phmap::btree_map<const char*, Language, CompareString>
@@ -86,7 +86,7 @@ class L10n {
 
 		return static_cast<u8>(language) < LANGUAGES.size()
 				   ? LANGUAGE_TO_ICON[language]
-				   : LANGUAGE_TO_ICON.front();
+				   : images_un_idx;
 	}
 
    private:

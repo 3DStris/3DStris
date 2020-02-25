@@ -5,19 +5,20 @@
 
 class GUI;
 
-template <typename T = u32>
+template <typename T = u32, u8 digits = 6>
 class IntegerInputField : public Widget {
 	static_assert(std::is_integral<T>::value, "T must be integral");
+	static_assert(digits <= 21, "Cannot use more than 21 digits");
 
    public:
 	IntegerInputField(GUI& _parent, const Pos _pos, const WH _wh,
-					  const sds suffix = sdsempty(), const u8 digits = 6)
-		: Widget(_parent, _pos, _wh), suffix(suffix), value(0), digits(digits) {
+					  const sds suffix = sdsempty())
+		: Widget(_parent, _pos, _wh), suffix(suffix), value(0) {
 		updateText();
 	}
 	IntegerInputField(GUI& _parent, const Pos _pos, const WH _wh,
-					  const char* __restrict suffix = "", const u8 digits = 6)
-		: IntegerInputField(_parent, _pos, _wh, sdsnew(suffix), digits) {}
+					  const char* __restrict suffix)
+		: IntegerInputField(_parent, _pos, _wh, sdsnew(suffix)) {}
 
 	~IntegerInputField() override { sdsfree(suffix); }
 
@@ -87,7 +88,6 @@ class IntegerInputField : public Widget {
 	sds suffix;
 
 	T value;
-	u8 digits;
 
 	bool held;
 };

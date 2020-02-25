@@ -13,7 +13,6 @@ GUI::GUI(const u16 width, const u16 height, const Color primaryCol,
 u16 GUI::getWidth() const noexcept {
 	return width;
 }
-
 u16 GUI::getHeight() const noexcept {
 	return height;
 }
@@ -28,7 +27,6 @@ void GUI::update(double) {
 
 	previousTouch = touch;
 }
-
 void GUI::draw() const {
 	for (const auto& widget : widgets) {
 		widget->draw();

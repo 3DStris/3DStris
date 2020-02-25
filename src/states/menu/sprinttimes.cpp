@@ -26,8 +26,8 @@ SprintTimes::SprintTimes()
 		return;
 	}
 
-	titleText.align(Text::Align::HCENTER, Pos{0, 0},
-					{SCREEN_WIDTH, SCREEN_HEIGHT});
+	titleText.align(Text::Align::HCENTER, Pos{},
+					WH{SCREEN_WIDTH, SCREEN_HEIGHT});
 	timeLabel.align(Text::Align::CENTER, Pos{TABLE_X, TABLE_Y},
 					WH{TIME_W, CELL_H});
 	dateLabel.align(Text::Align::CENTER, Pos{TABLE_X + TIME_W, TABLE_Y},

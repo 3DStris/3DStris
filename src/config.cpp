@@ -14,7 +14,7 @@
 	}
 #define MEMBER(member, type) MEMBER_CHECK_TYPE(member, type, type)
 
-#define SERIALIZE_MEMBER(type, value)  \
+#define SERIALIZE_MEMBER(value, type)  \
 	mpack_write_cstr(&writer, #value); \
 	mpack_write_##type(&writer, value);
 
@@ -61,11 +61,11 @@ Config::Config() {
 void Config::serialize(mpack_writer_t& writer) const {
 	mpack_start_map(&writer, 5);
 
-	SERIALIZE_MEMBER(u16, das)
-	SERIALIZE_MEMBER(u16, arr)
-	SERIALIZE_MEMBER(u16, dropTimer)
-	SERIALIZE_MEMBER(bool, useTextures)
-	SERIALIZE_MEMBER(u8, language)
+	SERIALIZE_MEMBER(das, u16)
+	SERIALIZE_MEMBER(arr, u16)
+	SERIALIZE_MEMBER(dropTimer, u16)
+	SERIALIZE_MEMBER(useTextures, bool)
+	SERIALIZE_MEMBER(language, u8)
 
 	mpack_finish_map(&writer);
 }

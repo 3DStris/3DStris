@@ -13,8 +13,9 @@ LanguageButton::LanguageButton(GUI& _parent, const Pos _pos, const WH _wh,
 
 void LanguageButton::draw() const {
 	Button::draw();
-	C2D_DrawImageAt(flag, pos.x + 3,
-					pos.y + (wh.y - (flag.tex->height - 53)) / 2, 1);
+	C2D_DrawImageAt(
+		flag, pos.x + 3,
+		pos.y + (wh.y - (flag.tex->height - (flag.tex->height - 11))) / 2, 1);
 }
 
 void LanguageButton::update(const touchPosition touch,

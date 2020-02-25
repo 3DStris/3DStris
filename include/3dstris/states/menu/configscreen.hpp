@@ -1,9 +1,9 @@
 #pragma once
 
 #include <3dstris/gui.hpp>
+#include <3dstris/gui/integerinputfield.hpp>
 #include <3dstris/gui/panel.hpp>
 #include <3dstris/gui/togglebutton.hpp>
-#include <3dstris/gui/u32inputfield.hpp>
 #include <3dstris/state.hpp>
 
 class ConfigScreen : public State {
@@ -29,9 +29,9 @@ class ConfigScreen : public State {
 	Panel& panel;
 	Panel tip;
 
-	U32InputField& das;
-	U32InputField& arr;
-	U32InputField& dropTimer;
+	IntegerInputField<u16>& das;
+	IntegerInputField<u16>& arr;
+	IntegerInputField<u16>& dropTimer;
 
 	ToggleButton& useTextures;
 };

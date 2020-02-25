@@ -21,12 +21,12 @@ ConfigScreen::ConfigScreen()
 						   WH{BSCREEN_WIDTH - 20, BSCREEN_HEIGHT - 80})),
 	  tip(gui, {0, SCREEN_HEIGHT - 25}, {SCREEN_WIDTH, 25}, false),
 
-	  das(gui.add<U32InputField>(Pos{15, 35}, WH{BSCREEN_WIDTH - 50 - 115, 25},
-								 "ms")),
-	  arr(gui.add<U32InputField>(Pos{15, 85}, WH{BSCREEN_WIDTH - 30, 25},
-								 "ms")),
-	  dropTimer(gui.add<U32InputField>(Pos{15, 135}, WH{BSCREEN_WIDTH - 30, 25},
-									   "ms")),
+	  das(gui.add<IntegerInputField<u16>>(
+		  Pos{15, 35}, WH{BSCREEN_WIDTH - 50 - 115, 25}, "ms")),
+	  arr(gui.add<IntegerInputField<u16>>(Pos{15, 85},
+										  WH{BSCREEN_WIDTH - 30, 25}, "ms")),
+	  dropTimer(gui.add<IntegerInputField<u16>>(
+		  Pos{15, 135}, WH{BSCREEN_WIDTH - 30, 25}, "ms")),
 	  useTextures(gui.add<ToggleButton>(Pos{BSCREEN_WIDTH - 20 - 115, 35},
 										WH{115, 30},
 										game.translate("settings.usetextures"),

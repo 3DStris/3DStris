@@ -21,11 +21,10 @@ Text::~Text() {
 Text::Text(Text&& other)
 	: pos(other.pos),
 	  scale(other.scale),
+	  text(other.text),
 	  color(other.color),
 	  textObject(other.textObject),
 	  textBuffer(other.textBuffer) {
-	text = other.text;
-
 	other.textBuffer = nullptr;
 	other.text = nullptr;
 }

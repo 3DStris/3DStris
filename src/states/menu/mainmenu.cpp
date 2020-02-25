@@ -67,14 +67,22 @@ void MainMenu::update(const double dt) {
 
 void MainMenu::draw(const bool bottom) {
 	if (!bottom) {
+		static constexpr u8 ICON_SCALE = 3;
+
 		C2D_TargetClear(game.getTop(), BACKGROUND);
 
-		// The 48x48 icon sprite was converted into a 64x64
-		// one; subtract 16 to account for this
+		// The 48x48 icon sprite gets converted into a 64x64/64x128 one;
+		// subtract the difference of its new size and the original size to
+		// account for this
 		C2D_DrawImageAt(
-			icon, (SCREEN_WIDTH - (icon.tex->width - 16) * ICON_SCALE) / 2,
-			(SCREEN_HEIGHT - (icon.tex->height - 16) * ICON_SCALE) / 2, 0,
-			nullptr, ICON_SCALE, ICON_SCALE);
+			icon,
+			(SCREEN_WIDTH -
+			 (icon.tex->width - (icon.tex->width - 48)) * ICON_SCALE) /
+				2,
+			(SCREEN_HEIGHT -
+			 (icon.tex->height - (icon.tex->height - 48)) * ICON_SCALE) /
+				2,
+			0, nullptr, ICON_SCALE, ICON_SCALE);
 
 		versionText.draw();
 	} else {

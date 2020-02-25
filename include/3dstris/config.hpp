@@ -1,6 +1,5 @@
 #pragma once
 
-#include <mpack/mpack.h>
 #include <3dstris/config/games.hpp>
 #include <3dstris/config/keybinds.hpp>
 #include <3dstris/config/l10n.hpp>

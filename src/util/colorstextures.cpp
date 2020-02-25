@@ -20,7 +20,8 @@ Textures::Textures()
 	  all({SPRITE(I, cyan), SPRITE(O, yellow), SPRITE(L, orange),
 		   SPRITE(J, blue), SPRITE(S, green), SPRITE(T, purple),
 		   SPRITE(Z, red)}) {
-	C2D_AlphaImageTint(&GHOST, 0.3902f);
+	// C2D_AlphaImageTint uses C2D_Color32f, so we do this instead
+	C2D_PlainImageTint(&GHOST, C2D_Color32(0.0f, 0.0f, 0.0f, 100), 0.0f);
 }
 
 Textures::~Textures() {

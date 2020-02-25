@@ -72,10 +72,9 @@ class IntegerInputField : public Widget {
 	static constexpr Color FIELD_HELD = C2D_Color32(28, 30, 44, 255);
 
 	void updateText() {
-		// Unsigned 64-bit integers become signed, don't throw any numbers too
-		// large at this! I can't do much without allocating a new string every
-		// time this is called (by calling sdsfromlonglong).
-		text.setText(sdscatfmt(sdsempty(), "%I%s", s64(value), suffix));
+		text.setText(sdscatfmt(
+			sdsempty(), std::is_signed<T>::value ? "%I%S" : "%U%S",
+			std::is_signed<T>::value ? s64(value) : u64(value), suffix));
 
 		const float textScale = std::min(text.getWH().y / wh.y, 0.5f);
 		text.setScale({textScale, textScale});

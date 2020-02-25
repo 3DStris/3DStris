@@ -34,11 +34,9 @@ class L10n {
 								  {"pt", PT}, {"pl", PL}, {"de", DE},
 								  {"jp", JP}, {"mk", MK}, {"fr", FR}};
 
-		try {
-			return STRING_TO_LANGUAGE.at(language);
-		} catch (...) {
-			return EN;
-		}
+		return STRING_TO_LANGUAGE.contains(language)
+				   ? STRING_TO_LANGUAGE.at(language)
+				   : EN;
 	}
 
 	void loadLanguage(const Language language) {
@@ -53,7 +51,7 @@ class L10n {
 	}
 	void load(const char* __restrict path);
 
-	rapidjson::Document loadJson(const char* path);
+	rapidjson::Document loadJson(const char* __restrict path);
 
 	sds get(const char* __restrict key) const {
 		if (translations.HasMember(key)) {

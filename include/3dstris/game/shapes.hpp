@@ -12,11 +12,15 @@ class PieceShape {
 
 	template <typename T>
 	bool get(const T x, const T y) const noexcept {
+		static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
+
 		return inside(x, y) ? shape[index(x, y)] : false;
 	}
 
 	template <typename T>
 	void set(const T x, const T y, const bool value = true) noexcept {
+		static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
+
 		if (inside(x, y)) {
 			shape[index(x, y)] = value;
 		}
@@ -24,6 +28,8 @@ class PieceShape {
 
 	template <typename T>
 	bool inside(const T x, const T y) const noexcept {
+		static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
+
 		return index(x, y) < shape.size();
 	}
 
@@ -33,6 +39,8 @@ class PieceShape {
    private:
 	template <typename T>
 	constexpr size_t index(const T x, const T y) const {
+		static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
+
 		return y * _size + x;
 	}
 

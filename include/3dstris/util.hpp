@@ -7,6 +7,8 @@
 // python-like modulo, which makes negative numbers wrap around
 template <typename T>
 constexpr T mod(T a, T b) {
+	static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
+
 	return (b + (a % b)) % b;
 }
 

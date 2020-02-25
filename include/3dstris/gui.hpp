@@ -19,6 +19,9 @@ class GUI {
 
 	template <typename T, typename... Targs>
 	T& add(Targs&&... args) {
+		static_assert(std::is_convertible<T*, Widget*>::value,
+					  "T* must be convertible to Widget*");
+
 		widgets.push_back(make_unique<T>(*this, std::forward<Targs>(args)...));
 		return static_cast<T&>(*widgets.back());
 	}

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <sds.h>
+#include <3dstris/util.hpp>
 #include <3dstris/util/colorstextures.hpp>
 
 class Text {
@@ -17,6 +18,8 @@ class Text {
 	Text(Text&& other);
 	Text& operator=(const Text& other) = delete;
 	Text& operator=(Text&& other) = delete;
+
+	void draw(const float depth = 1) const;
 
 	void align(const Align mode, const Vector2 cpos, const Vector2 cwh,
 			   const bool bottom = false);
@@ -42,8 +45,6 @@ class Text {
 	void setScaleY(const float scale) noexcept;
 	void setScale(const Vector2 scale) noexcept;
 	Vector2 getScale() const noexcept;
-
-	void draw(const float depth = 1) const;
 
    private:
 	Pos pos;

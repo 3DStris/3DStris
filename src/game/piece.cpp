@@ -71,7 +71,7 @@ bool Piece::collides(const int offX, const int offY) const {
 	return false;
 }
 
-void Piece::draw(const Vector2 origin, const u32 tileSize) const {
+void Piece::draw(const Pos origin, const u32 tileSize) const {
 	int ghostY = 0;
 	while (!collides(0, ++ghostY)) {
 	}
@@ -99,8 +99,8 @@ void Piece::draw(const Vector2 origin, const u32 tileSize) const {
 	}
 }
 
-void Piece::draw(const Vector2 origin, const u32 tileSize,
-				 const PieceShape& shape, const PieceType type) {
+void Piece::draw(const Pos origin, const u32 tileSize, const PieceShape& shape,
+				 const PieceType type) {
 	for (u8 y = 0; y < shape.size(); ++y) {
 		for (u8 x = 0; x < shape.size(); ++x) {
 			if (shape.get(x, y)) {

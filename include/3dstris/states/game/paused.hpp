@@ -1,7 +1,6 @@
 #pragma once
 
 #include <3dstris/gui.hpp>
-#include <3dstris/state.hpp>
 #include <3dstris/states/game/ingame.hpp>
 
 class Paused : public State {

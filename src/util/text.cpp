@@ -8,7 +8,6 @@ Text::Text(const sds text, const Pos pos, const Vector2 scale,
 	  textBuffer(C2D_TextBufNew(sdslen(text))) {
 	setText(text);
 }
-
 Text::Text(const char* __restrict text, const Pos pos, const Vector2 scale,
 		   const Color color)
 	: Text(sdsnew(text), pos, scale, color) {}
@@ -17,7 +16,6 @@ Text::~Text() {
 	C2D_TextBufDelete(textBuffer);
 	sdsfree(text);
 }
-
 Text::Text(Text&& other)
 	: pos(other.pos),
 	  scale(other.scale),
@@ -27,6 +25,11 @@ Text::Text(Text&& other)
 	  textBuffer(other.textBuffer) {
 	other.textBuffer = nullptr;
 	other.text = nullptr;
+}
+
+void Text::draw(const float depth) const {
+	C2D_DrawText(&textObject, C2D_WithColor, pos.x, pos.y, depth, scale.x,
+				 scale.y, color);
 }
 
 void Text::align(const Align mode, const Pos cpos, const WH cwh,
@@ -54,7 +57,6 @@ void Text::align(const Align mode, const Pos cpos, const WH cwh,
 		}
 	}
 }
-
 void Text::align(const Align mode, const bool bottom) {
 	align(mode, Pos{}, WH{}, bottom);
 }
@@ -81,7 +83,6 @@ sds Text::getText() const noexcept {
 void Text::setX(const float x) noexcept {
 	pos.x = x;
 }
-
 float Text::getX() const noexcept {
 	return pos.x;
 }
@@ -89,7 +90,6 @@ float Text::getX() const noexcept {
 void Text::setY(const float y) noexcept {
 	pos.y = y;
 }
-
 float Text::getY() const noexcept {
 	return pos.y;
 }
@@ -107,7 +107,6 @@ WH Text::getWH() const {
 void Text::setColor(const Color color) {
 	this->color = color;
 }
-
 Color Text::getColor() const noexcept {
 	return color;
 }
@@ -115,20 +114,12 @@ Color Text::getColor() const noexcept {
 void Text::setScaleX(const float scale) noexcept {
 	this->scale.x = scale;
 }
-
 void Text::setScaleY(const float scale) noexcept {
 	this->scale.y = scale;
 }
-
 void Text::setScale(const Vector2 scale) noexcept {
 	this->scale = scale;
 }
-
 Vector2 Text::getScale() const noexcept {
 	return scale;
-}
-
-void Text::draw(const float depth) const {
-	C2D_DrawText(&textObject, C2D_WithColor, pos.x, pos.y, depth, scale.x,
-				 scale.y, color);
 }

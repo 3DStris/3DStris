@@ -28,16 +28,16 @@ Keybinds::Keybinds() : binds(DEFAULT_BINDS) {
 	mpack_node_t root = mpack_tree_root(&tree);
 
 	for (size_t i = 0; i < mpack_node_map_count(root); ++i) {
-		const auto _key = mpack_node_map_key_at(root, i);
-		const auto _value = mpack_node_map_value_at(root, i);
-		if (mpack_node_type(_key) != mpack_type_uint ||
-			mpack_node_type(_value) != mpack_type_uint) {
+		const auto key = mpack_node_map_key_at(root, i);
+		const auto value = mpack_node_map_value_at(root, i);
+		if (mpack_node_type(key) != mpack_type_uint ||
+			mpack_node_type(value) != mpack_type_uint) {
 			continue;
 		}
 
-		const auto key = static_cast<Action>(mpack_node_u8(_key));
-		const auto value = mpack_node_u32(_value);
-		binds[key] = value;
+		const Action action = static_cast<Action>(mpack_node_u8(key));
+		const Key bind = mpack_node_u32(value);
+		binds[action] = bind;
 	}
 
 	if (mpack_tree_destroy(&tree) != mpack_ok) {

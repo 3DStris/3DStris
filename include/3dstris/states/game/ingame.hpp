@@ -17,7 +17,7 @@ class Ingame : public State {
    protected:
 	Board board;
 	const u32 tileSize;
-	Vector2 origin;
+	Pos origin;
 
 	std::mt19937_64 bagRNG;
 	const u32 upcoming;

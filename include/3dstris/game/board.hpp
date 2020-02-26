@@ -4,10 +4,10 @@
 
 class Board {
    public:
-	u16 width;
-	u16 height;
+	u32 width;
+	u32 height;
 
-	Board(const u16 width, const u16 height);
+	Board(const u32 width, const u32 height);
 
 	void reset();
 
@@ -40,7 +40,7 @@ class Board {
 	}
 	PieceType get(const Pos pos) const;
 
-	void draw(const Vector2 origin, const u8 tileSize,
+	void draw(const Vector2 origin, const u32 tileSize,
 			  const float outerThick = 1.75, const float gridThick = 1) const;
 
 	void clearLines();

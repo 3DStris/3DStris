@@ -16,11 +16,11 @@ class Ingame : public State {
 
    protected:
 	Board board;
-	const u8 tileSize;
+	const u32 tileSize;
 	Vector2 origin;
 
 	std::mt19937_64 bagRNG;
-	const u8 upcoming;
+	const u32 upcoming;
 	std::deque<PieceType> bag;
 
 	Piece piece;

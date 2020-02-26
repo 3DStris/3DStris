@@ -43,16 +43,18 @@ class IntegerInputField : public Widget {
 			sdsfree(initialText);
 
 			sds buf = sdsnewlen("", digits + 1);
-			swkbdInputText(&swkbd, buf, sizeof buf);
-			sdsfree(buf);
+			swkbdInputText(&swkbd, buf, digits + 1);
 
 			char* end;
 			errno = 0;
-			const T tempValue = strtoll(buf, &end, 10);
+			const T tempValue = std::is_signed<T>::value
+									? strtoll(buf, &end, 10)
+									: strtoull(buf, &end, 10);
 			if (end[0] == '\0' && errno == 0) {
 				value = tempValue;
 				updateText();
 			}
+			sdsfree(buf);
 		}
 	}
 

@@ -7,7 +7,7 @@
 #include <3dstris/util/log.hpp>
 #include <algorithm>
 
-#define MEMBER_CHECK_TYPE(type, check_type, value)                        \
+#define MEMBER_CHECK_TYPE(value, type, check_type)                        \
 	type value;                                                           \
 	{                                                                     \
 		const auto _##value = mpack_node_map_cstr_optional(game, #value); \
@@ -17,9 +17,9 @@
 		}                                                                 \
 		value = mpack_node_##type(_##value);                              \
 	}
-#define MEMBER(type, value) MEMBER_CHECK_TYPE(type, type, value)
+#define MEMBER(value, type) MEMBER_CHECK_TYPE(value, type, type)
 
-#define SERIALIZE_MEMBER(type, value)  \
+#define SERIALIZE_MEMBER(value, type)  \
 	mpack_write_cstr(&writer, #value); \
 	mpack_write_##type(&writer, game.value);
 
@@ -100,9 +100,9 @@ Games::Games() {
 		}
 
 		using i64 = long long;
-		MEMBER_CHECK_TYPE(i64, uint, date)
-		MEMBER(double, time)
-		MEMBER(double, pps)
+		MEMBER_CHECK_TYPE(date, i64, uint)
+		MEMBER(time, double)
+		MEMBER(pps, double)
 		games.push_back({date, time, pps});
 	}
 	std::sort(games.begin(), games.end(), std::less<SavedGame>());
@@ -122,9 +122,9 @@ void Games::serialize(mpack_writer_t& writer) const {
 	for (const auto& game : games) {
 		mpack_start_map(&writer, 3);
 
-		SERIALIZE_MEMBER(double, time)
-		SERIALIZE_MEMBER(i64, date)
-		SERIALIZE_MEMBER(double, pps)
+		SERIALIZE_MEMBER(time, double)
+		SERIALIZE_MEMBER(date, i64)
+		SERIALIZE_MEMBER(pps, double)
 
 		mpack_finish_map(&writer);
 	}

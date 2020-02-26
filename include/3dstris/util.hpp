@@ -1,7 +1,6 @@
 #pragma once
 
 #include <citro2d.h>
-#include <array>
 #include <memory>
 
 // python-like modulo, which makes negative numbers wrap around
@@ -27,9 +26,6 @@ constexpr u16 SCREEN_HEIGHT = 240;
 constexpr u16 BSCREEN_WIDTH = 320;
 constexpr u16 BSCREEN_HEIGHT = 240;
 
-using u32 = uint32_t;
-using Color = u32;
-
 struct Vector2 {
 	Vector2(const float x, const float y) : x(x), y(y) {}
 	Vector2() {}
@@ -53,6 +49,7 @@ enum PieceType { I, O, L, J, S, T, Z, NONE, INVALID };
 
 enum Direction { LEFT, RIGHT, UP, DOWN };
 
+using Color = u32;
 inline void straightLine(const Pos pos, const WH wh, const float thick,
 						 const Color col, const float depth = 0.1f) {
 	C2D_DrawRectSolid(pos.x - thick, pos.y - thick, depth, wh.x + thick,

@@ -15,8 +15,8 @@ class Piece {
 
 	void set();
 
-	void draw(const Vector2 origin, const u32 tileSize) const;
-	static void draw(const Vector2 origin, const u32 tileSize,
+	void draw(const Pos origin, const u32 tileSize) const;
+	static void draw(const Pos origin, const u32 tileSize,
 					 const PieceShape& shape, const PieceType type);
 
 	bool move(const Direction dir);

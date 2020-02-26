@@ -5,12 +5,10 @@ ConfigScreen::ConfigScreen()
 	  title(game.translate("settings.title")),
 	  tipText(game.translate("settings.tip")),
 
-	  dasLabel(game.translate("settings.das"), Pos{15, 50 - 35},
-			   Vector2{0.5f, 0.5f}),
-	  arrLabel(game.translate("settings.arr"), Pos{15, 100 - 35},
-			   Vector2{0.5f, 0.5f}),
+	  dasLabel(game.translate("settings.das"), Pos{15, 50 - 35}, {0.5f, 0.5f}),
+	  arrLabel(game.translate("settings.arr"), Pos{15, 100 - 35}, {0.5f, 0.5f}),
 	  dropTimerLabel(game.translate("settings.droptimer"), Pos{15, 150 - 35},
-					 Vector2{0.5f, 0.5f}),
+					 {0.5f, 0.5f}),
 
 	  save(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 55}, WH{100, 50},
 						   game.translate("save"))),

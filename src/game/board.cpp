@@ -26,8 +26,8 @@ PieceType Board::get(const Pos pos) const {
 	return get(pos.x, pos.y);
 }
 
-void Board::draw(const Vector2 origin, const u32 tileSize,
-				 const float outerThick, const float gridThick) const {
+void Board::draw(const Pos origin, const u32 tileSize, const float outerThick,
+				 const float gridThick) const {
 	GUI::drawOutline(Pos{origin.x, origin.y},
 					 WH{float(width * tileSize), float(height * tileSize)},
 					 outerThick, BOARD, 0.1f);

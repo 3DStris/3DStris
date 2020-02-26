@@ -26,8 +26,6 @@ target_link_libraries(3dstris PUBLIC
 	phmap::phmap
 	mpack::mpack)
 
-target_compile_options(3dstris PRIVATE $<$<CONFIG:RELEASE>:-O3>)
-
 source_group(TREE "${PROJECT_SOURCE_DIR}/include"
 			 PREFIX "Header Files"
 			 FILES ${HEADER_LIST})

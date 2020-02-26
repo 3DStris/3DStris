@@ -30,7 +30,7 @@ KeybindSelect::KeybindSelect()
 
 	float x = 10;
 	float y = 15;
-	float textW;
+	float textW = 0;
 	for (const auto& bind : binds) {
 		buttons.push_back(
 			gui.add<KeybindButton>(Pos{x, y}, WH{BUTTON_WIDTH, BUTTON_HEIGHT},

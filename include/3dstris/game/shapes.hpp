@@ -96,4 +96,4 @@ namespace Shapes {
 	static std::array<PieceShape, 7> ALL{Shapes::I, Shapes::O, Shapes::L,
 										 Shapes::J, Shapes::S, Shapes::T,
 										 Shapes::Z};
-};  // namespace Shapes
+}  // namespace Shapes

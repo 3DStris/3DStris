@@ -39,5 +39,3 @@ elseif(NOT BUILD_CIA)
 else()
 	message(WARNING "Not building CIA; could not find required tools.")
 endif()
-
-target_compile_options(3dstris-bin PRIVATE $<$<CONFIG:RELEASE>:-O3>)

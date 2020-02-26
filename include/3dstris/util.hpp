@@ -53,7 +53,7 @@ enum PieceType { I, O, L, J, S, T, Z, NONE, INVALID };
 
 enum Direction { LEFT, RIGHT, UP, DOWN };
 
-static void straightLine(const Pos pos, const WH wh, const float thick,
+inline void straightLine(const Pos pos, const WH wh, const float thick,
 						 const Color col, const float depth = 0.1f) {
 	C2D_DrawRectSolid(pos.x - thick, pos.y - thick, depth, wh.x + thick,
 					  wh.y + thick, col);

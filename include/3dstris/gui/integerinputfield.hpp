@@ -2,13 +2,18 @@
 
 #include <3dstris/gui/widget.hpp>
 #include <3dstris/util/text.hpp>
+#include <cassert>
+#include <limits>
 
 class GUI;
 
-template <typename T = u32, u8 digits = 6>
+template <typename T = u32, u8 digits = 4>
 class IntegerInputField : public Widget {
 	static_assert(std::is_integral<T>::value, "T must be integral");
 	static_assert(digits <= 21, "Cannot use more than 21 digits");
+	static_assert(
+		digits <= std::numeric_limits<T>::digits10,
+		"Cannot use more digits than std::numeric_limits<T>::digits10");
 
    public:
 	IntegerInputField(GUI& _parent, const Pos _pos, const WH _wh,
@@ -38,11 +43,12 @@ class IntegerInputField : public Widget {
 			swkbdSetValidation(&swkbd, SWKBD_NOTEMPTY_NOTBLANK, 0, 0);
 			swkbdSetFeatures(&swkbd, SWKBD_FIXED_WIDTH);
 
-			sds initialText = sdsfromlonglong(value);
+			char initialText[SDS_LLSTR_SIZE];
+			std::is_signed<T>::value ? sdsll2str(initialText, value)
+									 : sdsull2str(initialText, value);
 			swkbdSetInitialText(&swkbd, initialText);
-			sdsfree(initialText);
 
-			sds buf = sdsnewlen("", digits + 1);
+			char* buf = new char[digits + 1];
 			swkbdInputText(&swkbd, buf, digits + 1);
 
 			char* end;
@@ -50,11 +56,13 @@ class IntegerInputField : public Widget {
 			const T tempValue = std::is_signed<T>::value
 									? strtoll(buf, &end, 10)
 									: strtoull(buf, &end, 10);
+			assert(tempValue < std::numeric_limits<T>::max());
 			if (end[0] == '\0' && errno == 0) {
 				value = tempValue;
 				updateText();
 			}
-			sdsfree(buf);
+
+			delete[] buf;
 		}
 	}
 

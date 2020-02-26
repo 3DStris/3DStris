@@ -7,7 +7,7 @@ class ToggleButton : public Button {
    public:
 	ToggleButton(GUI& parent, const Pos pos, const WH wh, const sds text,
 				 const bool defaultValue);
-	~ToggleButton();
+	~ToggleButton() override;
 
 	void update(const touchPosition touch,
 				const touchPosition previous) override;

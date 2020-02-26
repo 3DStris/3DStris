@@ -10,10 +10,11 @@ class GUI;
 template <typename T = u32, u8 digits = 4>
 class IntegerInputField : public Widget {
 	static_assert(std::is_integral<T>::value, "T must be integral");
-	static_assert(digits <= 21, "Cannot use more than 21 digits");
+	static_assert(digits > 0, "Must use one or more digits");
+	static_assert(digits <= SDS_LLSTR_SIZE, "Cannot use more than 21 digits");
 	static_assert(
 		digits <= std::numeric_limits<T>::digits10,
-		"Cannot use more digits than std::numeric_limits<T>::digits10");
+		"Cannot use more than std::numeric_limits<T>::digits10 digits");
 
    public:
 	IntegerInputField(GUI& _parent, const Pos _pos, const WH _wh,
@@ -28,6 +29,9 @@ class IntegerInputField : public Widget {
 	~IntegerInputField() override { sdsfree(suffix); }
 
 	void draw() const override {
+		static constexpr Color FIELD = C2D_Color32(30, 32, 47, 255);
+		static constexpr Color FIELD_HELD = C2D_Color32(28, 30, 44, 255);
+
 		C2D_DrawRectSolid(pos.x, pos.y, 0, wh.x, wh.y,
 						  held ? FIELD_HELD : FIELD);
 		text.draw();
@@ -78,9 +82,6 @@ class IntegerInputField : public Widget {
 	}
 
    private:
-	static constexpr Color FIELD = C2D_Color32(30, 32, 47, 255);
-	static constexpr Color FIELD_HELD = C2D_Color32(28, 30, 44, 255);
-
 	void updateText() {
 		text.setText(sdscatfmt(
 			sdsempty(), std::is_signed<T>::value ? "%I%S" : "%U%S",

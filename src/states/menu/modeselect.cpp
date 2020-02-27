@@ -26,13 +26,11 @@ void ModeSelect::update(const double dt) {
 	}
 
 	if (sprintButton.pressed()) {
-		game.setState(make_unique<Sprint>(20), false, false);
-		return;
+		game.pushState(make_unique<SprintSelect>(), false, false);
 	}
 
 	if (backButton.pressed()) {
 		game.popState();
-		return;
 	}
 }
 

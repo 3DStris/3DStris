@@ -38,6 +38,11 @@
 	"modeselect.title": "Select a mode",
 	"modeselect.normal": "Normal",
 	"modeselect.sprint": "Sprint",
+	
+	"sprintselect.title": "Sprint",
+	"sprintselect.twenty": "20L",
+	"sprintselect.forty": "40L",
+	"sprintselect.custom": "Custom",
 
 	"settings.title": "Settings",
 	"settings.tip": "Use the bottom screen to change settings. Press \uE001 to cancel.",

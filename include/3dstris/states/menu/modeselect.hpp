@@ -11,7 +11,7 @@ class ModeSelect : public State {
 	void draw(const bool bottom) override;
 
    private:
-	Text topText;
+	Text title;
 
 	GUI gui;
 

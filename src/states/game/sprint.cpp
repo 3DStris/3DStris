@@ -4,7 +4,7 @@
 #include <3dstris/states/game/sprintresults.hpp>
 #include <3dstris/states/menu/mainmenu.hpp>
 
-Sprint::Sprint(const u8 lines)
+Sprint::Sprint(const u16 lines)
 	: Ingame(),
 	  infoFormat(game.translate("sprint.info")),
 

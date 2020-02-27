@@ -2,7 +2,7 @@
 
 #include <3ds/types.h>
 #include <mpack/mpack.h>
-#include <parallel_hashmap/btree.h>
+#include <parallel_hashmap/phmap.h>
 
 class Keybinds {
    public:
@@ -17,7 +17,7 @@ class Keybinds {
 	};
 
 	using Key = u32;
-	using Binds = phmap::btree_map<Action, Key>;
+	using Binds = phmap::flat_hash_map<Action, Key>;
 
 	const static char* KEYBIND_TO_KEY[];
 	const static Binds DEFAULT_BINDS;

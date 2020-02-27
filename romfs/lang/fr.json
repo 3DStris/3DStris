@@ -12,7 +12,8 @@
 	"sprint.times.title": "Parties",
 	"sprint.times.nogames": "Vous n'avez encore jamais joué en mode Sprint.",
 	"sprint.times.table.time": "Temps",
-	"sprint.times.info": "Temps: %.3fs\nPPS: %.2f\nDate: %s",
+	"sprint.times.table.lines": "Lignes",
+	"sprint.times.info": "Lignes: %d\nTemps: %.3fs\nPPS: %.2f\nDate: %s",
 
 	"results.restart": "Redémarrer",
 	"results.sprint.time": "Temps: %.3fs",

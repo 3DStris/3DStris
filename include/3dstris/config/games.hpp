@@ -7,8 +7,8 @@
 struct SavedGame {
 	time_t date;
 	double time;
-
 	double pps;
+	u16 lines;
 
 	void dateString(char* buf, size_t size,
 					const char* __restrict format = "%F %T") const {

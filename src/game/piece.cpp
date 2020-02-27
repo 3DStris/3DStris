@@ -26,14 +26,14 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 
 	fallTimer = 0;
 	fallAfter = 1;
-	sDropAfter = game.getConfig().dropTimer / 1000.;
+	sDropAfter = game.getConfig().dropTimer / 1000.0;
 	setTimer = 0;
 	setAfter = 1;
 
-	das = game.getConfig().das / 1000.;
+	das = game.getConfig().das / 1000.0;
 	dasTimer = {0, 0};
 
-	arr = game.getConfig().arr / 1000.;
+	arr = game.getConfig().arr / 1000.0;
 	arrTimer = arr;
 
 	rotation = 0;

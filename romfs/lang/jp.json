@@ -15,7 +15,8 @@
 	"sprint.times.nogames": "まだスプリントゲームはプレイされていません。",
 	"sprint.times.table.time": "時間",
 	"sprint.times.table.date": "日付",
-	"sprint.times.info": "時間: %.3fs\nPPS: %.2f\n日付: %s",
+	"sprint.times.table.lines": "行",
+	"sprint.times.info": "行: %d\n時間: %.3fs\nPPS: %.2f\n日付: %s",
 
 	"results.dead": "ゲームオーバー",
 	"results.restart": "再起動",

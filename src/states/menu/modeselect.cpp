@@ -26,7 +26,7 @@ void ModeSelect::update(const double dt) {
 	}
 
 	if (sprintButton.pressed()) {
-		game.setState(make_unique<Sprint>(), false, false);
+		game.setState(make_unique<Sprint>(20), false, false);
 		return;
 	}
 

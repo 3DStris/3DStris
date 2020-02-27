@@ -5,7 +5,7 @@
 
 class Sprint : public Ingame {
    public:
-	Sprint();
+	Sprint(const u16 lines);
 	~Sprint() override;
 
 	void update(const double dt) override;
@@ -15,6 +15,8 @@ class Sprint : public Ingame {
 
    private:
 	const sds infoFormat;
+
+	const u16 lines;
 
 	Text infoText;
 	double time;

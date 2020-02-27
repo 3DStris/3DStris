@@ -18,7 +18,8 @@
 	"sprint.times.nogames": "You haven't played any Sprint games yet.",
 	"sprint.times.table.time": "Time",
 	"sprint.times.table.date": "Date",
-	"sprint.times.info": "Time: %.3fs\nPPS: %.2f\nDate: %s",
+	"sprint.times.table.lines": "Lines",
+	"sprint.times.info": "Lines: %d\nTime: %.3fs\nPPS: %.2f\nDate: %s",
 
 	"results.dead": "Game Over",
 	"results.restart": "Restart",

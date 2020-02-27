@@ -11,6 +11,8 @@ Button::Button(GUI& _parent, const Pos _pos, const WH _wh, const sds text,
 		pos.y = (parent.getHeight() - wh.y) / 2.0f;
 	}
 
+	this->text.setColor(parent.textCol);
+
 	setText(text);
 }
 
@@ -20,23 +22,9 @@ Button::Button(GUI& _parent, const Pos _pos, const WH _wh,
 
 void Button::setText(sds text) {
 	this->text.setText(text);
-	this->text.setScale({1, 1});
 
-	WH textWH = this->text.getWH();
-	// textW and textH are the text size at scale 1:1, do some math to figure
-	// out scale that fits on the button
-	// 1   textW
-	// - = ----
-	// x   w-10
-	const float textScale = std::min((wh.x - 10) / textWH.x, 0.7f);
-	this->text.setScale({textScale, textScale});
-
-	textWH = this->text.getWH();
-	// textW should hopefully be w - 10
-
-	this->text.setPos(
-		Pos{pos.x + (wh.x - textWH.x) / 2, pos.y + (wh.y - textWH.y) / 2});
-	this->text.setColor(parent.textCol);
+	this->text.scale(wh.x, 0.7f);
+	this->text.align(Text::Align::CENTER, Pos{pos.x, pos.y}, WH{wh.x, wh.y});
 }
 
 void Button::draw() const {

@@ -7,7 +7,7 @@
 
 class GUI;
 
-template <typename T = u32, u8 digits = 4>
+template <typename T = u32, u8 digits = std::numeric_limits<T>::digits10>
 class IntegerInputField : public Widget {
 	static_assert(std::is_integral<T>::value, "T must be integral");
 	static_assert(digits > 0, "Must use one or more digits");

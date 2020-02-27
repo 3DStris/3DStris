@@ -8,7 +8,7 @@
 	"on": "Tak",
 	"off": "Nie",
 
-	"sprint.info": "Linie: %d\nCzas: %.3fs\nPPS: %.3f",
+	"sprint.info": "Linie: %d/%d\nCzas: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Rozgrywki",
 	"sprint.times.nogames": "Brak rozgrywek w trybie Sprint.",
 	"sprint.times.table.time": "Czas",

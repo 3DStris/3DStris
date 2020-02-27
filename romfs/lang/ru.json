@@ -11,7 +11,7 @@
 	"on": "Да",
 	"off": "Нет",
 
-	"sprint.info": "Линии: %d\nВремя: %.3fs\nPPS: %.3f",
+	"sprint.info": "Линии: %d/%d\nВремя: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Игры",
 	"sprint.times.nogames": "Вы ещё не играли в Спринт.",
 	"sprint.times.table.time": "Время",

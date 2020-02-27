@@ -13,7 +13,7 @@
 	
 	"reset": "Врати се по основно",
 
-	"sprint.info": "Редови: %d\nВреме: %.3fs\nPPS: %.3f",
+	"sprint.info": "Редови: %d/%d\nВреме: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Игри",
 	"sprint.times.nogames": "Се уште не сте играле на Спринт.",
 	"sprint.times.table.time": "Време",

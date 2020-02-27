@@ -13,7 +13,7 @@
 	
 	"reset": "Reset",
 
-	"sprint.info": "Lines: %d\nTime: %.3fs\nPPS: %.3f",
+	"sprint.info": "Lines: %d/%d\nTime: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Games",
 	"sprint.times.nogames": "You haven't played any Sprint games yet.",
 	"sprint.times.table.time": "Time",

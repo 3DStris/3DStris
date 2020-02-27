@@ -66,7 +66,7 @@ void Sprint::update(const double dt) {
 	time += dt;
 
 	infoText.setText(sdscatprintf(sdsempty(), infoFormat, board.linesCleared(),
-								  time, board.droppedPieces() / time));
+								  lines, time, board.droppedPieces() / time));
 
 	Ingame::update(dt);
 }

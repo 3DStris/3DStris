@@ -8,7 +8,7 @@
 	"on": "Ja",
 	"off": "Nein",
 
-	"sprint.info": "Linien: %d\nZeit: %.3fs\nPPS: %.3f",
+	"sprint.info": "Linien: %d/%d\nZeit: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Spiele",
 	"sprint.times.nogames": "Du hast noch keine Sprint-Spiele gespielt.",
 	"sprint.times.table.time": "Zeit",

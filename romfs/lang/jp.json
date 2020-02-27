@@ -10,7 +10,7 @@
 	"on": "はい",
 	"off": "いいえ",
 
-	"sprint.info": "行: %d\n時間: %.3fs\nPPS: %.3f",
+	"sprint.info": "行: %d/%d\n時間: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "ゲーム",
 	"sprint.times.nogames": "まだスプリントゲームはプレイされていません。",
 	"sprint.times.table.time": "時間",

@@ -13,7 +13,7 @@
 	
 	"reset": "Анулиране",
 
-	"sprint.info": "Редове: %d\nВреме: %.3fs\nPPS: %.3f",
+	"sprint.info": "Редове: %d/%d\nВреме: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Игри",
 	"sprint.times.nogames": "Все още не сте играли Спринт.",
 	"sprint.times.table.time": "Време",

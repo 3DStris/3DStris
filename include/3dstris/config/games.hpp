@@ -15,7 +15,9 @@ struct SavedGame {
 		strftime(buf, size, format, localtime(&date));
 	}
 
-	bool operator<(const SavedGame& b) const { return time < b.time; }
+	bool operator<(const SavedGame& b) const {
+		return time < b.time && lines < b.lines;
+	}
 };
 
 using SavedGames = std::vector<SavedGame>;

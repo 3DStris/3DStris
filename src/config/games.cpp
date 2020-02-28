@@ -135,7 +135,7 @@ void Games::serialize(mpack_writer_t& writer) const {
 	mpack_start_array(&writer, games.size());
 
 	for (const auto& game : games) {
-		mpack_start_map(&writer, 3);
+		mpack_start_map(&writer, game.lines != DEFAULT_LINES ? 4 : 3);
 
 		SERIALIZE_MEMBER(time, double)
 		SERIALIZE_MEMBER(date, i64)

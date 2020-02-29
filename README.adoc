@@ -55,9 +55,8 @@ git submodule update --init
 IMPORTANT: On Windows, the following commands should be run in devkitPro's shell (`devkitPro/msys2/usr/bin/bash.exe`).
 [source,bash]
 ----
-mkdir build && cd build
-cmake -G "Unix Makefiles" ..
-make
+cmake -G "Unix Makefiles" -S . -B build
+cmake --build build
 ----
 Resulting binaries can be found in `build/apps/`.
 

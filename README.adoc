@@ -6,6 +6,8 @@
 :codefactor-badge: https://www.codefactor.io/repository/github/3dstris/3dstris/badge
 :codefactor: https://www.codefactor.io/repository/github/3dstris/3dstris
 
+:imagesdir: ./resources/screenshots
+
 ifdef::env-github[]
 :caution-caption: :fire:
 :important-caption: :exclamation:
@@ -14,11 +16,9 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
-:hardbreaks:
-
 = 3DStris image:{license-badge}[MIT, link=LICENSE] image:{cpp11-badge}[C\+\+ 11, link={isocpp}] image:{travis-badge}[Travis, link={travis}] image:{codefactor-badge}[CodeFactor, link={codefactor}]
+:toc: preamble
 
-[.tagline]
 A Tetris clone for the 3DS.
 
 == Downloads
@@ -26,9 +26,16 @@ A Tetris clone for the 3DS.
 :tinydb: https://tinydb.eiphax.tech
 :stats: https://3dstris.geni.site
 
+[%hardbreaks]
 The latest automatically generated build can be found {latest-release}[here].
 3DStris is also available on {tinydb}[TinyDB].
 You can view the GitHub release stats {stats}[here].
+
+== Screenshots
+image:mainmenu.png[Main Menu, 404, 485]
+image:sprint.png[Sprint, 404, 485]
+image:ingame.png[Ingame, 404, 244]
+image:banner.png[Banner]
 
 == Building
 :devkitpro-setup: https://www.3dbrew.org/wiki/Setting_up_Development_Environment
@@ -52,11 +59,15 @@ git submodule update --init
 ----
 
 === Commands
-IMPORTANT: On Windows, the following commands should be run in devkitPro's shell (`devkitPro/msys2/usr/bin/bash.exe`).
+IMPORTANT: On Windows, the following commands should be run in the devkitPro shell (`devkitPro/msys2/usr/bin/bash.exe`).
 [source,bash]
 ----
 cmake -G "Unix Makefiles" -S . -B build
 cmake --build build
+# or if your CMake version isn't new enough
+mkdir build && cd build
+cmake -G "Unix Makefiles" ..
+make
 ----
 Resulting binaries can be found in `build/apps/`.
 

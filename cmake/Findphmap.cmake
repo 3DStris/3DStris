@@ -1,4 +1,4 @@
-set(phmap_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/phmap/parallel_hashmap/)
+set(phmap_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/phmap/parallel_hashmap)
 
 mark_as_advanced(phmap_INCLUDE_DIR)
 

@@ -103,7 +103,7 @@ void SprintTimes::update(const double dt) {
 			genValues();
 		} else {
 			--selected;
-			if (int(selected - topCell) < 0) {
+			if (static_cast<int>(selected - topCell) < 0) {
 				--topCell;
 				genValues();
 			}

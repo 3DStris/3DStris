@@ -1,9 +1,9 @@
 if(GIT_FOUND)
-	execute_process(COMMAND
-		"${GIT_EXECUTABLE} describe --match=NeVeRmAtCh --always --abbrev=7 --dirty"
+	execute_process(
+		COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
 		WORKING_DIRECTORY ${3DStris_SOURCE_DIR}
 		OUTPUT_VARIABLE GIT_SHA1
-		ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
+		OUTPUT_STRIP_TRAILING_WHITESPACE)
 endif()
 
 configure_file("${3DStris_SOURCE_DIR}/include/3dstris/version.hpp.in"

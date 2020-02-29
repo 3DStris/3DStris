@@ -26,14 +26,14 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 
 	fallTimer = 0;
 	fallAfter = 1;
-	sDropAfter = game.getConfig().dropTimer / 1000.;
+	sDropAfter = game.getConfig().dropTimer / 1000.0;
 	setTimer = 0;
 	setAfter = 1;
 
-	das = game.getConfig().das / 1000.;
+	das = game.getConfig().das / 1000.0;
 	dasTimer = {0, 0};
 
-	arr = game.getConfig().arr / 1000.;
+	arr = game.getConfig().arr / 1000.0;
 	arrTimer = arr;
 
 	rotation = 0;
@@ -50,7 +50,7 @@ void Piece::set() {
 	for (u8 y = 0; y < shape.size(); ++y) {
 		for (u8 x = 0; x < shape.size(); ++x) {
 			if (shape.get(x, y)) {
-				board.set(u32(pos.x + x), u32(pos.y + y), type);
+				board.set(pos.x + x, pos.y + y, type);
 			}
 		}
 	}
@@ -181,7 +181,7 @@ void Piece::rotate(const bool ccw) {
 	*/
 	const int testOffset = 2 * prevRotation + !ccw;
 	for (u8 test = 0; test < WK_TESTS; test++) {
-		const u32 i = test * 16 + u32(testOffset * 2);
+		const u32 i = test * 16 + static_cast<u32>(testOffset * 2);
 		const int offX = wkData[i];
 		const int offY = wkData[i + 1];
 		if (!collides(offX, offY)) {

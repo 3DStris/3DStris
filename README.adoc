@@ -75,4 +75,4 @@ Resulting binaries can be found in `build/apps/`.
 * French by https://github.com/badablek[@badablek]
 
 == License
-Distributed under the MIT license. See accompanying xref:LICENSE[LICENSE] file for more information.
+Distributed under the MIT license. See the accompanying xref:LICENSE[LICENSE] file for more information.

@@ -24,9 +24,9 @@ script:
 
 before_deploy:
     - export TRAVIS_TAG=${TRAVIS_TAG:-$(grep -Po "(\d+\.)+\d+" $TRAVIS_BUILD_DIR/include/3dstris/version.hpp)-$(git rev-parse --short ${TRAVIS_COMMIT})}
-    - mv $TRAVIS_BUILD_DIR/build/apps/3dstris-bin.3dsx $TRAVIS_BUILD_DIR/build/apps/3dstris-$TRAVIS_TAG.3dsx
-    - mv $TRAVIS_BUILD_DIR/build/apps/3dstris-bin.cia $TRAVIS_BUILD_DIR/build/apps/3dstris-$TRAVIS_TAG.cia
-    - mv $TRAVIS_BUILD_DIR/build/apps/3dstris-bin $TRAVIS_BUILD_DIR/build/apps/3dstris-$TRAVIS_TAG.elf
+    - mv $TRAVIS_BUILD_DIR/build/bin/3dstris.3dsx $TRAVIS_BUILD_DIR/build/apps/3dstris-$TRAVIS_TAG.3dsx
+    - mv $TRAVIS_BUILD_DIR/build/bin/3dstris.cia $TRAVIS_BUILD_DIR/build/apps/3dstris-$TRAVIS_TAG.cia
+    - mv $TRAVIS_BUILD_DIR/build/bin/3dstris $TRAVIS_BUILD_DIR/build/apps/3dstris-$TRAVIS_TAG.elf
     - git config --local user.name "3dstris-releases"
     - git config --local user.email "nobody@nobody.com"
     - git tag $TRAVIS_TAG $TRAVIS_COMMIT

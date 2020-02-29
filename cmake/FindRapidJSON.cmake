@@ -1,4 +1,4 @@
-set(RapidJSON_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/rapidjson/include/rapidjson/)
+set(RapidJSON_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/external/rapidjson/include/rapidjson)
 
 mark_as_advanced(RapidJSON_INCLUDE_DIR)
 

@@ -15,7 +15,7 @@ void Board::reset() {
 }
 
 bool Board::inside(const Pos pos) const noexcept {
-	return inside(int(pos.x), int(pos.y));
+	return inside(static_cast<int>(pos.x), static_cast<int>(pos.y));
 }
 
 void Board::set(const Pos pos, const PieceType t) {
@@ -29,16 +29,19 @@ PieceType Board::get(const Pos pos) const {
 void Board::draw(const Pos origin, const u32 tileSize, const float outerThick,
 				 const float gridThick) const {
 	GUI::drawOutline(Pos{origin.x, origin.y},
-					 WH{float(width * tileSize), float(height * tileSize)},
+					 WH{static_cast<float>(width * tileSize),
+						static_cast<float>(height * tileSize)},
 					 outerThick, BOARD, 0.1f);
 
 	for (u32 y = 1; y < height; ++y) {
 		straightLine(Pos{origin.x, origin.y + y * tileSize},
-					 WH{float(width * tileSize), 0}, gridThick, GRID, 0);
+					 WH{static_cast<float>(width * tileSize), 0}, gridThick,
+					 GRID, 0);
 	}
 	for (u32 x = 1; x < width; ++x) {
 		straightLine(Pos{origin.x + x * tileSize, origin.y},
-					 WH{0, float(height * tileSize)}, gridThick, GRID, 0);
+					 WH{0, static_cast<float>(height * tileSize)}, gridThick,
+					 GRID, 0);
 	}
 
 	for (u32 y = 0; y < height; ++y) {

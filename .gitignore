@@ -6,4 +6,5 @@
 include/3dstris/version.hpp
 build/
 .vscode/
-romfs/gfx/*.*
+data/cia/3dstris.rsf
+data/romfs/gfx/*.*

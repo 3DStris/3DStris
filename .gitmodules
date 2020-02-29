@@ -1,18 +1,17 @@
-[submodule "lib/3ds-cmake"]
-	path = lib/3ds-cmake
+[submodule "external/3ds-cmake"]
+	path = external/3ds-cmake
 	url = https://github.com/3DStris/3ds-cmake.git
 	branch = 3dstris
-[submodule "lib/sds"]
-	path = lib/sds
-	url = https://github.com/3DStris/sds
+[submodule "external/sds"]
+	path = external/sds
+	url = https://github.com/3DStris/sds.git
 	branch = cpp
-[submodule "lib/rapidjson"]
-	path = lib/rapidjson
+[submodule "external/rapidjson"]
+	path = external/rapidjson
 	url = https://github.com/Tencent/rapidjson.git
-[submodule "lib/phmap"]
-	path = lib/phmap
+[submodule "external/phmap"]
+	path = external/phmap
 	url = https://github.com/greg7mdp/parallel-hashmap.git
-
-[submodule "lib/mpack"]
-	path = lib/mpack
-	url = https://github.com/3DStris/mpack
+[submodule "external/mpack"]
+	path = external/mpack
+	url = https://github.com/3DStris/mpack.git

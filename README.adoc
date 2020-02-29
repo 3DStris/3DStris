@@ -1,0 +1,88 @@
+:license-badge: https://img.shields.io/badge/license-MIT-blue.svg
+:cpp11-badge: https://img.shields.io/badge/standard-C%2B%2B%2011-blue.svg?logo=C%2B%2B
+:isocpp: https://isocpp.org
+:travis-badge: https://travis-ci.org/3DStris/3DStris.svg?branch=master
+:travis: https://travis-ci.org/3DStris/3DStris
+:codefactor-badge: https://www.codefactor.io/repository/github/3dstris/3dstris/badge
+:codefactor: https://www.codefactor.io/repository/github/3dstris/3dstris
+
+:imagesdir: ./data/screenshots
+
+ifdef::env-github[]
+:caution-caption: :fire:
+:important-caption: :exclamation:
+:note-caption: :paperclip:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
+
+= 3DStris image:{license-badge}[MIT, link=LICENSE] image:{cpp11-badge}[C\+\+ 11, link={isocpp}] image:{travis-badge}[Travis, link={travis}] image:{codefactor-badge}[CodeFactor, link={codefactor}]
+:toc: preamble
+
+A Tetris clone for the 3DS.
+
+== Downloads
+:latest-release: https://github.com/3DStris/3DStris/releases/latest
+:tinydb: https://tinydb.eiphax.tech
+:stats: https://3dstris.geni.site
+
+[%hardbreaks]
+The latest automatically generated build can be found {latest-release}[here].
+3DStris is also available on {tinydb}[TinyDB].
+You can view the GitHub release stats {stats}[here].
+
+== Screenshots
+image:mainmenu.png[Main Menu, 404, 485]
+image:sprint.png[Sprint, 404, 485]
+image:ingame.png[Ingame, 404, 244]
+image:banner.png[Banner]
+
+== Building
+:devkitpro-setup: https://www.3dbrew.org/wiki/Setting_up_Development_Environment
+:cmake: https://cmake.org/download
+:makerom: https://github.com/jakcron/Project_CTR
+:bannertool: https://github.com/Steveice10/bannertool
+
+=== Setup
+For building you'll need to {devkitpro-setup}[set up devkitPro] and you'll need to have the following tools in your `PATH`:
+
+* {cmake}[CMake >= 3.12]
+* {bannertool}[bannertool]
+* {makerom}[makerom]
+
+Make sure to clone recursively (required for third-party libs, check `lib/`):
+[source, bash]
+----
+git clone --recursive https://github.com/3DStris/3DStris
+# If you've already cloned without --recursive, do:
+git submodule update --init
+----
+
+=== Commands
+IMPORTANT: On Windows, the following commands should be run in the devkitPro shell (`devkitPro/msys2/usr/bin/bash.exe`).
+[source,bash]
+----
+cmake -G "Unix Makefiles" -S . -B build
+cmake --build build
+# or if your CMake version isn't new enough
+mkdir build && cd build
+cmake -G "Unix Makefiles" ..
+make
+----
+Resulting binaries can be found in `build/apps/`.
+
+== Translation
+3DStris currently has translations available for the following languages:
+
+* English
+* Bulgarian by https://github.com/geniiii[@geniiii]
+* German by https://github.com/itsdavvid[@itsdavvid]
+* Polish by https://github.com/itsdavvid[@itsdavvid]
+* (Brazilian) Portuguese by https://github.com/matcool[@matcool]
+* Russian by https://github.com/oatmealine[@oatmealine]
+* Japanese by https://github.com/Epicpkmn11[@Epicpkmn11]
+* Macedonian by https://github.com/geniiii[@geniiii]
+* French by https://github.com/badablek[@badablek]
+
+== License
+Distributed under the MIT license. See the accompanying xref:LICENSE[LICENSE] file for more information.

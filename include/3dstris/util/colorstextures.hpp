@@ -4,7 +4,6 @@
 #include <array>
 
 using Color = u32;
-
 constexpr Color WHITE = C2D_Color32(230, 230, 230, 255);
 constexpr Color BLACK = C2D_Color32(0, 0, 0, 255);
 

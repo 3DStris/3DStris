@@ -9,9 +9,9 @@ class Text {
 	enum Align { CENTER, VCENTER, HCENTER, SCREEN_CENTER };
 
 	Text(sds text = sdsempty(), const Pos pos = Pos{},
-		 const Vector2 scale = {1, 1}, const Color color = WHITE);
+		 const Vector2f scale = {1, 1}, const Color color = WHITE);
 	Text(const char* __restrict text, const Pos pos = Pos{},
-		 const Vector2 scale = {1, 1}, const Color color = WHITE);
+		 const Vector2f scale = {1, 1}, const Color color = WHITE);
 
 	~Text();
 	Text(const Text& other) = delete;
@@ -21,7 +21,7 @@ class Text {
 
 	void draw(const float depth = 1) const;
 
-	void align(const Align mode, const Pos cpos, const WH cwh,
+	void align(const Align mode, const Vector2f cpos, const Vector2f cwh,
 			   const bool bottom = false);
 	void align(const Align mode, const bool bottom = false);
 
@@ -45,12 +45,12 @@ class Text {
 
 	void setScaleX(const float scale) noexcept;
 	void setScaleY(const float scale) noexcept;
-	void setScale(const Vector2 scale) noexcept;
-	Vector2 getScale() const noexcept;
+	void setScale(const Vector2f scale) noexcept;
+	Vector2f getScale() const noexcept;
 
    private:
 	Pos pos;
-	Vector2 _scale;
+	Vector2f _scale;
 
 	sds text = nullptr;
 

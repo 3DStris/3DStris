@@ -28,7 +28,7 @@ class L10n {
 				   ? LANGUAGE_TO_STRING[language]
 				   : "un";
 	}
-	static Language stringToLanguage(const char* language) {
+	static Language stringToLanguage(const char* __restrict language) {
 		const static phmap::btree_map<const char*, Language, CompareString>
 			STRING_TO_LANGUAGE = {{"en", EN}, {"bg", BG}, {"ru", RU},
 								  {"pt", PT}, {"pl", PL}, {"de", DE},
@@ -65,7 +65,7 @@ class L10n {
 		return sdsnew(key);
 	}
 
-	static char* getPath(const Language language, char* buf) {
+	static char* getPath(const Language language, char* __restrict buf) {
 		constexpr auto FORMAT_STRING = "romfs:/lang/%s.json";
 		if (language == EN) {
 			strcpy(buf, EN_PATH);

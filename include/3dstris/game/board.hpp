@@ -12,12 +12,16 @@ class Board {
 	void reset();
 
 	template <typename T>
-	bool inside(const T x, const T y) const noexcept {
+	constexpr bool inside(const T x, const T y) const noexcept {
 		static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
 
 		return x < width && y < height;
 	}
-	bool inside(const Pos pos) const noexcept;
+
+	template <typename T>
+	constexpr bool inside(const Vector2<T> pos) const noexcept {
+		return inside(pos.x, pos.y);
+	}
 
 	template <typename T>
 	void set(const T x, const T y, const PieceType t) {
@@ -27,7 +31,10 @@ class Board {
 			grid[y * width + x] = t;
 		}
 	}
-	void set(const Pos pos, const PieceType t);
+	template <typename T>
+	void set(const Vector2<T> pos, const PieceType t) {
+		set(pos.x, pos.y, t);
+	}
 
 	template <typename T>
 	PieceType get(const T x, const T y) const {
@@ -38,7 +45,10 @@ class Board {
 		}
 		return PieceType::INVALID;
 	}
-	PieceType get(const Pos pos) const;
+	template <typename T>
+	PieceType get(const Vector2<T> pos) const {
+		return get(pos.x, pos.y);
+	}
 
 	void draw(const Pos origin, const u32 tileSize,
 			  const float outerThick = 1.75, const float gridThick = 1) const;

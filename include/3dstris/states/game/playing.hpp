@@ -7,4 +7,5 @@ class Playing : public Ingame {
 	Playing();
 
 	void update(const double dt) override;
+	void draw(const bool bottom) override;
 };

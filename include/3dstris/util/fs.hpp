@@ -1,3 +1,5 @@
+#pragma once
+
 #include <3ds.h>
 #include <unistd.h>
 
@@ -16,6 +18,6 @@ inline bool fileExists(FS_Archive archive, const FS_Path& path) {
 		   R_SUCCEEDED(FSFILE_Close(handle));
 }
 
-inline bool exists(const char* path) {
+inline bool exists(const char* __restrict path) {
 	return access(path, F_OK) == 0;
 }

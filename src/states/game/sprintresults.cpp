@@ -45,6 +45,7 @@ void SprintResults::update(const double dt) {
 
 	if (menuButton.pressed()) {
 		game.setState(make_unique<MainMenu>());
+		return;
 	}
 }
 

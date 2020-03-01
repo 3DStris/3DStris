@@ -29,6 +29,8 @@ Log::Log() {
 	const static FS_Path GAME_PATH = fsMakePath(PATH_ASCII, "/3ds/3dstris/");
 	static constexpr auto LOG_PATH = "sdmc:/3ds/3dstris/log.log";
 
+	// Please don't use any of the LOG macros here
+
 	svcCreateMutex(&mutex, false);
 
 	FS_Archive sdmcArchive;

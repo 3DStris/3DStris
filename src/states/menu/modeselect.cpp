@@ -21,12 +21,12 @@ void ModeSelect::update(const double dt) {
 	gui.update(dt);
 
 	if (normalButton.pressed()) {
-		game.setState(make_unique<Playing>(), false, true);
+		game.setState(make_unique<Playing>());
 		return;
 	}
 
 	if (sprintButton.pressed()) {
-		game.pushState(make_unique<SprintSelect>(), false, false);
+		game.pushState(make_unique<SprintSelect>());
 	}
 
 	if (backButton.pressed()) {

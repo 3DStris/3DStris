@@ -1,13 +1,13 @@
 #include <3dstris/util/text.hpp>
 
-Text::Text(sds text, const Pos pos, const Vector2 scale, const Color color)
+Text::Text(sds text, const Pos pos, const Vector2f scale, const Color color)
 	: pos(pos),
 	  _scale(scale),
 	  color(color),
 	  textBuffer(C2D_TextBufNew(sdslen(text))) {
 	setText(text);
 }
-Text::Text(const char* __restrict text, const Pos pos, const Vector2 scale,
+Text::Text(const char* __restrict text, const Pos pos, const Vector2f scale,
 		   const Color color)
 	: Text(sdsnew(text), pos, scale, color) {}
 
@@ -123,9 +123,9 @@ void Text::setScaleX(const float scale) noexcept {
 void Text::setScaleY(const float scale) noexcept {
 	_scale.y = scale;
 }
-void Text::setScale(const Vector2 scale) noexcept {
+void Text::setScale(const Vector2f scale) noexcept {
 	_scale = scale;
 }
-Vector2 Text::getScale() const noexcept {
+Vector2f Text::getScale() const noexcept {
 	return _scale;
 }

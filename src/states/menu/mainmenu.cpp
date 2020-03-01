@@ -36,9 +36,7 @@ MainMenu::MainMenu()
 }
 
 void MainMenu::update(const double dt) {
-	const u32 kDown = hidKeysDown();
-
-	if (kDown & KEY_START) {
+	if (hidKeysDown() & KEY_START) {
 		game.exit = true;
 		return;
 	}
@@ -46,21 +44,17 @@ void MainMenu::update(const double dt) {
 
 	if (playButton.pressed()) {
 		game.pushState(make_unique<ModeSelect>());
-	}
-	if (settingsButton.pressed()) {
+	} else if (settingsButton.pressed()) {
 		game.pushState(make_unique<ConfigScreen>());
-	}
-	if (exitButton.pressed()) {
+	} else if (exitButton.pressed()) {
 		game.exit = true;
 	}
 
-	if (keybindsButton.pressed()) {
+	else if (keybindsButton.pressed()) {
 		game.pushState(make_unique<KeybindSelect>());
-	}
-	if (gamesButton.pressed()) {
+	} else if (gamesButton.pressed()) {
 		game.pushState(make_unique<SprintTimes>());
-	}
-	if (languagesButton.pressed()) {
+	} else if (languagesButton.pressed()) {
 		game.pushState(make_unique<LanguageSelect>());
 	}
 }

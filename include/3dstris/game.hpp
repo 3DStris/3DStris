@@ -28,9 +28,12 @@ class Game {
 
 	void pushState(std::unique_ptr<State> state, const bool resetTop = false,
 				   const bool resetBottom = false);
+	// You should most likely return from the state's update method after
+	// calling either one of these, unless you like dereferencing null pointers
 	void setState(std::unique_ptr<State> state, const bool resetTop = false,
 				  const bool resetBottom = false);
 	void popState(const bool resetTop = false, const bool resetBottom = false);
+
 	State& getState();
 
 	Config& getConfig() noexcept;

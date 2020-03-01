@@ -14,18 +14,6 @@ void Board::reset() {
 	_droppedPieces = 0;
 }
 
-bool Board::inside(const Pos pos) const noexcept {
-	return inside(static_cast<int>(pos.x), static_cast<int>(pos.y));
-}
-
-void Board::set(const Pos pos, const PieceType t) {
-	set(pos.x, pos.y, t);
-}
-
-PieceType Board::get(const Pos pos) const {
-	return get(pos.x, pos.y);
-}
-
 void Board::draw(const Pos origin, const u32 tileSize, const float outerThick,
 				 const float gridThick) const {
 	GUI::drawOutline(Pos{origin.x, origin.y},
@@ -33,12 +21,12 @@ void Board::draw(const Pos origin, const u32 tileSize, const float outerThick,
 						static_cast<float>(height * tileSize)},
 					 outerThick, BOARD, 0.1f);
 
-	for (u32 y = 1; y < height; ++y) {
+	for (u32 y = 0; y < height; ++y) {
 		straightLine(Pos{origin.x, origin.y + y * tileSize},
 					 WH{static_cast<float>(width * tileSize), 0}, gridThick,
 					 GRID, 0);
 	}
-	for (u32 x = 1; x < width; ++x) {
+	for (u32 x = 0; x < width; ++x) {
 		straightLine(Pos{origin.x + x * tileSize, origin.y},
 					 WH{0, static_cast<float>(height * tileSize)}, gridThick,
 					 GRID, 0);

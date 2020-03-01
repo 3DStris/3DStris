@@ -6,8 +6,15 @@ Playing::Playing() : Ingame() {}
 void Playing::update(const double dt) {
 	if (piece.dead()) {
 		game.pushState(make_unique<Results>(this));
-		return;
+	} else {
+		Ingame::update(dt);
 	}
+}
 
-	Ingame::update(dt);
+void Playing::draw(const bool bottom) {
+	if (bottom) {
+		C2D_TargetClear(game.getBottom(), BACKGROUND);
+	} else {
+		Ingame::draw(bottom);
+	}
 }

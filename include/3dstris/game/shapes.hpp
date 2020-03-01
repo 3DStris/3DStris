@@ -11,7 +11,7 @@ class PieceShape {
 	PieceShape(Shape&& shape, const size_t size) : shape(shape), _size(size) {}
 
 	template <typename T>
-	bool get(const T x, const T y) const noexcept {
+	constexpr bool get(const T x, const T y) const noexcept {
 		static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
 
 		return inside(x, y) ? shape[index(x, y)] : false;
@@ -27,7 +27,7 @@ class PieceShape {
 	}
 
 	template <typename T>
-	bool inside(const T x, const T y) const noexcept {
+	constexpr bool inside(const T x, const T y) const noexcept {
 		static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
 
 		return index(x, y) < shape.size();
@@ -93,7 +93,7 @@ namespace Shapes {
 	}, 3};
 	// clang-format on
 
-	static std::array<PieceShape, 7> ALL{Shapes::I, Shapes::O, Shapes::L,
-										 Shapes::J, Shapes::S, Shapes::T,
-										 Shapes::Z};
+	const static std::array<const PieceShape, 7> ALL{
+		Shapes::I, Shapes::O, Shapes::L, Shapes::J,
+		Shapes::S, Shapes::T, Shapes::Z};
 }  // namespace Shapes

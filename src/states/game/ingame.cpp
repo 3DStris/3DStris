@@ -72,36 +72,37 @@ void Ingame::update(const double dt) {
 }
 
 void Ingame::draw(const bool bottom) {
-	if (!bottom) {
-		C2D_TargetClear(game.getTop(), BACKGROUND);
+	if (bottom) {
+		return;
+	}
+	C2D_TargetClear(game.getTop(), BACKGROUND);
 
-		board.draw(origin, tileSize);
-		piece.draw(origin, tileSize);
+	board.draw(origin, tileSize);
+	piece.draw(origin, tileSize);
 
-		// draw bag
-		u32 y = 1;
-		for (u32 i = 0; i < upcoming; ++i) {
-			const PieceType& p = bag[i];
+	// draw bag
+	u32 y = 1;
+	for (u32 i = 0; i < upcoming; ++i) {
+		const PieceType& p = bag[i];
 
-			if (p == I) {
-				--y;
-			}
-
-			Piece::draw({origin.x + (board.width + 1 + (p == O)) * tileSize,
-						 origin.y + y * tileSize},
-						tileSize, Shapes::ALL[p], p);
-
-			y += Shapes::ALL[p].size();
-			if (p == O) {
-				++y;
-			}
+		if (p == I) {
+			--y;
 		}
 
-		// draw held piece
-		if (hold != NONE && hold != INVALID) {
-			Piece::draw({origin.x - (Shapes::ALL[hold].size() + 1) * tileSize,
-						 origin.y + tileSize},
-						tileSize, Shapes::ALL[hold], hold);
+		Piece::draw({origin.x + (board.width + 1 + (p == O)) * tileSize,
+					 origin.y + y * tileSize},
+					tileSize, Shapes::ALL[p], p);
+
+		y += Shapes::ALL[p].size();
+		if (p == O) {
+			++y;
 		}
+	}
+
+	// draw held piece
+	if (hold != NONE && hold != INVALID) {
+		Piece::draw({origin.x - (Shapes::ALL[hold].size() + 1) * tileSize,
+					 origin.y + tileSize},
+					tileSize, Shapes::ALL[hold], hold);
 	}
 }

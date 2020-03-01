@@ -23,12 +23,12 @@ void SprintSelect::update(const double dt) {
 	gui.update(dt);
 
 	if (twentyButton.pressed()) {
-		game.setState(make_unique<Sprint>(20), false, true);
+		game.setState(make_unique<Sprint>(20));
 		return;
 	}
 
 	if (fortyButton.pressed()) {
-		game.setState(make_unique<Sprint>(40), false, true);
+		game.setState(make_unique<Sprint>(40));
 		return;
 	}
 
@@ -48,7 +48,7 @@ void SprintSelect::update(const double dt) {
 		const u16 value = strtoul(buf, &end, 10);
 		assert(value < std::numeric_limits<u16>::max());
 		if (value != 0 && end[0] == '\0' && errno == 0) {
-			game.setState(make_unique<Sprint>(value), false, true);
+			game.setState(make_unique<Sprint>(value));
 		}
 
 		delete[] buf;

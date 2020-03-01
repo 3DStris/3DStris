@@ -7,7 +7,9 @@ Game::Game()
 	: imageSheet(C2D_SpriteSheetLoad("romfs:/gfx/images.t3x")),
 
 	  top(C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT)),
-	  bottom(C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT)) {}
+	  bottom(C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT)) {
+	states.reserve(1);
+}
 
 Game::~Game() {
 	C2D_SpriteSheetFree(imageSheet);
@@ -85,7 +87,6 @@ void Game::reset(const bool top, const bool bottom) {
 	if (bottom) {
 		C2D_TargetClear(this->bottom, BLACK);
 	}
-	states.shrink_to_fit();
 }
 
 Config& Game::getConfig() noexcept {

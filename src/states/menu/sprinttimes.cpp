@@ -191,3 +191,6 @@ void SprintTimes::updateInfoText(const SavedGame& saved) {
 	infoText.setText(sdscatprintf(sdsempty(), infoFormat, saved.lines,
 								  saved.time, saved.pps, date));
 }
+
+// Thanks, C++11!
+constexpr size_t SprintTimes::CELLS;

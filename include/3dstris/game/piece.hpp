@@ -2,7 +2,10 @@
 
 #include <3dstris/game.hpp>
 #include <3dstris/game/shapes.hpp>
-#include <3dstris/util.hpp>
+#include <3dstris/util/math.hpp>
+
+enum PieceType { I, O, L, J, S, T, Z, NONE, INVALID };
+enum Direction { LEFT, RIGHT, UP, DOWN };
 
 class Board;
 class Piece {

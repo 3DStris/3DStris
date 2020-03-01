@@ -18,7 +18,7 @@ class IntegerInputField : public Widget {
 
    public:
 	IntegerInputField(GUI& _parent, const Pos _pos, const WH _wh,
-					  const sds suffix = sdsempty())
+					  sds suffix = sdsempty())
 		: Widget(_parent, _pos, _wh), suffix(suffix), value(0) {
 		updateText();
 	}
@@ -95,7 +95,7 @@ class IntegerInputField : public Widget {
 	}
 
 	Text text;
-	sds suffix;
+	const sds suffix;
 
 	T value;
 

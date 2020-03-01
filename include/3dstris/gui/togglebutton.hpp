@@ -5,7 +5,7 @@
 class GUI;
 class ToggleButton : public Button {
    public:
-	ToggleButton(GUI& parent, const Pos pos, const WH wh, const sds text,
+	ToggleButton(GUI& parent, const Pos pos, const WH wh, sds text,
 				 const bool defaultValue);
 	~ToggleButton() override;
 

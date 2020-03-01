@@ -1,6 +1,6 @@
 #include <3dstris/gui.hpp>
 
-Button::Button(GUI& _parent, const Pos _pos, const WH _wh, const sds text,
+Button::Button(GUI& _parent, const Pos _pos, const WH _wh, sds text,
 			   const Flags flags)
 	: Widget(_parent, _pos, _wh),
 	  text(sdsempty(), Pos{}, {1, 1}, parent.textCol) {

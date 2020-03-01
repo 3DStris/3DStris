@@ -11,7 +11,7 @@ class Button : public Widget {
 
 	enum Flags { NONE, HCENTER, VCENTER, CENTER };
 
-	Button(GUI& parent, const Pos pos, const WH wh, const sds text,
+	Button(GUI& parent, const Pos pos, const WH wh, sds text,
 		   const Flags flags = NONE);
 	Button(GUI& parent, const Pos pos, const WH wh, const char* __restrict text,
 		   const Flags flags = NONE);

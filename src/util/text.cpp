@@ -1,7 +1,6 @@
 #include <3dstris/util/text.hpp>
 
-Text::Text(const sds text, const Pos pos, const Vector2 scale,
-		   const Color color)
+Text::Text(sds text, const Pos pos, const Vector2 scale, const Color color)
 	: pos(pos),
 	  _scale(scale),
 	  color(color),

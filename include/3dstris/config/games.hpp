@@ -5,9 +5,9 @@
 #include <vector>
 
 struct SavedGame {
-	time_t date;
 	double time;
 	double pps;
+	time_t date;
 	u16 lines;
 
 	void dateString(char* buf, size_t size,
@@ -16,7 +16,7 @@ struct SavedGame {
 	}
 
 	bool operator<(const SavedGame& b) const {
-		return time < b.time && lines < b.lines;
+		return lines < b.lines || time < b.time;
 	}
 };
 

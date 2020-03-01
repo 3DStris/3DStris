@@ -15,7 +15,8 @@ class SprintTimes : public State {
 	void genValues();
 
    private:
-	static constexpr u8 CELLS = 3;
+	static constexpr size_t CELLS = 3;
+
 	static constexpr u16 CELL_H = 40;
 	static constexpr u16 TABLE_W = 350;
 	static constexpr u16 TABLE_H = (CELLS + 1) * CELL_H;

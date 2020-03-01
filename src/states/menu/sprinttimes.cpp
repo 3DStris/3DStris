@@ -58,7 +58,7 @@ SprintTimes::~SprintTimes() {
 void SprintTimes::genValues() {
 	values.clear();
 
-	for (u32 i = 0; i < std::min(games.size(), size_t(CELLS)); ++i) {
+	for (u32 i = 0; i < std::min(games.size(), CELLS); ++i) {
 		const SavedGame& saved = games[i + topCell];
 
 		Text time(sdscatprintf(sdsempty(), "%.3fs", saved.time), Pos{},

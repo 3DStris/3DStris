@@ -42,14 +42,15 @@ void Sprint::update(const double dt) {
 	if (board.linesCleared() >= lines) {
 		game.pushState(make_unique<SprintResults>(
 			this,
-			SavedGame{time_t(osGetTime() / 1000 -
-							 2208988800),  // osGetTime() returns milliseconds
-										   // since 1/1/1900. We divide by 1000
-										   // and subtract the difference from
-										   // 1/1/1900 to 1/1/1970 to have the
-										   // timestamp be in seconds and in
-										   // Unix time (epoch), respectively
-					  time, board.droppedPieces() / time, lines}));
+			SavedGame{time, board.droppedPieces() / time,
+					  // osGetTime() returns milliseconds
+					  // since 1/1/1900. We divide by 1000
+					  // and subtract the difference from
+					  // 1/1/1900 to 1/1/1970 to have the
+					  // timestamp be in seconds and in
+					  // Unix time (epoch), respectively
+					  static_cast<time_t>(osGetTime() / 1000 - 2208988800),
+					  lines}));
 		return;
 	}
 

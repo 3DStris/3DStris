@@ -82,9 +82,9 @@ Games::Games() {
 
 		for (const auto& object : document.GetArray()) {
 			if (validateGame(object)) {
-				games.push_back({object["date"].GetInt64(),   //
-								 object["time"].GetDouble(),  //
-								 object["pps"].GetDouble(), DEFAULT_LINES});
+				games.push_back({object["time"].GetDouble(),
+								 object["pps"].GetDouble(),
+								 object["date"].GetInt64(), DEFAULT_LINES});
 			}
 		}
 
@@ -119,7 +119,7 @@ Games::Games() {
 		MEMBER(time, double)
 		MEMBER(pps, double)
 		MEMBER_CHECK_TYPE_OPTIONAL(lines, u16, uint, DEFAULT_LINES)
-		games.push_back({date, time, pps, lines});
+		games.push_back({time, pps, date, lines});
 	}
 
 	if (mpack_tree_destroy(&tree) != mpack_ok) {

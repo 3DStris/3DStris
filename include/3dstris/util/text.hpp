@@ -21,9 +21,11 @@ class Text {
 
 	void draw(const float depth = 1) const;
 
-	void align(const Align mode, const Vector2 cpos, const Vector2 cwh,
+	void align(const Align mode, const Pos cpos, const WH cwh,
 			   const bool bottom = false);
 	void align(const Align mode, const bool bottom = false);
+
+	void scale(const float cx, const float max);
 
 	void setText(sds text);
 	sds getText() const noexcept;
@@ -48,7 +50,7 @@ class Text {
 
    private:
 	Pos pos;
-	Vector2 scale;
+	Vector2 _scale;
 
 	sds text = nullptr;
 

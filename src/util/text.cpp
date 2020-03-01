@@ -3,7 +3,7 @@
 Text::Text(const sds text, const Pos pos, const Vector2 scale,
 		   const Color color)
 	: pos(pos),
-	  scale(scale),
+	  _scale(scale),
 	  color(color),
 	  textBuffer(C2D_TextBufNew(sdslen(text))) {
 	setText(text);
@@ -18,7 +18,7 @@ Text::~Text() {
 }
 Text::Text(Text&& other)
 	: pos(other.pos),
-	  scale(other.scale),
+	  _scale(other._scale),
 	  text(other.text),
 	  color(other.color),
 	  textObject(other.textObject),
@@ -28,8 +28,8 @@ Text::Text(Text&& other)
 }
 
 void Text::draw(const float depth) const {
-	C2D_DrawText(&textObject, C2D_WithColor, pos.x, pos.y, depth, scale.x,
-				 scale.y, color);
+	C2D_DrawText(&textObject, C2D_WithColor, pos.x, pos.y, depth, _scale.x,
+				 _scale.y, color);
 }
 
 void Text::align(const Align mode, const Pos cpos, const WH cwh,
@@ -59,6 +59,13 @@ void Text::align(const Align mode, const Pos cpos, const WH cwh,
 }
 void Text::align(const Align mode, const bool bottom) {
 	align(mode, Pos{}, WH{}, bottom);
+}
+
+void Text::scale(const float cx, const float max) {
+	setScale({1, 1});
+
+	const float linesScale = std::min((cx - 10) / getWH().x, max);
+	setScale({linesScale, linesScale});
 }
 
 void Text::setText(sds text) {
@@ -100,7 +107,7 @@ void Text::setPos(const Pos pos) noexcept {
 
 WH Text::getWH() const {
 	float width, height;
-	C2D_TextGetDimensions(&textObject, scale.x, scale.y, &width, &height);
+	C2D_TextGetDimensions(&textObject, _scale.x, _scale.y, &width, &height);
 	return {width, height};
 }
 
@@ -112,14 +119,14 @@ Color Text::getColor() const noexcept {
 }
 
 void Text::setScaleX(const float scale) noexcept {
-	this->scale.x = scale;
+	_scale.x = scale;
 }
 void Text::setScaleY(const float scale) noexcept {
-	this->scale.y = scale;
+	_scale.y = scale;
 }
 void Text::setScale(const Vector2 scale) noexcept {
-	this->scale = scale;
+	_scale = scale;
 }
 Vector2 Text::getScale() const noexcept {
-	return scale;
+	return _scale;
 }

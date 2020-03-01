@@ -5,17 +5,19 @@
 #include <vector>
 
 struct SavedGame {
-	time_t date;
 	double time;
-
 	double pps;
+	time_t date;
+	u16 lines;
 
 	void dateString(char* buf, size_t size,
 					const char* __restrict format = "%F %T") const {
 		strftime(buf, size, format, localtime(&date));
 	}
 
-	bool operator<(const SavedGame& b) const { return time < b.time; }
+	bool operator<(const SavedGame& b) const {
+		return lines < b.lines || time < b.time;
+	}
 };
 
 using SavedGames = std::vector<SavedGame>;

@@ -8,12 +8,13 @@
 	"on": "Ja",
 	"off": "Nein",
 
-	"sprint.info": "Linien: %d\nZeit: %.3fs\nPPS: %.3f",
+	"sprint.info": "Linien: %d/%d\nZeit: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Spiele",
 	"sprint.times.nogames": "Du hast noch keine Sprint-Spiele gespielt.",
 	"sprint.times.table.time": "Zeit",
 	"sprint.times.table.date": "Datum",
-	"sprint.times.info": "Zeit: %.3fs\nPPS: %.2f\nDatum: %s",
+	"sprint.times.table.lines": "Linien",
+	"sprint.times.info": "Linien: %d\nZeit: %.3fs\nPPS: %.2f\nDatum: %s",
 
 	"results.restart": "Neustart",
 	"results.sprint.time": "Zeit: %.3fs",

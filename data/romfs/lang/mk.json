@@ -13,12 +13,13 @@
 	
 	"reset": "Врати се по основно",
 
-	"sprint.info": "Редови: %d\nВреме: %.3fs\nPPS: %.3f",
+	"sprint.info": "Редови: %d/%d\nВреме: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Игри",
 	"sprint.times.nogames": "Се уште не сте играле на Спринт.",
 	"sprint.times.table.time": "Време",
 	"sprint.times.table.date": "Датум",
-	"sprint.times.info": "Време: %.3fs\nPPS: %.2f\nДатум: %s",
+	"sprint.times.table.lines": "Редови",
+	"sprint.times.info": "Редови: %d\nВреме: %.3fs\nPPS: %.2f\nДатум: %s",
 
 	"results.restart": "Рестартираj",
 	"results.sprint.time": "Време: %.3fs",

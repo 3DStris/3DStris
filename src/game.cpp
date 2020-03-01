@@ -66,8 +66,11 @@ void Game::setState(std::unique_ptr<State> state, const bool resetTop,
 }
 
 void Game::popState(const bool resetTop, const bool resetBottom) {
-	states.pop_back();
+	if (states.size() <= 1) {
+		return;
+	}
 
+	states.pop_back();
 	reset(resetTop, resetBottom);
 }
 

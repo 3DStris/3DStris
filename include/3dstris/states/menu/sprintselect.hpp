@@ -3,9 +3,9 @@
 #include <3dstris/gui.hpp>
 #include <3dstris/state.hpp>
 
-class ModeSelect : public State {
+class SprintSelect : public State {
    public:
-	ModeSelect();
+	SprintSelect();
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;
@@ -15,7 +15,9 @@ class ModeSelect : public State {
 
 	GUI gui;
 
-	Button& normalButton;
-	Button& sprintButton;
+	Button& twentyButton;
+	Button& fortyButton;
+	Button& customButton;
+
 	Button& backButton;
 };

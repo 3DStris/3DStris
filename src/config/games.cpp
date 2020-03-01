@@ -19,9 +19,24 @@
 	}
 #define MEMBER(value, type) MEMBER_CHECK_TYPE(value, type, type)
 
+// Yes, I copy pasted the previous macro just to change 3 lines. I can't think
+// of any weird macro hack I can do to avoid doing this, sorry..
+#define MEMBER_CHECK_TYPE_OPTIONAL(value, type, check_type, _default)     \
+	type value;                                                           \
+	{                                                                     \
+		const auto _##value = mpack_node_map_cstr_optional(game, #value); \
+		value = mpack_node_type(_##value) != mpack_type_##check_type      \
+					? _default                                            \
+					: mpack_node_##type(_##value);                        \
+	}
+#define MEMBER_OPTIONAL(value, type, _default) \
+	MEMBER_CHECK_TYPE_OPTIONAL(value, type, type, _default)
+
 #define SERIALIZE_MEMBER(value, type)  \
 	mpack_write_cstr(&writer, #value); \
 	mpack_write_##type(&writer, game.value);
+
+constexpr u8 DEFAULT_LINES = 20;
 
 static bool validateJson(const rapidjson::Document& doc) {
 	return !doc.HasParseError() && doc.IsArray();
@@ -67,9 +82,9 @@ Games::Games() {
 
 		for (const auto& object : document.GetArray()) {
 			if (validateGame(object)) {
-				games.push_back({object["date"].GetInt64(),   //
-								 object["time"].GetDouble(),  //
-								 object["pps"].GetDouble()});
+				games.push_back({object["time"].GetDouble(),
+								 object["pps"].GetDouble(),
+								 object["date"].GetInt64(), DEFAULT_LINES});
 			}
 		}
 
@@ -103,9 +118,9 @@ Games::Games() {
 		MEMBER_CHECK_TYPE(date, i64, uint)
 		MEMBER(time, double)
 		MEMBER(pps, double)
-		games.push_back({date, time, pps});
+		MEMBER_CHECK_TYPE_OPTIONAL(lines, u16, uint, DEFAULT_LINES)
+		games.push_back({time, pps, date, lines});
 	}
-	std::sort(games.begin(), games.end(), std::less<SavedGame>());
 
 	if (mpack_tree_destroy(&tree) != mpack_ok) {
 		LOG_ERROR("Failed to decode games");
@@ -120,11 +135,14 @@ void Games::serialize(mpack_writer_t& writer) const {
 	mpack_start_array(&writer, games.size());
 
 	for (const auto& game : games) {
-		mpack_start_map(&writer, 3);
+		mpack_start_map(&writer, game.lines != DEFAULT_LINES ? 4 : 3);
 
 		SERIALIZE_MEMBER(time, double)
 		SERIALIZE_MEMBER(date, i64)
 		SERIALIZE_MEMBER(pps, double)
+		if (game.lines != DEFAULT_LINES) {
+			SERIALIZE_MEMBER(lines, u16)
+		}
 
 		mpack_finish_map(&writer);
 	}
@@ -138,7 +156,6 @@ const SavedGames& Games::all() const noexcept {
 
 void Games::push(SavedGame&& game) {
 	games.push_back(game);
-	std::sort(games.begin(), games.end(), std::less<SavedGame>());
 }
 
 void Games::save() {

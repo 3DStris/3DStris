@@ -13,12 +13,13 @@
 	
 	"reset": "Reset",
 
-	"sprint.info": "Lines: %d\nTime: %.3fs\nPPS: %.3f",
+	"sprint.info": "Lines: %d/%d\nTime: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Games",
 	"sprint.times.nogames": "You haven't played any Sprint games yet.",
 	"sprint.times.table.time": "Time",
 	"sprint.times.table.date": "Date",
-	"sprint.times.info": "Time: %.3fs\nPPS: %.2f\nDate: %s",
+	"sprint.times.table.lines": "Lines",
+	"sprint.times.info": "Lines: %d\nTime: %.3fs\nPPS: %.2f\nDate: %s",
 
 	"results.dead": "Game Over",
 	"results.restart": "Restart",
@@ -37,6 +38,11 @@
 	"modeselect.title": "Select a mode",
 	"modeselect.normal": "Normal",
 	"modeselect.sprint": "Sprint",
+	
+	"sprintselect.title": "Sprint",
+	"sprintselect.twenty": "20L",
+	"sprintselect.forty": "40L",
+	"sprintselect.custom": "Custom",
 
 	"settings.title": "Settings",
 	"settings.tip": "Use the bottom screen to change settings. Press \uE001 to cancel.",

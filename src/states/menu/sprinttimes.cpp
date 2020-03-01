@@ -12,11 +12,12 @@ SprintTimes::SprintTimes()
 
 	  timeLabel(game.translate("sprint.times.table.time")),
 	  dateLabel(game.translate("sprint.times.table.date")),
+	  linesLabel(game.translate("sprint.times.table.lines")),
 
 	  games(game.getGames().all()),
 
 	  titleText(game.translate("results.sprint.times"), Pos{0, 5}),
-	  noGamesText(game.translate("sprint.times.nogames"), Pos{0, 0},
+	  noGamesText(game.translate("sprint.times.nogames"), Pos{},
 				  {0.75f, 0.75f}),
 	  infoText(sdsempty(), Pos{10, 10}, {0.8f, 0.8f}),
 	  selectedText(sdsempty(), Pos{-1, SCREEN_HEIGHT - TABLE_Y + 10},
@@ -26,12 +27,24 @@ SprintTimes::SprintTimes()
 		return;
 	}
 
+	std::sort(games.begin(), games.end(), std::less<SavedGame>());
+
 	titleText.align(Text::Align::HCENTER, Pos{},
 					WH{SCREEN_WIDTH, SCREEN_HEIGHT});
+
+	timeLabel.scale(TIME_W, 1.0f);
 	timeLabel.align(Text::Align::CENTER, Pos{TABLE_X, TABLE_Y},
 					WH{TIME_W, CELL_H});
+
+	dateLabel.scale(DATE_W, 1.0f);
 	dateLabel.align(Text::Align::CENTER, Pos{TABLE_X + TIME_W, TABLE_Y},
 					WH{DATE_W, CELL_H});
+
+	linesLabel.scale(LINES_W, 1.0f);
+	linesLabel.align(Text::Align::CENTER,
+					 Pos{TABLE_X + DATE_W + TIME_W, TABLE_Y},
+					 WH{LINES_W, CELL_H});
+
 	genValues();
 
 	updateInfoText(games[selected]);
@@ -45,8 +58,9 @@ SprintTimes::~SprintTimes() {
 void SprintTimes::genValues() {
 	values.clear();
 
-	for (u32 i = 0; i < std::min(games.size(), size_t(CELLS)); ++i) {
+	for (u32 i = 0; i < std::min(games.size(), CELLS); ++i) {
 		const SavedGame& saved = games[i + topCell];
+
 		Text time(sdscatprintf(sdsempty(), "%.3fs", saved.time), Pos{},
 				  {0.8f, 0.8f});
 		time.align(Text::Align::CENTER,
@@ -63,6 +77,13 @@ void SprintTimes::genValues() {
 				   Pos{TABLE_X + TIME_W, TABLE_Y + CELL_H * (i + 1.0f)},
 				   WH{DATE_W, CELL_H});
 		values.push_back(std::move(date));
+
+		Text lines(sdsfromlonglong(saved.lines), Pos{}, {0.7f, 0.7f});
+		lines.align(
+			Text::Align::CENTER,
+			Pos{TABLE_X + TIME_W + DATE_W, TABLE_Y + CELL_H * (i + 1.0f)},
+			WH{LINES_W, CELL_H});
+		values.push_back(std::move(lines));
 	}
 }
 
@@ -127,13 +148,16 @@ void SprintTimes::draw(const bool bottom) {
 
 		panel.draw();
 		for (u16 i = 0; i < CELLS; ++i) {
-			GUI::drawHLine(Pos{TABLE_X, TABLE_Y + CELL_H * (i + 1.0f)},
-						   TABLE_W);
+			GUI::drawHLine(Pos{TABLE_X, TABLE_Y + CELL_H * (i + 1.0f)}, TABLE_W,
+						   2, GRID);
 		}
-		GUI::drawVLine(Pos{TABLE_X + TIME_W, TABLE_Y}, TABLE_H);
+		GUI::drawVLine(Pos{TABLE_X + TIME_W, TABLE_Y}, TABLE_H, 2, GRID);
+		GUI::drawVLine(Pos{TABLE_X + TIME_W + DATE_W, TABLE_Y}, TABLE_H, 2,
+					   GRID);
 
 		timeLabel.draw();
 		dateLabel.draw();
+		linesLabel.draw();
 
 		for (const auto& text : values) {
 			text.draw();
@@ -157,13 +181,13 @@ void SprintTimes::draw(const bool bottom) {
 void SprintTimes::updateSelectedText() {
 	selectedText.setText(
 		sdscatfmt(sdsempty(), "%u/%u", selected + 1, games.size()));
-	selectedText.align(Text::Align::HCENTER, Pos{0, 0},
+	selectedText.align(Text::Align::HCENTER, Pos{},
 					   {SCREEN_WIDTH, SCREEN_HEIGHT});
 }
 
-void SprintTimes::updateInfoText(const SavedGame& savedGame) {
+void SprintTimes::updateInfoText(const SavedGame& saved) {
 	char date[60];
-	savedGame.dateString(date, 60);
-	infoText.setText(sdscatprintf(sdsempty(), infoFormat, savedGame.time,
-								  savedGame.pps, date));
+	saved.dateString(date, 60);
+	infoText.setText(sdscatprintf(sdsempty(), infoFormat, saved.lines,
+								  saved.time, saved.pps, date));
 }

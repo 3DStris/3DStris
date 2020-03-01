@@ -6,9 +6,7 @@ LoadFailed::LoadFailed(const FailType type)
 	  okButton(gui.add<Button>(Pos{-1, -1},
 							   WH{SCREEN_WIDTH - 100, SCREEN_HEIGHT - 100},
 							   game.translate("ok"), Button::Flags::CENTER)) {
-	const float textScale =
-		std::min((SCREEN_WIDTH - 10) / failedText.getWH().x, 0.6f);
-	failedText.setScale({textScale, textScale});
+	failedText.scale(SCREEN_WIDTH - 10, 0.6f);
 	failedText.align(Text::Align::SCREEN_CENTER);
 }
 

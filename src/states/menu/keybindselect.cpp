@@ -18,9 +18,7 @@ KeybindSelect::KeybindSelect()
 						  WH{115, 40}, game.translate("reset"))),
 	  cancelButton(gui.add<Button>(Pos{BSCREEN_WIDTH - 90, BSCREEN_HEIGHT - 50},
 								   WH{80, 40}, game.translate("cancel"))) {
-	const float tipTextScale =
-		std::min((tip.getWH().x - 10) / tipText.getWH().x, 0.5f);
-	tipText.setScale({tipTextScale, tipTextScale});
+	tipText.scale(tip.getWH().x, 0.5f);
 	tipText.align(Text::Align::CENTER, tip.getPos(), tip.getWH());
 
 	selectText.align(Text::Align::SCREEN_CENTER);

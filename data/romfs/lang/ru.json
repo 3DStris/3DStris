@@ -11,12 +11,13 @@
 	"on": "Да",
 	"off": "Нет",
 
-	"sprint.info": "Линии: %d\nВремя: %.3fs\nPPS: %.3f",
+	"sprint.info": "Линии: %d/%d\nВремя: %.3fs\nPPS: %.3f",
 	"sprint.times.title": "Игры",
 	"sprint.times.nogames": "Вы ещё не играли в Спринт.",
 	"sprint.times.table.time": "Время",
 	"sprint.times.table.date": "Дата",
-	"sprint.times.info": "Время: %.3fs\nPPS: %.2f\nДата: %s",
+	"sprint.times.table.lines": "Линии",
+	"sprint.times.info": "Линии: %d\nВремя: %.3fs\nPPS: %.2f\nДата: %s",
 
 	"results.dead": "Игра окончена",
 	"results.restart": "Заново",

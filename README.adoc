@@ -69,7 +69,7 @@ mkdir build && cd build
 cmake -G "Unix Makefiles" ..
 make
 ----
-Resulting binaries can be found in `build/apps/`.
+Resulting binaries can be found in `build/bin/`.
 
 == Translation
 3DStris currently has translations available for the following languages:

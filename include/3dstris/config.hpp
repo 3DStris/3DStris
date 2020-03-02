@@ -26,7 +26,7 @@ struct Config {
 	u16 arr = 0;
 	u16 dropTimer = 5;
 	bool useTextures = true;
-	L10n::Language language = L10n::EN;
+	L10n::Language language = L10n::Language::EN;
 
    private:
 	static constexpr auto CONFIG_PATH = "sdmc:/3ds/3dstris/config.mp";

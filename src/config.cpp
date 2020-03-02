@@ -65,7 +65,8 @@ void Config::serialize(mpack_writer_t& writer) const {
 	SERIALIZE_MEMBER(arr, u16)
 	SERIALIZE_MEMBER(dropTimer, u16)
 	SERIALIZE_MEMBER(useTextures, bool)
-	SERIALIZE_MEMBER(language, u8)
+	mpack_write_cstr(&writer, "language");
+	mpack_write_u8(&writer, static_cast<u8>(language));
 
 	mpack_finish_map(&writer);
 }

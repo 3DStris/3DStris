@@ -63,7 +63,8 @@ class Log {
 		if (!quiet) {
 			char buf[16];
 			buf[strftime(buf, sizeof buf, "%T", &lt)] = '\0';
-			fprintf(stderr, "%s %-5s %s:%d: ", buf, LEVELS[level], file, line);
+			fprintf(stderr, "%s %-5s %s:%d: ", buf,
+					LEVELS[static_cast<size_t>(level)], file, line);
 			fprintf(stderr, fmt, args...);
 			fputs("\n", stderr);
 			fflush(stderr);
@@ -73,7 +74,8 @@ class Log {
 		if (fp) {
 			char buf[32];
 			buf[strftime(buf, sizeof buf, "%F %T", &lt)] = '\0';
-			fprintf(fp, "%s %-5s %s:%d: ", buf, LEVELS[level], file, line);
+			fprintf(fp, "%s %-5s %s:%d: ", buf,
+					LEVELS[static_cast<size_t>(level)], file, line);
 			fprintf(fp, fmt, args...);
 			fputs("\n", fp);
 			fflush(fp);
@@ -89,6 +91,6 @@ class Log {
 	Handle mutex;
 
 	FILE* fp;
-	Level level = INFO;
+	Level level = Level::INFO;
 	bool quiet = true;
 };

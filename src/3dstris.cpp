@@ -15,7 +15,7 @@ int main() {
 
 #ifndef NDEBUG
 	consoleDebugInit(debugDevice_3DMOO);
-	Log::get().setLevel(DEBUG);
+	Log::get().setLevel(Log::Level::DEBUG);
 	Log::get().setQuiet(false);
 #endif
 
@@ -25,10 +25,10 @@ int main() {
 		game.pushState(make_unique<LoadFailed>());
 	}
 	if (game.getGames().failed()) {
-		game.pushState(make_unique<LoadFailed>(LoadFailed::GAMES));
+		game.pushState(make_unique<LoadFailed>(LoadFailed::FailType::GAMES));
 	}
 	if (game.getKeybinds().failed()) {
-		game.pushState(make_unique<LoadFailed>(LoadFailed::KEYBINDS));
+		game.pushState(make_unique<LoadFailed>(LoadFailed::FailType::KEYBINDS));
 	}
 
 	while (aptMainLoop() && !game.exit) {

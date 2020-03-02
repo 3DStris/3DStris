@@ -58,7 +58,7 @@ void Ingame::update(const double dt) {
 		}
 	}
 
-	if (!hasHeld && game.isPressed(kDown, Keybinds::HOLD)) {
+	if (!hasHeld && game.isPressed(kDown, Keybinds::Action::HOLD)) {
 		hasHeld = true;
 		if (hold == PieceType::NONE && piece.getType() != PieceType::NONE &&
 			piece.getType() != PieceType::INVALID) {

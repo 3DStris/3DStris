@@ -33,8 +33,10 @@ KeybindSelect::KeybindSelect()
 		buttons.push_back(
 			gui.add<KeybindButton>(Pos{x, y}, WH{BUTTON_WIDTH, BUTTON_HEIGHT},
 								   bind.first, binds[bind.first]));
-		Text label(game.translate(Keybinds::KEYBIND_TO_KEY[bind.first]),
-				   Pos{x - 3, y - 3}, {0.4f, 0.4f});
+		Text label(
+			game.translate(
+				Keybinds::KEYBIND_TO_KEY[static_cast<size_t>(bind.first)]),
+			Pos{x - 3, y - 3}, {0.4f, 0.4f});
 
 		textW = std::max(label.getWH().x, textW);
 		const float textH = label.getWH().y;

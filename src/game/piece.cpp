@@ -204,7 +204,8 @@ void Piece::rotate(const bool ccw) {
 void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 	fallTimer += dt;
 
-	const bool softDropHeld = game.isPressed(kHeld, Keybinds::SOFT_DROP);
+	const bool softDropHeld =
+		game.isPressed(kHeld, Keybinds::Action::SOFT_DROP);
 	if (sDropAfter == 0.0 && softDropHeld) {
 		while (move(Direction::DOWN)) {
 		}
@@ -225,7 +226,7 @@ void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 		setTimer = 0.0;
 	}
 
-	if (game.isPressed(kDown, Keybinds::HARD_DROP)) {
+	if (game.isPressed(kDown, Keybinds::Action::HARD_DROP)) {
 		while (move(Direction::DOWN)) {
 		}
 		setTimer = setAfter;
@@ -233,14 +234,16 @@ void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 		return;
 	}
 
-	dasTimer.x = game.isPressed(kHeld, Keybinds::LEFT) ? dasTimer.x + dt : 0;
-	dasTimer.y = game.isPressed(kHeld, Keybinds::RIGHT) ? dasTimer.y + dt : 0;
+	dasTimer.x =
+		game.isPressed(kHeld, Keybinds::Action::LEFT) ? dasTimer.x + dt : 0;
+	dasTimer.y =
+		game.isPressed(kHeld, Keybinds::Action::RIGHT) ? dasTimer.y + dt : 0;
 
 	updateMove(dt, kDown);
 
-	if (game.isPressed(kDown, Keybinds::ROTATE_CCW)) {
+	if (game.isPressed(kDown, Keybinds::Action::ROTATE_CCW)) {
 		rotate(true);
-	} else if (game.isPressed(kDown, Keybinds::ROTATE_CW)) {
+	} else if (game.isPressed(kDown, Keybinds::Action::ROTATE_CW)) {
 		rotate(false);
 	}
 }
@@ -274,9 +277,9 @@ void Piece::updateMove(const double dt, const u32 kDown) {
 	};
 
 	if (!_move(Direction::LEFT, dasTimer.x,  // x is actually the left timer
-			   Keybinds::LEFT)) {
+			   Keybinds::Action::LEFT)) {
 		_move(Direction::RIGHT, dasTimer.y,
-			  Keybinds::RIGHT);  // y is actually the right timer
+			  Keybinds::Action::RIGHT);  // y is actually the right timer
 	}
 }
 

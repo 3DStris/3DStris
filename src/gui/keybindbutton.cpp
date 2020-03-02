@@ -19,7 +19,7 @@ const phmap::flat_hash_map<Keybinds::Key, const char*>
 		KEY(UP, "\uE079"),	KEY(DOWN, "\uE07A"),
 		KEY(LEFT, "\uE07B"),  KEY(RIGHT, "\uE07C"),
 		KEY(ZL, "\uE054"),	KEY(ZR, "\uE055"),
-		KEY(TOUCH, "\uE01D"), {KEY_A | KEY_X, "\uE000/\uE001"}};
+		KEY(TOUCH, "\uE01D"), {KEY_A | KEY_X, "\uE000/\uE002"}};
 
 KeybindButton::KeybindButton(GUI& _parent, const Pos _pos, const WH _wh,
 							 const Keybinds::Action action,

@@ -3,8 +3,10 @@
 :isocpp: https://isocpp.org
 :travis-badge: https://travis-ci.org/3DStris/3DStris.svg?branch=master
 :travis: https://travis-ci.org/3DStris/3DStris
-:codefactor-badge: https://www.codefactor.io/repository/github/3dstris/3dstris/badge
-:codefactor: https://www.codefactor.io/repository/github/3dstris/3dstris
+:codefactor-badge: https://www.codefactor.io/repository/github/3DStris/3DStris/badge
+:codefactor: https://www.codefactor.io/repository/github/3DStris/3DStris
+:downloads-badge: https://img.shields.io/github/downloads/3DStris/3DStris/total
+:latest-release: https://github.com/3DStris/3DStris/releases/latest
 
 :imagesdir: ./data/screenshots
 
@@ -16,13 +18,12 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
-= 3DStris image:{license-badge}[MIT, link=LICENSE] image:{cpp11-badge}[C\+\+ 11, link={isocpp}] image:{travis-badge}[Travis, link={travis}] image:{codefactor-badge}[CodeFactor, link={codefactor}]
+= 3DStris image:{license-badge}[MIT, link=LICENSE] image:{cpp11-badge}[C\+\+ 11, link={isocpp}] image:{travis-badge}[Travis, link={travis}] image:{codefactor-badge}[CodeFactor, link={codefactor}] image:{downloads-badge}[GitHub release downloads, link={latest-release}]
 :toc: preamble
 
 A Tetris clone for the 3DS.
 
 == Downloads
-:latest-release: https://github.com/3DStris/3DStris/releases/latest
 :tinydb: https://tinydb.eiphax.tech
 :stats: https://3dstris.geni.site
 

@@ -28,6 +28,6 @@ class Button : public Widget {
    private:
 	Text text;
 
-	bool held;
-	bool _pressed;
+	bool held = false;
+	bool _pressed = false;
 };

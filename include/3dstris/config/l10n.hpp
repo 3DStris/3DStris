@@ -15,9 +15,10 @@ class L10n {
 	};
 
 	static constexpr u8 LANGUAGE_COUNT = 9;
-	enum Language { EN, BG, RU, PT, PL, DE, JP, MK, FR };
+	enum class Language { EN, BG, RU, PT, PL, DE, JP, MK, FR };
 	static constexpr std::array<Language, LANGUAGE_COUNT> LANGUAGES{
-		EN, BG, RU, PT, PL, DE, JP, MK, FR};
+		Language::EN, Language::BG, Language::RU, Language::PT, Language::PL,
+		Language::DE, Language::JP, Language::MK, Language::FR};
 
 	static const char* languageToString(const Language language) {
 		static constexpr std::array<char[2 + 1], LANGUAGE_COUNT>
@@ -25,18 +26,20 @@ class L10n {
 								  "de", "jp", "mk", "fr"};
 
 		return static_cast<u8>(language) < LANGUAGE_TO_STRING.size()
-				   ? LANGUAGE_TO_STRING[language]
+				   ? LANGUAGE_TO_STRING[static_cast<size_t>(language)]
 				   : "un";
 	}
 	static Language stringToLanguage(const char* __restrict language) {
 		const static phmap::btree_map<const char*, Language, CompareString>
-			STRING_TO_LANGUAGE = {{"en", EN}, {"bg", BG}, {"ru", RU},
-								  {"pt", PT}, {"pl", PL}, {"de", DE},
-								  {"jp", JP}, {"mk", MK}, {"fr", FR}};
+			STRING_TO_LANGUAGE = {{"en", Language::EN}, {"bg", Language::BG},
+								  {"ru", Language::RU}, {"pt", Language::PT},
+								  {"pl", Language::PL}, {"de", Language::DE},
+								  {"jp", Language::JP}, {"mk", Language::MK},
+								  {"fr", Language::FR}};
 
 		return STRING_TO_LANGUAGE.contains(language)
 				   ? STRING_TO_LANGUAGE.at(language)
-				   : EN;
+				   : Language::EN;
 	}
 
 	void loadLanguage(const Language language) {
@@ -67,7 +70,7 @@ class L10n {
 
 	static char* getPath(const Language language, char* __restrict buf) {
 		constexpr auto FORMAT_STRING = "romfs:/lang/%s.json";
-		if (language == EN) {
+		if (language == Language::EN) {
 			strcpy(buf, EN_PATH);
 			return buf;
 		}
@@ -83,7 +86,7 @@ class L10n {
 			images_jp_idx, images_mk_idx, images_fr_idx};
 
 		return static_cast<u8>(language) < LANGUAGES.size()
-				   ? LANGUAGE_TO_ICON[language]
+				   ? LANGUAGE_TO_ICON[static_cast<size_t>(language)]
 				   : images_un_idx;
 	}
 

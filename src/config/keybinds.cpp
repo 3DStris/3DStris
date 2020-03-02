@@ -9,9 +9,10 @@ const char* Keybinds::KEYBIND_TO_KEY[]{
 	"keybindselect.hold"};
 
 const Keybinds::Binds Keybinds::DEFAULT_BINDS{
-	{LEFT, KEY_LEFT},	 {RIGHT, KEY_RIGHT},	{ROTATE_CW, KEY_B},
-	{ROTATE_CCW, KEY_Y},  {SOFT_DROP, KEY_DOWN}, {HARD_DROP, KEY_UP},
-	{HOLD, KEY_A | KEY_X}};
+	{Action::LEFT, KEY_LEFT},	  {Action::RIGHT, KEY_RIGHT},
+	{Action::ROTATE_CW, KEY_B},	{Action::ROTATE_CCW, KEY_Y},
+	{Action::SOFT_DROP, KEY_DOWN}, {Action::HARD_DROP, KEY_UP},
+	{Action::HOLD, KEY_A | KEY_X}};
 
 Keybinds::Keybinds() : binds(DEFAULT_BINDS) {
 	LOG_INFO("Loading keybinds");
@@ -53,7 +54,7 @@ void Keybinds::serialize(mpack_writer_t& writer) const {
 	mpack_start_map(&writer, binds.size());
 
 	for (const auto& bind : binds) {
-		mpack_write_u8(&writer, bind.first);
+		mpack_write_u8(&writer, static_cast<u8>(bind.first));
 		mpack_write_u32(&writer, bind.second);
 	}
 

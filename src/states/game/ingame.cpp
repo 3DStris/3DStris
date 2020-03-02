@@ -3,7 +3,9 @@
 #include <algorithm>
 
 static std::array<PieceType, 7> genBag(std::mt19937_64& rng) {
-	std::array<PieceType, 7> pieces{I, O, L, J, S, T, Z};
+	std::array<PieceType, 7> pieces{PieceType::I, PieceType::O, PieceType::L,
+									PieceType::J, PieceType::S, PieceType::T,
+									PieceType::Z};
 
 	std::shuffle(pieces.begin(), pieces.end(), rng);
 	return pieces;
@@ -15,7 +17,7 @@ Ingame::Ingame()
 	  tileSize((SCREEN_HEIGHT - 10) / board.height),
 	  bagRNG(osGetTime()),
 	  upcoming(5),
-	  piece(board, I) {
+	  piece(board, PieceType::I) {
 	origin = {(SCREEN_WIDTH - board.width * tileSize) / 2.0f, 10};
 	reset();
 }
@@ -30,7 +32,7 @@ void Ingame::reset() {
 	piece.reset(bag.front());
 	bag.pop_front();
 
-	hold = NONE;
+	hold = PieceType::NONE;
 	hasHeld = false;
 }
 
@@ -58,8 +60,8 @@ void Ingame::update(const double dt) {
 
 	if (!hasHeld && game.isPressed(kDown, Keybinds::HOLD)) {
 		hasHeld = true;
-		if (hold == NONE && piece.getType() != NONE &&
-			piece.getType() != INVALID) {
+		if (hold == PieceType::NONE && piece.getType() != PieceType::NONE &&
+			piece.getType() != PieceType::INVALID) {
 			hold = piece.getType();
 			piece.reset(bag.front());
 			bag.pop_front();
@@ -85,24 +87,27 @@ void Ingame::draw(const bool bottom) {
 	for (u32 i = 0; i < upcoming; ++i) {
 		const PieceType& p = bag[i];
 
-		if (p == I) {
+		if (p == PieceType::I) {
 			--y;
 		}
 
-		Piece::draw({origin.x + (board.width + 1 + (p == O)) * tileSize,
-					 origin.y + y * tileSize},
-					tileSize, Shapes::ALL[p], p);
+		Piece::draw(
+			{origin.x + (board.width + 1 + (p == PieceType::O)) * tileSize,
+			 origin.y + y * tileSize},
+			tileSize, Shapes::ALL[static_cast<size_t>(p)], p);
 
-		y += Shapes::ALL[p].size();
-		if (p == O) {
+		y += Shapes::ALL[static_cast<size_t>(p)].size();
+		if (p == PieceType::O) {
 			++y;
 		}
 	}
 
 	// draw held piece
-	if (hold != NONE && hold != INVALID) {
-		Piece::draw({origin.x - (Shapes::ALL[hold].size() + 1) * tileSize,
-					 origin.y + tileSize},
-					tileSize, Shapes::ALL[hold], hold);
+	if (hold != PieceType::NONE && hold != PieceType::INVALID) {
+		Piece::draw(
+			{origin.x -
+				 (Shapes::ALL[static_cast<size_t>(hold)].size() + 1) * tileSize,
+			 origin.y + tileSize},
+			tileSize, Shapes::ALL[static_cast<size_t>(hold)], hold);
 	}
 }

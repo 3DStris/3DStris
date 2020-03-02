@@ -2,7 +2,7 @@
 
 LoadFailed::LoadFailed(const FailType type)
 	: State(),
-	  failedText(game.translate(FAILTYPE_TO_KEY[type])),
+	  failedText(game.translate(FAILTYPE_TO_KEY[static_cast<size_t>(type)])),
 	  okButton(gui.add<Button>(Pos{-1, -1},
 							   WH{SCREEN_WIDTH - 100, SCREEN_HEIGHT - 100},
 							   game.translate("ok"), Button::Flags::CENTER)) {

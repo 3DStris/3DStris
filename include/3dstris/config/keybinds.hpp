@@ -6,7 +6,7 @@
 
 class Keybinds {
    public:
-	enum Action {
+	enum class Action {
 		LEFT,
 		RIGHT,
 		ROTATE_CW,

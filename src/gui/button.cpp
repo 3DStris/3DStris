@@ -4,10 +4,10 @@ Button::Button(GUI& _parent, const Pos _pos, const WH _wh, sds text,
 			   const Flags flags)
 	: Widget(_parent, _pos, _wh),
 	  text(sdsempty(), Pos{}, {1, 1}, parent.textCol) {
-	if (flags == HCENTER || flags == CENTER) {
+	if (flags == Flags::HCENTER || flags == Flags::CENTER) {
 		pos.x = (parent.getWidth() - wh.x) / 2.0f;
 	}
-	if (flags == VCENTER || flags == CENTER) {
+	if (flags == Flags::VCENTER || flags == Flags::CENTER) {
 		pos.y = (parent.getHeight() - wh.y) / 2.0f;
 	}
 

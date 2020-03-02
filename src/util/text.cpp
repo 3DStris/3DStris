@@ -35,20 +35,20 @@ void Text::align(const Align mode, const Pos cpos, const WH cwh,
 				 const bool bottom) {
 	const WH wh = getWH();
 	switch (mode) {
-		case CENTER: {
+		case Align::CENTER: {
 			setPos(
 				Pos{cpos.x + (cwh.x - wh.x) / 2, cpos.y + (cwh.y - wh.y) / 2});
 			break;
 		}
-		case VCENTER: {
+		case Align::VCENTER: {
 			setY(cpos.y + (cwh.y - wh.y) / 2);
 			break;
 		}
-		case HCENTER: {
+		case Align::HCENTER: {
 			setX(cpos.x + (cwh.x - wh.x) / 2);
 			break;
 		}
-		case SCREEN_CENTER: {
+		case Align::SCREEN_CENTER: {
 			setPos(
 				Pos{((!bottom ? SCREEN_WIDTH : BSCREEN_WIDTH) - wh.x) / 2,
 					((!bottom ? SCREEN_HEIGHT : BSCREEN_HEIGHT) - wh.y) / 2});

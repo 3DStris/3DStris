@@ -37,18 +37,18 @@ Log::Log() {
 	FSUSER_OpenArchive(&sdmcArchive, ARCHIVE_SDMC, fsMakePath(PATH_EMPTY, ""));
 
 	if (!directoryExists(sdmcArchive, HOMEBREW_PATH)) {
-		log(INFO, __FILE__, __LINE__, "Creating /3ds/");
+		log(Level::INFO, __FILE__, __LINE__, "Creating /3ds/");
 		FSUSER_CreateDirectory(sdmcArchive, HOMEBREW_PATH, 0);
 	}
 	if (!directoryExists(sdmcArchive, GAME_PATH)) {
-		log(INFO, __FILE__, __LINE__, "Creating 3DStris dir");
+		log(Level::INFO, __FILE__, __LINE__, "Creating 3DStris dir");
 		FSUSER_CreateDirectory(sdmcArchive, GAME_PATH, 0);
 	}
 
 	FSUSER_CloseArchive(sdmcArchive);
 
 	setFile(fopen(LOG_PATH, "w"));
-	log(INFO, __FILE__, __LINE__, "3DStris v%s", _3DSTRIS_VERSION);
+	log(Level::INFO, __FILE__, __LINE__, "3DStris v%s", _3DSTRIS_VERSION);
 }
 
 Log::~Log() {

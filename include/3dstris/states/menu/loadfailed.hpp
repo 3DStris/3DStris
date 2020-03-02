@@ -7,9 +7,9 @@
 
 class LoadFailed : public State {
    public:
-	enum FailType { CONFIG, GAMES, KEYBINDS };
+	enum class FailType { CONFIG, GAMES, KEYBINDS };
 
-	LoadFailed(const FailType type = CONFIG);
+	LoadFailed(const FailType type = FailType::CONFIG);
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;

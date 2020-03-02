@@ -9,12 +9,12 @@ class Button : public Widget {
 	static constexpr Color BUTTON_OUTLINE = C2D_Color32(35, 36, 51, 255);
 	static constexpr Color BUTTON_HELD = C2D_Color32(26, 27, 38, 255);
 
-	enum Flags { NONE, HCENTER, VCENTER, CENTER };
+	enum class Flags { NONE, HCENTER, VCENTER, CENTER };
 
 	Button(GUI& parent, const Pos pos, const WH wh, sds text,
-		   const Flags flags = NONE);
+		   const Flags flags = Flags::NONE);
 	Button(GUI& parent, const Pos pos, const WH wh, const char* __restrict text,
-		   const Flags flags = NONE);
+		   const Flags flags = Flags::NONE);
 
 	void setText(sds text);
 

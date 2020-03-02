@@ -6,7 +6,7 @@
 
 class Text {
    public:
-	enum Align { CENTER, VCENTER, HCENTER, SCREEN_CENTER };
+	enum class Align { CENTER, VCENTER, HCENTER, SCREEN_CENTER };
 
 	Text(sds text = sdsempty(), const Pos pos = Pos{},
 		 const Vector2f scale = {1, 1}, const Color color = WHITE);

@@ -11,17 +11,23 @@
 #include <stdio.h>
 #include <limits>
 
-enum Level { TRACE, DEBUG, INFO, WARN, ERROR, FATAL };
-
-#define LOG_TRACE(...) Log::get().log(TRACE, __FILE__, __LINE__, __VA_ARGS__)
-#define LOG_DEBUG(...) Log::get().log(DEBUG, __FILE__, __LINE__, __VA_ARGS__)
-#define LOG_INFO(...) Log::get().log(INFO, __FILE__, __LINE__, __VA_ARGS__)
-#define LOG_WARN(...) Log::get().log(WARN, __FILE__, __LINE__, __VA_ARGS__)
-#define LOG_ERROR(...) Log::get().log(ERROR, __FILE__, __LINE__, __VA_ARGS__)
-#define LOG_FATAL(...) Log::get().log(FATAL, __FILE__, __LINE__, __VA_ARGS__)
+#define LOG_TRACE(...) \
+	Log::get().log(Log::Level::TRACE, __FILE__, __LINE__, __VA_ARGS__)
+#define LOG_DEBUG(...) \
+	Log::get().log(Log::Level::DEBUG, __FILE__, __LINE__, __VA_ARGS__)
+#define LOG_INFO(...) \
+	Log::get().log(Log::Level::INFO, __FILE__, __LINE__, __VA_ARGS__)
+#define LOG_WARN(...) \
+	Log::get().log(Log::Level::WARN, __FILE__, __LINE__, __VA_ARGS__)
+#define LOG_ERROR(...) \
+	Log::get().log(Log::Level::ERROR, __FILE__, __LINE__, __VA_ARGS__)
+#define LOG_FATAL(...) \
+	Log::get().log(Log::Level::FATAL, __FILE__, __LINE__, __VA_ARGS__)
 
 class Log {
    public:
+	enum class Level { TRACE, DEBUG, INFO, WARN, ERROR, FATAL };
+
 	static Log& get() {
 		static Log log;
 		return log;

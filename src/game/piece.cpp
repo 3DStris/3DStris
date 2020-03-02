@@ -10,7 +10,7 @@ Piece::Piece(Board& board, const PieceShape& shape, const PieceType type)
 }
 
 Piece::Piece(Board& board, const PieceType type)
-	: Piece(board, Shapes::ALL[type], type) {
+	: Piece(board, Shapes::ALL[static_cast<size_t>(type)], type) {
 	// Uhh
 }
 
@@ -21,7 +21,7 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 	pos = {std::floor(board.width / 2.0f) - std::floor(shape.size() / 2.0f), 0};
 
 	if (game.getConfig().useTextures) {
-		sprite = Textures::get(type);
+		sprite = Textures::get(static_cast<size_t>(type));
 	}
 
 	fallTimer = 0;
@@ -43,7 +43,7 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 }
 
 void Piece::reset(const PieceType type) {
-	reset(Shapes::ALL[type], type);
+	reset(Shapes::ALL[static_cast<size_t>(type)], type);
 }
 
 void Piece::set() {
@@ -63,8 +63,8 @@ bool Piece::collides(const int offX, const int offY) const {
 		for (u8 x = 0; x < shape.size(); ++x) {
 			const Vector2<int> offPos = {static_cast<int>(pos.x + x + offX),
 										 static_cast<int>(pos.y + y + offY)};
-			if (shape.get(x, y) &&
-				(!board.inside(offPos) || board.get(offPos) != NONE)) {
+			if (shape.get(x, y) && (!board.inside(offPos) ||
+									board.get(offPos) != PieceType::NONE)) {
 				return true;
 			}
 		}
@@ -90,10 +90,12 @@ void Piece::draw(const Pos origin, const u32 tileSize) const {
 					C2D_DrawImageAt(sprite, pieceX, ghostPieceY, 0.5f,
 									&Textures::GHOST);
 				} else {
-					C2D_DrawRectSolid(pieceX, pieceY, 0.5f, tileSize, tileSize,
-									  Textures::getColor(type));
-					C2D_DrawRectSolid(pieceX, ghostPieceY, 0.5f, tileSize,
-									  tileSize, Textures::getColor(type, true));
+					C2D_DrawRectSolid(
+						pieceX, pieceY, 0.5f, tileSize, tileSize,
+						Textures::getColor(static_cast<size_t>(type)));
+					C2D_DrawRectSolid(
+						pieceX, ghostPieceY, 0.5f, tileSize, tileSize,
+						Textures::getColor(static_cast<size_t>(type), true));
 				}
 			}
 		}
@@ -108,10 +110,12 @@ void Piece::draw(const Pos origin, const u32 tileSize, const PieceShape& shape,
 				const auto pieceX = origin.x + x * tileSize;
 				const auto pieceY = origin.y + y * tileSize;
 				if (Game::get().getConfig().useTextures) {
-					C2D_DrawImageAt(Textures::get(type), pieceX, pieceY, 0.5f);
+					C2D_DrawImageAt(Textures::get(static_cast<size_t>(type)),
+									pieceX, pieceY, 0.5f);
 				} else {
-					C2D_DrawRectSolid(pieceX, pieceY, 0.5f, tileSize, tileSize,
-									  Textures::getColor(type));
+					C2D_DrawRectSolid(
+						pieceX, pieceY, 0.5f, tileSize, tileSize,
+						Textures::getColor(static_cast<size_t>(type)));
 				}
 			}
 		}
@@ -121,16 +125,16 @@ void Piece::draw(const Pos origin, const u32 tileSize, const PieceShape& shape,
 bool Piece::move(const Direction dir) {
 	int xOff = 0, yOff = 0;
 	switch (dir) {
-		case LEFT:
+		case Direction::LEFT:
 			xOff = -1;
 			break;
-		case RIGHT:
+		case Direction::RIGHT:
 			xOff = 1;
 			break;
-		case UP:
+		case Direction::UP:
 			yOff = -1;
 			break;
-		case DOWN:
+		case Direction::DOWN:
 			yOff = 1;
 			break;
 	}
@@ -143,7 +147,7 @@ bool Piece::move(const Direction dir) {
 }
 
 void Piece::rotate(const bool ccw) {
-	if (type == O) {
+	if (type == PieceType::O) {
 		return;
 	}
 
@@ -202,13 +206,13 @@ void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 
 	const bool softDropHeld = game.isPressed(kHeld, Keybinds::SOFT_DROP);
 	if (sDropAfter == 0.0 && softDropHeld) {
-		while (move(DOWN)) {
+		while (move(Direction::DOWN)) {
 		}
 		fallTimer = 0;
 	} else if (softDropHeld ||
 			   fallTimer > (softDropHeld ? sDropAfter : fallAfter)) {
 		fallTimer = 0;
-		move(DOWN);
+		move(Direction::DOWN);
 	}
 
 	if (collides(0, 1)) {
@@ -222,7 +226,7 @@ void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
 	}
 
 	if (game.isPressed(kDown, Keybinds::HARD_DROP)) {
-		while (move(DOWN)) {
+		while (move(Direction::DOWN)) {
 		}
 		setTimer = setAfter;
 		set();
@@ -269,9 +273,9 @@ void Piece::updateMove(const double dt, const u32 kDown) {
 		return false;
 	};
 
-	if (!_move(LEFT, dasTimer.x,  // x is actually the left timer
+	if (!_move(Direction::LEFT, dasTimer.x,  // x is actually the left timer
 			   Keybinds::LEFT)) {
-		_move(RIGHT, dasTimer.y,
+		_move(Direction::RIGHT, dasTimer.y,
 			  Keybinds::RIGHT);  // y is actually the right timer
 	}
 }

@@ -59,26 +59,23 @@ class Log {
 
 		svcWaitSynchronization(mutex, std::numeric_limits<s64>::max());
 
-		// Log to stderr
-		if (!quiet) {
-			char buf[16];
-			buf[strftime(buf, sizeof buf, "%T", &lt)] = '\0';
-			fprintf(stderr, "%s %-5s %s:%d: ", buf,
-					LEVELS[static_cast<size_t>(level)], file, line);
-			fprintf(stderr, fmt, args...);
-			fputs("\n", stderr);
-			fflush(stderr);
-		}
-
-		// Log to file
-		if (fp) {
+		const auto printTo = [&](FILE* fp, const char* format) {
 			char buf[32];
-			buf[strftime(buf, sizeof buf, "%F %T", &lt)] = '\0';
+			buf[strftime(buf, sizeof buf, format, &lt)] = '\0';
 			fprintf(fp, "%s %-5s %s:%d: ", buf,
 					LEVELS[static_cast<size_t>(level)], file, line);
 			fprintf(fp, fmt, args...);
 			fputs("\n", fp);
 			fflush(fp);
+		};
+
+		// Log to stderr
+		if (!quiet) {
+			printTo(stderr, "%T");
+		}
+		// Log to file
+		if (fp) {
+			printTo(fp, "%F %T");
 		}
 
 		svcReleaseMutex(mutex);

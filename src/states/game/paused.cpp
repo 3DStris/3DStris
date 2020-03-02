@@ -24,14 +24,16 @@ void Paused::update(const double dt) {
 	gui.update(dt);
 
 	if (restartButton.pressed()) {
+		assert(parent != nullptr);
+
 		parent->reset();
-		game.popState(false, true);
+		game.popState();
 		return;
 	}
 
 	const u32 kDown = hidKeysDown();
 	if (unpauseButton.pressed() || (kDown > KEY_A && kDown <= KEY_ZR)) {
-		game.popState(false, true);
+		game.popState();
 		return;
 	}
 
@@ -43,6 +45,8 @@ void Paused::update(const double dt) {
 
 void Paused::draw(const bool bottom) {
 	if (!bottom) {
+		assert(parent != nullptr);
+
 		parent->draw(bottom);
 		C2D_DrawRectSolid(0, 0, 1, SCREEN_WIDTH, SCREEN_HEIGHT, PAUSED);
 

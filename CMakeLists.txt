@@ -54,9 +54,9 @@ include(Tools3DS)
 find_package(ctrulib REQUIRED)
 find_package(Citro3D REQUIRED)
 find_package(Citro2D REQUIRED)
+
 find_package(RapidJSON REQUIRED)
 find_package(phmap REQUIRED)
-
 add_subdirectory(external)
 
 add_subdirectory(src)

@@ -3,11 +3,8 @@
 #include <3dstris/util/log.hpp>
 
 int main() {
-	TickCounter tickCounter;
-	osTickCounterStart(&tickCounter);
-
-	gfxInitDefault();
 	romfsInit();
+	gfxInitDefault();
 	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 	C2D_Prepare();
@@ -30,6 +27,8 @@ int main() {
 		game.pushState(make_unique<LoadFailed>(LoadFailed::FailType::KEYBINDS));
 	}
 
+	TickCounter tickCounter;
+	osTickCounterStart(&tickCounter);
 	while (aptMainLoop() && !game.exit) {
 		hidScanInput();
 
@@ -42,6 +41,7 @@ int main() {
 		C3D_FrameEnd(0);
 	}
 
+	romfsExit();
 	C2D_Fini();
 	C3D_Fini();
 	gfxExit();

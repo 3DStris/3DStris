@@ -15,3 +15,5 @@
 [submodule "external/mpack"]
 	path = external/mpack
 	url = https://github.com/3DStris/mpack.git
+	branch = cmake-amalgamation
+

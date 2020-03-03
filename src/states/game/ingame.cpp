@@ -39,11 +39,13 @@ void Ingame::reset() {
 void Ingame::update(const double dt) {
 	const u32 kDown = hidKeysDown();
 	const u32 kHeld = hidKeysHeld();
-
 	if (kDown & KEY_START) {
 		game.pushState(make_unique<Paused>(this));
 		return;
 	}
+
+	assert(hold != PieceType::INVALID);
+	assert(piece.getType() != PieceType::INVALID);
 
 	piece.update(dt, kDown, kHeld);
 
@@ -60,8 +62,7 @@ void Ingame::update(const double dt) {
 
 	if (!hasHeld && game.isPressed(kDown, Keybinds::Action::HOLD)) {
 		hasHeld = true;
-		if (hold == PieceType::NONE && piece.getType() != PieceType::NONE &&
-			piece.getType() != PieceType::INVALID) {
+		if (hold == PieceType::NONE && piece.getType() != PieceType::NONE) {
 			hold = piece.getType();
 			piece.reset(bag.front());
 			bag.pop_front();

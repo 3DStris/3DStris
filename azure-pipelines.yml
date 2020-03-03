@@ -1,0 +1,57 @@
+# Starter pipeline
+
+trigger:
+  branches:
+    include:
+      - "*"
+  tags:
+    include:
+      - release-v*
+  paths:
+      exclude:
+        - README.adoc
+        - data/screenshots/*
+        - LICENSE
+
+jobs:
+  - job: linux
+    pool:
+      vmImage: ubuntu-latest
+    variables:
+      build_type: Release
+    steps:
+      - checkout: self
+        submodules: true
+
+      - bash: $(System.DefaultWorkingDirectory)/.azure/install-devkitarm.sh
+        displayName: Install devkitARM
+      - bash: $(System.DefaultWorkingDirectory)/.azure/install-makerom.sh
+        displayName: Install makerom
+      - bash: $(System.DefaultWorkingDirectory)/.azure/install-bannertool.sh
+        displayName: Install bannertool
+
+      - bash: |
+          source /etc/profile.d/devkit-env.sh
+          mkdir -p build && cd build
+          cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} ..
+          make -j$(nproc)
+        displayName: Build
+
+      - bash: |
+         export RELEASE_TAG=$(grep -Po "(\d+\.)+\d+" $SYSTEM_DEFAULTWORKINGDIRECTORY/include/3dstris/version.hpp)-$(git rev-parse --short $BUILD_SOURCEVERSION)
+         echo "##vso[task.setvariable variable=release_tag]$RELEASE_TAG"
+         mv $SYSTEM_DEFAULTWORKINGDIRECTORY/build/bin/3dstris.3dsx $BUILD_ARTIFACTSTAGINGDIRECTORY/3dstris-$RELEASE_TAG.3dsx
+         mv $SYSTEM_DEFAULTWORKINGDIRECTORY/build/bin/3dstris.cia $BUILD_ARTIFACTSTAGINGDIRECTORY/3dstris-$RELEASE_TAG.cia
+         mv $SYSTEM_DEFAULTWORKINGDIRECTORY/build/bin/3dstris $BUILD_ARTIFACTSTAGINGDIRECTORY/3dstris-$RELEASE_TAG.elf
+        displayName: Rename and move binaries to artifact directory
+      - task: GitHubRelease@1
+        displayName: Create GitHub release
+        inputs:
+          gitHubConnection: 3dstris-binaries
+          title: $(release_tag)
+          tagPattern: release-v.*
+      - task: PublishBuildArtifacts@1
+        displayName: Upload binaries to artifacts
+        inputs:
+            artifactName: 3dstris
+            pathToPublish: $(Build.ArtifactStagingDirectory)

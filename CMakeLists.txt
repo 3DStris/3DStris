@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(3DStris_VERSION_MAJOR 1)
 set(3DStris_VERSION_MINOR 6)
-set(3DStris_VERSION_PATCH 0)
+set(3DStris_VERSION_PATCH 1)
 set(3DStris_VERSION ${3DStris_VERSION_MAJOR}.${3DStris_VERSION_MINOR}.${3DStris_VERSION_PATCH})
 
 project(
@@ -57,6 +57,7 @@ find_package(Citro2D REQUIRED)
 
 find_package(RapidJSON REQUIRED)
 find_package(phmap REQUIRED)
+find_package(pcg REQUIRED)
 add_subdirectory(external)
 
 add_subdirectory(src)

@@ -1,13 +1,12 @@
 #include <3dstris/states/game/ingame.hpp>
 #include <3dstris/states/game/paused.hpp>
-#include <algorithm>
 
-static std::array<PieceType, 7> genBag(std::mt19937_64& rng) {
+static std::array<PieceType, 7> genBag(pcg32_fast& rng) {
 	std::array<PieceType, 7> pieces{PieceType::I, PieceType::O, PieceType::L,
 									PieceType::J, PieceType::S, PieceType::T,
 									PieceType::Z};
 
-	std::shuffle(pieces.begin(), pieces.end(), rng);
+	pcg_extras::shuffle(pieces.begin(), pieces.end(), rng);
 	return pieces;
 }
 

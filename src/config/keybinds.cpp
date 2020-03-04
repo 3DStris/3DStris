@@ -42,7 +42,8 @@ Keybinds::Keybinds() : binds(DEFAULT_BINDS) {
 	}
 
 	if (mpack_tree_destroy(&tree) != mpack_ok) {
-		LOG_ERROR("Failed to decode keybinds");
+		LOG_ERROR("Failed to decode keybinds, error code %u",
+				  mpack_tree_error(&tree));
 		save();
 		_failed = true;
 	} else {
@@ -82,7 +83,8 @@ void Keybinds::save() {
 	this->serialize(writer);
 
 	if (mpack_writer_destroy(&writer) != mpack_ok) {
-		LOG_ERROR("Failed to encode keybinds");
+		LOG_ERROR("Failed to encode keybinds, error code %u",
+				  mpack_writer_error(&writer));
 		return;
 	}
 

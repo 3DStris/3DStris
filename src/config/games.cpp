@@ -122,7 +122,8 @@ Games::Games() {
 	}
 
 	if (mpack_tree_destroy(&tree) != mpack_ok) {
-		LOG_ERROR("Failed to decode games");
+		LOG_ERROR("Failed to decode games, error code %u",
+				  mpack_tree_error(&tree));
 		save();
 		_failed = true;
 	} else {
@@ -173,7 +174,8 @@ void Games::save() {
 			static_cast<Games*>(games)->serialize(writer);
 
 			if (mpack_writer_destroy(&writer) != mpack_ok) {
-				LOG_ERROR("Failed to encode games");
+				LOG_ERROR("Failed to encode games, error code %u",
+						  mpack_writer_error(&writer));
 				return;
 			}
 

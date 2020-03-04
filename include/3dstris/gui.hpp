@@ -6,13 +6,13 @@
 
 class GUI {
    public:
-	GUI(const u16 width = BSCREEN_WIDTH, const u16 height = BSCREEN_HEIGHT,
+	GUI(const u32 width = BSCREEN_WIDTH, const u32 height = BSCREEN_HEIGHT,
 		const Color primaryCol = Button::BUTTON, const Color textCol = WHITE,
 		const Color pressedCol = Button::BUTTON_HELD,
 		const Color outlineCol = Button::BUTTON_OUTLINE);
 
-	u16 getWidth() const noexcept;
-	u16 getHeight() const noexcept;
+	u32 getWidth() const noexcept;
+	u32 getHeight() const noexcept;
 
 	void update(double dt);
 	void draw() const;
@@ -41,7 +41,7 @@ class GUI {
 	Color primaryCol, textCol, pressedCol, outlineCol;
 
    private:
-	u16 width, height;
+	u32 width, height;
 	std::vector<std::unique_ptr<Widget>> widgets;
 	touchPosition previousTouch;
 };

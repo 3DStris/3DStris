@@ -1,6 +1,6 @@
 #include <3dstris/gui.hpp>
 
-GUI::GUI(const u16 width, const u16 height, const Color primaryCol,
+GUI::GUI(const u32 width, const u32 height, const Color primaryCol,
 		 const Color textCol, const Color pressedCol, const Color outlineCol)
 	: primaryCol(primaryCol),
 	  textCol(textCol),
@@ -10,10 +10,10 @@ GUI::GUI(const u16 width, const u16 height, const Color primaryCol,
 	  width(width),
 	  height(height) {}
 
-u16 GUI::getWidth() const noexcept {
+u32 GUI::getWidth() const noexcept {
 	return width;
 }
-u16 GUI::getHeight() const noexcept {
+u32 GUI::getHeight() const noexcept {
 	return height;
 }
 

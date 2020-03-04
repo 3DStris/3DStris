@@ -1,8 +1,8 @@
 :license-badge: https://img.shields.io/badge/license-MIT-blue.svg
 :cpp11-badge: https://img.shields.io/badge/standard-C%2B%2B%2011-blue.svg?logo=C%2B%2B
 :isocpp: https://isocpp.org
-:travis-badge: https://travis-ci.org/3DStris/3DStris.svg?branch=master
-:travis: https://travis-ci.org/3DStris/3DStris
+:azure-badge: https://dev.azure.com/3DStris/3DStris/_apis/build/status/3DStris.3DStris?branchName=master
+:azure-latest: https://dev.azure.com/3DStris/3DStris/_build/latest?definitionId=1&branchName=master
 :downloads-badge: https://img.shields.io/github/downloads/3DStris/3DStris/total
 :latest-release: https://github.com/3DStris/3DStris/releases/latest
 :codefactor-badge: https://www.codefactor.io/repository/github/3DStris/3DStris/badge
@@ -18,7 +18,7 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
-= 3DStris image:{license-badge}[MIT, link=LICENSE] image:{cpp11-badge}[C\+\+ 11, link={isocpp}] image:{travis-badge}[Travis, link={travis}] image:{downloads-badge}[GitHub release downloads, link={latest-release}] image:{codefactor-badge}[CodeFactor, link={codefactor}]
+= 3DStris image:{license-badge}[MIT, link=LICENSE] image:{cpp11-badge}[C\+\+ 11, link={isocpp}] image:{azure-badge}[Azure Pipelines, link={azure-latest}] image:{downloads-badge}[GitHub release downloads, link={latest-release}] image:{codefactor-badge}[CodeFactor, link={codefactor}]
 :toc: preamble
 
 A Tetris clone for the 3DS.
@@ -28,7 +28,8 @@ A Tetris clone for the 3DS.
 :stats: https://3dstris.geni.site
 
 [%hardbreaks]
-The latest automatically generated build can be found {latest-release}[here].
+The latest automatically generated stable build can be found {latest-release}[here].
+Development builds are available as Azure Pipelines artifacts. You can find the latest development build {azure-latest}[here].
 3DStris is also available on {tinydb}[TinyDB].
 You can view the GitHub release stats {stats}[here].
 

@@ -3,7 +3,7 @@
 #include <3dstris/states/game/ingame.hpp>
 #include <3dstris/util/text.hpp>
 
-class Sprint : public Ingame {
+class Sprint final : public Ingame {
    public:
 	Sprint(const u16 lines);
 	~Sprint() override;

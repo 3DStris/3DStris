@@ -5,7 +5,7 @@
 #include <3dstris/config/l10n.hpp>
 #include <3dstris/gui/button.hpp>
 
-class KeybindButton : public Button {
+class KeybindButton final : public Button {
    public:
 	const static phmap::flat_hash_map<Keybinds::Key, const char*> KEY_TO_GLYPH;
 

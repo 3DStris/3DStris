@@ -3,7 +3,7 @@
 #include <3dstris/gui.hpp>
 #include <3dstris/state.hpp>
 
-class SprintSelect : public State {
+class SprintSelect final : public State {
    public:
 	SprintSelect();
 

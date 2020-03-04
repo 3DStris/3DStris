@@ -3,7 +3,7 @@
 #include <3dstris/gui.hpp>
 #include <3dstris/state.hpp>
 
-class MainMenu : public State {
+class MainMenu final : public State {
    public:
 	MainMenu();
 

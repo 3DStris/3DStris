@@ -3,7 +3,7 @@
 #include <3dstris/config/l10n.hpp>
 #include <3dstris/gui/button.hpp>
 
-class LanguageButton : public Button {
+class LanguageButton final : public Button {
    public:
 	LanguageButton(GUI& parent, const Pos pos, const WH wh,
 				   const L10n::Language language, L10n::Language& toSet);

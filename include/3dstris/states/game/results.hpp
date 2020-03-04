@@ -4,7 +4,7 @@
 #include <3dstris/state.hpp>
 #include <3dstris/states/game/ingame.hpp>
 
-class Results : public State {
+class Results final : public State {
    public:
 	Results(Ingame* parent);
 

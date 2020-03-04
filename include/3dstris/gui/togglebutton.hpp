@@ -3,7 +3,7 @@
 #include <3dstris/gui/button.hpp>
 
 class GUI;
-class ToggleButton : public Button {
+class ToggleButton final : public Button {
    public:
 	ToggleButton(GUI& parent, const Pos pos, const WH wh, sds text,
 				 const bool defaultValue);

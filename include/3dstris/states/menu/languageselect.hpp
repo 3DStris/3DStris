@@ -3,7 +3,7 @@
 #include <3dstris/gui.hpp>
 #include <3dstris/state.hpp>
 
-class LanguageSelect : public State {
+class LanguageSelect final : public State {
    public:
 	LanguageSelect();
 

@@ -4,7 +4,7 @@
 #include <3dstris/gui/panel.hpp>
 #include <3dstris/state.hpp>
 
-class SprintTimes : public State {
+class SprintTimes final : public State {
    public:
 	SprintTimes();
 	~SprintTimes() override;

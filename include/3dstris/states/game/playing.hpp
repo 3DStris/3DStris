@@ -2,7 +2,7 @@
 
 #include <3dstris/states/game/ingame.hpp>
 
-class Playing : public Ingame {
+class Playing final : public Ingame {
    public:
 	Playing();
 

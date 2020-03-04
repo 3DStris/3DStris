@@ -5,7 +5,7 @@
 #include <3dstris/state.hpp>
 
 class KeybindButton;
-class KeybindSelect : public State {
+class KeybindSelect final : public State {
    public:
 	KeybindSelect();
 

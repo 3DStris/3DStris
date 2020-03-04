@@ -8,7 +8,7 @@
 class GUI;
 
 template <typename T = u32, u8 digits = std::numeric_limits<T>::digits10>
-class IntegerInputField : public Widget {
+class IntegerInputField final : public Widget {
 	static_assert(std::is_integral<T>::value, "T must be integral");
 	static_assert(digits > 0, "Must use one or more digits");
 	static_assert(digits <= SDS_LLSTR_SIZE, "Cannot use more than 21 digits");

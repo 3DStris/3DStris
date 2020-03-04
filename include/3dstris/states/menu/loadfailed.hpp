@@ -5,7 +5,7 @@
 #include <3dstris/states/game/playing.hpp>
 #include <3dstris/util.hpp>
 
-class LoadFailed : public State {
+class LoadFailed final : public State {
    public:
 	enum class FailType { CONFIG, GAMES, KEYBINDS };
 

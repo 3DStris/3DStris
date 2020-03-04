@@ -3,7 +3,7 @@
 #include <3dstris/gui.hpp>
 #include <3dstris/states/game/ingame.hpp>
 
-class Paused : public State {
+class Paused final : public State {
    public:
 	Paused(Ingame* parent);
 

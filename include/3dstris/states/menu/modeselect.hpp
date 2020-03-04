@@ -3,7 +3,7 @@
 #include <3dstris/gui.hpp>
 #include <3dstris/state.hpp>
 
-class ModeSelect : public State {
+class ModeSelect final : public State {
    public:
 	ModeSelect();
 

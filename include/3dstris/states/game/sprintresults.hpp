@@ -3,7 +3,7 @@
 #include <3dstris/gui.hpp>
 #include <3dstris/states/game/ingame.hpp>
 
-class SprintResults : public State {
+class SprintResults final : public State {
    public:
 	SprintResults(Ingame* parent, SavedGame&& saved);
 	~SprintResults() override;

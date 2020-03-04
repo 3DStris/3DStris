@@ -12,7 +12,7 @@ constexpr Color GRID = C2D_Color32(50, 52, 72, 100);
 
 constexpr Color BACKGROUND = C2D_Color32(20, 21, 31, 255);
 
-class Textures {
+class Textures final {
    public:
 	const static C2D_Image& get(const size_t index) {
 		static Textures textures;

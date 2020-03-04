@@ -24,7 +24,7 @@
 #define LOG_FATAL(...) \
 	Log::get().log(Log::Level::FATAL, __FILE__, __LINE__, __VA_ARGS__)
 
-class Log {
+class Log final {
    public:
 	enum class Level { TRACE, DEBUG, INFO, WARN, ERROR, FATAL };
 

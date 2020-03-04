@@ -6,7 +6,7 @@
 #include <3dstris/gui/togglebutton.hpp>
 #include <3dstris/state.hpp>
 
-class ConfigScreen : public State {
+class ConfigScreen final : public State {
    public:
 	ConfigScreen();
 

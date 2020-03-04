@@ -25,7 +25,8 @@ target_link_libraries(3dstris PRIVATE
 	sds::sds
 	RapidJSON::RapidJSON
 	phmap::phmap
-	mpack::mpack)
+	mpack::mpack
+	pcg::pcg)
 
 source_group(TREE "${3DStris_SOURCE_DIR}/include"
 			 PREFIX "Header Files"

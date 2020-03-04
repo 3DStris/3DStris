@@ -3,7 +3,7 @@
 #include <3dstris/game/board.hpp>
 #include <3dstris/state.hpp>
 #include <deque>
-#include <random>
+#include <pcg_random.hpp>
 
 class Ingame : public State {
    public:
@@ -19,7 +19,7 @@ class Ingame : public State {
 	const u32 tileSize;
 	Pos origin;
 
-	std::mt19937_64 bagRNG;
+	pcg32_fast bagRNG;
 	const u32 upcoming;
 	std::deque<PieceType> bag;
 

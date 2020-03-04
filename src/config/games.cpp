@@ -12,6 +12,7 @@
 		const auto _##value = mpack_node_map_cstr_optional(game, #value); \
 		if (mpack_node_type(_##value) != mpack_type_##check_type) {       \
 			LOG_WARN("Found invalid game at index %u, discarding", i);    \
+			saveAfterLoad = true;                                         \
 			continue;                                                     \
 		}                                                                 \
 		value = mpack_node_##type(_##value);                              \
@@ -103,6 +104,7 @@ Games::Games() {
 	mpack_tree_parse(&tree);
 	mpack_node_t root = mpack_tree_root(&tree);
 
+	bool saveAfterLoad = false;
 	const size_t length = mpack_node_array_length(root);
 	LOG_DEBUG("Reserving space for %u games", length);
 	games.reserve(length);
@@ -110,6 +112,7 @@ Games::Games() {
 		const auto game = mpack_node_array_at(root, i);
 		if (mpack_node_type(game) != mpack_type_map) {
 			LOG_WARN("Found invalid game at index %u, discarding", i);
+			saveAfterLoad = true;
 			continue;
 		}
 
@@ -119,6 +122,11 @@ Games::Games() {
 		MEMBER(pps, double)
 		MEMBER_CHECK_TYPE_OPTIONAL(lines, u16, uint, DEFAULT_LINES)
 		games.push_back({time, pps, date, lines});
+	}
+
+	if (saveAfterLoad) {
+		LOG_WARN("Saving due to discarded games");
+		save();
 	}
 
 	if (mpack_tree_destroy(&tree) != mpack_ok) {

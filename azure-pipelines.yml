@@ -12,7 +12,7 @@ trigger:
         - LICENSE
 
 jobs:
-  - job: linux
+  - job: Linux
     pool:
       vmImage: ubuntu-latest
     variables:

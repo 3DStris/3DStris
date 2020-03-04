@@ -14,8 +14,10 @@ Ingame::Ingame()
 	: State(),
 	  board(10, 20),
 	  tileSize((SCREEN_HEIGHT - 10) / board.height),
+
 	  bagRNG(osGetTime()),
 	  upcoming(5),
+
 	  piece(board, PieceType::I) {
 	origin = {(SCREEN_WIDTH - board.width * tileSize) / 2.0f, 10};
 	reset();

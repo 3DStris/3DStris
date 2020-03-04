@@ -21,13 +21,13 @@ class L10n {
 		Language::DE, Language::JP, Language::MK, Language::FR};
 
 	static const char* languageToString(const Language language) {
+		assert(static_cast<u8>(language) < LANGUAGE_COUNT);
+
 		static constexpr std::array<char[2 + 1], LANGUAGE_COUNT>
 			LANGUAGE_TO_STRING = {"en", "bg", "ru", "pt", "pl",
 								  "de", "jp", "mk", "fr"};
 
-		return static_cast<u8>(language) < LANGUAGE_TO_STRING.size()
-				   ? LANGUAGE_TO_STRING[static_cast<size_t>(language)]
-				   : "un";
+		return LANGUAGE_TO_STRING[static_cast<size_t>(language)];
 	}
 	static Language stringToLanguage(const char* __restrict language) {
 		const static phmap::btree_map<const char*, Language, CompareString>
@@ -37,9 +37,9 @@ class L10n {
 								  {"jp", Language::JP}, {"mk", Language::MK},
 								  {"fr", Language::FR}};
 
-		return STRING_TO_LANGUAGE.contains(language)
-				   ? STRING_TO_LANGUAGE.at(language)
-				   : Language::EN;
+		assert(STRING_TO_LANGUAGE.contains(language));
+
+		return STRING_TO_LANGUAGE.at(language);
 	}
 
 	void loadLanguage(const Language language) {
@@ -80,12 +80,14 @@ class L10n {
 	}
 
 	static size_t getFlag(const Language language) {
+		assert(static_cast<u8>(language) < LANGUAGE_COUNT);
+
 		static constexpr std::array<size_t, LANGUAGE_COUNT> LANGUAGE_TO_ICON{
 			images_us_idx, images_bg_idx, images_ru_idx,
 			images_br_idx, images_pl_idx, images_de_idx,
 			images_jp_idx, images_mk_idx, images_fr_idx};
 
-		return static_cast<u8>(language) < LANGUAGES.size()
+		return static_cast<u8>(language) < LANGUAGE_COUNT
 				   ? LANGUAGE_TO_ICON[static_cast<size_t>(language)]
 				   : images_un_idx;
 	}

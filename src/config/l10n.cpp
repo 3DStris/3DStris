@@ -19,6 +19,7 @@ rapidjson::Document L10n::loadJson(const char* __restrict path) {
 
 	if (!file && strcmp(path, EN_PATH) != 0) {
 		LOG_ERROR("Failed to load language JSON, falling back to English...");
+		fclose(file);
 		loadJson(EN_PATH);
 	} else if (!file) {
 		LOG_FATAL(

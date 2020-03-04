@@ -25,9 +25,9 @@ Ingame::Ingame()
 void Ingame::reset() {
 	board.reset();
 
-	const auto _bag = genBag(bagRNG);
-	bag.insert(bag.end(), std::make_move_iterator(_bag.begin()),
-			   std::make_move_iterator(_bag.end()));
+	const auto newBag = genBag(bagRNG);
+	bag = std::deque<PieceType>(std::make_move_iterator(newBag.begin()),
+								std::make_move_iterator(newBag.end()));
 
 	piece.reset(bag.front());
 	bag.pop_front();
@@ -54,9 +54,9 @@ void Ingame::update(const double dt) {
 		piece.reset(bag.front());
 		bag.pop_front();
 		if (bag.size() < upcoming) {
-			for (const auto& p : genBag(bagRNG)) {
-				bag.push_back(std::move(p));
-			}
+			auto tempBag = genBag(bagRNG);
+			bag.insert(bag.end(), std::make_move_iterator(tempBag.begin()),
+					   std::make_move_iterator(tempBag.end()));
 		}
 	}
 

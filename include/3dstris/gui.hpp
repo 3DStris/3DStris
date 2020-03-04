@@ -17,12 +17,12 @@ class GUI {
 	void update(double dt);
 	void draw() const;
 
-	template <typename T, typename... Targs>
-	T& add(Targs&&... args) {
+	template <typename T, typename... Args>
+	T& add(Args&&... args) {
 		static_assert(std::is_convertible<T*, Widget*>::value,
 					  "T* must be convertible to Widget*");
 
-		widgets.push_back(make_unique<T>(*this, std::forward<Targs>(args)...));
+		widgets.push_back(make_unique<T>(*this, std::forward<Args>(args)...));
 		return static_cast<T&>(*widgets.back());
 	}
 

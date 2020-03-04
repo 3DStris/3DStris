@@ -48,7 +48,8 @@ Log::Log() {
 	FSUSER_CloseArchive(sdmcArchive);
 
 	setFile(fopen(LOG_PATH, "w"));
-	log(Level::INFO, __FILE__, __LINE__, "3DStris v%s", _3DSTRIS_VERSION);
+	log(Level::INFO, __FILE__, __LINE__, "3DStris v%s-%s", _3DSTRIS_VERSION,
+		_3DSTRIS_GIT_HASH);
 }
 
 Log::~Log() {

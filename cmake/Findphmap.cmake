@@ -8,11 +8,9 @@ find_package_handle_standard_args(phmap
 	VERSION_VAR phmap_VERSION
 )
 
-if(phmap_FOUND)
-	get_filename_component(phmap_INCLUDE_DIRS ${phmap_INCLUDE_DIR} DIRECTORY)
-endif()
-
 if(phmap_FOUND AND NOT TARGET phmap::phmap)
+	get_filename_component(phmap_INCLUDE_DIRS ${phmap_INCLUDE_DIR} DIRECTORY)
+
 	add_library(phmap::phmap INTERFACE IMPORTED)
 	set_target_properties(phmap::phmap PROPERTIES
 		INTERFACE_INCLUDE_DIRECTORIES ${phmap_INCLUDE_DIRS}

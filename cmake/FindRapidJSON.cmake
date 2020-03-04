@@ -8,11 +8,9 @@ find_package_handle_standard_args(RapidJSON
 	VERSION_VAR RapidJSON_VERSION
 )
 
-if(RapidJSON_FOUND)
-	get_filename_component(RapidJSON_INCLUDE_DIRS ${RapidJSON_INCLUDE_DIR} DIRECTORY)
-endif()
-
 if(RapidJSON_FOUND AND NOT TARGET RapidJSON::RapidJSON)
+	get_filename_component(RapidJSON_INCLUDE_DIRS ${RapidJSON_INCLUDE_DIR} DIRECTORY)
+	
 	add_library(RapidJSON::RapidJSON INTERFACE IMPORTED)
 	set_target_properties(RapidJSON::RapidJSON PROPERTIES
 		INTERFACE_INCLUDE_DIRECTORIES ${RapidJSON_INCLUDE_DIRS}

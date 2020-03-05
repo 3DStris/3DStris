@@ -4,7 +4,7 @@ trigger:
       - "*"
   tags:
     include:
-      - release-v*
+      - ^v(\d+\.)+(\d+\.)+(\*|\d+)$
   paths:
       exclude:
         - README.adoc
@@ -47,7 +47,7 @@ jobs:
         inputs:
           gitHubConnection: 3dstris-binaries
           title: $(release_tag)
-          tagPattern: release-v.*
+          tagPattern: ^v(\d+\.)+(\d+\.)+(\*|\d+)$
       - task: PublishBuildArtifacts@1
         displayName: Upload binaries to artifacts
         inputs:

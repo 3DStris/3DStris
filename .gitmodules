@@ -16,7 +16,7 @@
 	path = external/mpack
 	url = https://github.com/3DStris/mpack.git
 	branch = cmake-amalgamation
-
 [submodule "external/pcg"]
 	path = external/pcg
-	url = https://github.com/imneme/pcg-cpp.git
+	url = https://github.com/3DStris/pcg-cpp.git
+	branch = 3dstris

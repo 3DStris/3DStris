@@ -52,8 +52,8 @@ class IntegerInputField final : public Widget {
 									 : sdsull2str(initialText, value);
 			swkbdSetInitialText(&swkbd, initialText);
 
-			char* buf = new char[digits + 1];
-			swkbdInputText(&swkbd, buf, digits + 1);
+			char buf[digits + 1];
+			swkbdInputText(&swkbd, buf, sizeof buf);
 
 			char* end;
 			errno = 0;
@@ -65,8 +65,6 @@ class IntegerInputField final : public Widget {
 				value = tempValue;
 				updateText();
 			}
-
-			delete[] buf;
 		}
 	}
 

@@ -40,7 +40,7 @@ void SprintSelect::update(const double dt) {
 		swkbdSetValidation(&swkbd, SWKBD_NOTEMPTY_NOTBLANK, 0, 0);
 		swkbdSetFeatures(&swkbd, SWKBD_FIXED_WIDTH);
 
-		char* buf = new char[DIGITS + 1];
+		char buf[DIGITS + 1];
 		swkbdInputText(&swkbd, buf, DIGITS + 1);
 
 		char* end;
@@ -50,8 +50,6 @@ void SprintSelect::update(const double dt) {
 		if (value != 0 && end[0] == '\0' && errno == 0) {
 			game.setState(make_unique<Sprint>(value));
 		}
-
-		delete[] buf;
 
 		return;
 	}

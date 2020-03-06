@@ -1,6 +1,5 @@
 #include <rapidjson/document.h>
 #include <rapidjson/filereadstream.h>
-#include <rapidjson/writer.h>
 #include <3dstris/config/games.hpp>
 #include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>
@@ -172,7 +171,7 @@ void Games::save() {
 	s32 mainPrio;
 	svcGetThreadPriority(&mainPrio, CUR_THREAD_HANDLE);
 
-	threadCreate(
+	saveThread = threadCreate(
 		[](void* games) {
 			char* data;
 			size_t size;
@@ -194,8 +193,11 @@ void Games::save() {
 			delete[] data;
 
 			LOG_INFO("Saved games");
+
+			// Just in case
+			static_cast<Games*>(games)->saveThread = nullptr;
 		},
-		this, 2048, mainPrio + 1, -2, true);
+		this, 1024, mainPrio + 1, -2, true);
 }
 
 bool Games::failed() const noexcept {

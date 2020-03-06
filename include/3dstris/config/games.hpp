@@ -33,12 +33,21 @@ class Games {
 	void save();
 	void push(SavedGame&& game);
 
+	inline void joinSaveThread() noexcept {
+		// Wait up to 30 seconds for the save thread to finish. This is to
+		// prevent any possible segfaults or loss of data. If it ever takes
+		// longer than 30 seconds, we've got a bigger problem on our hands..
+		threadJoin(saveThread, 30 * 1000000000ull);
+	}
+
 	bool failed() const noexcept;
 
    private:
 	static constexpr auto GAMES_PATH = "sdmc:/3ds/3dstris/games.mp";
 
 	SavedGames games;
+
+	Thread saveThread = nullptr;
 
 	bool _failed = false;
 };

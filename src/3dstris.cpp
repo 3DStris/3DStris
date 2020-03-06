@@ -41,6 +41,8 @@ int main() {
 		C3D_FrameEnd(0);
 	}
 
+	game.getGames().joinSaveThread();
+
 	romfsExit();
 	C2D_Fini();
 	C3D_Fini();

@@ -93,7 +93,7 @@ namespace Shapes {
 	}, 3};
 	// clang-format on
 
-	const static std::array<const PieceShape, 7> ALL{
-		Shapes::I, Shapes::O, Shapes::L, Shapes::J,
-		Shapes::S, Shapes::T, Shapes::Z};
+	const static std::array<const std::reference_wrapper<const PieceShape>, 7>
+		ALL{Shapes::I, Shapes::O, Shapes::L, Shapes::J,
+			Shapes::S, Shapes::T, Shapes::Z};
 }  // namespace Shapes

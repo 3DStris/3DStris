@@ -37,7 +37,7 @@ MainMenu::MainMenu()
 }
 
 void MainMenu::update(const double dt) {
-	if (hidKeysDown() & KEY_START) {
+	if (hidKeysDown() & KEY_START || exitButton.pressed()) {
 		game.exit = true;
 		return;
 	}
@@ -47,8 +47,6 @@ void MainMenu::update(const double dt) {
 		game.pushState(make_unique<ModeSelect>());
 	} else if (settingsButton.pressed()) {
 		game.pushState(make_unique<ConfigScreen>());
-	} else if (exitButton.pressed()) {
-		game.exit = true;
 	}
 
 	else if (keybindsButton.pressed()) {

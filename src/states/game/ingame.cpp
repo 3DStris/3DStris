@@ -98,7 +98,7 @@ void Ingame::draw(const bool bottom) {
 			 origin.y + y * tileSize},
 			tileSize, Shapes::ALL[static_cast<size_t>(p)], p);
 
-		y += Shapes::ALL[static_cast<size_t>(p)].size();
+		y += Shapes::ALL[static_cast<size_t>(p)].get().size();
 		if (p == PieceType::O) {
 			++y;
 		}
@@ -108,7 +108,8 @@ void Ingame::draw(const bool bottom) {
 	if (hold != PieceType::NONE && hold != PieceType::INVALID) {
 		Piece::draw(
 			{origin.x -
-				 (Shapes::ALL[static_cast<size_t>(hold)].size() + 1) * tileSize,
+				 (Shapes::ALL[static_cast<size_t>(hold)].get().size() + 1) *
+					 tileSize,
 			 origin.y + tileSize},
 			tileSize, Shapes::ALL[static_cast<size_t>(hold)], hold);
 	}

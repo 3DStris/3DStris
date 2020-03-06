@@ -9,8 +9,8 @@ class SprintTimes final : public State {
 	SprintTimes();
 	~SprintTimes() override;
 
-	void update(const double dt) override;
-	void draw(const bool bottom) override;
+	void update(double dt) override;
+	void draw(bool bottom) override;
 
 	void genValues();
 

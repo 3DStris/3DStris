@@ -26,7 +26,7 @@ class Keybinds {
 
 	void serialize(mpack_writer_t& writer) const;
 
-	Key get(const Action action) const noexcept;
+	Key get(Action action) const noexcept;
 	Binds& all() noexcept;
 	const Binds& all() const noexcept;
 

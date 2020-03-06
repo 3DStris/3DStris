@@ -7,8 +7,8 @@ class ModeSelect final : public State {
    public:
 	ModeSelect();
 
-	void update(const double dt) override;
-	void draw(const bool bottom) override;
+	void update(double dt) override;
+	void draw(bool bottom) override;
 
    private:
 	Text title;

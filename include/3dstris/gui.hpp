@@ -6,10 +6,10 @@
 
 class GUI {
    public:
-	GUI(const u32 width = BSCREEN_WIDTH, const u32 height = BSCREEN_HEIGHT,
-		const Color primaryCol = Button::BUTTON, const Color textCol = WHITE,
-		const Color pressedCol = Button::BUTTON_HELD,
-		const Color outlineCol = Button::BUTTON_OUTLINE);
+	GUI(u32 width = BSCREEN_WIDTH, u32 height = BSCREEN_HEIGHT,
+		Color primaryCol = Button::BUTTON, Color textCol = WHITE,
+		Color pressedCol = Button::BUTTON_HELD,
+		Color outlineCol = Button::BUTTON_OUTLINE);
 
 	u32 getWidth() const noexcept;
 	u32 getHeight() const noexcept;
@@ -26,17 +26,17 @@ class GUI {
 		return static_cast<T&>(*widgets.back());
 	}
 
-	static void drawOutline(const Pos pos, const WH wh, const float scale = 2,
-							const Color color = Button::BUTTON_OUTLINE,
-							const float depth = 1);
+	static void drawOutline(Pos pos, WH wh, float scale = 2,
+							Color color = Button::BUTTON_OUTLINE,
+							float depth = 1);
 
-	static void drawHLine(const Pos pos, const float w, const float scale = 2,
-						  const Color color = Button::BUTTON_OUTLINE,
-						  const float depth = 0.5f);
+	static void drawHLine(Pos pos, float w, float scale = 2,
+						  Color color = Button::BUTTON_OUTLINE,
+						  float depth = 0.5f);
 
-	static void drawVLine(const Pos pos, const float h, const float scale = 2,
-						  const Color color = Button::BUTTON_OUTLINE,
-						  const float depth = 0.5f);
+	static void drawVLine(Pos pos, float h, float scale = 2,
+						  Color color = Button::BUTTON_OUTLINE,
+						  float depth = 0.5f);
 
 	Color primaryCol, textCol, pressedCol, outlineCol;
 

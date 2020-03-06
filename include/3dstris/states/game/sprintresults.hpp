@@ -8,8 +8,8 @@ class SprintResults final : public State {
 	SprintResults(Ingame* parent, SavedGame&& saved);
 	~SprintResults() override;
 
-	void update(const double dt) override;
-	void draw(const bool bottom) override;
+	void update(double dt) override;
+	void draw(bool bottom) override;
 
    private:
 	static constexpr Color RESULTS = C2D_Color32(0, 0, 0, 190);

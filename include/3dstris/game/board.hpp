@@ -7,7 +7,7 @@ class Board {
 	u32 width;
 	u32 height;
 
-	Board(const u32 width, const u32 height);
+	Board(u32 width, u32 height);
 
 	void reset();
 
@@ -47,8 +47,8 @@ class Board {
 		return get(pos.x, pos.y);
 	}
 
-	void draw(const Pos origin, const u32 tileSize,
-			  const float outerThick = 1.75, const float gridThick = 1) const;
+	void draw(Pos origin, u32 tileSize, float outerThick = 1.75,
+			  float gridThick = 1) const;
 
 	void clearLines();
 

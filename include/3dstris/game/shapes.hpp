@@ -7,8 +7,8 @@ class PieceShape {
    public:
 	using Shape = std::vector<bool>;
 
-	explicit PieceShape(const size_t size) : shape(size * size), _size(size) {}
-	PieceShape(Shape&& shape, const size_t size) : shape(shape), _size(size) {}
+	explicit PieceShape(size_t size) : shape(size * size), _size(size) {}
+	PieceShape(Shape&& shape, size_t size) : shape(shape), _size(size) {}
 
 	template <typename T>
 	constexpr bool get(const T x, const T y) const noexcept {

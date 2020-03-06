@@ -44,8 +44,8 @@ class Log final {
 	}
 
 	void setFile(FILE* fp);
-	void setLevel(const Level level);
-	void setQuiet(const bool enable);
+	void setLevel(Level level);
+	void setQuiet(bool enable);
 
 	void log(const Level level, const char* __restrict file, int line,
 			 const char* __restrict string) {

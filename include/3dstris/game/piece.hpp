@@ -10,26 +10,26 @@ enum class Direction { LEFT, RIGHT, UP, DOWN };
 class Board;
 class Piece {
    public:
-	Piece(Board& board, const PieceShape& shape, const PieceType type);
+	Piece(Board& board, const PieceShape& shape, PieceType type);
 	Piece(Board& board, const PieceType type);
 
-	void reset(const PieceShape& shape, const PieceType type);
-	void reset(const PieceType type);
+	void reset(const PieceShape& shape, PieceType type);
+	void reset(PieceType type);
 
 	void set();
 
-	void draw(const Pos origin, const u32 tileSize) const;
-	static void draw(const Pos origin, const u32 tileSize,
-					 const PieceShape& shape, const PieceType type);
+	void draw(Pos origin, u32 tileSize) const;
+	static void draw(Pos origin, u32 tileSize, const PieceShape& shape,
+					 PieceType type);
 
-	bool move(const Direction dir);
+	bool move(Direction dir);
 
-	void rotate(const bool ccw);
+	void rotate(bool ccw);
 
-	bool collides(const int offX, const int offY) const;
+	bool collides(int offX, int offY) const;
 	bool hasSet() const;
 
-	void update(const double dt, const u32 kDown, const u32 kHeld);
+	void update(double dt, u32 kDown, u32 kHeld);
 
 	PieceType getType();
 
@@ -38,7 +38,7 @@ class Piece {
    private:
 	const Game& game;
 
-	void updateMove(const double dt, const u32 kDown);
+	void updateMove(double dt, u32 kDown);
 
 	Board& board;
 

@@ -5,11 +5,11 @@
 class GUI;
 class Panel : public Widget {
    public:
-	Panel(GUI& parent, const Pos pos, const WH wh, const bool outline = true,
-		  const Color col = PANEL, const Color outlineCol = PANEL_OUTLINE);
+	Panel(GUI& parent, Pos pos, WH wh, bool outline = true, Color col = PANEL,
+		  Color outlineCol = PANEL_OUTLINE);
 
 	void draw() const override;
-	void update(const touchPosition, const touchPosition) override;
+	void update(touchPosition, touchPosition) override;
 
    protected:
 	static constexpr Color PANEL = C2D_Color32(35, 37, 55, 255);

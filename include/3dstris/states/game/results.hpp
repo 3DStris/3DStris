@@ -8,8 +8,8 @@ class Results final : public State {
    public:
 	explicit Results(Ingame* parent);
 
-	void update(const double dt) override;
-	void draw(const bool bottom) override;
+	void update(double dt) override;
+	void draw(bool bottom) override;
 
    protected:
 	static constexpr Color RESULTS = C2D_Color32(0, 0, 0, 190);

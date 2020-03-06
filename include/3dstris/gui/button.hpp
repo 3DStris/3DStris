@@ -11,18 +11,16 @@ class Button : public Widget {
 
 	enum class Flags { NONE, HCENTER, VCENTER, CENTER };
 
-	Button(GUI& parent, const Pos pos, const WH wh, sds text,
-		   const Flags flags = Flags::NONE);
-	Button(GUI& parent, const Pos pos, const WH wh, const char* __restrict text,
-		   const Flags flags = Flags::NONE);
+	Button(GUI& parent, Pos pos, WH wh, sds text, Flags flags = Flags::NONE);
+	Button(GUI& parent, Pos pos, WH wh, const char* __restrict text,
+		   Flags flags = Flags::NONE);
 
 	void setText(sds text);
 
 	void draw() const override;
-	void update(const touchPosition touch,
-				const touchPosition previous) override;
+	void update(touchPosition touch, touchPosition previous) override;
 
-	bool inside(const float x, const float y) const noexcept;
+	bool inside(float x, float y) const noexcept;
 	bool pressed();
 
    private:

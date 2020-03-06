@@ -10,12 +10,11 @@ class KeybindButton final : public Button {
    public:
 	const static phmap::flat_hash_map<Keybinds::Key, const char*> KEY_TO_GLYPH;
 
-	KeybindButton(GUI& parent, const Pos pos, const WH wh,
-				  const Keybinds::Action action, Keybinds::Key& toSet);
+	KeybindButton(GUI& parent, Pos pos, WH wh, Keybinds::Action action,
+				  Keybinds::Key& toSet);
 
 	void draw() const override;
-	void update(const touchPosition touch,
-				const touchPosition previous) override;
+	void update(touchPosition touch, touchPosition previous) override;
 
 	void save();
 	void reset();

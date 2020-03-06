@@ -5,12 +5,11 @@
 class GUI;
 class Widget {
    public:
-	Widget(GUI& parent, const Pos pos, const WH wh);
+	Widget(GUI& parent, Pos pos, WH wh);
 	virtual ~Widget() = default;
 
 	virtual void draw() const = 0;
-	virtual void update(const touchPosition touch,
-						const touchPosition previousTouch) = 0;
+	virtual void update(touchPosition touch, touchPosition previousTouch) = 0;
 
 	Pos getPos() const noexcept { return pos; }
 	WH getWH() const noexcept { return wh; }

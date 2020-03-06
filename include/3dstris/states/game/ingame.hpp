@@ -11,8 +11,8 @@ class Ingame : public State {
 
 	virtual void reset();
 
-	void update(const double dt) override;
-	void draw(const bool bottom) override;
+	void update(double dt) override;
+	void draw(bool bottom) override;
 
    protected:
 	Board board;

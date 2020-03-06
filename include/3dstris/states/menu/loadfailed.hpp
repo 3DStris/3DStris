@@ -2,8 +2,6 @@
 
 #include <3dstris/gui.hpp>
 #include <3dstris/state.hpp>
-#include <3dstris/states/game/playing.hpp>
-#include <3dstris/util.hpp>
 
 class LoadFailed final : public State {
    public:

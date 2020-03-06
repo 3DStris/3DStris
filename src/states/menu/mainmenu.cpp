@@ -1,4 +1,5 @@
 #include <3dstris/images.h>
+
 #include <3dstris/states/menu/configscreen.hpp>
 #include <3dstris/states/menu/keybindselect.hpp>
 #include <3dstris/states/menu/languageselect.hpp>

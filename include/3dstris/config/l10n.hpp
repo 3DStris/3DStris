@@ -4,6 +4,7 @@
 #include <parallel_hashmap/btree.h>
 #include <rapidjson/document.h>
 #include <sds.h>
+
 #include <3dstris/util/log.hpp>
 
 class L10n {
@@ -44,7 +45,7 @@ class L10n {
 
 	void loadLanguage(const Language language) {
 		constexpr auto FORMAT_STRING_LEN =
-			19;  // I didn't feel like adding a constexpr strlen() method just
+			19;	 // I didn't feel like adding a constexpr strlen() method just
 				 // for this.
 
 		LOG_INFO("Loading language %s", languageToString(language));

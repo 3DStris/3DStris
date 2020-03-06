@@ -39,7 +39,7 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 	rotation = 0;
 
 	_dead =
-		collides(0, 0);  // piece is "dead" if it collides as soon as it spawns
+		collides(0, 0);	 // piece is "dead" if it collides as soon as it spawns
 }
 
 void Piece::reset(const PieceType type) {
@@ -276,10 +276,10 @@ void Piece::updateMove(const double dt, const u32 kDown) {
 		return false;
 	};
 
-	if (!_move(Direction::LEFT, dasTimer.x,  // x is actually the left timer
+	if (!_move(Direction::LEFT, dasTimer.x,	 // x is actually the left timer
 			   Keybinds::Action::LEFT)) {
 		_move(Direction::RIGHT, dasTimer.y,
-			  Keybinds::Action::RIGHT);  // y is actually the right timer
+			  Keybinds::Action::RIGHT);	 // y is actually the right timer
 	}
 }
 

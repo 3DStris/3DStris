@@ -1,6 +1,7 @@
 #pragma once
 
 #include <citro2d.h>
+
 #include <array>
 
 using Color = u32;
@@ -51,4 +52,4 @@ class Textures final {
 
 	Textures();
 	~Textures();
-};  // namespace Textures
+};	// namespace Textures

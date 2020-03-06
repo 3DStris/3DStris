@@ -2,6 +2,7 @@
 
 #include <3ds.h>
 #include <mpack/mpack.h>
+
 #include <vector>
 
 struct SavedGame {

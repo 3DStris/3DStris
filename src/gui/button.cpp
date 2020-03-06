@@ -41,7 +41,7 @@ void Button::update(const touchPosition touch, const touchPosition previous) {
 }
 
 bool Button::inside(const float x, const float y) const noexcept {
-	return x > pos.x && x < pos.x + wh.x &&  //
+	return x > pos.x && x < pos.x + wh.x &&	 //
 		   y > pos.y && y < pos.y + wh.y;
 }
 

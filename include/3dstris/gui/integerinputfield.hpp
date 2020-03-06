@@ -69,7 +69,7 @@ class IntegerInputField final : public Widget {
 	}
 
 	bool inside(const float x, const float y) const {
-		return x > pos.x && x < pos.x + wh.x &&  //
+		return x > pos.x && x < pos.x + wh.x &&	 //
 			   y > pos.y && y < pos.y + wh.y;
 	}
 

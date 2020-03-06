@@ -9,6 +9,7 @@
 
 #include <3ds.h>
 #include <stdio.h>
+
 #include <limits>
 
 #define LOG_TRACE(...) \
@@ -46,7 +47,7 @@ class Log final {
 	void log(const Level level, const char* __restrict file, int line,
 			 const char* __restrict fmt, Args&&... args) {
 		static const char* LEVELS[] = {"TRACE", "DEBUG", "INFO",
-									   "WARN",  "ERROR", "FATAL"};
+									   "WARN",	"ERROR", "FATAL"};
 
 		if (level < this->level || (quiet && !fp)) {
 			return;

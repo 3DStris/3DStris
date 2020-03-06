@@ -1,6 +1,7 @@
 #pragma once
 
 #include <citro2d.h>
+
 #include <3dstris/util/math.hpp>
 #include <memory>
 

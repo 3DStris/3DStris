@@ -13,12 +13,12 @@
 
 const phmap::flat_hash_map<Keybinds::Key, const char*>
 	KeybindButton::KEY_TO_GLYPH{
-		KEY(A, "\uE000"),	 KEY(B, "\uE001"),
-		KEY(X, "\uE002"),	 KEY(Y, "\uE003"),
-		KEY(L, "\uE004"),	 KEY(R, "\uE005"),
-		KEY(UP, "\uE079"),	KEY(DOWN, "\uE07A"),
+		KEY(A, "\uE000"),	  KEY(B, "\uE001"),
+		KEY(X, "\uE002"),	  KEY(Y, "\uE003"),
+		KEY(L, "\uE004"),	  KEY(R, "\uE005"),
+		KEY(UP, "\uE079"),	  KEY(DOWN, "\uE07A"),
 		KEY(LEFT, "\uE07B"),  KEY(RIGHT, "\uE07C"),
-		KEY(ZL, "\uE054"),	KEY(ZR, "\uE055"),
+		KEY(ZL, "\uE054"),	  KEY(ZR, "\uE055"),
 		KEY(TOUCH, "\uE01D"), {KEY_A | KEY_X, "\uE000/\uE002"}};
 
 KeybindButton::KeybindButton(GUI& _parent, const Pos _pos, const WH _wh,
@@ -52,7 +52,7 @@ void KeybindButton::update(const touchPosition touch,
 			}
 			key = kDown;
 
-			svcSleepThread(500000);  // 0.5ms
+			svcSleepThread(500000);	 // 0.5ms
 		} while (key == 0);
 
 		switch (key) {

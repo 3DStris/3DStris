@@ -1,5 +1,6 @@
 #include <rapidjson/document.h>
 #include <rapidjson/filereadstream.h>
+
 #include <3dstris/config/games.hpp>
 #include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>

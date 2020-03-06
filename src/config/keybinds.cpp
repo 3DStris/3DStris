@@ -3,14 +3,14 @@
 #include <3dstris/util/log.hpp>
 
 const char* Keybinds::KEYBIND_TO_KEY[]{
-	"keybindselect.left",	 "keybindselect.right",
+	"keybindselect.left",	  "keybindselect.right",
 	"keybindselect.rotatecw", "keybindselect.rotateccw",
 	"keybindselect.softdrop", "keybindselect.harddrop",
 	"keybindselect.hold"};
 
 const Keybinds::Binds Keybinds::DEFAULT_BINDS{
-	{Action::LEFT, KEY_LEFT},	  {Action::RIGHT, KEY_RIGHT},
-	{Action::ROTATE_CW, KEY_B},	{Action::ROTATE_CCW, KEY_Y},
+	{Action::LEFT, KEY_LEFT},	   {Action::RIGHT, KEY_RIGHT},
+	{Action::ROTATE_CW, KEY_B},	   {Action::ROTATE_CCW, KEY_Y},
 	{Action::SOFT_DROP, KEY_DOWN}, {Action::HARD_DROP, KEY_UP},
 	{Action::HOLD, KEY_A | KEY_X}};
 

@@ -70,7 +70,7 @@ void SprintTimes::genValues() {
 
 		// why sds? because the Text i pass it to later will allocate
 		// a new sds if i pass a regular, stack-allocated char array anyways
-		sds dateString = sdsnewlen("", 40);
+		sds dateString = sdsnewlen(nullptr, 40);
 		saved.dateString(dateString, 40, "%F");
 		Text date(dateString, Pos{}, {0.7f, 0.7f});
 		date.align(Text::Align::CENTER,

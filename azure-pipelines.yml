@@ -43,6 +43,7 @@ jobs:
          mv $SYSTEM_DEFAULTWORKINGDIRECTORY/build/bin/3dstris $BUILD_ARTIFACTSTAGINGDIRECTORY/3dstris-$RELEASE_TAG.elf
         displayName: Rename and move binaries to artifact directory
       - task: GitHubRelease@1
+        condition: startswith(variables['Build.SourceBranch'], 'refs/tags/')
         displayName: Create GitHub release
         inputs:
           gitHubConnection: 3dstris-binaries

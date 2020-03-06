@@ -61,8 +61,7 @@ void Piece::set() {
 bool Piece::collides(const int offX, const int offY) const {
 	for (u8 y = 0; y < shape.size(); ++y) {
 		for (u8 x = 0; x < shape.size(); ++x) {
-			const Vector2<int> offPos = {static_cast<int>(pos.x + x + offX),
-										 static_cast<int>(pos.y + y + offY)};
+			const Vector2f offPos{pos.x + x + offX, pos.y + y + offY};
 			if (shape.get(x, y) && (!board.inside(offPos) ||
 									board.get(offPos) != PieceType::NONE)) {
 				return true;

@@ -15,9 +15,9 @@ class Board {
 	constexpr bool inside(const T x, const T y) const noexcept {
 		static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
 
-		return x < width && y < height;
+		return x >= static_cast<T>(0) && y >= static_cast<T>(0) && x < width &&
+			   y < height;
 	}
-
 	template <typename T>
 	constexpr bool inside(const Vector2<T> pos) const noexcept {
 		return inside(pos.x, pos.y);
@@ -37,16 +37,13 @@ class Board {
 	}
 
 	template <typename T>
-	PieceType get(const T x, const T y) const {
+	constexpr PieceType get(const T x, const T y) const {
 		static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
 
-		if (inside(x, y)) {
-			return grid[y * width + x];
-		}
-		return PieceType::INVALID;
+		return inside(x, y) ? grid[y * width + x] : PieceType::INVALID;
 	}
 	template <typename T>
-	PieceType get(const Vector2<T> pos) const {
+	constexpr PieceType get(const Vector2<T> pos) const {
 		return get(pos.x, pos.y);
 	}
 

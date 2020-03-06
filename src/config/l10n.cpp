@@ -24,7 +24,7 @@ rapidjson::Document L10n::loadJson(const char* __restrict path) {
 	} else if (!file) {
 		LOG_FATAL(
 			"Failed to load English JSON, something's gone horribly wrong");
-		svcExitProcess();
+		std::exit(1);
 	}
 
 	rapidjson::Document document;

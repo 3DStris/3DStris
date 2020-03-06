@@ -1,6 +1,9 @@
 #pragma once
 
-#include <3ds.h>
+extern "C" {
+#include <3ds/result.h>
+#include <3ds/services/fs.h>
+}
 #include <unistd.h>
 
 inline bool directoryExists(FS_Archive archive, const FS_Path& path) {

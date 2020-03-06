@@ -1,8 +1,9 @@
 #pragma once
 
+#include <assert.h>
+
 #include <3dstris/gui/widget.hpp>
 #include <3dstris/util/text.hpp>
-#include <cassert>
 #include <limits>
 
 class GUI;

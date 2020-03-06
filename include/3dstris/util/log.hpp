@@ -7,8 +7,11 @@
 
 #pragma once
 
-#include <3ds.h>
+extern "C" {
+#include <3ds/os.h>
+}
 #include <stdio.h>
+#include <time.h>
 
 #include <limits>
 

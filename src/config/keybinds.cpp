@@ -1,3 +1,6 @@
+extern "C" {
+#include <3ds/services/hid.h>
+}
 #include <3dstris/config/keybinds.hpp>
 #include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>

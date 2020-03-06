@@ -1,7 +1,10 @@
 #pragma once
 
-#include <3ds.h>
+extern "C" {
+#include <3ds/thread.h>
+}
 #include <mpack/mpack.h>
+#include <time.h>
 
 #include <vector>
 

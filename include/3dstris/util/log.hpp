@@ -14,8 +14,14 @@
 
 #define LOG_TRACE(...) \
 	Log::get().log(Log::Level::TRACE, __FILE__, __LINE__, __VA_ARGS__)
-#define LOG_DEBUG(...) \
-	Log::get().log(Log::Level::DEBUG, __FILE__, __LINE__, __VA_ARGS__)
+
+#ifndef NDEBUG
+	#define LOG_DEBUG(...) \
+		Log::get().log(Log::Level::DEBUG, __FILE__, __LINE__, __VA_ARGS__)
+#else
+	#define LOG_DEBUG(...)
+#endif
+
 #define LOG_INFO(...) \
 	Log::get().log(Log::Level::INFO, __FILE__, __LINE__, __VA_ARGS__)
 #define LOG_WARN(...) \

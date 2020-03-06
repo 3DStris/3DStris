@@ -4,7 +4,7 @@ trigger:
       - "*"
   tags:
     include:
-      - ^v(\d+\.)+(\d+\.)+(\*|\d+)$
+      - v*
   paths:
       exclude:
         - README.adoc

@@ -9,13 +9,13 @@ SprintResults::SprintResults(Ingame* parent, SavedGame&& saved)
 	  timeFormat(game.translate("results.sprint.time")),
 	  timeText(sdscatprintf(sdsempty(), timeFormat, saved.time)),
 
-	  restartButton(gui.add<Button>(Pos{-1, -1}, WH{150, 60},
+	  restartButton(gui.add<Button>(Pos{}, WH{150, 60},
 									game.translate("results.restart"),
 									Button::Flags::CENTER)),
-	  timesButton(gui.add<Button>(Pos{-1, 15}, WH{80, 40},
+	  timesButton(gui.add<Button>(Pos{0, 15}, WH{80, 40},
 								  game.translate("results.sprint.times"),
 								  Button::Flags::HCENTER)),
-	  menuButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 45 - 10}, WH{100, 45},
+	  menuButton(gui.add<Button>(Pos{0, BSCREEN_HEIGHT - 45 - 10}, WH{100, 45},
 								 game.translate("menu"),
 								 Button::Flags::HCENTER)) {
 	timeText.setScale({1.3f, 1.3f});

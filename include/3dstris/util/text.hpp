@@ -9,10 +9,10 @@ class Text {
    public:
 	enum class Align { CENTER, VCENTER, HCENTER, SCREEN_CENTER };
 
-	explicit Text(sds text = sdsempty(), const Pos pos = Pos{},
-				  const Vector2f scale = {1, 1}, const Color color = WHITE);
-	explicit Text(const char* __restrict text, const Pos pos = Pos{},
-				  const Vector2f scale = {1, 1}, const Color color = WHITE);
+	explicit Text(sds text = sdsempty(), Pos pos = Pos{},
+				  Vector2f scale = {1, 1}, Color color = WHITE);
+	explicit Text(const char* __restrict text, Pos pos = Pos{},
+				  Vector2f scale = {1, 1}, Color color = WHITE);
 
 	~Text();
 	Text(const Text& other) = delete;
@@ -20,33 +20,32 @@ class Text {
 	Text& operator=(const Text& other) = delete;
 	Text& operator=(Text&& other) = delete;
 
-	void draw(const float depth = 1) const;
+	void draw(float depth = 1) const;
 
-	void align(const Align mode, const Vector2f cpos, const Vector2f cwh,
-			   const bool bottom = false);
-	void align(const Align mode, const bool bottom = false);
+	void align(Align mode, Pos cpos, WH cwh, bool bottom = false);
+	void align(Align mode, bool bottom = false);
 
-	void scale(const float cx, const float max);
+	void scale(float cx, float max);
 
 	void setText(sds text);
 	sds getText() const noexcept;
 
-	void setX(const float x) noexcept;
+	void setX(float x) noexcept;
 	float getX() const noexcept;
 
-	void setY(const float y) noexcept;
+	void setY(float y) noexcept;
 	float getY() const noexcept;
 
-	void setPos(const Pos pos) noexcept;
+	void setPos(Pos pos) noexcept;
 
 	WH getWH() const;
 
-	void setColor(const Color color);
+	void setColor(Color color);
 	Color getColor() const noexcept;
 
-	void setScaleX(const float scale) noexcept;
-	void setScaleY(const float scale) noexcept;
-	void setScale(const Vector2f scale) noexcept;
+	void setScaleX(float scale) noexcept;
+	void setScaleY(float scale) noexcept;
+	void setScale(Vector2f scale) noexcept;
 	Vector2f getScale() const noexcept;
 
    private:

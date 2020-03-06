@@ -6,7 +6,7 @@ SprintTimes::SprintTimes()
 
 	  panel(gui, Pos{TABLE_X, TABLE_Y}, WH{TABLE_W, TABLE_H}, true),
 
-	  backButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 50}, WH{100, 40},
+	  backButton(gui.add<Button>(Pos{0, BSCREEN_HEIGHT - 50}, WH{100, 40},
 								 game.translate("back"),
 								 Button::Flags::HCENTER)),
 
@@ -20,7 +20,7 @@ SprintTimes::SprintTimes()
 	  noGamesText(game.translate("sprint.times.nogames"), Pos{},
 				  {0.75f, 0.75f}),
 	  infoText(sdsempty(), Pos{10, 10}, {0.8f, 0.8f}),
-	  selectedText(sdsempty(), Pos{-1, SCREEN_HEIGHT - TABLE_Y + 10},
+	  selectedText(sdsempty(), Pos{0, SCREEN_HEIGHT - TABLE_Y + 10},
 				   {0.65f, 0.65f}) {
 	if (games.empty()) {
 		noGamesText.align(Text::Align::SCREEN_CENTER);

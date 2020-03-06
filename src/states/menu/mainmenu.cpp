@@ -16,13 +16,13 @@ MainMenu::MainMenu()
 
 	  icon(C2D_SpriteSheetGetImage(game.getImageSheet(), images_icon_idx)),
 
-	  playButton(gui.add<Button>(Pos{-1, 10}, WH{100, 50},
+	  playButton(gui.add<Button>(Pos{0, 10}, WH{100, 50},
 								 game.translate("mainmenu.play"),
 								 Button::Flags::HCENTER)),
-	  settingsButton(gui.add<Button>(Pos{-1, 100}, WH{100, 50},
+	  settingsButton(gui.add<Button>(Pos{0, 100}, WH{100, 50},
 									 game.translate("mainmenu.settings"),
 									 Button::Flags::HCENTER)),
-	  exitButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 50}, WH{100, 40},
+	  exitButton(gui.add<Button>(Pos{0, BSCREEN_HEIGHT - 50}, WH{100, 40},
 								 game.translate("exit"),
 								 Button::Flags::HCENTER)),
 
@@ -33,7 +33,7 @@ MainMenu::MainMenu()
 	  languagesButton(gui.add<Button>(
 		  Pos{BSCREEN_WIDTH - 80 - 10, BSCREEN_HEIGHT - 40 - 10}, WH{75, 40},
 		  game.translate("mainmenu.languages"))) {
-	versionText.setPos({3, SCREEN_HEIGHT - versionText.getWH().y / 1.25f - 5});
+	versionText.setPos({3, SCREEN_HEIGHT - versionText.getWH().y - 4});
 }
 
 void MainMenu::update(const double dt) {

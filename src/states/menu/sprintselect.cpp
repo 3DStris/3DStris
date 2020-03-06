@@ -10,11 +10,11 @@ SprintSelect::SprintSelect()
 	  fortyButton(gui.add<Button>(Pos{3 * BSCREEN_WIDTH / 4 - 50, 40},
 								  WH{100, 50},
 								  game.translate("sprintselect.forty"))),
-	  customButton(gui.add<Button>(Pos{-1, 40 + 50 + 20}, WH{100, 50},
+	  customButton(gui.add<Button>(Pos{0, 40 + 50 + 20}, WH{100, 50},
 								   game.translate("sprintselect.custom"),
 								   Button::Flags::HCENTER)),
 
-	  backButton(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 50}, WH{100, 40},
+	  backButton(gui.add<Button>(Pos{0, BSCREEN_HEIGHT - 50}, WH{100, 40},
 								 game.translate("back"),
 								 Button::Flags::HCENTER)) {
 	title.align(Text::Align::SCREEN_CENTER);

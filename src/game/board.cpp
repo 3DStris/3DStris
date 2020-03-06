@@ -17,19 +17,16 @@ void Board::reset() {
 void Board::draw(const Pos origin, const u32 tileSize, const float outerThick,
 				 const float gridThick) const {
 	GUI::drawOutline(Pos{origin.x, origin.y},
-					 WH{static_cast<float>(width * tileSize),
-						static_cast<float>(height * tileSize)},
-					 outerThick, BOARD, 0.1f);
+					 WH(width * tileSize, height * tileSize), outerThick, BOARD,
+					 0.1f);
 
 	for (u32 y = 0; y < height; ++y) {
 		straightLine(Pos{origin.x, origin.y + y * tileSize},
-					 WH{static_cast<float>(width * tileSize), 0}, gridThick,
-					 GRID, 0);
+					 WH(width * tileSize, 0), gridThick, GRID, 0);
 	}
 	for (u32 x = 0; x < width; ++x) {
 		straightLine(Pos{origin.x + x * tileSize, origin.y},
-					 WH{0, static_cast<float>(height * tileSize)}, gridThick,
-					 GRID, 0);
+					 WH(0, height * tileSize), gridThick, GRID, 0);
 	}
 
 	for (u32 y = 0; y < height; ++y) {

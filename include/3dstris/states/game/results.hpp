@@ -6,7 +6,7 @@
 
 class Results final : public State {
    public:
-	Results(Ingame* parent);
+	explicit Results(Ingame* parent);
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;

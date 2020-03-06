@@ -5,7 +5,7 @@
 
 class Paused final : public State {
    public:
-	Paused(Ingame* parent);
+	explicit Paused(Ingame* parent);
 
 	void update(const double dt) override;
 	void draw(const bool bottom) override;

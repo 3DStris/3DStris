@@ -7,7 +7,7 @@ class PieceShape {
    public:
 	using Shape = std::vector<bool>;
 
-	PieceShape(const size_t size) : shape(size * size), _size(size) {}
+	explicit PieceShape(const size_t size) : shape(size * size), _size(size) {}
 	PieceShape(Shape&& shape, const size_t size) : shape(shape), _size(size) {}
 
 	template <typename T>

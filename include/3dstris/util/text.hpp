@@ -9,10 +9,10 @@ class Text {
    public:
 	enum class Align { CENTER, VCENTER, HCENTER, SCREEN_CENTER };
 
-	Text(sds text = sdsempty(), const Pos pos = Pos{},
-		 const Vector2f scale = {1, 1}, const Color color = WHITE);
-	Text(const char* __restrict text, const Pos pos = Pos{},
-		 const Vector2f scale = {1, 1}, const Color color = WHITE);
+	explicit Text(sds text = sdsempty(), const Pos pos = Pos{},
+				  const Vector2f scale = {1, 1}, const Color color = WHITE);
+	explicit Text(const char* __restrict text, const Pos pos = Pos{},
+				  const Vector2f scale = {1, 1}, const Color color = WHITE);
 
 	~Text();
 	Text(const Text& other) = delete;

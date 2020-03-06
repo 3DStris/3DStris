@@ -5,7 +5,7 @@
 
 class Sprint final : public Ingame {
    public:
-	Sprint(const u16 lines);
+	explicit Sprint(const u16 lines);
 	~Sprint() override;
 
 	void update(const double dt) override;

@@ -10,10 +10,10 @@ ConfigScreen::ConfigScreen()
 	  dropTimerLabel(game.translate("settings.droptimer"), Pos{15, 150 - 35},
 					 {0.5f, 0.5f}),
 
-	  save(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 55}, WH{100, 50},
+	  save(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 50}, WH{75, 40},
 						   game.translate("save"))),
-	  cancel(gui.add<Button>(Pos{BSCREEN_WIDTH - 110, BSCREEN_HEIGHT - 55},
-							 WH{100, 50}, game.translate("cancel"))),
+	  cancel(gui.add<Button>(Pos{BSCREEN_WIDTH - 90, BSCREEN_HEIGHT - 50},
+							 WH{80, 40}, game.translate("cancel"))),
 
 	  panel(gui.add<Panel>(Pos{10, 10},
 						   WH{BSCREEN_WIDTH - 20, BSCREEN_HEIGHT - 80})),

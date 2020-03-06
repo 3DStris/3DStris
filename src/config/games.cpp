@@ -171,6 +171,10 @@ void Games::save() {
 	s32 mainPrio;
 	svcGetThreadPriority(&mainPrio, CUR_THREAD_HANDLE);
 
+	if (saveThread) {
+		joinSaveThread();
+	}
+
 	saveThread = threadCreate(
 		[](void* games) {
 			char* data;

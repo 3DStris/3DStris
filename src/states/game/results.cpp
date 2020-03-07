@@ -26,7 +26,7 @@ void Results::update(const double dt) {
 		game.popState(false, true);
 	}
 
-	if (menuButton.pressed()) {
+	if (menuButton.pressed() || hidKeysDown() & KEY_B) {
 		game.setState(make_unique<MainMenu>());
 	}
 }

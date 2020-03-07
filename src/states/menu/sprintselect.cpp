@@ -44,7 +44,7 @@ void SprintSelect::update(const double dt) {
 		if (value != 0 && end[0] == '\0' && errno == 0) {
 			game.setState(make_unique<Sprint>(value));
 		}
-	} else if (backButton.pressed()) {
+	} else if (backButton.pressed() || hidKeysDown() & KEY_B) {
 		game.popState();
 	}
 }

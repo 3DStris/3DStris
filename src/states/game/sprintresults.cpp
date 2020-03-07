@@ -37,7 +37,7 @@ void SprintResults::update(const double dt) {
 	} else if (restartButton.pressed()) {
 		parent->reset();
 		game.popState(false, true);
-	} else if (menuButton.pressed()) {
+	} else if (menuButton.pressed() || hidKeysDown() & KEY_B) {
 		game.setState(make_unique<MainMenu>());
 	}
 }

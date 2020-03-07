@@ -70,7 +70,7 @@ void KeybindSelect::update(const double dt) {
 		for (const auto& button : buttons) {
 			button.get().reset();
 		}
-	} else if (cancelButton.pressed()) {
+	} else if (cancelButton.pressed() || hidKeysDown() & KEY_B) {
 		game.popState();
 	}
 }

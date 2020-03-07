@@ -24,7 +24,7 @@ void ModeSelect::update(const double dt) {
 		game.setState(make_unique<Playing>());
 	} else if (sprintButton.pressed()) {
 		game.pushState(make_unique<SprintSelect>());
-	} else if (backButton.pressed()) {
+	} else if (backButton.pressed() || hidKeysDown() & KEY_B) {
 		game.popState();
 	}
 }

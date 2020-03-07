@@ -24,15 +24,9 @@ void SprintSelect::update(const double dt) {
 
 	if (twentyButton.pressed()) {
 		game.setState(make_unique<Sprint>(20));
-		return;
-	}
-
-	if (fortyButton.pressed()) {
+	} else if (fortyButton.pressed()) {
 		game.setState(make_unique<Sprint>(40));
-		return;
-	}
-
-	if (customButton.pressed()) {
+	} else if (customButton.pressed()) {
 		constexpr auto DIGITS = std::numeric_limits<u16>::digits10;
 
 		SwkbdState swkbd;
@@ -50,13 +44,8 @@ void SprintSelect::update(const double dt) {
 		if (value != 0 && end[0] == '\0' && errno == 0) {
 			game.setState(make_unique<Sprint>(value));
 		}
-
-		return;
-	}
-
-	if (backButton.pressed()) {
+	} else if (backButton.pressed()) {
 		game.popState();
-		return;
 	}
 }
 

@@ -34,18 +34,11 @@ void SprintResults::update(const double dt) {
 
 	if (timesButton.pressed()) {
 		game.pushState(make_unique<SprintTimes>());
-		return;
-	}
-
-	if (restartButton.pressed()) {
+	} else if (restartButton.pressed()) {
 		parent->reset();
 		game.popState(false, true);
-		return;
-	}
-
-	if (menuButton.pressed()) {
+	} else if (menuButton.pressed()) {
 		game.setState(make_unique<MainMenu>());
-		return;
 	}
 }
 

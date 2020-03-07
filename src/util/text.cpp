@@ -105,9 +105,9 @@ void Text::setPos(const Pos pos) noexcept {
 }
 
 WH Text::getWH() const {
-	float width, height;
-	C2D_TextGetDimensions(&textObject, _scale.x, _scale.y, &width, &height);
-	return {width, height};
+	WH wh;
+	C2D_TextGetDimensions(&textObject, _scale.x, _scale.y, &wh.x, &wh.y);
+	return wh;
 }
 
 void Text::setColor(const Color color) {

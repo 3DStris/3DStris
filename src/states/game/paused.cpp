@@ -34,12 +34,8 @@ void Paused::update(const double dt) {
 	const u32 kDown = hidKeysDown();
 	if (unpauseButton.pressed() || (kDown > KEY_A && kDown <= KEY_ZR)) {
 		game.popState();
-		return;
-	}
-
-	if (menuButton.pressed()) {
+	} else if (menuButton.pressed()) {
 		game.setState(make_unique<MainMenu>());
-		return;
 	}
 }
 

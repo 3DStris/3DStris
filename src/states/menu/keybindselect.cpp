@@ -66,16 +66,11 @@ void KeybindSelect::update(const double dt) {
 		game.getKeybinds().save();
 
 		game.setState(make_unique<MainMenu>());
-		return;
-	}
-
-	if (resetButton.pressed()) {
+	} else if (resetButton.pressed()) {
 		for (const auto& button : buttons) {
 			button.get().reset();
 		}
-	}
-
-	if (cancelButton.pressed()) {
+	} else if (cancelButton.pressed()) {
 		game.popState();
 	}
 }

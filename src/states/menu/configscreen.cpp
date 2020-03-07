@@ -51,12 +51,8 @@ void ConfigScreen::update(const double dt) {
 		config.save();
 
 		game.popState();
-		return;
-	}
-
-	if (cancel.pressed() || hidKeysUp() & KEY_B) {
+	} else if (cancel.pressed() || hidKeysUp() & KEY_B) {
 		game.popState();
-		return;
 	}
 }
 

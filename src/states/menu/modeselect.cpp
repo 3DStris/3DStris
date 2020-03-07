@@ -22,14 +22,9 @@ void ModeSelect::update(const double dt) {
 
 	if (normalButton.pressed()) {
 		game.setState(make_unique<Playing>());
-		return;
-	}
-
-	if (sprintButton.pressed()) {
+	} else if (sprintButton.pressed()) {
 		game.pushState(make_unique<SprintSelect>());
-	}
-
-	if (backButton.pressed()) {
+	} else if (backButton.pressed()) {
 		game.popState();
 	}
 }

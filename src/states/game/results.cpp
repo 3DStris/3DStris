@@ -24,12 +24,10 @@ void Results::update(const double dt) {
 	if (restartButton.pressed()) {
 		parent->reset();
 		game.popState(false, true);
-		return;
 	}
 
 	if (menuButton.pressed()) {
 		game.setState(make_unique<MainMenu>());
-		return;
 	}
 }
 

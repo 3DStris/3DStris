@@ -98,11 +98,6 @@ Games::Games() {
 
 	s32 mainPrio;
 	svcGetThreadPriority(&mainPrio, CUR_THREAD_HANDLE);
-
-	if (loadThread) {
-		joinLoadThread();
-	}
-
 	loadThread = threadCreate(
 		[](void* _games) {
 			auto& _this = *static_cast<Games*>(_games);

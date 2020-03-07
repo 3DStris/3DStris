@@ -88,55 +88,68 @@ Games::Games() {
 			}
 		}
 
-		std::sort(games.begin(), games.end(), std::less<SavedGame>());
 		save();
-
 		return;
 	} else if (!exists(GAMES_PATH)) {
 		LOG_INFO("Creating games file");
 		save();
-
 		return;
 	}
 
-	mpack_tree_t tree;
-	mpack_tree_init_filename(&tree, GAMES_PATH, 0);
-	mpack_tree_parse(&tree);
-	mpack_node_t root = mpack_tree_root(&tree);
+	s32 mainPrio;
+	svcGetThreadPriority(&mainPrio, CUR_THREAD_HANDLE);
 
-	bool saveAfterLoad = false;
-	const size_t length = mpack_node_array_length(root);
-	LOG_DEBUG("Reserving space for %u games", length);
-	games.reserve(length);
-	for (size_t i = 0; i < length; ++i) {
-		const auto game = mpack_node_array_at(root, i);
-		if (mpack_node_type(game) != mpack_type_map) {
-			LOG_WARN("Found invalid game at index %u, discarding", i);
-			saveAfterLoad = true;
-			continue;
-		}
-
-		using i64 = long long;
-		MEMBER_CHECK_TYPE(date, i64, uint)
-		MEMBER(time, double)
-		MEMBER(pps, double)
-		MEMBER_CHECK_TYPE_OPTIONAL(lines, u16, uint, DEFAULT_LINES)
-		games.push_back({time, pps, date, lines});
+	if (loadThread) {
+		joinLoadThread();
 	}
 
-	if (saveAfterLoad) {
-		LOG_WARN("Saving due to discarded games");
-		save();
-	}
+	loadThread = threadCreate(
+		[](void* _games) {
+			auto& _this = *static_cast<Games*>(_games);
 
-	if (mpack_tree_destroy(&tree) != mpack_ok) {
-		LOG_ERROR("Failed to decode games, error code %u",
-				  mpack_tree_error(&tree));
-		save();
-		_failed = true;
-	} else {
-		LOG_INFO("Loaded games");
-	}
+			mpack_tree_t tree;
+			mpack_tree_init_filename(&tree, GAMES_PATH, 0);
+			mpack_tree_parse(&tree);
+			mpack_node_t root = mpack_tree_root(&tree);
+
+			bool saveAfterLoad = false;
+			const size_t length = mpack_node_array_length(root);
+			LOG_DEBUG("Reserving space for %u games", length);
+			_this.games.reserve(length);
+			for (size_t i = 0; i < length; ++i) {
+				const auto game = mpack_node_array_at(root, i);
+				if (mpack_node_type(game) != mpack_type_map) {
+					LOG_WARN("Found invalid game at index %u, discarding", i);
+					saveAfterLoad = true;
+					continue;
+				}
+
+				using i64 = long long;
+				MEMBER_CHECK_TYPE(date, i64, uint)
+				MEMBER(time, double)
+				MEMBER(pps, double)
+				MEMBER_CHECK_TYPE_OPTIONAL(lines, u16, uint, DEFAULT_LINES)
+				_this.games.push_back({time, pps, date, lines});
+			}
+
+			if (saveAfterLoad) {
+				LOG_WARN("Saving due to discarded games");
+				_this.save();
+			}
+
+			if (mpack_tree_destroy(&tree) != mpack_ok) {
+				LOG_ERROR("Failed to decode games, error code %u",
+						  mpack_tree_error(&tree));
+				_this.save();
+				_this._failed = true;
+			} else {
+				LOG_INFO("Loaded games");
+			}
+
+			// Just in case
+			_this.saveThread = nullptr;
+		},
+		this, 1024, mainPrio + 1, -2, true);
 }
 
 void Games::serialize(mpack_writer_t& writer) const {
@@ -159,6 +172,7 @@ void Games::serialize(mpack_writer_t& writer) const {
 }
 
 const SavedGames& Games::all() const noexcept {
+	joinLoadThread();
 	return games;
 }
 
@@ -177,13 +191,13 @@ void Games::save() {
 	}
 
 	saveThread = threadCreate(
-		[](void* games) {
+		[](void* _this) {
 			char* data;
 			size_t size;
 			mpack_writer_t writer;
 			mpack_writer_init_growable(&writer, &data, &size);
 
-			static_cast<Games*>(games)->serialize(writer);
+			static_cast<Games*>(_this)->serialize(writer);
 
 			if (mpack_writer_destroy(&writer) != mpack_ok) {
 				LOG_ERROR("Failed to encode games, error code %u",
@@ -200,7 +214,7 @@ void Games::save() {
 			LOG_INFO("Saved games");
 
 			// Just in case
-			static_cast<Games*>(games)->saveThread = nullptr;
+			static_cast<Games*>(_this)->saveThread = nullptr;
 		},
 		this, 1024, mainPrio + 1, -2, true);
 }

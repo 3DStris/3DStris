@@ -1,17 +1,17 @@
 #include <3dstris/gui.hpp>
-#include <3dstris/gui/panel.hpp>
+#include <3dstris/gui/widgets/panel.hpp>
 
 Panel::Panel(GUI& _parent, const Pos _pos, const WH _wh, const bool outline,
-			 const Color col, const Color outlineCol)
+			 const Color& color, const Color& outlineColor)
 	: Widget(_parent, _pos, _wh),
-	  col(col),
-	  outlineCol(outlineCol),
+	  color(color),
+	  outlineColor(outlineColor),
 	  outline(outline) {}
 
 void Panel::draw() const {
-	C2D_DrawRectSolid(pos.x, pos.y, 0, wh.x, wh.y, col);
+	C2D_DrawRectSolid(pos.x, pos.y, 0, wh.x, wh.y, color);
 	if (outline) {
-		GUI::drawOutline(pos, wh, 2, outlineCol);
+		GUI::drawOutline(pos, wh, 2, outlineColor);
 	}
 }
 

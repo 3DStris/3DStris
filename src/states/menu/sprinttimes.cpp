@@ -137,7 +137,7 @@ void SprintTimes::update(const double dt) {
 
 void SprintTimes::draw(const bool bottom) {
 	if (!bottom) {
-		C2D_TargetClear(game.getTop(), BACKGROUND);
+		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 
 		if (games.empty()) {
 			noGamesText.draw();
@@ -149,11 +149,12 @@ void SprintTimes::draw(const bool bottom) {
 		panel.draw();
 		for (u16 i = 0; i < CELLS; ++i) {
 			GUI::drawHLine(Pos{TABLE_X, TABLE_Y + CELL_H * (i + 1.0f)}, TABLE_W,
-						   2, GRID);
+						   2, gui.getTheme().grid);
 		}
-		GUI::drawVLine(Pos{TABLE_X + TIME_W, TABLE_Y}, TABLE_H, 2, GRID);
+		GUI::drawVLine(Pos{TABLE_X + TIME_W, TABLE_Y}, TABLE_H, 2,
+					   gui.getTheme().grid);
 		GUI::drawVLine(Pos{TABLE_X + TIME_W + DATE_W, TABLE_Y}, TABLE_H, 2,
-					   GRID);
+					   gui.getTheme().grid);
 
 		timeLabel.draw();
 		dateLabel.draw();
@@ -165,11 +166,11 @@ void SprintTimes::draw(const bool bottom) {
 
 		GUI::drawOutline(
 			Pos{TABLE_X, TABLE_Y + CELL_H * (selected + 1.0f - topCell)},
-			WH{TABLE_W, CELL_H - 2}, 2, WHITE);
+			WH{TABLE_W, CELL_H - 2}, 2, Theme::WHITE);
 
 		selectedText.draw();
 	} else {
-		C2D_TargetClear(game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), gui.getTheme().background);
 
 		if (!games.empty()) {
 			infoText.draw();

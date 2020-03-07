@@ -38,7 +38,7 @@ void Results::draw(const bool bottom) {
 
 		deadText.draw();
 	} else {
-		C2D_TargetClear(game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), gui.getTheme().background);
 
 		gui.draw();
 	}

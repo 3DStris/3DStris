@@ -58,14 +58,14 @@ void ConfigScreen::update(const double dt) {
 
 void ConfigScreen::draw(const bool bottom) {
 	if (!bottom) {
-		C2D_TargetClear(game.getTop(), BACKGROUND);
+		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 
 		title.draw();
 
 		tip.draw();
 		tipText.draw();
 	} else {
-		C2D_TargetClear(game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), gui.getTheme().background);
 
 		gui.draw();
 

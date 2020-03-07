@@ -1,5 +1,5 @@
 #include <3dstris/game.hpp>
-#include <3dstris/gui/togglebutton.hpp>
+#include <3dstris/gui/widgets/togglebutton.hpp>
 
 static sds getText(sds text, const bool value) {
 	return sdscatfmt(sdsnew(text), ": %s",

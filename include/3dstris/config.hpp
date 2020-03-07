@@ -3,6 +3,7 @@
 #include <3dstris/config/games.hpp>
 #include <3dstris/config/keybinds.hpp>
 #include <3dstris/config/l10n.hpp>
+#include <3dstris/gui/theme.hpp>
 #include <memory>
 
 struct Config {
@@ -27,6 +28,7 @@ struct Config {
 	u16 dropTimer = 5;
 	bool useTextures = true;
 	L10n::Language language = L10n::Language::EN;
+	Theme theme = Theme::night();
 
    private:
 	static constexpr auto CONFIG_PATH = "sdmc:/3ds/3dstris/config.mp";

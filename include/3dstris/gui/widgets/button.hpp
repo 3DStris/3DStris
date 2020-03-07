@@ -5,10 +5,6 @@
 
 class Button : public Widget {
    public:
-	static constexpr Color BUTTON = C2D_Color32(33, 34, 48, 255);
-	static constexpr Color BUTTON_OUTLINE = C2D_Color32(35, 36, 51, 255);
-	static constexpr Color BUTTON_HELD = C2D_Color32(26, 27, 38, 255);
-
 	enum class Flags { NONE, HCENTER, VCENTER, CENTER };
 
 	Button(GUI& parent, Pos pos, WH wh, sds text, Flags flags = Flags::NONE);

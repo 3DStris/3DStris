@@ -83,10 +83,10 @@ State& Game::getState() {
 
 void Game::reset(const bool top, const bool bottom) {
 	if (top) {
-		C2D_TargetClear(this->top, BLACK);
+		C2D_TargetClear(this->top, Theme::BLACK);
 	}
 	if (bottom) {
-		C2D_TargetClear(this->bottom, BLACK);
+		C2D_TargetClear(this->bottom, Theme::BLACK);
 	}
 }
 
@@ -113,4 +113,8 @@ Keybinds& Game::getKeybinds() noexcept {
 }
 const Keybinds& Game::getKeybinds() const noexcept {
 	return config.getKeybinds();
+}
+
+const Theme& Game::getTheme() const noexcept {
+	return config.theme;
 }

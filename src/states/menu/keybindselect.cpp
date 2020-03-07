@@ -1,4 +1,4 @@
-#include <3dstris/gui/keybindbutton.hpp>
+#include <3dstris/gui/widgets/keybindbutton.hpp>
 #include <3dstris/states/menu/keybindselect.hpp>
 #include <3dstris/states/menu/mainmenu.hpp>
 
@@ -77,14 +77,14 @@ void KeybindSelect::update(const double dt) {
 
 void KeybindSelect::draw(const bool bottom) {
 	if (!bottom) {
-		C2D_TargetClear(game.getTop(), BACKGROUND);
+		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 
 		tip.draw();
 		tipText.draw();
 
 		selectText.draw();
 	} else {
-		C2D_TargetClear(game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), gui.getTheme().background);
 
 		for (const auto& label : labels) {
 			label.draw();

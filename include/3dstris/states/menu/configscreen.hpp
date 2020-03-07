@@ -1,9 +1,9 @@
 #pragma once
 
 #include <3dstris/gui.hpp>
-#include <3dstris/gui/integerinputfield.hpp>
-#include <3dstris/gui/panel.hpp>
-#include <3dstris/gui/togglebutton.hpp>
+#include <3dstris/gui/widgets/integerinputfield.hpp>
+#include <3dstris/gui/widgets/panel.hpp>
+#include <3dstris/gui/widgets/togglebutton.hpp>
 #include <3dstris/state.hpp>
 
 class ConfigScreen final : public State {

@@ -47,6 +47,8 @@ class Game {
 	Keybinds& getKeybinds() noexcept;
 	const Keybinds& getKeybinds() const noexcept;
 
+	const Theme& getTheme() const noexcept;
+
 	bool exit = false;
 
    private:

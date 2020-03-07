@@ -1,4 +1,4 @@
-#include <3dstris/gui/languagebutton.hpp>
+#include <3dstris/gui/widgets/languagebutton.hpp>
 #include <3dstris/states/menu/languageselect.hpp>
 #include <3dstris/states/menu/mainmenu.hpp>
 
@@ -49,11 +49,11 @@ void LanguageSelect::update(const double dt) {
 
 void LanguageSelect::draw(const bool bottom) {
 	if (!bottom) {
-		C2D_TargetClear(game.getTop(), BACKGROUND);
+		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 
 		selectText.draw();
 	} else {
-		C2D_TargetClear(game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), gui.getTheme().background);
 
 		gui.draw();
 	}

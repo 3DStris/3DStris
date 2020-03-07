@@ -2,16 +2,13 @@
 
 Button::Button(GUI& _parent, const Pos _pos, const WH _wh, sds text,
 			   const Flags flags)
-	: Widget(_parent, _pos, _wh),
-	  text(sdsempty(), Pos{}, {1, 1}, parent.textCol) {
+	: Widget(_parent, _pos, _wh), text() {
 	if (flags == Flags::HCENTER || flags == Flags::CENTER) {
 		pos.x = (parent.getWidth() - wh.x) / 2.0f;
 	}
 	if (flags == Flags::VCENTER || flags == Flags::CENTER) {
 		pos.y = (parent.getHeight() - wh.y) / 2.0f;
 	}
-
-	this->text.setColor(parent.textCol);
 
 	setText(text);
 }
@@ -28,9 +25,10 @@ void Button::setText(sds text) {
 }
 
 void Button::draw() const {
-	C2D_DrawRectSolid(pos.x, pos.y, 0, wh.x, wh.y,
-					  held ? parent.pressedCol : parent.primaryCol);
-	GUI::drawOutline(pos, wh, 2, parent.outlineCol);
+	C2D_DrawRectSolid(
+		pos.x, pos.y, 0, wh.x, wh.y,
+		held ? parent.getTheme().buttonHeld : parent.getTheme().button);
+	GUI::drawOutline(pos, wh, 2, parent.getTheme().buttonOutline);
 
 	text.draw();
 }

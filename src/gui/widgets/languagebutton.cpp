@@ -1,5 +1,5 @@
 #include <3dstris/game.hpp>
-#include <3dstris/gui/languagebutton.hpp>
+#include <3dstris/gui/widgets/languagebutton.hpp>
 
 LanguageButton::LanguageButton(GUI& _parent, const Pos _pos, const WH _wh,
 							   const L10n::Language language,

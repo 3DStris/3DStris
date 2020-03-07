@@ -1,14 +1,6 @@
 #include <3dstris/gui.hpp>
 
-GUI::GUI(const u32 width, const u32 height, const Color primaryCol,
-		 const Color textCol, const Color pressedCol, const Color outlineCol)
-	: primaryCol(primaryCol),
-	  textCol(textCol),
-	  pressedCol(pressedCol),
-	  outlineCol(outlineCol),
-
-	  width(width),
-	  height(height) {}
+GUI::GUI(const u32 width, const u32 height) : width(width), height(height) {}
 
 u32 GUI::getWidth() const noexcept {
 	return width;
@@ -31,6 +23,10 @@ void GUI::draw() const {
 	for (const auto& widget : widgets) {
 		widget->draw();
 	}
+}
+
+const Theme& GUI::getTheme() noexcept {
+	return Game::get().getTheme();
 }
 
 void GUI::drawOutline(const Pos pos, const WH wh, const float scale,

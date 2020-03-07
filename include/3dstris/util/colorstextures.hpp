@@ -5,13 +5,6 @@
 #include <array>
 
 using Color = u32;
-constexpr Color WHITE = C2D_Color32(230, 230, 230, 255);
-constexpr Color BLACK = C2D_Color32(0, 0, 0, 255);
-
-constexpr Color BOARD = C2D_Color32(40, 42, 62, 255);
-constexpr Color GRID = C2D_Color32(50, 52, 72, 100);
-
-constexpr Color BACKGROUND = C2D_Color32(20, 21, 31, 255);
 
 class Textures final {
    public:

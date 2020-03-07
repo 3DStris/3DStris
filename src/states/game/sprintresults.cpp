@@ -49,7 +49,7 @@ void SprintResults::draw(const bool bottom) {
 
 		timeText.draw();
 	} else {
-		C2D_TargetClear(game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), gui.getTheme().background);
 
 		gui.draw();
 	}

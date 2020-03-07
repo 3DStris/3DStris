@@ -2,6 +2,7 @@
 
 #include <sds.h>
 
+#include <3dstris/game.hpp>
 #include <3dstris/util.hpp>
 #include <3dstris/util/colorstextures.hpp>
 
@@ -10,9 +11,11 @@ class Text {
 	enum class Align { CENTER, VCENTER, HCENTER, SCREEN_CENTER };
 
 	explicit Text(sds text = sdsempty(), Pos pos = Pos{},
-				  Vector2f scale = {1, 1}, Color color = WHITE);
+				  Vector2f scale = {1, 1},
+				  const Color& color = Game::get().getTheme().text);
 	explicit Text(const char* __restrict text, Pos pos = Pos{},
-				  Vector2f scale = {1, 1}, Color color = WHITE);
+				  Vector2f scale = {1, 1},
+				  const Color& color = Game::get().getTheme().text);
 
 	~Text();
 	Text(const Text& other) = delete;
@@ -54,7 +57,7 @@ class Text {
 
 	sds text = nullptr;
 
-	Color color;
+	const Color& color;
 
 	C2D_Text textObject;
 	C2D_TextBuf textBuffer;

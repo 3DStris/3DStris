@@ -2,11 +2,9 @@
 
 #include <assert.h>
 
-#include <3dstris/gui/widget.hpp>
+#include <3dstris/gui.hpp>
 #include <3dstris/util/text.hpp>
 #include <limits>
-
-class GUI;
 
 template <typename T = u32, u8 digits = std::numeric_limits<T>::digits10>
 class IntegerInputField final : public Widget {
@@ -30,11 +28,9 @@ class IntegerInputField final : public Widget {
 	~IntegerInputField() override { sdsfree(suffix); }
 
 	void draw() const override {
-		static constexpr Color FIELD = C2D_Color32(30, 32, 47, 255);
-		static constexpr Color FIELD_HELD = C2D_Color32(28, 30, 44, 255);
-
 		C2D_DrawRectSolid(pos.x, pos.y, 0, wh.x, wh.y,
-						  held ? FIELD_HELD : FIELD);
+						  held ? parent.getTheme().inputFieldHeld
+							   : parent.getTheme().inputField);
 		text.draw();
 	}
 

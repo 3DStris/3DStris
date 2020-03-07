@@ -79,7 +79,7 @@ void Ingame::draw(const bool bottom) {
 	if (bottom) {
 		return;
 	}
-	C2D_TargetClear(game.getTop(), BACKGROUND);
+	C2D_TargetClear(game.getTop(), game.getTheme().background);
 
 	board.draw(origin, tileSize);
 	piece.draw(origin, tileSize);

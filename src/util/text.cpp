@@ -1,6 +1,6 @@
 #include <3dstris/util/text.hpp>
 
-Text::Text(sds text, const Pos pos, const Vector2f scale, const Color color)
+Text::Text(sds text, const Pos pos, const Vector2f scale, const Color& color)
 	: pos(pos),
 	  _scale(scale),
 	  color(color),
@@ -8,7 +8,7 @@ Text::Text(sds text, const Pos pos, const Vector2f scale, const Color color)
 	setText(text);
 }
 Text::Text(const char* __restrict text, const Pos pos, const Vector2f scale,
-		   const Color color)
+		   const Color& color)
 	: Text(sdsnew(text), pos, scale, color) {}
 
 Text::~Text() {
@@ -110,9 +110,6 @@ WH Text::getWH() const {
 	return wh;
 }
 
-void Text::setColor(const Color color) {
-	this->color = color;
-}
 Color Text::getColor() const noexcept {
 	return color;
 }

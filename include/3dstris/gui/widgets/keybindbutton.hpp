@@ -4,7 +4,7 @@
 
 #include <3dstris/config/keybinds.hpp>
 #include <3dstris/config/l10n.hpp>
-#include <3dstris/gui/button.hpp>
+#include <3dstris/gui/widgets/button.hpp>
 
 class KeybindButton final : public Button {
    public:

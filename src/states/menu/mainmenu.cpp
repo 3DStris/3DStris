@@ -62,7 +62,7 @@ void MainMenu::draw(const bool bottom) {
 	if (!bottom) {
 		static constexpr u8 ICON_SCALE = 3;
 
-		C2D_TargetClear(game.getTop(), BACKGROUND);
+		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 
 		// The 48x48 icon sprite gets converted into a 64x64/64x128 one;
 		// subtract the difference of its new size and the original size to
@@ -79,7 +79,7 @@ void MainMenu::draw(const bool bottom) {
 
 		versionText.draw();
 	} else {
-		C2D_TargetClear(game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), gui.getTheme().background);
 
 		gui.draw();
 	}

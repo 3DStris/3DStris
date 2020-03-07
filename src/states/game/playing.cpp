@@ -13,7 +13,7 @@ void Playing::update(const double dt) {
 
 void Playing::draw(const bool bottom) {
 	if (bottom) {
-		C2D_TargetClear(game.getBottom(), BACKGROUND);
+		C2D_TargetClear(game.getBottom(), game.getTheme().background);
 	} else {
 		Ingame::draw(bottom);
 	}

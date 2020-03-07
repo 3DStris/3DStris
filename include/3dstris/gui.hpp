@@ -1,21 +1,21 @@
 #pragma once
 
-#include <3dstris/gui/button.hpp>
+#include <3dstris/game.hpp>
+#include <3dstris/gui/widgets/button.hpp>
 #include <3dstris/util.hpp>
 #include <vector>
 
 class GUI {
    public:
-	GUI(u32 width = BSCREEN_WIDTH, u32 height = BSCREEN_HEIGHT,
-		Color primaryCol = Button::BUTTON, Color textCol = WHITE,
-		Color pressedCol = Button::BUTTON_HELD,
-		Color outlineCol = Button::BUTTON_OUTLINE);
+	GUI(u32 width = BSCREEN_WIDTH, u32 height = BSCREEN_HEIGHT);
 
 	u32 getWidth() const noexcept;
 	u32 getHeight() const noexcept;
 
 	void update(double dt);
 	void draw() const;
+
+	static const Theme& getTheme() noexcept;
 
 	template <typename T, typename... Args>
 	T& add(Args&&... args) {
@@ -27,18 +27,16 @@ class GUI {
 	}
 
 	static void drawOutline(Pos pos, WH wh, float scale = 2,
-							Color color = Button::BUTTON_OUTLINE,
+							Color color = getTheme().buttonOutline,
 							float depth = 1);
 
 	static void drawHLine(Pos pos, float w, float scale = 2,
-						  Color color = Button::BUTTON_OUTLINE,
+						  Color color = getTheme().buttonOutline,
 						  float depth = 0.5f);
 
 	static void drawVLine(Pos pos, float h, float scale = 2,
-						  Color color = Button::BUTTON_OUTLINE,
+						  Color color = getTheme().buttonOutline,
 						  float depth = 0.5f);
-
-	Color primaryCol, textCol, pressedCol, outlineCol;
 
    private:
 	u32 width, height;

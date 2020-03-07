@@ -1,6 +1,6 @@
 #pragma once
 
-#include <3dstris/gui/button.hpp>
+#include <3dstris/gui/widgets/button.hpp>
 
 class GUI;
 class ToggleButton final : public Button {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <3dstris/gui.hpp>
-#include <3dstris/gui/panel.hpp>
+#include <3dstris/gui/widgets/panel.hpp>
 #include <3dstris/state.hpp>
 
 class KeybindButton;

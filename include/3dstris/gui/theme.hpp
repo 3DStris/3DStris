@@ -26,7 +26,7 @@ struct Theme {
 	Color grid;
 
 	static Theme night() {
-		Theme night;
+		static Theme night;
 		night.background = C2D_Color32(20, 21, 31, 255);
 		night.text = C2D_Color32(230, 230, 230, 255);
 

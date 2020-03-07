@@ -4,7 +4,6 @@
 #include <3dstris/config/games.hpp>
 #include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>
-#include <algorithm>
 
 #define MEMBER_CHECK_TYPE(value, type, check_type)                        \
 	type value;                                                           \

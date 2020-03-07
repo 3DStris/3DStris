@@ -24,10 +24,10 @@ struct SavedGame {
 	}
 };
 
-using SavedGames = std::vector<SavedGame>;
-
 class Games {
    public:
+	using SavedGames = std::vector<SavedGame>;
+
 	Games();
 
 	void serialize(mpack_writer_t& writer) const;

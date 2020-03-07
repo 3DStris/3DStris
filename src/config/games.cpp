@@ -178,13 +178,13 @@ void Games::push(SavedGame&& game) {
 void Games::save() {
 	LOG_INFO("Saving games");
 
-	s32 mainPrio;
-	svcGetThreadPriority(&mainPrio, CUR_THREAD_HANDLE);
-
 	if (saveThread) {
+		LOG_INFO("Waiting for previous save thread to finish...");
 		joinSaveThread();
 	}
 
+	s32 mainPrio;
+	svcGetThreadPriority(&mainPrio, CUR_THREAD_HANDLE);
 	saveThread = threadCreate(
 		[](void* _this) {
 			char* data;

@@ -63,8 +63,8 @@ void Text::align(const Align mode, const bool bottom) {
 void Text::scale(const float cx, const float max) {
 	setScale({1, 1});
 
-	const float linesScale = std::min((cx - 10) / getWH().x, max);
-	setScale({linesScale, linesScale});
+	const float scale = std::min((cx - 10) / getWH().x, max);
+	setScale({scale, scale});
 }
 
 void Text::setText(sds text) {

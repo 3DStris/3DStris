@@ -1,3 +1,5 @@
+#pragma once
+
 extern "C" {
 #include <c2d/base.h>
 }

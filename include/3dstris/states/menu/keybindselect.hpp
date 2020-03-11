@@ -25,7 +25,7 @@ class KeybindSelect final : public State {
 	Panel tip;
 	Text tipText;
 
-	Button& saveButton;
-	Button& resetButton;
-	Button& cancelButton;
+	Button& save;
+	Button& reset;
+	Button& cancel;
 };

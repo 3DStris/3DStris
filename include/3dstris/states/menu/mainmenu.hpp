@@ -11,17 +11,16 @@ class MainMenu final : public State {
 	void draw(bool bottom) override;
 
    private:
-	Text versionText;
+	Text version;
 
 	C2D_Image icon;
 
 	GUI gui;
 
-	Button& playButton;
-	Button& settingsButton;
-	Button& exitButton;
+	Button& play;
+	Button& settings;
+	Button& exit;
 
-	Button& keybindsButton;
-	Button& gamesButton;
-	Button& languagesButton;
+	Button& games;
+	Button& languages;
 };

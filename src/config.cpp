@@ -1,4 +1,5 @@
 #include <3dstris/config.hpp>
+#include <3dstris/states/menu/settings/base.hpp>
 #include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>
 
@@ -57,6 +58,9 @@ Config::Config() {
 	}
 
 	l10n.loadLanguage(language);
+
+	// Dumb hack
+	BaseSettings::config = *this;
 }
 
 void Config::serialize(mpack_writer_t& writer) const {

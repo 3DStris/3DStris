@@ -8,7 +8,7 @@
 
 class KeybindButton final : public Button {
    public:
-	const static phmap::flat_hash_map<Keybinds::Key, const char*> KEY_TO_GLYPH;
+	static const phmap::flat_hash_map<Keybinds::Key, const char*> KEY_TO_GLYPH;
 
 	KeybindButton(GUI& parent, Pos pos, WH wh, Keybinds::Action action,
 				  Keybinds::Key& toSet);

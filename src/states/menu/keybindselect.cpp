@@ -1,4 +1,4 @@
-#include <3dstris/gui/widgets/keybindbutton.hpp>
+#include <3dstris/gui/widgets/special/keybindbutton.hpp>
 #include <3dstris/states/menu/keybindselect.hpp>
 #include <3dstris/states/menu/mainmenu.hpp>
 
@@ -58,19 +58,19 @@ KeybindSelect::KeybindSelect()
 void KeybindSelect::update(const double dt) {
 	gui.update(dt);
 
-	if (saveButton.pressed()) {
+	if (save.pressed()) {
 		for (const auto& button : buttons) {
 			button.get().save();
 		}
 		game.getKeybinds().all() = binds;
 		game.getKeybinds().save();
 
-		game.setState(make_unique<MainMenu>());
-	} else if (resetButton.pressed()) {
+		game.popState();
+	} else if (reset.pressed()) {
 		for (const auto& button : buttons) {
 			button.get().reset();
 		}
-	} else if (cancelButton.pressed() || hidKeysDown() & KEY_B) {
+	} else if (cancel.pressed() || hidKeysDown() & KEY_B) {
 		game.popState();
 	}
 }

@@ -1,4 +1,4 @@
-#include <3dstris/gui/widgets/languagebutton.hpp>
+#include <3dstris/gui/widgets/special/languagebutton.hpp>
 #include <3dstris/states/menu/languageselect.hpp>
 #include <3dstris/states/menu/mainmenu.hpp>
 

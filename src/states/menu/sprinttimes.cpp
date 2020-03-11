@@ -90,7 +90,8 @@ void SprintTimes::genValues() {
 void SprintTimes::update(const double dt) {
 	gui.update(dt);
 
-	if (backButton.pressed()) {
+	const u32 kDown = hidKeysDown();
+	if (backButton.pressed() || kDown & KEY_B) {
 		game.popState();
 		return;
 	}
@@ -98,8 +99,6 @@ void SprintTimes::update(const double dt) {
 	if (games.empty()) {
 		return;
 	}
-
-	const u32 kDown = hidKeysDown();
 	if (kDown & KEY_DOWN) {
 		if (selected >= games.size() - 1) {
 			selected = 0;

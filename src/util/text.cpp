@@ -3,8 +3,8 @@
 Text::Text(sds text, const Pos pos, const Vector2f scale, const Color& color)
 	: pos(pos),
 	  _scale(scale),
-	  color(color),
-	  textBuffer(C2D_TextBufNew(sdslen(text))) {
+	  textBuffer(C2D_TextBufNew(sdslen(text))),
+	  color(color) {
 	setText(text);
 }
 Text::Text(const char* __restrict text, const Pos pos, const Vector2f scale,
@@ -19,11 +19,11 @@ Text::Text(Text&& other)
 	: pos(other.pos),
 	  _scale(other._scale),
 	  text(other.text),
-	  color(other.color),
+	  textBuffer(other.textBuffer),
 	  textObject(other.textObject),
-	  textBuffer(other.textBuffer) {
-	other.textBuffer = nullptr;
+	  color(other.color) {
 	other.text = nullptr;
+	other.textBuffer = nullptr;
 }
 
 void Text::draw(const float depth) const {
@@ -60,10 +60,10 @@ void Text::align(const Align mode, const bool bottom) {
 	align(mode, Pos{}, WH{}, bottom);
 }
 
-void Text::scale(const float cx, const float max) {
+void Text::scale(const float cw, const float max) {
 	setScale({1, 1});
 
-	const float scale = std::min((cx - 10) / getWH().x, max);
+	const float scale = std::min((cw - 10) / getWH().x, max);
 	setScale({scale, scale});
 }
 

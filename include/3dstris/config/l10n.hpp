@@ -7,7 +7,7 @@
 
 #include <3dstris/util/log.hpp>
 
-class L10n {
+class L10n final {
    public:
 	struct CompareString {
 		bool operator()(const char* a, const char* b) const {
@@ -31,7 +31,7 @@ class L10n {
 		return LANGUAGE_TO_STRING[static_cast<size_t>(language)];
 	}
 	static Language stringToLanguage(const char* __restrict language) {
-		const static phmap::btree_map<const char*, Language, CompareString>
+		static const phmap::btree_map<const char*, Language, CompareString>
 			STRING_TO_LANGUAGE = {{"en", Language::EN}, {"bg", Language::BG},
 								  {"ru", Language::RU}, {"pt", Language::PT},
 								  {"pl", Language::PL}, {"de", Language::DE},

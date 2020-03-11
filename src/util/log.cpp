@@ -25,8 +25,8 @@
 #include <3dstris/version.hpp>
 
 Log::Log() {
-	const static FS_Path HOMEBREW_PATH = fsMakePath(PATH_ASCII, "/3ds/");
-	const static FS_Path GAME_PATH = fsMakePath(PATH_ASCII, "/3ds/3dstris/");
+	static const FS_Path HOMEBREW_PATH = fsMakePath(PATH_ASCII, "/3ds/");
+	static const FS_Path GAME_PATH = fsMakePath(PATH_ASCII, "/3ds/3dstris/");
 	static constexpr auto LOG_PATH = "sdmc:/3ds/3dstris/log.log";
 
 	// Please don't use any of the LOG macros here

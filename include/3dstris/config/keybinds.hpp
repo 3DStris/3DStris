@@ -4,7 +4,7 @@
 #include <mpack/mpack.h>
 #include <parallel_hashmap/phmap.h>
 
-class Keybinds {
+class Keybinds final {
    public:
 	enum class Action {
 		LEFT,
@@ -19,8 +19,8 @@ class Keybinds {
 	using Key = u32;
 	using Binds = phmap::flat_hash_map<Action, Key>;
 
-	const static char* KEYBIND_TO_KEY[];
-	const static Binds DEFAULT_BINDS;
+	static const char* KEYBIND_TO_KEY[];
+	static const Binds DEFAULT_BINDS;
 
 	Keybinds();
 

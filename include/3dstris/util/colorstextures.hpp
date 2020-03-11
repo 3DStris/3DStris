@@ -8,7 +8,7 @@ using Color = u32;
 
 class Textures final {
    public:
-	const static C2D_Image& get(const size_t index) {
+	static const C2D_Image& get(const size_t index) {
 		static Textures textures;
 		return textures.all[index];
 	}
@@ -25,7 +25,7 @@ class Textures final {
 	   public:
 		friend Textures;
 
-		const static Color& get(const size_t index, const bool ghost = false) {
+		static const Color& get(const size_t index, const bool ghost = false) {
 			static DefaultColors defaultTints;
 
 			return ghost ? defaultTints.ghost[index]

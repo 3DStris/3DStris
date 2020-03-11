@@ -5,16 +5,17 @@ SprintSelect::SprintSelect()
 	: State(),
 	  title(game.translate("sprintselect.title")),
 
-	  twentyButton(gui.add<Button>(Pos{BSCREEN_WIDTH / 4 - 50, 40}, WH{100, 50},
+	  twentyButton(gui.add<Button>(Pos(gui.getWidth() / 4 - 50, 40),
+								   WH{100, 50},
 								   game.translate("sprintselect.twenty"))),
-	  fortyButton(gui.add<Button>(Pos{3 * BSCREEN_WIDTH / 4 - 50, 40},
+	  fortyButton(gui.add<Button>(Pos(3 * gui.getWidth() / 4 - 50, 40),
 								  WH{100, 50},
 								  game.translate("sprintselect.forty"))),
 	  customButton(gui.add<Button>(Pos{0, 40 + 50 + 20}, WH{100, 50},
 								   game.translate("sprintselect.custom"),
 								   Button::Flags::HCENTER)),
 
-	  backButton(gui.add<Button>(Pos{0, BSCREEN_HEIGHT - 50}, WH{100, 40},
+	  backButton(gui.add<Button>(Pos(0, gui.getHeight() - 50), WH{100, 40},
 								 game.translate("back"),
 								 Button::Flags::HCENTER)) {
 	title.align(Text::Align::SCREEN_CENTER);

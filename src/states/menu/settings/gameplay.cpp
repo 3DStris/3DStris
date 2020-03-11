@@ -1,6 +1,6 @@
 #include <3dstris/gui/widgets/special/keybindbutton.hpp>
-#include <3dstris/states/menu/keybindselect.hpp>
 #include <3dstris/states/menu/settings/gameplay.hpp>
+#include <3dstris/states/menu/settings/gameplay/keybindselect.hpp>
 #include <3dstris/states/menu/settings/visual.hpp>
 
 GameplaySettings::GameplaySettings()
@@ -13,12 +13,12 @@ GameplaySettings::GameplaySettings()
 	  dropTimerLabel(game.translate("settings.gameplay.droptimer"),
 					 Pos{15, 150 - 35}, {0.5f, 0.5f}),
 
-	  nextTip(gui, Pos(gui.getWidth() - 100, SCREEN_HEIGHT - 25 - 25),
+	  nextTip(gui, Pos(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 25 - 25),
 			  WH{100, 25}),
 	  nextTipText(
 		  sdscatfmt(sdsempty(), "%s %S", KeybindButton::KEY_TO_GLYPH.at(KEY_R),
 					game.translate("settings.visual.title")),
-		  Pos(gui.getWidth() - 100 + 5, 0)),
+		  Pos(SCREEN_WIDTH - 100 + 5, 0)),
 
 	  das(gui.add<IntegerInputField<u16>>(
 		  Pos{15, 35}, WH{BSCREEN_WIDTH - 50 - 115, 25}, "ms")),

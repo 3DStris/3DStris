@@ -21,13 +21,13 @@ MainMenu::MainMenu()
 	  settings(gui.add<Button>(Pos{0, 100}, WH{100, 50},
 							   game.translate("mainmenu.settings"),
 							   Button::Flags::HCENTER)),
-	  exit(gui.add<Button>(Pos(0, gui.getWidth() - 50), WH{100, 40},
+	  exit(gui.add<Button>(Pos(0, gui.getHeight() - 50), WH{100, 40},
 						   game.translate("exit"), Button::Flags::HCENTER)),
 
-	  games(gui.add<Button>(Pos(10, gui.getWidth() - 40 - 10), WH{75, 40},
+	  games(gui.add<Button>(Pos(10, gui.getHeight() - 40 - 10), WH{75, 40},
 							game.translate("mainmenu.games"))),
 	  languages(gui.add<Button>(
-		  Pos(gui.getWidth() - 80 - 10, gui.getWidth() - 40 - 10), WH{75, 40},
+		  Pos(gui.getWidth() - 80 - 10, gui.getHeight() - 40 - 10), WH{75, 40},
 		  game.translate("mainmenu.languages"))) {
 	version.setPos({3, SCREEN_HEIGHT - version.getWH().y - 4});
 }

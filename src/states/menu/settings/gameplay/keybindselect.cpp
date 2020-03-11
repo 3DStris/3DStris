@@ -1,27 +1,27 @@
 #include <3dstris/gui/widgets/special/keybindbutton.hpp>
-#include <3dstris/states/menu/keybindselect.hpp>
 #include <3dstris/states/menu/mainmenu.hpp>
+#include <3dstris/states/menu/settings/gameplay/keybindselect.hpp>
 
 KeybindSelect::KeybindSelect()
 	: State(),
-	  selectText(game.translate("keybindselect.title")),
+	  title(game.translate("keybindselect.title")),
 
 	  binds(game.getKeybinds().all()),
 
-	  tip(gui, {0, SCREEN_HEIGHT - 25}, {SCREEN_WIDTH, 25}, false),
+	  tip(gui, Pos{0, SCREEN_HEIGHT - 25}, WH{SCREEN_WIDTH, 25}, false),
 	  tipText(game.translate("keybindselect.tip")),
 
-	  saveButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 50}, WH{75, 40},
-								 game.translate("save"))),
-	  resetButton(
-		  gui.add<Button>(Pos{(BSCREEN_WIDTH - 115) / 2, BSCREEN_HEIGHT - 50},
+	  save(gui.add<Button>(Pos(10, gui.getWidth() - 50), WH{75, 40},
+						   game.translate("save"))),
+	  reset(
+		  gui.add<Button>(Pos((gui.getWidth() - 115) / 2, gui.getHeight() - 50),
 						  WH{115, 40}, game.translate("reset"))),
-	  cancelButton(gui.add<Button>(Pos{BSCREEN_WIDTH - 90, BSCREEN_HEIGHT - 50},
-								   WH{80, 40}, game.translate("cancel"))) {
+	  cancel(gui.add<Button>(Pos(gui.getWidth() - 90, gui.getHeight() - 50),
+							 WH{80, 40}, game.translate("cancel"))) {
 	tipText.scale(tip.getWH().x, 0.5f);
 	tipText.align(Text::Align::CENTER, tip.getPos(), tip.getWH());
 
-	selectText.align(Text::Align::SCREEN_CENTER);
+	title.align(Text::Align::SCREEN_CENTER);
 
 	constexpr float BUTTON_WIDTH = 80;
 	constexpr float BUTTON_HEIGHT = 25;
@@ -45,8 +45,8 @@ KeybindSelect::KeybindSelect()
 		labels.push_back(std::move(label));
 
 		y += BUTTON_HEIGHT + 10 + textH;
-		if (y + BUTTON_HEIGHT + 35 > SCREEN_HEIGHT ||
-			y + BUTTON_HEIGHT + 35 + textH > SCREEN_HEIGHT) {
+		if (y + BUTTON_HEIGHT + 35 > gui.getHeight() ||
+			y + BUTTON_HEIGHT + 35 + textH > gui.getHeight()) {
 			y = 15;
 
 			constexpr float X_OFFSET = BUTTON_WIDTH + 10;
@@ -82,7 +82,7 @@ void KeybindSelect::draw(const bool bottom) {
 		tip.draw();
 		tipText.draw();
 
-		selectText.draw();
+		title.draw();
 	} else {
 		C2D_TargetClear(game.getBottom(), gui.getTheme().background);
 

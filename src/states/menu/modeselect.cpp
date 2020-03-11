@@ -6,13 +6,13 @@ ModeSelect::ModeSelect()
 	: State(),
 	  title(game.translate("modeselect.title")),
 
-	  normalButton(gui.add<Button>(Pos{BSCREEN_WIDTH / 4 - 50, 0}, WH{100, 50},
+	  normalButton(gui.add<Button>(Pos(gui.getWidth() / 4 - 50, 0), WH{100, 50},
 								   game.translate("modeselect.normal"),
 								   Button::Flags::VCENTER)),
 	  sprintButton(gui.add<Button>(
-		  Pos{3 * BSCREEN_WIDTH / 4 - 50, 0}, WH{100, 50},
+		  Pos(3 * gui.getWidth() / 4 - 50, 0), WH{100, 50},
 		  game.translate("modeselect.sprint"), Button::Flags::VCENTER)),
-	  backButton(gui.add<Button>(Pos{0, BSCREEN_HEIGHT - 50}, WH{100, 40},
+	  backButton(gui.add<Button>(Pos(0, gui.getHeight() - 50), WH{100, 40},
 								 game.translate("back"),
 								 Button::Flags::HCENTER)) {
 	title.align(Text::Align::SCREEN_CENTER);

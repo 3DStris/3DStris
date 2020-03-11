@@ -6,7 +6,7 @@ SprintTimes::SprintTimes()
 
 	  panel(gui, Pos{TABLE_X, TABLE_Y}, WH{TABLE_W, TABLE_H}, true),
 
-	  backButton(gui.add<Button>(Pos{0, BSCREEN_HEIGHT - 50}, WH{100, 40},
+	  backButton(gui.add<Button>(Pos(0, gui.getHeight() - 50), WH{100, 40},
 								 game.translate("back"),
 								 Button::Flags::HCENTER)),
 

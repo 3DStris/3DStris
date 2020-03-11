@@ -13,7 +13,7 @@ class KeybindSelect final : public State {
 	void draw(bool bottom) override;
 
    private:
-	Text selectText;
+	Text title;
 
 	std::vector<std::reference_wrapper<KeybindButton>> buttons;
 	std::vector<Text> labels;

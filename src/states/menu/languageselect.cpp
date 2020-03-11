@@ -6,10 +6,11 @@ LanguageSelect::LanguageSelect()
 	: State(),
 	  selectText(game.translate("languageselect.select")),
 
-	  saveButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 50}, WH{75, 40},
+	  saveButton(gui.add<Button>(Pos{10, gui.getHeight() - 50.0f}, WH{75, 40},
 								 game.translate("save"))),
-	  cancelButton(gui.add<Button>(Pos{BSCREEN_WIDTH - 90, BSCREEN_HEIGHT - 50},
-								   WH{80, 40}, game.translate("cancel"))),
+	  cancelButton(
+		  gui.add<Button>(Pos{gui.getWidth() - 90.0f, gui.getHeight() - 50.0f},
+						  WH{80, 40}, game.translate("cancel"))),
 	  language(game.getConfig().language) {
 	selectText.align(Text::Align::SCREEN_CENTER);
 

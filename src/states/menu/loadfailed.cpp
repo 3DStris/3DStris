@@ -3,10 +3,10 @@
 LoadFailed::LoadFailed(const FailType type)
 	: State(),
 	  failedText(game.translate(FAILTYPE_TO_KEY[static_cast<size_t>(type)])),
-	  okButton(gui.add<Button>(Pos{},
-							   WH{SCREEN_WIDTH - 100, SCREEN_HEIGHT - 100},
-							   game.translate("ok"), Button::Flags::CENTER)) {
-	failedText.scale(SCREEN_WIDTH - 10, 0.6f);
+	  okButton(gui.add<Button>(
+		  Pos{}, WH{gui.getWidth() - 100.0f, gui.getWidth() - 100.0f},
+		  game.translate("ok"), Button::Flags::CENTER)) {
+	failedText.scale(gui.getWidth() - 10.0f, 0.6f);
 	failedText.align(Text::Align::SCREEN_CENTER);
 }
 

@@ -11,8 +11,10 @@ VisualSettings::VisualSettings()
 		  Pos{6, 0}),
 
 	  useTextures(gui.add<ToggleButton>(
-		  Pos(gui.getWidth() - 20 - 115, 35), WH{115, 30},
-		  game.translate("settings.visual.usetextures"), config.useTextures)) {
+		  Pos(10 + (gui.getWidth() - 20 - 115) / 2,
+			  10 + (gui.getHeight() - 80 - 30) / 2),
+		  WH{115, 30}, game.translate("settings.visual.usetextures"),
+		  config.useTextures)) {
 	backTipText.scale(backTip.getWH().x, 0.65f);
 	backTipText.align(Text::Align::VCENTER, backTip.getPos(), backTip.getWH());
 }

@@ -21,7 +21,7 @@ class SprintResults final : public State {
 
 	GUI gui;
 
-	Button& restartButton;
-	Button& timesButton;
-	Button& menuButton;
+	Button& restart;
+	Button& times;
+	Button& menu;
 };

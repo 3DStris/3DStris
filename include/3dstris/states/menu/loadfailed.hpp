@@ -15,9 +15,9 @@ class LoadFailed final : public State {
    private:
 	static const char* FAILTYPE_TO_KEY[];
 
-	Text failedText;
+	Text reason;
 
 	GUI gui;
 
-	Button& okButton;
+	Button& ok;
 };

@@ -15,9 +15,9 @@ class SprintSelect final : public State {
 
 	GUI gui;
 
-	Button& twentyButton;
-	Button& fortyButton;
-	Button& customButton;
+	Button& twenty;
+	Button& forty;
+	Button& custom;
 
-	Button& backButton;
+	Button& back;
 };

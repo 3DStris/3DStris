@@ -11,11 +11,11 @@ class LanguageSelect final : public State {
 	void draw(bool bottom) override;
 
    private:
-	Text selectText;
+	Text select;
 
 	GUI gui;
 
-	Button& saveButton;
-	Button& cancelButton;
+	Button& save;
+	Button& cancel;
 	L10n::Language language;
 };

@@ -2,18 +2,18 @@
 
 LoadFailed::LoadFailed(const FailType type)
 	: State(),
-	  failedText(game.translate(FAILTYPE_TO_KEY[static_cast<size_t>(type)])),
-	  okButton(gui.add<Button>(
-		  Pos{}, WH{gui.getWidth() - 100.0f, gui.getWidth() - 100.0f},
-		  game.translate("ok"), Button::Flags::CENTER)) {
-	failedText.scale(gui.getWidth() - 10.0f, 0.6f);
-	failedText.align(Text::Align::SCREEN_CENTER);
+	  reason(game.translate(FAILTYPE_TO_KEY[static_cast<size_t>(type)])),
+	  ok(gui.add<Button>(Pos{},
+						 WH{gui.getWidth() - 100.0f, gui.getWidth() - 100.0f},
+						 game.translate("ok"), Button::Flags::CENTER)) {
+	reason.scale(gui.getWidth() - 10.0f, 0.6f);
+	reason.align(Text::Align::SCREEN_CENTER);
 }
 
 void LoadFailed::update(const double dt) {
 	gui.update(dt);
 
-	if (okButton.pressed()) {
+	if (ok.pressed()) {
 		game.popState();
 	}
 }
@@ -22,7 +22,7 @@ void LoadFailed::draw(const bool bottom) {
 	if (!bottom) {
 		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 
-		failedText.draw();
+		reason.draw();
 	} else {
 		C2D_TargetClear(game.getBottom(), gui.getTheme().background);
 

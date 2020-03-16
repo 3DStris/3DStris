@@ -16,10 +16,10 @@ class Results final : public State {
 
 	Ingame* parent;
 
-	Text deadText;
+	Text dead;
 
 	GUI gui;
 
-	Button& restartButton;
-	Button& menuButton;
+	Button& restart;
+	Button& menu;
 };

@@ -30,7 +30,7 @@ class SprintTimes final : public State {
 
 	GUI gui;
 	Panel panel;
-	Button& backButton;
+	Button& back;
 
 	static constexpr u16 TIME_W = TABLE_W * 2 / 6;
 	static constexpr u16 DATE_W = (TABLE_W - TIME_W) * 2 / 3;
@@ -46,8 +46,8 @@ class SprintTimes final : public State {
 	std::vector<Text> values;
 	Games::SavedGames games;
 
-	Text titleText;
-	Text noGamesText;
-	Text infoText;
+	Text title;
+	Text noGames;
+	Text page;
 	Text selectedText;
 };

@@ -15,11 +15,11 @@ class Paused final : public State {
 
 	Ingame* parent;
 
-	Text pausedText;
+	Text title;
 
 	GUI gui;
 
-	Button& restartButton;
-	Button& unpauseButton;
-	Button& menuButton;
+	Button& restart;
+	Button& unpause;
+	Button& menu;
 };

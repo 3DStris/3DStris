@@ -3,52 +3,12 @@
 extern "C" {
 #include <c2d/base.h>
 }
-#include <rapidjson/document.h>
-#include <sds.h>
 
 using Color = uint32_t;
 
 struct Theme final {
 	static constexpr Color WHITE = C2D_Color32(255, 255, 255, 255);
 	static constexpr Color BLACK = C2D_Color32(0, 0, 0, 255);
-
-	Theme(sds id, sds name) : format(id, name) {}
-	Theme(const rapidjson::Document& json) { parse(json); }
-
-	struct Format {
-		Format() : id(sdsempty()), name(sdsempty()) {}
-		Format(sds id, sds name) : id(id), name(name) {}
-
-		Format(Format&& other) : Format(other.id, other.name) {
-			other.id = nullptr;
-			other.name = nullptr;
-		}
-
-		~Format() {
-			sdsfree(id);
-			sdsfree(name);
-		}
-		void operator=(const Format& other) {
-			sdsfree(id);
-			sdsfree(name);
-
-			id = sdsdup(other.id);
-			name = sdsdup(other.name);
-		}
-		void operator=(Format&& other) {
-			sdsfree(id);
-			sdsfree(name);
-
-			id = other.id;
-			name = other.name;
-
-			other.id = nullptr;
-			other.name = nullptr;
-		}
-
-		sds id;
-		sds name;
-	} format;
 
 	Color background;
 	Color text;
@@ -66,13 +26,8 @@ struct Theme final {
 	Color board;
 	Color grid;
 
-	void parse(const rapidjson::Document& json);
-
 	static Theme night() {
-		static constexpr auto id = "night";
-		static constexpr auto name = "Night";
-
-		Theme night(sdsnewlen(id, 5), sdsnewlen(name, 5));
+		Theme night;
 		night.background = C2D_Color32(20, 21, 31, 255);
 		night.text = C2D_Color32(230, 230, 230, 255);
 

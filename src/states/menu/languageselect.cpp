@@ -1,17 +1,18 @@
-#include <3dstris/gui/widgets/languagebutton.hpp>
+#include <3dstris/gui/widgets/special/languagebutton.hpp>
 #include <3dstris/states/menu/languageselect.hpp>
 #include <3dstris/states/menu/mainmenu.hpp>
 
 LanguageSelect::LanguageSelect()
 	: State(),
-	  selectText(game.translate("languageselect.select")),
+	  select(game.translate("languageselect.select")),
 
-	  saveButton(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 50}, WH{75, 40},
-								 game.translate("save"))),
-	  cancelButton(gui.add<Button>(Pos{BSCREEN_WIDTH - 90, BSCREEN_HEIGHT - 50},
-								   WH{80, 40}, game.translate("cancel"))),
+	  save(gui.add<Button>(Pos{10, gui.getHeight() - 50.0f}, WH{75, 40},
+						   game.translate("save"))),
+	  cancel(
+		  gui.add<Button>(Pos{gui.getWidth() - 90.0f, gui.getHeight() - 50.0f},
+						  WH{80, 40}, game.translate("cancel"))),
 	  language(game.getConfig().language) {
-	selectText.align(Text::Align::SCREEN_CENTER);
+	select.align(Text::Align::SCREEN_CENTER);
 
 	float y = 10;
 	float x = 10;
@@ -29,7 +30,7 @@ LanguageSelect::LanguageSelect()
 void LanguageSelect::update(const double dt) {
 	gui.update(dt);
 
-	if (saveButton.pressed()) {
+	if (save.pressed()) {
 		if (language != game.getConfig().language) {
 			game.getL10n().loadLanguage(language);
 
@@ -42,7 +43,7 @@ void LanguageSelect::update(const double dt) {
 		return;
 	}
 
-	if (cancelButton.pressed() || hidKeysUp() & KEY_B) {
+	if (cancel.pressed() || hidKeysUp() & KEY_B) {
 		game.popState();
 	}
 }
@@ -51,7 +52,7 @@ void LanguageSelect::draw(const bool bottom) {
 	if (!bottom) {
 		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 
-		selectText.draw();
+		select.draw();
 	} else {
 		C2D_TargetClear(game.getBottom(), gui.getTheme().background);
 

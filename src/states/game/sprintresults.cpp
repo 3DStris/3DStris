@@ -9,15 +9,14 @@ SprintResults::SprintResults(Ingame* parent, SavedGame&& saved)
 	  timeFormat(game.translate("results.sprint.time")),
 	  timeText(sdscatprintf(sdsempty(), timeFormat, saved.time)),
 
-	  restartButton(gui.add<Button>(Pos{}, WH{150, 60},
-									game.translate("results.restart"),
-									Button::Flags::CENTER)),
-	  timesButton(gui.add<Button>(Pos{0, 15}, WH{80, 40},
-								  game.translate("results.sprint.times"),
-								  Button::Flags::HCENTER)),
-	  menuButton(gui.add<Button>(Pos{0, BSCREEN_HEIGHT - 45 - 10}, WH{100, 45},
-								 game.translate("menu"),
-								 Button::Flags::HCENTER)) {
+	  restart(gui.add<Button>(Pos{}, WH{150, 60},
+							  game.translate("results.restart"),
+							  Button::Flags::CENTER)),
+	  times(gui.add<Button>(Pos{0, 15}, WH{80, 40},
+							game.translate("results.sprint.times"),
+							Button::Flags::HCENTER)),
+	  menu(gui.add<Button>(Pos(0, gui.getHeight() - 45 - 10), WH{100, 45},
+						   game.translate("menu"), Button::Flags::HCENTER)) {
 	timeText.setScale({1.3f, 1.3f});
 	timeText.align(Text::Align::SCREEN_CENTER);
 
@@ -32,12 +31,12 @@ SprintResults::~SprintResults() {
 void SprintResults::update(const double dt) {
 	gui.update(dt);
 
-	if (timesButton.pressed()) {
+	if (times.pressed()) {
 		game.pushState(make_unique<SprintTimes>());
-	} else if (restartButton.pressed()) {
+	} else if (restart.pressed()) {
 		parent->reset();
 		game.popState(false, true);
-	} else if (menuButton.pressed() || hidKeysDown() & KEY_B) {
+	} else if (menu.pressed() || hidKeysDown() & KEY_B) {
 		game.setState(make_unique<MainMenu>());
 	}
 }

@@ -31,7 +31,6 @@
 
 	"mainmenu.play": "Play",
 	"mainmenu.settings": "Settings",
-	"mainmenu.keybinds": "Keybinds",
 	"mainmenu.games": "Games",
 	"mainmenu.languages": "Language",
 
@@ -44,12 +43,14 @@
 	"sprintselect.forty": "40L",
 	"sprintselect.custom": "Custom",
 
-	"settings.title": "Settings",
 	"settings.tip": "Use the bottom screen to change settings. Press \uE001 to cancel.",
-	"settings.das": "DAS",
-	"settings.arr": "ARR",
-	"settings.droptimer": "Drop timer",
-	"settings.usetextures": "Textures",
+	"settings.gameplay.title": "Gameplay",
+	"settings.gameplay.das": "DAS",
+	"settings.gameplay.arr": "ARR",
+	"settings.gameplay.droptimer": "Drop timer",
+	"settings.gameplay.keybinds": "Keybinds",
+	"settings.visual.title": "Visual",
+	"settings.visual.usetextures": "Textures",
 
 	"loadfailed.config": "Failed to load config; your settings have been reset.",
 	"loadfailed.keybinds": "Failed to load keybinds; your bindings have been reset.",

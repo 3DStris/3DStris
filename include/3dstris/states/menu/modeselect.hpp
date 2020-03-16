@@ -15,7 +15,7 @@ class ModeSelect final : public State {
 
 	GUI gui;
 
-	Button& normalButton;
-	Button& sprintButton;
-	Button& backButton;
+	Button& normal;
+	Button& sprint;
+	Button& back;
 };

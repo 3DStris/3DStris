@@ -39,7 +39,6 @@ void Ingame::reset() {
 
 void Ingame::update(const double dt) {
 	const u32 kDown = hidKeysDown();
-	const u32 kHeld = hidKeysHeld();
 	if (kDown & KEY_START) {
 		game.pushState(make_unique<Paused>(this));
 		return;
@@ -48,7 +47,7 @@ void Ingame::update(const double dt) {
 	assert(hold != PieceType::INVALID);
 	assert(piece.getType() != PieceType::INVALID);
 
-	piece.update(dt, kDown, kHeld);
+	piece.update(dt, kDown);
 
 	if (piece.hasSet()) {
 		hasHeld = false;

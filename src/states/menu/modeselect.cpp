@@ -6,25 +6,24 @@ ModeSelect::ModeSelect()
 	: State(),
 	  title(game.translate("modeselect.title")),
 
-	  normalButton(gui.add<Button>(Pos{BSCREEN_WIDTH / 4 - 50, 0}, WH{100, 50},
-								   game.translate("modeselect.normal"),
-								   Button::Flags::VCENTER)),
-	  sprintButton(gui.add<Button>(
-		  Pos{3 * BSCREEN_WIDTH / 4 - 50, 0}, WH{100, 50},
-		  game.translate("modeselect.sprint"), Button::Flags::VCENTER)),
-	  backButton(gui.add<Button>(Pos{0, BSCREEN_HEIGHT - 50}, WH{100, 40},
-								 game.translate("back"),
-								 Button::Flags::HCENTER)) {
+	  normal(gui.add<Button>(Pos(gui.getWidth() / 4 - 50, 0), WH{100, 50},
+							 game.translate("modeselect.normal"),
+							 Button::Flags::VCENTER)),
+	  sprint(gui.add<Button>(Pos(3 * gui.getWidth() / 4 - 50, 0), WH{100, 50},
+							 game.translate("modeselect.sprint"),
+							 Button::Flags::VCENTER)),
+	  back(gui.add<Button>(Pos(0, gui.getHeight() - 50), WH{100, 40},
+						   game.translate("back"), Button::Flags::HCENTER)) {
 	title.align(Text::Align::SCREEN_CENTER);
 }
 void ModeSelect::update(const double dt) {
 	gui.update(dt);
 
-	if (normalButton.pressed()) {
+	if (normal.pressed()) {
 		game.setState(make_unique<Playing>());
-	} else if (sprintButton.pressed()) {
+	} else if (sprint.pressed()) {
 		game.pushState(make_unique<SprintSelect>());
-	} else if (backButton.pressed() || hidKeysDown() & KEY_B) {
+	} else if (back.pressed() || hidKeysDown() & KEY_B) {
 		game.popState();
 	}
 }

@@ -1,5 +1,5 @@
 #include <3dstris/game.hpp>
-#include <3dstris/gui/widgets/keybindbutton.hpp>
+#include <3dstris/gui/widgets/special/keybindbutton.hpp>
 
 #define ALL(direction)           \
 	case KEY_D##direction:       \

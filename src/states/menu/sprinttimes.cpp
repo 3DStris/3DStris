@@ -6,31 +6,28 @@ SprintTimes::SprintTimes()
 
 	  panel(gui, Pos{TABLE_X, TABLE_Y}, WH{TABLE_W, TABLE_H}, true),
 
-	  backButton(gui.add<Button>(Pos{0, BSCREEN_HEIGHT - 50}, WH{100, 40},
-								 game.translate("back"),
-								 Button::Flags::HCENTER)),
+	  back(gui.add<Button>(Pos(0, gui.getHeight() - 50), WH{100, 40},
+						   game.translate("back"), Button::Flags::HCENTER)),
 
 	  timeLabel(game.translate("sprint.times.table.time")),
 	  dateLabel(game.translate("sprint.times.table.date")),
 	  linesLabel(game.translate("sprint.times.table.lines")),
 
-	  titleText(game.translate("results.sprint.times"), Pos{0, 5}),
-	  noGamesText(game.translate("sprint.times.nogames"), Pos{},
-				  {0.75f, 0.75f}),
-	  infoText(sdsempty(), Pos{10, 10}, {0.8f, 0.8f}),
+	  title(game.translate("results.sprint.times"), Pos{0, 5}),
+	  noGames(game.translate("sprint.times.nogames"), Pos{}, {0.75f, 0.75f}),
+	  page(sdsempty(), Pos{10, 10}, {0.8f, 0.8f}),
 	  selectedText(sdsempty(), Pos{0, SCREEN_HEIGHT - TABLE_Y + 10},
 				   {0.65f, 0.65f}) {
 	// Games::all joins the load thread
 	if (game.getGames().all().empty()) {
-		noGamesText.align(Text::Align::SCREEN_CENTER);
+		noGames.align(Text::Align::SCREEN_CENTER);
 		return;
 	}
 
 	games = game.getGames().all();
 	std::sort(games.begin(), games.end(), std::less<SavedGame>());
 
-	titleText.align(Text::Align::HCENTER, Pos{},
-					WH{SCREEN_WIDTH, SCREEN_HEIGHT});
+	title.align(Text::Align::HCENTER, Pos{}, WH{SCREEN_WIDTH, SCREEN_HEIGHT});
 
 	timeLabel.scale(TIME_W, 1.0f);
 	timeLabel.align(Text::Align::CENTER, Pos{TABLE_X, TABLE_Y},
@@ -90,7 +87,8 @@ void SprintTimes::genValues() {
 void SprintTimes::update(const double dt) {
 	gui.update(dt);
 
-	if (backButton.pressed()) {
+	const u32 kDown = hidKeysDown();
+	if (back.pressed() || kDown & KEY_B) {
 		game.popState();
 		return;
 	}
@@ -98,8 +96,6 @@ void SprintTimes::update(const double dt) {
 	if (games.empty()) {
 		return;
 	}
-
-	const u32 kDown = hidKeysDown();
 	if (kDown & KEY_DOWN) {
 		if (selected >= games.size() - 1) {
 			selected = 0;
@@ -140,11 +136,11 @@ void SprintTimes::draw(const bool bottom) {
 		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 
 		if (games.empty()) {
-			noGamesText.draw();
+			noGames.draw();
 			return;
 		}
 
-		titleText.draw();
+		title.draw();
 
 		panel.draw();
 		for (u16 i = 0; i < CELLS; ++i) {
@@ -173,7 +169,7 @@ void SprintTimes::draw(const bool bottom) {
 		C2D_TargetClear(game.getBottom(), gui.getTheme().background);
 
 		if (!games.empty()) {
-			infoText.draw();
+			page.draw();
 		}
 		gui.draw();
 	}
@@ -189,8 +185,8 @@ void SprintTimes::updateSelectedText() {
 void SprintTimes::updateInfoText(const SavedGame& saved) {
 	char date[60];
 	saved.dateString(date, 60);
-	infoText.setText(sdscatprintf(sdsempty(), infoFormat, saved.lines,
-								  saved.time, saved.pps, date));
+	page.setText(sdscatprintf(sdsempty(), infoFormat, saved.lines, saved.time,
+							  saved.pps, date));
 }
 
 // Thanks, C++11!

@@ -28,7 +28,7 @@ class Text {
 	void align(Align mode, Pos cpos, WH cwh, bool bottom = false);
 	void align(Align mode, bool bottom = false);
 
-	void scale(float cx, float max);
+	void scale(float cw, float max);
 
 	void setText(sds text);
 	sds getText() const noexcept;
@@ -56,9 +56,8 @@ class Text {
 	Vector2f _scale;
 
 	sds text = nullptr;
+	C2D_TextBuf textBuffer;
+	C2D_Text textObject;
 
 	const Color& color;
-
-	C2D_Text textObject;
-	C2D_TextBuf textBuffer;
 };

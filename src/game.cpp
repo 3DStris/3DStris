@@ -7,6 +7,8 @@
 Game::Game()
 	: imageSheet(C2D_SpriteSheetLoad("romfs:/gfx/images.t3x")),
 
+	  config(Config::get({})),
+
 	  top(C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT)),
 	  bottom(C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT)) {
 	states.reserve(1);

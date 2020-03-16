@@ -24,7 +24,7 @@ struct SavedGame {
 	}
 };
 
-class Games {
+class Games final {
    public:
 	using SavedGames = std::vector<SavedGame>;
 

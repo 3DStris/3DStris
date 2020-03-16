@@ -1,11 +1,12 @@
+#pragma once
+
 extern "C" {
 #include <c2d/base.h>
 }
-#include <cinttypes>
 
 using Color = uint32_t;
 
-struct Theme {
+struct Theme final {
 	static constexpr Color WHITE = C2D_Color32(255, 255, 255, 255);
 	static constexpr Color BLACK = C2D_Color32(0, 0, 0, 255);
 
@@ -26,7 +27,7 @@ struct Theme {
 	Color grid;
 
 	static Theme night() {
-		static Theme night;
+		Theme night;
 		night.background = C2D_Color32(20, 21, 31, 255);
 		night.text = C2D_Color32(230, 230, 230, 255);
 

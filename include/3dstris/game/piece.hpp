@@ -29,7 +29,7 @@ class Piece {
 	bool collides(int offX, int offY) const;
 	bool hasSet() const;
 
-	void update(double dt, u32 kDown, u32 kHeld);
+	void update(double dt, u32 kDown);
 
 	PieceType getType();
 

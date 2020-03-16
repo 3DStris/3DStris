@@ -200,7 +200,9 @@ void Piece::rotate(const bool ccw) {
 	rotation = prevRotation;
 }
 
-void Piece::update(const double dt, const u32 kDown, const u32 kHeld) {
+void Piece::update(const double dt, const u32 kDown) {
+	const u32 kHeld = hidKeysHeld();
+
 	fallTimer += dt;
 
 	const bool softDropHeld =

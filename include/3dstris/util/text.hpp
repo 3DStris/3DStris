@@ -43,7 +43,6 @@ class Text {
 
 	WH getWH() const;
 
-	void setColor(Color color);
 	Color getColor() const noexcept;
 
 	void setScaleX(float scale) noexcept;

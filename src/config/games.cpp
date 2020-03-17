@@ -1,6 +1,3 @@
-#include <rapidjson/document.h>
-#include <rapidjson/filereadstream.h>
-
 #include <3dstris/config/games.hpp>
 #include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>
@@ -37,59 +34,10 @@
 
 constexpr u8 DEFAULT_LINES = 20;
 
-static bool validateJson(const rapidjson::Document& doc) {
-	return !doc.HasParseError() && doc.IsArray();
-}
-
-static bool validateGame(
-	const rapidjson::GenericValue<rapidjson::UTF8<char>>& game) {
-	return game.FindMember("time") != game.MemberEnd() &&
-		   game.FindMember("date") != game.MemberEnd() &&
-		   game.FindMember("pps") != game.MemberEnd();
-}
-
 Games::Games() noexcept {
-	static constexpr auto GAMES_JSON_PATH = "sdmc:/3ds/3dstris/games.json";
-
 	LOG_INFO("Loading games");
 
-	if (exists(GAMES_JSON_PATH) && !exists(GAMES_PATH)) {
-		LOG_INFO(
-			"Found games.json but not games.mp; loading from JSON, saving as "
-			"MP");
-
-		FILE* file = fopen(GAMES_JSON_PATH, "r");
-
-		char readBuffer[1024];
-		rapidjson::FileReadStream fileStream(file, readBuffer,
-											 sizeof readBuffer);
-
-		rapidjson::Document document;
-		document.ParseStream(fileStream);
-
-		fclose(file);
-
-		if (!validateJson(document)) {
-			LOG_ERROR("Failed to load games");
-			save();
-			_failed = true;
-
-			return;
-		}
-		LOG_DEBUG("Reserving space for %u games", document.Size());
-		games.reserve(document.Size());
-
-		for (const auto& object : document.GetArray()) {
-			if (validateGame(object)) {
-				games.push_back({object["time"].GetDouble(),
-								 object["pps"].GetDouble(),
-								 object["date"].GetInt64(), DEFAULT_LINES});
-			}
-		}
-
-		save();
-		return;
-	} else if (!exists(GAMES_PATH)) {
+	if (!exists(GAMES_PATH)) {
 		LOG_INFO("Creating games file");
 		save();
 		return;

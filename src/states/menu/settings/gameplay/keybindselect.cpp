@@ -11,7 +11,7 @@ KeybindSelect::KeybindSelect()
 	  tip(gui, Pos{0, SCREEN_HEIGHT - 25}, WH{SCREEN_WIDTH, 25}, false),
 	  tipText(game.translate("keybindselect.tip")),
 
-	  save(gui.add<Button>(Pos(10, gui.getWidth() - 50), WH{75, 40},
+	  save(gui.add<Button>(Pos(10, gui.getHeight() - 50), WH{75, 40},
 						   game.translate("save"))),
 	  reset(
 		  gui.add<Button>(Pos((gui.getWidth() - 115) / 2, gui.getHeight() - 50),

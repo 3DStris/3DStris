@@ -8,10 +8,10 @@ Results::Results(Ingame* parent)
 
 	  dead(game.translate("results.dead")),
 
-	  restart(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT / 3.0f - 10}, WH{150, 60},
+	  restart(gui.add<Button>(Pos{-1, gui.getHeight() / 3.0f - 10}, WH{150, 60},
 							  game.translate("results.restart"),
 							  Button::Flags::HCENTER)),
-	  menu(gui.add<Button>(Pos{-1, BSCREEN_HEIGHT - 45 - 10}, WH{100, 45},
+	  menu(gui.add<Button>(Pos(-1, gui.getHeight() - 45 - 10), WH{100, 45},
 						   game.translate("menu"), Button::Flags::HCENTER)) {
 	dead.setScale({2, 2});
 	dead.align(Text::Align::SCREEN_CENTER);

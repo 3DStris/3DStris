@@ -12,7 +12,7 @@ BaseSettings::BaseSettings(const char* __restrict titleKey)
 	  panel(gui.add<Panel>(Pos{10, 10},
 						   WH(gui.getWidth() - 20, gui.getHeight() - 80))),
 
-	  save(gui.add<Button>(Pos{10, BSCREEN_HEIGHT - 50}, WH{75, 40},
+	  save(gui.add<Button>(Pos(10, gui.getHeight() - 50), WH{75, 40},
 						   game.translate("save"))),
 	  cancel(gui.add<Button>(Pos(gui.getWidth() - 90, gui.getHeight() - 50),
 							 WH{80, 40}, game.translate("cancel"))) {

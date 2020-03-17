@@ -34,7 +34,7 @@ Textures::DefaultColors::DefaultColors()
 			  COLOR(L, 239, 149, 53), COLOR(J, 25, 131, 191),
 			  COLOR(S, 102, 198, 92), COLOR(T, 180, 81, 172),
 			  COLOR(Z, 239, 98, 77)}) {
-	for (size_t i = 0; i < normal.size(); i++) {
+	for (size_t i = 0; i < normal.size(); ++i) {
 		ghost[i] = setAlpha(normal[i], 100);
 	}
 }

@@ -21,7 +21,7 @@ GameplaySettings::GameplaySettings()
 		  Pos(SCREEN_WIDTH - 100 + 5, 0)),
 
 	  das(gui.add<IntegerInputField<u16>>(
-		  Pos{15, 35}, WH{BSCREEN_WIDTH - 50 - 115, 25}, "ms")),
+		  Pos{15, 35}, WH(gui.getWidth() - 50 - 115, 25), "ms")),
 	  arr(gui.add<IntegerInputField<u16>>(Pos{15, 85},
 										  WH(gui.getWidth() - 30, 25), "ms")),
 	  dropTimer(gui.add<IntegerInputField<u16>>(

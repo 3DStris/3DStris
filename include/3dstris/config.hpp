@@ -14,21 +14,10 @@ struct BaseConfig {
 	Theme theme = Theme::night();
 };
 
-// PassKey idiom
-// This should probably be moved out of here..
-template <typename T>
-class Key {
-	friend T;
-	Key() {}
-	Key(const Key&) {}
-};
-
 class Config final : public BaseConfig {
    public:
-	static Config& get(Key<class Game>) {
-		static Config config;
-		return config;
-	}
+	Config();
+	~Config();
 
 	void operator=(BaseConfig& other) {
 		das = other.das;
@@ -54,8 +43,6 @@ class Config final : public BaseConfig {
 	bool failed() const noexcept;
 
    private:
-	Config();
-
 	static constexpr auto CONFIG_PATH = "sdmc:/3ds/3dstris/config.mp";
 
 	Games games;

@@ -32,7 +32,7 @@ void LanguageSelect::update(const double dt) {
 
 	if (save.pressed()) {
 		if (language != game.getConfig().language) {
-			game.getL10n().loadLanguage(language);
+			game.loadLanguage(language);
 
 			auto& config = game.getConfig();
 			config.language = language;

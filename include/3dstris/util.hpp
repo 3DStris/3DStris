@@ -1,6 +1,8 @@
 #pragma once
 
-#include <citro2d.h>
+extern "C" {
+#include <c2d/base.h>
+}
 
 #include <3dstris/util/math.hpp>
 #include <memory>

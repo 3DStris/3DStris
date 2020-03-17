@@ -1,16 +1,18 @@
-#include <3dstris/images.h>
-
 #include <3dstris/game.hpp>
 #include <3dstris/state.hpp>
 #include <3dstris/util/colorstextures.hpp>
 
-Game::Game()
-	: imageSheet(C2D_SpriteSheetLoad("romfs:/gfx/images.t3x")),
+Game::Game() {
+	gfxInitDefault();
+	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
+	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
+	C2D_Prepare();
 
-	  config(Config::get({})),
+	top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
+	bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 
-	  top(C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT)),
-	  bottom(C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT)) {
+	imageSheet = C2D_SpriteSheetLoad("romfs:/gfx/images.t3x");
+
 	states.reserve(1);
 }
 
@@ -19,6 +21,10 @@ Game::~Game() {
 
 	C3D_RenderTargetDelete(top);
 	C3D_RenderTargetDelete(bottom);
+
+	C2D_Fini();
+	C3D_Fini();
+	gfxExit();
 }
 
 void Game::update(const double dt) {

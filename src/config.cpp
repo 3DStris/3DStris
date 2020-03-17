@@ -20,6 +20,8 @@
 	mpack_write_##type(&writer, value);
 
 Config::Config() {
+	romfsInit();
+
 	if (!exists(CONFIG_PATH)) {
 		LOG_INFO("Creating config file");
 		save();
@@ -58,9 +60,10 @@ Config::Config() {
 	}
 
 	l10n.loadLanguage(language);
+}
 
-	// Dumb hack
-	BaseSettings::config = *this;
+Config::~Config() {
+	romfsExit();
 }
 
 void Config::serialize(mpack_writer_t& writer) const {

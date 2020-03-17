@@ -4,7 +4,7 @@ extern "C" {
 #include <c2d/base.h>
 }
 
-using Color = uint32_t;
+using Color = u32;
 
 struct Theme final {
 	static constexpr Color WHITE = C2D_Color32(255, 255, 255, 255);

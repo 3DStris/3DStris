@@ -3,11 +3,11 @@
 #include <3dstris/util/log.hpp>
 
 int main() {
-	romfsInit();
-	gfxInitDefault();
-	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
-	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
-	C2D_Prepare();
+	// Services are not initialized here; instead, Game does graphics
+	// initialization, while Config does RomFS initialization
+	// The reason for this is BaseSettings::config, which is a static variable,
+	// initialized as a copy of Game::get().getConfig(), which in turn calls the
+	// Game and Config constructor before the main function is called
 
 #ifndef NDEBUG
 	consoleDebugInit(debugDevice_3DMOO);
@@ -43,9 +43,4 @@ int main() {
 
 	game.getGames().joinLoadThread();
 	game.getGames().joinSaveThread();
-
-	romfsExit();
-	C2D_Fini();
-	C3D_Fini();
-	gfxExit();
 }

@@ -1,6 +1,8 @@
 #include <3dstris/states/menu/mainmenu.hpp>
 #include <3dstris/states/menu/settings/base.hpp>
 
+BaseConfig BaseSettings::config = Game::get().getConfig();
+
 BaseSettings::BaseSettings(const char* __restrict titleKey)
 	: title(game.translate(titleKey)),
 
@@ -52,5 +54,3 @@ void BaseSettings::draw(const bool bottom) {
 		gui.draw();
 	}
 }
-
-BaseConfig BaseSettings::config;

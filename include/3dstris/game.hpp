@@ -59,7 +59,7 @@ class Game {
 
 	C2D_SpriteSheet imageSheet;
 
-	Config& config;
+	Config config;
 
 	C3D_RenderTarget* top;
 	C3D_RenderTarget* bottom;

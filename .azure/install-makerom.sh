@@ -1,9 +1,9 @@
 #!/bin/sh
 set -ex
 
-git clone https://github.com/jakcron/Project_CTR.git
-cd Project_CTR/makerom
-make
+wget -O makerom.zip https://github.com/jakcron/Project_CTR/releases/download/v0.16/makerom_016_ctrtool.zip
+unzip makerom.zip
 
+cd Ubuntu
 chmod +x makerom
-sudo mv makerom /usr/bin
+sudo mv makerom /usr/bin/

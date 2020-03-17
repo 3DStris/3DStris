@@ -17,9 +17,14 @@ jobs:
       vmImage: ubuntu-latest
     variables:
       build_type: Release
+      CCACHE_DIR: $(Pipeline.Workspace)/ccache
     steps:
       - checkout: self
         submodules: true
+
+      - bash: |
+          sudo apt install ninja-build -y
+        displayName: Install ninja
 
       - bash: $(System.DefaultWorkingDirectory)/.azure/install-devkitarm.sh
         displayName: Install devkitARM
@@ -31,8 +36,8 @@ jobs:
       - bash: |
           source /etc/profile.d/devkit-env.sh
           mkdir -p build && cd build
-          cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON ..
-          make -j$(nproc)
+          cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON -GNinja ..
+          ninja
         displayName: Build
 
       - bash: |
@@ -42,6 +47,7 @@ jobs:
          mv $SYSTEM_DEFAULTWORKINGDIRECTORY/build/bin/3dstris.cia $BUILD_ARTIFACTSTAGINGDIRECTORY/3dstris-$RELEASE_TAG.cia
          mv $SYSTEM_DEFAULTWORKINGDIRECTORY/build/bin/3dstris $BUILD_ARTIFACTSTAGINGDIRECTORY/3dstris-$RELEASE_TAG.elf
         displayName: Rename and move binaries to artifact directory
+
       - task: GitHubRelease@1
         condition: startswith(variables['Build.SourceBranch'], 'refs/tags/')
         displayName: Create GitHub release

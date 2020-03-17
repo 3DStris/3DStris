@@ -23,7 +23,7 @@ class Text {
 	Text& operator=(const Text& other) = delete;
 	Text& operator=(Text&& other) = delete;
 
-	void draw(float depth = 1) const;
+	void draw(float depth = 1) const noexcept;
 
 	void align(Align mode, Pos cpos, WH cwh, bool bottom = false) noexcept;
 	void align(Align mode, bool bottom = false) noexcept;

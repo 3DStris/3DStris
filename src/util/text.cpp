@@ -27,7 +27,7 @@ Text::Text(Text&& other) noexcept
 	other.textBuffer = nullptr;
 }
 
-void Text::draw(const float depth) const {
+void Text::draw(const float depth) const noexcept {
 	C2D_DrawText(&textObject, C2D_WithColor, pos.x, pos.y, depth, _scale.x,
 				 _scale.y, color);
 }

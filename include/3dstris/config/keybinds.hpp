@@ -1,6 +1,8 @@
 #pragma once
 
+extern "C" {
 #include <3ds/types.h>
+}
 #include <mpack/mpack.h>
 #include <parallel_hashmap/phmap.h>
 

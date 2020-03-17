@@ -38,7 +38,7 @@ class Log final {
    public:
 	enum class Level { TRACE, DEBUG, INFO, WARN, ERROR, FATAL };
 
-	static Log& get() {
+	static Log& get() noexcept {
 		static Log log;
 		return log;
 	}

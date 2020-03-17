@@ -7,7 +7,7 @@
 class State;
 class Game {
    public:
-	static Game& get() {
+	static Game& get() noexcept {
 		static Game game;
 		return game;
 	}

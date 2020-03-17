@@ -23,8 +23,6 @@ class Textures final {
    private:
 	class DefaultColors {
 	   public:
-		friend Textures;
-
 		static const Color& get(const size_t index, const bool ghost = false) {
 			static DefaultColors defaultTints;
 

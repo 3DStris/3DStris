@@ -5,9 +5,16 @@
 int main() {
 	// Services are not initialized here; instead, Game does graphics
 	// initialization, while Config does RomFS initialization
+
 	// The reason for this is BaseSettings::config, which is a static variable,
-	// initialized as a copy of Game::get().getConfig(), which in turn calls the
-	// Game and Config constructor before the main function is called
+	// is initialized as a copy of Game::get().getConfig(), which in turn calls
+	// the Game and Config constructor before the main function is called
+
+	// Initializing them here results in many interesting issues, such as
+	// failing to open the English translation from the RomFS (due to the
+	// missing romfsInit() call) and Citro3D locking at C3D_FrameBegin
+
+	// Please be aware of this if you need to initialize any new services!
 
 #ifndef NDEBUG
 	consoleDebugInit(debugDevice_3DMOO);

@@ -1,6 +1,5 @@
 #include <3dstris/states/menu/loadfailed.hpp>
 #include <3dstris/states/menu/mainmenu.hpp>
-#include <3dstris/util/log.hpp>
 
 int main() {
 	// Services are not initialized here; instead, Game does graphics

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <3dstris/images.h>
-#include <parallel_hashmap/btree.h>
+#include <parallel_hashmap/phmap.h>
 #include <rapidjson/document.h>
 #include <sds.h>
 
@@ -31,7 +31,8 @@ class L10n final {
 		return LANGUAGE_TO_STRING[static_cast<size_t>(language)];
 	}
 	static Language stringToLanguage(const char* __restrict language) {
-		static const phmap::btree_map<const char*, Language, CompareString>
+		static const phmap::flat_hash_map<
+			const char*, Language, phmap::Hash<const char*>, CompareString>
 			STRING_TO_LANGUAGE = {{"en", Language::EN}, {"bg", Language::BG},
 								  {"ru", Language::RU}, {"pt", Language::PT},
 								  {"pl", Language::PL}, {"de", Language::DE},

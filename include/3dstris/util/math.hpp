@@ -4,7 +4,7 @@
 
 // python-like modulo, which makes negative numbers wrap around
 template <typename T>
-constexpr T mod(T a, T b) {
+constexpr T mod(T a, T b) noexcept {
 	static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
 
 	return (b + (a % b)) % b;
@@ -14,8 +14,8 @@ template <typename T>
 struct Vector2 {
 	static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
 
-	constexpr Vector2(const T x, const T y) : x(x), y(y) {}
-	constexpr Vector2() {}
+	constexpr Vector2(const T x, const T y) noexcept : x(x), y(y) {}
+	constexpr Vector2() noexcept {}
 
 	T x = 0;
 	T y = 0;

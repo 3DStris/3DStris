@@ -5,12 +5,13 @@
 class GUI;
 class ToggleButton final : public Button {
    public:
-	ToggleButton(GUI& parent, Pos pos, WH wh, sds text, bool defaultValue);
-	~ToggleButton() override;
+	ToggleButton(GUI& parent, Pos pos, WH wh, sds text,
+				 bool defaultValue) noexcept;
+	~ToggleButton() noexcept override;
 
-	void update(touchPosition touch, touchPosition previous) override;
+	void update(touchPosition touch, touchPosition previous) noexcept override;
 
-	bool getValue();
+	bool getValue() const noexcept;
 
    private:
 	using Button::setText;

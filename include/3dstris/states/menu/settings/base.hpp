@@ -6,7 +6,7 @@
 
 class BaseSettings : public State {
    public:
-	BaseSettings(const char* __restrict titleKey);
+	BaseSettings(const char* __restrict titleKey) noexcept;
 
 	void update(double dt) override;
 	void draw(bool bottom) override;

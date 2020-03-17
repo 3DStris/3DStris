@@ -18,11 +18,11 @@ class Game {
 
 	bool isPressed(u32 kDown, Keybinds::Action action) const noexcept;
 
-	sds translate(const char* __restrict key) const;
-	void loadLanguage(L10n::Language language);
+	sds translate(const char* __restrict key) const noexcept;
+	void loadLanguage(L10n::Language language) noexcept;
 
-	C3D_RenderTarget* getTop();
-	C3D_RenderTarget* getBottom();
+	C3D_RenderTarget* getTop() noexcept;
+	C3D_RenderTarget* getBottom() noexcept;
 
 	const C2D_SpriteSheet& getImageSheet() const noexcept;
 
@@ -52,10 +52,10 @@ class Game {
 	bool exit = false;
 
    private:
-	Game();
-	~Game();
+	Game() noexcept;
+	~Game() noexcept;
 
-	void reset(bool top, bool bottom);
+	void reset(bool top, bool bottom) noexcept;
 
 	C2D_SpriteSheet imageSheet;
 

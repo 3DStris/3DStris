@@ -16,24 +16,24 @@ class Piece {
 	void reset(const PieceShape& shape, PieceType type);
 	void reset(PieceType type);
 
-	void set();
+	void set() noexcept;
+	bool hasSet() const noexcept { return setTimer >= setAfter; }
 
 	void draw(Pos origin, u32 tileSize) const;
 	static void draw(Pos origin, u32 tileSize, const PieceShape& shape,
 					 PieceType type);
 
-	bool move(Direction dir);
+	bool move(Direction dir) noexcept;
 
 	void rotate(bool ccw);
 
-	bool collides(int offX, int offY) const;
-	bool hasSet() const;
+	bool collides(int offX, int offY) const noexcept;
 
 	void update(double dt, u32 kDown);
 
-	PieceType getType();
+	PieceType getType() const noexcept { return type; }
 
-	bool dead() const { return _dead; }
+	bool dead() const noexcept { return _dead; }
 
    private:
 	const Game& game;

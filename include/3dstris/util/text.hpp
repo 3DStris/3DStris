@@ -12,25 +12,25 @@ class Text {
 
 	explicit Text(sds text = sdsempty(), Pos pos = Pos{},
 				  Vector2f scale = {1, 1},
-				  const Color& color = Game::get().getTheme().text);
+				  const Color& color = Game::get().getTheme().text) noexcept;
 	explicit Text(const char* __restrict text, Pos pos = Pos{},
 				  Vector2f scale = {1, 1},
-				  const Color& color = Game::get().getTheme().text);
+				  const Color& color = Game::get().getTheme().text) noexcept;
 
-	~Text();
+	~Text() noexcept;
 	Text(const Text& other) = delete;
-	Text(Text&& other);
+	Text(Text&& other) noexcept;
 	Text& operator=(const Text& other) = delete;
 	Text& operator=(Text&& other) = delete;
 
 	void draw(float depth = 1) const;
 
-	void align(Align mode, Pos cpos, WH cwh, bool bottom = false);
-	void align(Align mode, bool bottom = false);
+	void align(Align mode, Pos cpos, WH cwh, bool bottom = false) noexcept;
+	void align(Align mode, bool bottom = false) noexcept;
 
-	void scale(float cw, float max);
+	void scale(float cw, float max) noexcept;
 
-	void setText(sds text);
+	void setText(sds text) noexcept;
 	sds getText() const noexcept;
 
 	void setX(float x) noexcept;
@@ -41,7 +41,7 @@ class Text {
 
 	void setPos(Pos pos) noexcept;
 
-	WH getWH() const;
+	WH getWH() const noexcept;
 
 	Color getColor() const noexcept;
 

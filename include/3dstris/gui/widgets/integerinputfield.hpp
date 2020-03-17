@@ -17,17 +17,17 @@ class IntegerInputField final : public Widget {
 
    public:
 	IntegerInputField(GUI& _parent, const Pos _pos, const WH _wh,
-					  sds suffix = sdsempty())
+					  sds suffix = sdsempty()) noexcept
 		: Widget(_parent, _pos, _wh), suffix(suffix), value(0) {
 		updateText();
 	}
 	IntegerInputField(GUI& _parent, const Pos _pos, const WH _wh,
-					  const char* __restrict suffix)
+					  const char* __restrict suffix) noexcept
 		: IntegerInputField(_parent, _pos, _wh, sdsnew(suffix)) {}
 
-	~IntegerInputField() override { sdsfree(suffix); }
+	~IntegerInputField() noexcept override { sdsfree(suffix); }
 
-	void draw() const override {
+	void draw() const noexcept override {
 		C2D_DrawRectSolid(pos.x, pos.y, 0, wh.x, wh.y,
 						  held ? parent.getTheme().inputFieldHeld
 							   : parent.getTheme().inputField);
@@ -35,7 +35,7 @@ class IntegerInputField final : public Widget {
 	}
 
 	void update(const touchPosition touch,
-				const touchPosition previous) override {
+				const touchPosition previous) noexcept override {
 		held = inside(touch.px, touch.py);
 
 		if (inside(previous.px, previous.py) && hidKeysUp() & KEY_TOUCH) {
@@ -65,19 +65,19 @@ class IntegerInputField final : public Widget {
 		}
 	}
 
-	bool inside(const float x, const float y) const {
+	bool inside(const float x, const float y) const noexcept {
 		return x > pos.x && x < pos.x + wh.x &&	 //
 			   y > pos.y && y < pos.y + wh.y;
 	}
 
 	T getValue() const noexcept { return value; }
-	void setValue(const T value) {
+	void setValue(const T value) noexcept {
 		this->value = value;
 		updateText();
 	}
 
    private:
-	void updateText() {
+	void updateText() noexcept {
 		text.setText(
 			sdscatfmt(sdsempty(), std::is_signed<T>::value ? "%I%S" : "%U%S",
 					  std::is_signed<T>::value ? static_cast<s64>(value)

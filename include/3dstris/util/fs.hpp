@@ -6,14 +6,14 @@ extern "C" {
 }
 #include <unistd.h>
 
-inline bool directoryExists(FS_Archive archive, const FS_Path& path) {
+inline bool directoryExists(FS_Archive archive, const FS_Path& path) noexcept {
 	Handle handle;
 
 	return R_SUCCEEDED(FSUSER_OpenDirectory(&handle, archive, path)) &&
 		   R_SUCCEEDED(FSDIR_Close(handle));
 }
 
-inline bool fileExists(FS_Archive archive, const FS_Path& path) {
+inline bool fileExists(FS_Archive archive, const FS_Path& path) noexcept {
 	Handle handle;
 
 	return R_SUCCEEDED(
@@ -21,6 +21,6 @@ inline bool fileExists(FS_Archive archive, const FS_Path& path) {
 		   R_SUCCEEDED(FSFILE_Close(handle));
 }
 
-inline bool exists(const char* __restrict path) {
+inline bool exists(const char* __restrict path) noexcept {
 	return access(path, F_OK) == 0;
 }

@@ -19,7 +19,7 @@
 	mpack_write_cstr(&writer, #value); \
 	mpack_write_##type(&writer, value);
 
-Config::Config() {
+Config::Config() noexcept {
 	romfsInit();
 
 	if (!exists(CONFIG_PATH)) {
@@ -62,11 +62,11 @@ Config::Config() {
 	l10n.loadLanguage(language);
 }
 
-Config::~Config() {
+Config::~Config() noexcept {
 	romfsExit();
 }
 
-void Config::serialize(mpack_writer_t& writer) const {
+void Config::serialize(mpack_writer_t& writer) const noexcept {
 	mpack_start_map(&writer, 5);
 
 	SERIALIZE_MEMBER(das, u16)
@@ -79,7 +79,7 @@ void Config::serialize(mpack_writer_t& writer) const {
 	mpack_finish_map(&writer);
 }
 
-void Config::save() {
+void Config::save() noexcept {
 	LOG_INFO("Saving config");
 
 	char* data;

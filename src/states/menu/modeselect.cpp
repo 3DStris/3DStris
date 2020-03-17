@@ -2,7 +2,7 @@
 #include <3dstris/states/menu/modeselect.hpp>
 #include <3dstris/states/menu/sprintselect.hpp>
 
-ModeSelect::ModeSelect()
+ModeSelect::ModeSelect() noexcept
 	: State(),
 	  title(game.translate("modeselect.title")),
 
@@ -16,7 +16,7 @@ ModeSelect::ModeSelect()
 						   game.translate("back"), Button::Flags::HCENTER)) {
 	title.align(Text::Align::SCREEN_CENTER);
 }
-void ModeSelect::update(const double dt) {
+void ModeSelect::update(const double dt) noexcept {
 	gui.update(dt);
 
 	if (normal.pressed()) {
@@ -28,7 +28,7 @@ void ModeSelect::update(const double dt) {
 	}
 }
 
-void ModeSelect::draw(const bool bottom) {
+void ModeSelect::draw(const bool bottom) noexcept {
 	if (!bottom) {
 		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 

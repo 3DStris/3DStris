@@ -7,7 +7,7 @@
 
 class GUI {
    public:
-	GUI(u32 width = BSCREEN_WIDTH, u32 height = BSCREEN_HEIGHT);
+	GUI(u32 width = BSCREEN_WIDTH, u32 height = BSCREEN_HEIGHT) noexcept;
 
 	u32 getWidth() const noexcept;
 	u32 getHeight() const noexcept;
@@ -28,15 +28,15 @@ class GUI {
 
 	static void drawOutline(Pos pos, WH wh, float scale = 2,
 							Color color = getTheme().buttonOutline,
-							float depth = 1);
+							float depth = 1) noexcept;
 
 	static void drawHLine(Pos pos, float w, float scale = 2,
 						  Color color = getTheme().buttonOutline,
-						  float depth = 0.5f);
+						  float depth = 0.5f) noexcept;
 
 	static void drawVLine(Pos pos, float h, float scale = 2,
 						  Color color = getTheme().buttonOutline,
-						  float depth = 0.5f);
+						  float depth = 0.5f) noexcept;
 
    private:
 	u32 width, height;

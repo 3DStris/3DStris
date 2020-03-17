@@ -3,7 +3,7 @@
 
 LanguageButton::LanguageButton(GUI& _parent, const Pos _pos, const WH _wh,
 							   const L10n::Language language,
-							   L10n::Language& toSet)
+							   L10n::Language& toSet) noexcept
 	: Button(_parent, _pos, _wh, L10n::languageToString(language)),
 	  language(language),
 	  toSet(toSet),
@@ -11,7 +11,7 @@ LanguageButton::LanguageButton(GUI& _parent, const Pos _pos, const WH _wh,
 	  flag(C2D_SpriteSheetGetImage(Game::get().getImageSheet(),
 								   L10n::getFlag(language))) {}
 
-void LanguageButton::draw() const {
+void LanguageButton::draw() const noexcept {
 	Button::draw();
 	C2D_DrawImageAt(
 		flag, pos.x + 3,
@@ -19,7 +19,7 @@ void LanguageButton::draw() const {
 }
 
 void LanguageButton::update(const touchPosition touch,
-							const touchPosition previous) {
+							const touchPosition previous) noexcept {
 	Button::update(touch, previous);
 
 	if (pressed()) {

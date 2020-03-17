@@ -2,7 +2,7 @@
 #include <3dstris/states/menu/languageselect.hpp>
 #include <3dstris/states/menu/mainmenu.hpp>
 
-LanguageSelect::LanguageSelect()
+LanguageSelect::LanguageSelect() noexcept
 	: State(),
 	  select(game.translate("languageselect.select")),
 
@@ -27,7 +27,7 @@ LanguageSelect::LanguageSelect()
 	}
 }
 
-void LanguageSelect::update(const double dt) {
+void LanguageSelect::update(const double dt) noexcept {
 	gui.update(dt);
 
 	if (save.pressed()) {
@@ -48,7 +48,7 @@ void LanguageSelect::update(const double dt) {
 	}
 }
 
-void LanguageSelect::draw(const bool bottom) {
+void LanguageSelect::draw(const bool bottom) noexcept {
 	if (!bottom) {
 		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 

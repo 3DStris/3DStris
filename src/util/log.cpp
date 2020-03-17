@@ -24,7 +24,7 @@
 #include <3dstris/util/log.hpp>
 #include <3dstris/version.hpp>
 
-Log::Log() {
+Log::Log() noexcept {
 	static const FS_Path HOMEBREW_PATH = fsMakePath(PATH_ASCII, "/3ds/");
 	static const FS_Path GAME_PATH = fsMakePath(PATH_ASCII, "/3ds/3dstris/");
 	static constexpr auto LOG_PATH = "sdmc:/3ds/3dstris/log.log";
@@ -52,19 +52,19 @@ Log::Log() {
 		_3DSTRIS_GIT_HASH);
 }
 
-Log::~Log() {
+Log::~Log() noexcept {
 	svcCloseHandle(mutex);
 	fclose(fp);
 }
 
-void Log::setFile(FILE* fp) {
+void Log::setFile(FILE* fp) noexcept {
 	this->fp = fp;
 }
 
-void Log::setLevel(const Level level) {
+void Log::setLevel(const Level level) noexcept {
 	this->level = level;
 }
 
-void Log::setQuiet(const bool enable) {
+void Log::setQuiet(const bool enable) noexcept {
 	this->quiet = enable;
 }

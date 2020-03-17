@@ -1,6 +1,7 @@
 #include <3dstris/gui.hpp>
 
-GUI::GUI(const u32 width, const u32 height) : width(width), height(height) {}
+GUI::GUI(const u32 width, const u32 height) noexcept
+	: width(width), height(height) {}
 
 u32 GUI::getWidth() const noexcept {
 	return width;
@@ -30,7 +31,7 @@ const Theme& GUI::getTheme() noexcept {
 }
 
 void GUI::drawOutline(const Pos pos, const WH wh, const float scale,
-					  const Color color, const float depth) {
+					  const Color color, const float depth) noexcept {
 	drawHLine(pos, wh.x, scale, color, depth);
 	C2D_DrawRectSolid(pos.x - scale, pos.y, depth, scale, wh.y, color);
 
@@ -40,13 +41,13 @@ void GUI::drawOutline(const Pos pos, const WH wh, const float scale,
 }
 
 void GUI::drawHLine(const Pos pos, const float w, const float scale,
-					const Color color, const float depth) {
+					const Color color, const float depth) noexcept {
 	C2D_DrawRectSolid(pos.x - scale, pos.y - scale, depth, w + 2 * scale, scale,
 					  color);
 }
 
 void GUI::drawVLine(const Pos pos, const float h, const float scale,
-					const Color color, const float depth) {
+					const Color color, const float depth) noexcept {
 	C2D_DrawRectSolid(pos.x - scale, pos.y - scale, depth, scale, h + 2 * scale,
 					  color);
 }

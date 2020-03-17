@@ -7,10 +7,10 @@
 class SprintTimes final : public State {
    public:
 	SprintTimes();
-	~SprintTimes() override;
+	~SprintTimes() noexcept override;
 
 	void update(double dt) override;
-	void draw(bool bottom) override;
+	void draw(bool bottom) noexcept override;
 
 	void genValues();
 

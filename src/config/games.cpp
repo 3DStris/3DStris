@@ -48,7 +48,7 @@ static bool validateGame(
 		   game.FindMember("pps") != game.MemberEnd();
 }
 
-Games::Games() {
+Games::Games() noexcept {
 	static constexpr auto GAMES_JSON_PATH = "sdmc:/3ds/3dstris/games.json";
 
 	LOG_INFO("Loading games");
@@ -146,7 +146,7 @@ Games::Games() {
 		this, 1024, mainPrio + 1, -2, true);
 }
 
-void Games::serialize(mpack_writer_t& writer) const {
+void Games::serialize(mpack_writer_t& writer) const noexcept {
 	mpack_start_array(&writer, games.size());
 
 	for (const auto& game : games) {
@@ -174,7 +174,7 @@ void Games::push(SavedGame&& game) {
 	games.push_back(game);
 }
 
-void Games::save() {
+void Games::save() noexcept {
 	LOG_INFO("Saving games");
 
 	if (saveThread) {

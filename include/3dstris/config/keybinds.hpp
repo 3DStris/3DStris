@@ -22,15 +22,15 @@ class Keybinds final {
 	static const char* KEYBIND_TO_KEY[];
 	static const Binds DEFAULT_BINDS;
 
-	Keybinds();
+	Keybinds() noexcept;
 
-	void serialize(mpack_writer_t& writer) const;
+	void serialize(mpack_writer_t& writer) const noexcept;
 
 	Key get(Action action) const noexcept;
 	Binds& all() noexcept;
 	const Binds& all() const noexcept;
 
-	void save();
+	void save() noexcept;
 
 	bool failed() const noexcept;
 

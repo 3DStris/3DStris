@@ -51,7 +51,7 @@ void Board::draw(const Pos origin, const u32 tileSize, const float outerThick,
 	}
 }
 
-void Board::clearLines() {
+void Board::clearLines() noexcept {
 	for (u32 y = 0; y < height; ++y) {
 		bool line = true;
 		for (u32 x = 0; x < width; ++x) {

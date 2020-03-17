@@ -6,7 +6,7 @@
 class Sprint final : public Ingame {
    public:
 	explicit Sprint(const u16 lines);
-	~Sprint() override;
+	~Sprint() noexcept override;
 
 	void update(double dt) override;
 	void draw(bool bottom) override;

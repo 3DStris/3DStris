@@ -48,7 +48,7 @@ SprintTimes::SprintTimes()
 	updateSelectedText();
 }
 
-SprintTimes::~SprintTimes() {
+SprintTimes::~SprintTimes() noexcept {
 	sdsfree(infoFormat);
 }
 
@@ -131,7 +131,7 @@ void SprintTimes::update(const double dt) {
 	}
 }
 
-void SprintTimes::draw(const bool bottom) {
+void SprintTimes::draw(const bool bottom) noexcept {
 	if (!bottom) {
 		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 

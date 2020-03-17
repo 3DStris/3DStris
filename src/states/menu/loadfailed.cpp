@@ -1,6 +1,6 @@
 #include <3dstris/states/menu/loadfailed.hpp>
 
-LoadFailed::LoadFailed(const FailType type)
+LoadFailed::LoadFailed(const FailType type) noexcept
 	: State(),
 	  reason(game.translate(FAILTYPE_TO_KEY[static_cast<size_t>(type)])),
 	  ok(gui.add<Button>(Pos{},
@@ -10,7 +10,7 @@ LoadFailed::LoadFailed(const FailType type)
 	reason.align(Text::Align::SCREEN_CENTER);
 }
 
-void LoadFailed::update(const double dt) {
+void LoadFailed::update(const double dt) noexcept {
 	gui.update(dt);
 
 	if (ok.pressed()) {
@@ -18,7 +18,7 @@ void LoadFailed::update(const double dt) {
 	}
 }
 
-void LoadFailed::draw(const bool bottom) {
+void LoadFailed::draw(const bool bottom) noexcept {
 	if (!bottom) {
 		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 

@@ -1,10 +1,11 @@
+#include <3dstris/images.h>
 #include <rapidjson/filereadstream.h>
 
 #include <3dstris/config/l10n.hpp>
 
 constexpr std::array<L10n::Language, L10n::LANGUAGE_COUNT> L10n::LANGUAGES;
 
-void L10n::load(const char* __restrict path) {
+void L10n::load(const char* __restrict path) noexcept {
 	if (enTranslations.IsNull()) {
 		enTranslations = loadJson(EN_PATH);
 	}
@@ -17,7 +18,7 @@ void L10n::load(const char* __restrict path) {
 	translations = loadJson(path);
 }
 
-rapidjson::Document L10n::loadJson(const char* __restrict path) {
+rapidjson::Document L10n::loadJson(const char* __restrict path) noexcept {
 	FILE* file = fopen(path, "r");
 
 	if (!file && strcmp(path, EN_PATH) != 0) {
@@ -38,4 +39,40 @@ rapidjson::Document L10n::loadJson(const char* __restrict path) {
 	fclose(file);
 
 	return document;
+}
+
+sds L10n::get(const char* key) const noexcept {
+	if (translations.HasMember(key)) {
+		return sdsnew(translations[key].GetString());
+	} else if (!enTranslations.IsNull()) {
+		if (enTranslations.HasMember(key)) {
+			return sdsnew(enTranslations[key].GetString());
+		}
+	}
+
+	return sdsnew(key);
+}
+
+size_t L10n::getFlag(const Language language) noexcept {
+	assert(static_cast<u8>(language) < LANGUAGE_COUNT);
+
+	static constexpr std::array<size_t, LANGUAGE_COUNT> LANGUAGE_TO_ICON{
+		images_us_idx, images_bg_idx, images_ru_idx,
+		images_br_idx, images_pl_idx, images_de_idx,
+		images_jp_idx, images_mk_idx, images_fr_idx};
+
+	return static_cast<u8>(language) < LANGUAGE_COUNT
+			   ? LANGUAGE_TO_ICON[static_cast<size_t>(language)]
+			   : images_un_idx;
+}
+
+char* L10n::getPath(Language language, char* __restrict buf) noexcept {
+	constexpr auto FORMAT_STRING = "romfs:/lang/%s.json";
+	if (language == Language::EN) {
+		strcpy(buf, EN_PATH);
+		return buf;
+	}
+
+	sprintf(buf, FORMAT_STRING, languageToString(language));
+	return buf;
 }

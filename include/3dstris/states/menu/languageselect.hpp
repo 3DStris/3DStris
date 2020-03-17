@@ -5,10 +5,10 @@
 
 class LanguageSelect final : public State {
    public:
-	LanguageSelect();
+	LanguageSelect() noexcept;
 
-	void update(double dt) override;
-	void draw(bool bottom) override;
+	void update(double dt) noexcept override;
+	void draw(bool bottom) noexcept override;
 
    private:
 	Text select;

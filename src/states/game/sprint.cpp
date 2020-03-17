@@ -15,7 +15,7 @@ Sprint::Sprint(const u16 lines)
 	infoText.setPos({10, 10});
 }
 
-Sprint::~Sprint() {
+Sprint::~Sprint() noexcept {
 	sdsfree(infoFormat);
 }
 

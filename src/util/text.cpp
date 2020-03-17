@@ -1,6 +1,7 @@
 #include <3dstris/util/text.hpp>
 
-Text::Text(sds text, const Pos pos, const Vector2f scale, const Color& color)
+Text::Text(sds text, const Pos pos, const Vector2f scale,
+		   const Color& color) noexcept
 	: pos(pos),
 	  _scale(scale),
 	  textBuffer(C2D_TextBufNew(sdslen(text))),
@@ -8,14 +9,14 @@ Text::Text(sds text, const Pos pos, const Vector2f scale, const Color& color)
 	setText(text);
 }
 Text::Text(const char* __restrict text, const Pos pos, const Vector2f scale,
-		   const Color& color)
+		   const Color& color) noexcept
 	: Text(sdsnew(text), pos, scale, color) {}
 
-Text::~Text() {
+Text::~Text() noexcept {
 	C2D_TextBufDelete(textBuffer);
 	sdsfree(text);
 }
-Text::Text(Text&& other)
+Text::Text(Text&& other) noexcept
 	: pos(other.pos),
 	  _scale(other._scale),
 	  text(other.text),
@@ -32,7 +33,7 @@ void Text::draw(const float depth) const {
 }
 
 void Text::align(const Align mode, const Pos cpos, const WH cwh,
-				 const bool bottom) {
+				 const bool bottom) noexcept {
 	const WH wh = getWH();
 	switch (mode) {
 		case Align::CENTER: {
@@ -56,18 +57,18 @@ void Text::align(const Align mode, const Pos cpos, const WH cwh,
 		}
 	}
 }
-void Text::align(const Align mode, const bool bottom) {
+void Text::align(const Align mode, const bool bottom) noexcept {
 	align(mode, Pos{}, WH{}, bottom);
 }
 
-void Text::scale(const float cw, const float max) {
+void Text::scale(const float cw, const float max) noexcept {
 	setScale({1, 1});
 
 	const float scale = std::min((cw - 10) / getWH().x, max);
 	setScale({scale, scale});
 }
 
-void Text::setText(sds text) {
+void Text::setText(sds text) noexcept {
 	sdsfree(this->text);
 	this->text = text;
 
@@ -104,7 +105,7 @@ void Text::setPos(const Pos pos) noexcept {
 	this->pos = pos;
 }
 
-WH Text::getWH() const {
+WH Text::getWH() const noexcept {
 	WH wh;
 	C2D_TextGetDimensions(&textObject, _scale.x, _scale.y, &wh.x, &wh.y);
 	return wh;

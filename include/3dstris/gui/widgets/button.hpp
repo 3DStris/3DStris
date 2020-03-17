@@ -7,17 +7,18 @@ class Button : public Widget {
    public:
 	enum class Flags { NONE, HCENTER, VCENTER, CENTER };
 
-	Button(GUI& parent, Pos pos, WH wh, sds text, Flags flags = Flags::NONE);
+	Button(GUI& parent, Pos pos, WH wh, sds text,
+		   Flags flags = Flags::NONE) noexcept;
 	Button(GUI& parent, Pos pos, WH wh, const char* __restrict text,
-		   Flags flags = Flags::NONE);
+		   Flags flags = Flags::NONE) noexcept;
 
-	void setText(sds text);
+	void setText(sds text) noexcept;
 
-	void draw() const override;
+	void draw() const noexcept override;
 	void update(touchPosition touch, touchPosition previous) override;
 
 	bool inside(float x, float y) const noexcept;
-	bool pressed();
+	bool pressed() noexcept;
 
    private:
 	Text text;

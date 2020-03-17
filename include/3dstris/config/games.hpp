@@ -28,13 +28,13 @@ class Games final {
    public:
 	using SavedGames = std::vector<SavedGame>;
 
-	Games();
+	Games() noexcept;
 
-	void serialize(mpack_writer_t& writer) const;
+	void serialize(mpack_writer_t& writer) const noexcept;
 
 	const SavedGames& all() const noexcept;
 
-	void save();
+	void save() noexcept;
 	void push(SavedGame&& game);
 
 	inline void joinSaveThread() const noexcept {

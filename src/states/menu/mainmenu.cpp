@@ -7,7 +7,7 @@
 #include <3dstris/states/menu/sprinttimes.hpp>
 #include <3dstris/version.hpp>
 
-MainMenu::MainMenu()
+MainMenu::MainMenu() noexcept
 	: State(),
 	  version(
 		  sdscatfmt(sdsempty(), "v%s-%s", _3DSTRIS_VERSION, _3DSTRIS_GIT_HASH),
@@ -32,7 +32,7 @@ MainMenu::MainMenu()
 	version.setPos({3, SCREEN_HEIGHT - version.getWH().y - 4});
 }
 
-void MainMenu::update(const double dt) {
+void MainMenu::update(const double dt) noexcept {
 	if (hidKeysDown() & KEY_START || exit.pressed()) {
 		game.exit = true;
 		return;
@@ -52,7 +52,7 @@ void MainMenu::update(const double dt) {
 	}
 }
 
-void MainMenu::draw(const bool bottom) {
+void MainMenu::draw(const bool bottom) noexcept {
 	if (!bottom) {
 		static constexpr u8 ICON_SCALE = 3;
 

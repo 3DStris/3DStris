@@ -23,16 +23,12 @@ const phmap::flat_hash_map<Keybinds::Key, const char*>
 
 KeybindButton::KeybindButton(GUI& _parent, const Pos _pos, const WH _wh,
 							 const Keybinds::Action action,
-							 Keybinds::Key& toSet)
+							 Keybinds::Key& toSet) noexcept
 	: Button(_parent, _pos, _wh, sdsempty()),
 	  action(action),
 	  key(toSet),
 	  toSet(toSet) {
 	updateText();
-}
-
-void KeybindButton::draw() const {
-	Button::draw();
 }
 
 void KeybindButton::update(const touchPosition touch,
@@ -66,7 +62,7 @@ void KeybindButton::update(const touchPosition touch,
 	}
 }
 
-void KeybindButton::save() {
+void KeybindButton::save() noexcept {
 	if (key != 0) {
 		toSet = key;
 	}

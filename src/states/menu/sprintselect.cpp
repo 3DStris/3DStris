@@ -1,7 +1,7 @@
 #include <3dstris/states/game/sprint.hpp>
 #include <3dstris/states/menu/sprintselect.hpp>
 
-SprintSelect::SprintSelect()
+SprintSelect::SprintSelect() noexcept
 	: State(),
 	  title(game.translate("sprintselect.title")),
 
@@ -17,7 +17,7 @@ SprintSelect::SprintSelect()
 						   game.translate("back"), Button::Flags::HCENTER)) {
 	title.align(Text::Align::SCREEN_CENTER);
 }
-void SprintSelect::update(const double dt) {
+void SprintSelect::update(const double dt) noexcept {
 	gui.update(dt);
 
 	if (twenty.pressed()) {
@@ -47,7 +47,7 @@ void SprintSelect::update(const double dt) {
 	}
 }
 
-void SprintSelect::draw(const bool bottom) {
+void SprintSelect::draw(const bool bottom) noexcept {
 	if (!bottom) {
 		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 

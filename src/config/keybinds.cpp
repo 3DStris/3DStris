@@ -21,7 +21,7 @@ const Keybinds::Binds Keybinds::DEFAULT_BINDS{
 	{Action::SOFT_DROP, KEY_DOWN}, {Action::HARD_DROP, KEY_UP},
 	{Action::HOLD, KEY_A | KEY_X}};
 
-Keybinds::Keybinds() : binds(DEFAULT_BINDS) {
+Keybinds::Keybinds() noexcept : binds(DEFAULT_BINDS) {
 	LOG_INFO("Loading keybinds");
 	if (!exists(KEYBINDS_PATH)) {
 		LOG_INFO("Creating keybinds file");
@@ -45,7 +45,11 @@ Keybinds::Keybinds() : binds(DEFAULT_BINDS) {
 
 		const Action action = static_cast<Action>(mpack_node_u8(key));
 		const Key bind = mpack_node_u32(value);
-		binds[action] = bind;
+		if (binds.contains(action)) {
+			binds[action] = bind;
+		} else {
+			LOG_WARN("Invalid action %d in saved keybinds");
+		}
 	}
 
 	if (mpack_tree_destroy(&tree) != mpack_ok) {
@@ -58,7 +62,7 @@ Keybinds::Keybinds() : binds(DEFAULT_BINDS) {
 	}
 }
 
-void Keybinds::serialize(mpack_writer_t& writer) const {
+void Keybinds::serialize(mpack_writer_t& writer) const noexcept {
 	mpack_start_map(&writer, binds.size());
 
 	for (const auto& bind : binds) {
@@ -79,7 +83,7 @@ const Keybinds::Binds& Keybinds::all() const noexcept {
 	return binds;
 }
 
-void Keybinds::save() {
+void Keybinds::save() noexcept {
 	LOG_INFO("Saving keybinds");
 
 	char* data;

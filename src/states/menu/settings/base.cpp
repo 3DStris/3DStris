@@ -3,7 +3,7 @@
 
 BaseConfig BaseSettings::config = Game::get().getConfig();
 
-BaseSettings::BaseSettings(const char* __restrict titleKey)
+BaseSettings::BaseSettings(const char* __restrict titleKey) noexcept
 	: title(game.translate(titleKey)),
 
 	  tip(gui, Pos{0, SCREEN_HEIGHT - 25}, WH(SCREEN_WIDTH, 25), false),

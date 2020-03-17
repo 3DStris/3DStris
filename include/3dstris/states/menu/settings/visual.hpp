@@ -5,10 +5,10 @@
 
 class VisualSettings final : public BaseSettings {
    public:
-	VisualSettings();
+	VisualSettings() noexcept;
 
-	void update(double dt) override;
-	void draw(bool bottom) override;
+	void update(double dt) noexcept override;
+	void draw(bool bottom) noexcept override;
 
    private:
 	Panel backTip;

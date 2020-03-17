@@ -10,7 +10,7 @@ class KeybindSelect final : public State {
 	KeybindSelect();
 
 	void update(double dt) override;
-	void draw(bool bottom) override;
+	void draw(bool bottom) noexcept override;
 
    private:
 	Text title;

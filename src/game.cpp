@@ -2,7 +2,7 @@
 #include <3dstris/state.hpp>
 #include <3dstris/util/colorstextures.hpp>
 
-Game::Game() {
+Game::Game() noexcept {
 	gfxInitDefault();
 	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
@@ -16,7 +16,7 @@ Game::Game() {
 	states.reserve(1);
 }
 
-Game::~Game() {
+Game::~Game() noexcept {
 	C2D_SpriteSheetFree(imageSheet);
 
 	C3D_RenderTargetDelete(top);
@@ -44,17 +44,17 @@ bool Game::isPressed(const u32 kDown, const Keybinds::Action action) const
 	return kDown & config.getKeybinds().get(action);
 }
 
-sds Game::translate(const char* __restrict key) const {
+sds Game::translate(const char* __restrict key) const noexcept {
 	return config.getL10n().get(key);
 }
-void Game::loadLanguage(const L10n::Language language) {
+void Game::loadLanguage(const L10n::Language language) noexcept {
 	config.getL10n().loadLanguage(language);
 }
 
-C3D_RenderTarget* Game::getTop() {
+C3D_RenderTarget* Game::getTop() noexcept {
 	return top;
 }
-C3D_RenderTarget* Game::getBottom() {
+C3D_RenderTarget* Game::getBottom() noexcept {
 	return bottom;
 }
 
@@ -89,7 +89,7 @@ State& Game::getState() {
 	return *states.back();
 }
 
-void Game::reset(const bool top, const bool bottom) {
+void Game::reset(const bool top, const bool bottom) noexcept {
 	if (top) {
 		C2D_TargetClear(this->top, Theme::BLACK);
 	}

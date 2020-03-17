@@ -16,10 +16,10 @@ struct BaseConfig {
 
 class Config final : public BaseConfig {
    public:
-	Config();
-	~Config();
+	Config() noexcept;
+	~Config() noexcept;
 
-	void operator=(BaseConfig& other) {
+	void operator=(BaseConfig& other) noexcept {
 		das = other.das;
 		arr = other.arr;
 		dropTimer = other.dropTimer;
@@ -28,9 +28,9 @@ class Config final : public BaseConfig {
 		theme = other.theme;
 	}
 
-	void serialize(mpack_writer_t& writer) const;
+	void serialize(mpack_writer_t& writer) const noexcept;
 
-	void save();
+	void save() noexcept;
 
 	Games& getGames() noexcept;
 

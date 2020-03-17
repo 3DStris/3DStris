@@ -5,10 +5,10 @@
 
 class GameplaySettings final : public BaseSettings {
    public:
-	GameplaySettings();
+	GameplaySettings() noexcept;
 
-	void update(double dt) override;
-	void draw(bool bottom) override;
+	void update(double dt) noexcept override;
+	void draw(bool bottom) noexcept override;
 
    private:
 	Text dasLabel;

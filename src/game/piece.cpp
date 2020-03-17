@@ -46,7 +46,7 @@ void Piece::reset(const PieceType type) {
 	reset(Shapes::ALL[static_cast<size_t>(type)], type);
 }
 
-void Piece::set() {
+void Piece::set() noexcept {
 	for (u8 y = 0; y < shape.size(); ++y) {
 		for (u8 x = 0; x < shape.size(); ++x) {
 			if (shape.get(x, y)) {
@@ -58,7 +58,7 @@ void Piece::set() {
 	board.clearLines();
 }
 
-bool Piece::collides(const int offX, const int offY) const {
+bool Piece::collides(const int offX, const int offY) const noexcept {
 	for (u8 y = 0; y < shape.size(); ++y) {
 		for (u8 x = 0; x < shape.size(); ++x) {
 			const Vector2f offPos{pos.x + x + offX, pos.y + y + offY};
@@ -121,7 +121,7 @@ void Piece::draw(const Pos origin, const u32 tileSize, const PieceShape& shape,
 	}
 }
 
-bool Piece::move(const Direction dir) {
+bool Piece::move(const Direction dir) noexcept {
 	int xOff = 0, yOff = 0;
 	switch (dir) {
 		case Direction::LEFT:
@@ -282,12 +282,4 @@ void Piece::updateMove(const double dt, const u32 kDown) {
 		_move(Direction::RIGHT, dasTimer.y,
 			  Keybinds::Action::RIGHT);	 // y is actually the right timer
 	}
-}
-
-PieceType Piece::getType() {
-	return type;
-}
-
-bool Piece::hasSet() const {
-	return setTimer >= setAfter;
 }

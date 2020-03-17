@@ -43,9 +43,9 @@ class Log final {
 		return log;
 	}
 
-	void setFile(FILE* fp);
-	void setLevel(Level level);
-	void setQuiet(bool enable);
+	void setFile(FILE* fp) noexcept;
+	void setLevel(Level level) noexcept;
+	void setQuiet(bool enable) noexcept;
 
 	void log(const Level level, const char* __restrict file, int line,
 			 const char* __restrict string) {
@@ -54,7 +54,7 @@ class Log final {
 
 	template <typename... Args>
 	void log(const Level level, const char* __restrict file, int line,
-			 const char* __restrict fmt, Args&&... args) {
+			 const char* __restrict fmt, Args&&... args) noexcept {
 		static const char* LEVELS[] = {"TRACE", "DEBUG", "INFO",
 									   "WARN",	"ERROR", "FATAL"};
 
@@ -92,8 +92,8 @@ class Log final {
 	}
 
    private:
-	Log();
-	~Log();
+	Log() noexcept;
+	~Log() noexcept;
 
 	Handle mutex;
 

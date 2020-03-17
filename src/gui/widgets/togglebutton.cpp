@@ -7,17 +7,17 @@ static sds getText(sds text, const bool value) {
 }
 
 ToggleButton::ToggleButton(GUI& _parent, const Pos _pos, const WH _wh, sds text,
-						   const bool defaultValue)
+						   const bool defaultValue) noexcept
 	: Button(_parent, _pos, _wh, getText(text, defaultValue)),
 	  text(text),
 	  value(defaultValue) {}
 
-ToggleButton::~ToggleButton() {
+ToggleButton::~ToggleButton() noexcept {
 	sdsfree(text);
 }
 
 void ToggleButton::update(const touchPosition touch,
-						  const touchPosition previous) {
+						  const touchPosition previous) noexcept {
 	Button::update(touch, previous);
 
 	if (pressed()) {
@@ -26,6 +26,6 @@ void ToggleButton::update(const touchPosition touch,
 	}
 }
 
-bool ToggleButton::getValue() {
+bool ToggleButton::getValue() const noexcept {
 	return value;
 }

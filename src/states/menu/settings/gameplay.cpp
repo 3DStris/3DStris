@@ -3,7 +3,7 @@
 #include <3dstris/states/menu/settings/gameplay/keybindselect.hpp>
 #include <3dstris/states/menu/settings/visual.hpp>
 
-GameplaySettings::GameplaySettings()
+GameplaySettings::GameplaySettings() noexcept
 	: BaseSettings("settings.gameplay.title"),
 
 	  dasLabel(game.translate("settings.gameplay.das"), Pos{15, 50 - 35},
@@ -36,7 +36,7 @@ GameplaySettings::GameplaySettings()
 	dropTimer.setValue(game.getConfig().dropTimer);
 }
 
-void GameplaySettings::update(const double dt) {
+void GameplaySettings::update(const double dt) noexcept {
 	config.das = das.getValue();
 	config.arr = arr.getValue();
 	config.dropTimer = dropTimer.getValue();
@@ -50,7 +50,7 @@ void GameplaySettings::update(const double dt) {
 	BaseSettings::update(dt);
 }
 
-void GameplaySettings::draw(const bool bottom) {
+void GameplaySettings::draw(const bool bottom) noexcept {
 	BaseSettings::draw(bottom);
 
 	if (!bottom) {

@@ -3,9 +3,9 @@
 extern "C" {
 #include <3ds/types.h>
 }
-#include <mpack/mpack.h>
 #include <parallel_hashmap/phmap.h>
 
+struct mpack_writer_t;
 class Keybinds final {
    public:
 	enum class Action {

@@ -3,6 +3,8 @@
 
 #include <3dstris/config/l10n.hpp>
 
+#define FLAG(lang) images_##lang##_idx
+
 constexpr std::array<L10n::Language, L10n::LANGUAGE_COUNT> L10n::LANGUAGES;
 
 void L10n::load(const char* __restrict path) noexcept {
@@ -57,9 +59,8 @@ size_t L10n::getFlag(const Language language) noexcept {
 	assert(static_cast<u8>(language) < LANGUAGE_COUNT);
 
 	static constexpr std::array<size_t, LANGUAGE_COUNT> LANGUAGE_TO_ICON{
-		images_us_idx, images_bg_idx, images_ru_idx,
-		images_br_idx, images_pl_idx, images_de_idx,
-		images_jp_idx, images_mk_idx, images_fr_idx};
+		FLAG(us), FLAG(bg), FLAG(ru), FLAG(br), FLAG(pl),
+		FLAG(de), FLAG(jp), FLAG(mk), FLAG(fr)};
 
 	return static_cast<u8>(language) < LANGUAGE_COUNT
 			   ? LANGUAGE_TO_ICON[static_cast<size_t>(language)]

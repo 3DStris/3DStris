@@ -3,7 +3,6 @@
 #include <3dstris/game.hpp>
 #include <3dstris/gui/widgets/button.hpp>
 #include <3dstris/util.hpp>
-#include <vector>
 
 class GUI {
    public:

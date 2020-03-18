@@ -5,9 +5,12 @@ extern "C" {
 #include <3ds/services/hid.h>
 // clang-format on
 }
+
 #include <3dstris/config/keybinds.hpp>
 #include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>
+
+#include <mpack/mpack.h>
 
 const char* Keybinds::KEYBIND_TO_KEY[]{
 	"keybindselect.left",	  "keybindselect.right",

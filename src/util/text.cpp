@@ -1,3 +1,4 @@
+#include <3dstris/util/draw.hpp>
 #include <3dstris/util/text.hpp>
 
 Text::Text(sds text, const Pos pos, const Vector2f scale,

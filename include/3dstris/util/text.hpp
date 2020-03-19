@@ -3,8 +3,8 @@
 #include <sds.h>
 
 #include <3dstris/game.hpp>
-#include <3dstris/util.hpp>
 #include <3dstris/util/colorstextures.hpp>
+#include <3dstris/util/math.hpp>
 
 class Text {
    public:

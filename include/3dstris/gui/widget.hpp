@@ -1,6 +1,14 @@
 #pragma once
 
-#include <3dstris/util.hpp>
+extern "C" {
+// clang-format off
+// fucking thanks ctrulib
+#include <3ds/types.h>
+#include <3ds/services/hid.h>
+// clang-format on
+}
+
+#include <3dstris/util/math.hpp>
 
 class GUI;
 class Widget {

@@ -8,7 +8,7 @@
 #pragma once
 
 extern "C" {
-#include <3ds/os.h>
+#include <3ds/synchronization.h>
 }
 #include <stdio.h>
 #include <time.h>
@@ -63,7 +63,7 @@ class Log final {
 		}
 
 		// Get current time
-		const time_t t = osGetTime() / 1000 - 2208988800;
+		const time_t t = time(nullptr);
 		tm lt;
 		localtime_r(&t, &lt);
 

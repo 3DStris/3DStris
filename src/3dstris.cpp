@@ -2,18 +2,17 @@
 #include <3dstris/states/menu/mainmenu.hpp>
 
 int main() {
-	// Services are not initialized here; instead, Game does graphics
-	// initialization, while Config does RomFS initialization
+	// Services are not (de)initialized here; instead, Game does graphics
+	// initialization, while Config does RomFS (de)init
 
-	// The reason for this is BaseSettings::config, which is a static variable,
-	// is initialized as a copy of Game::get().getConfig(), which in turn calls
-	// the Game and Config constructor before the main function is called
+	// The reason for this is that BaseSettings::config (a static variable) is
+	// initialized as a copy of Game::get().getConfig(), a method which, after
+	// being called to initialize a static variable, calls the Game and Config
+	// constructor *before* the main function is called
 
-	// Initializing them here results in many interesting issues, such as
-	// failing to open the English translation from the RomFS (due to the
-	// missing romfsInit() call) and Citro3D locking at C3D_FrameBegin
-
-	// Please be aware of this if you need to initialize any new services!
+	// These constructors attempt to use the romfs service and various others,
+	// however none are initialized at the time of construction,
+	// therefore making it impossible to initialize said services here
 
 #ifndef NDEBUG
 	consoleDebugInit(debugDevice_3DMOO);

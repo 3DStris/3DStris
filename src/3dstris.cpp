@@ -14,12 +14,6 @@ int main() {
 	// however none are initialized at the time of construction,
 	// therefore making it impossible to initialize said services here
 
-#ifndef NDEBUG
-	consoleDebugInit(debugDevice_3DMOO);
-	Log::get().setLevel(Log::Level::DEBUG);
-	Log::get().setQuiet(false);
-#endif
-
 	Game& game = Game::get();
 	game.pushState(make_unique<MainMenu>());
 	if (game.getConfig().failed()) {

@@ -19,6 +19,8 @@ class IntegerInputField final : public Widget {
 	IntegerInputField(GUI& _parent, const Pos _pos, const WH _wh,
 					  sds suffix = sdsempty()) noexcept
 		: Widget(_parent, _pos, _wh), suffix(suffix), value(0) {
+		text.setX(pos.x + 3);
+
 		updateText();
 	}
 	IntegerInputField(GUI& _parent, const Pos _pos, const WH _wh,
@@ -88,7 +90,6 @@ class IntegerInputField final : public Widget {
 		text.setScale({textScale, textScale});
 
 		text.align(Text::Align::VCENTER, pos, wh);
-		text.setX(pos.x + 3);
 	}
 
 	Text text;

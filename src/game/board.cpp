@@ -2,10 +2,13 @@
 #include <3dstris/game/board.hpp>
 #include <3dstris/gui.hpp>
 
-Board::Board(const u32 width, const u32 height) : width(width), height(height) {
-	grid.reserve(width * height);
-	reset();
-}
+Board::Board(const u32 width, const u32 height)
+	: width(width),
+	  height(height),
+	  grid(width * height),
+
+	  _droppedPieces(0),
+	  _linesCleared(0) {}
 
 void Board::reset() {
 	grid.assign(width * height, PieceType::NONE);

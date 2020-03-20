@@ -43,7 +43,7 @@ rapidjson::Document L10n::loadJson(const char* __restrict path) noexcept {
 	return document;
 }
 
-sds L10n::get(const char* key) const noexcept {
+sds L10n::get(const char* __restrict key) const noexcept {
 	if (translations.HasMember(key)) {
 		return sdsnew(translations[key].GetString());
 	} else if (!enTranslations.IsNull()) {

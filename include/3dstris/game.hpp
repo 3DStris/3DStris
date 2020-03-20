@@ -18,7 +18,7 @@ class Game {
 
 	bool isPressed(u32 kDown, Keybinds::Action action) const noexcept;
 
-	sds translate(const char* __restrict key) const noexcept;
+	String translate(const char* __restrict key) const noexcept;
 	void loadLanguage(L10n::Language language) noexcept;
 
 	C3D_RenderTarget* getTop() noexcept;

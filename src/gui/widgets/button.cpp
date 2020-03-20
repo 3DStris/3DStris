@@ -1,8 +1,8 @@
 #include <3dstris/gui.hpp>
 
-Button::Button(GUI& _parent, const Pos _pos, const WH _wh, sds text,
+Button::Button(GUI& _parent, const Pos _pos, const WH _wh, String&& text,
 			   const Flags flags) noexcept
-	: Widget(_parent, _pos, _wh), text() {
+	: Widget(_parent, _pos, _wh), text(std::forward<String>(text)) {
 	if (flags == Flags::HCENTER || flags == Flags::CENTER) {
 		pos.x = (parent.getWidth() - wh.x) / 2.0f;
 	}
@@ -10,18 +10,12 @@ Button::Button(GUI& _parent, const Pos _pos, const WH _wh, sds text,
 		pos.y = (parent.getHeight() - wh.y) / 2.0f;
 	}
 
-	setText(text);
+	scaleAlignText();
 }
 
-Button::Button(GUI& _parent, const Pos _pos, const WH _wh,
-			   const char* __restrict text, const Flags flags) noexcept
-	: Button::Button(_parent, _pos, _wh, sdsnew(text), flags) {}
-
-void Button::setText(sds text) noexcept {
-	this->text.setText(text);
-
-	this->text.scale(wh.x, 0.7f);
-	this->text.align(Text::Align::CENTER, Pos{pos.x, pos.y}, WH{wh.x, wh.y});
+void Button::setText(String&& text) noexcept {
+	this->text.setText(std::forward<String>(text));
+	scaleAlignText();
 }
 
 void Button::draw() const noexcept {

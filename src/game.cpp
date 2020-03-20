@@ -1,6 +1,7 @@
 #include <3dstris/game.hpp>
 #include <3dstris/state.hpp>
 #include <3dstris/util/colorstextures.hpp>
+#include <3dstris/util/string.hpp>
 
 Game::Game() noexcept {
 	gfxInitDefault();
@@ -50,7 +51,7 @@ bool Game::isPressed(const u32 kDown, const Keybinds::Action action) const
 	return kDown & config.getKeybinds().get(action);
 }
 
-sds Game::translate(const char* __restrict key) const noexcept {
+String Game::translate(const char* __restrict key) const noexcept {
 	return config.getL10n().get(key);
 }
 void Game::loadLanguage(const L10n::Language language) noexcept {

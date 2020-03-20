@@ -24,7 +24,7 @@ const phmap::flat_hash_map<Keybinds::Key, const char*>
 KeybindButton::KeybindButton(GUI& _parent, const Pos _pos, const WH _wh,
 							 const Keybinds::Action action,
 							 Keybinds::Key& toSet) noexcept
-	: Button(_parent, _pos, _wh, sdsempty()),
+	: Button(_parent, _pos, _wh, String::empty()),
 	  action(action),
 	  key(toSet),
 	  toSet(toSet) {
@@ -74,5 +74,5 @@ void KeybindButton::reset() {
 }
 
 void KeybindButton::updateText() {
-	setText(sdsnew(KEY_TO_GLYPH.contains(key) ? KEY_TO_GLYPH.at(key) : "?"));
+	setText(KEY_TO_GLYPH.contains(key) ? KEY_TO_GLYPH.at(key) : "?");
 }

@@ -24,10 +24,6 @@ SprintResults::SprintResults(Ingame* parent, SavedGame&& saved)
 	game.getGames().save();
 }
 
-SprintResults::~SprintResults() {
-	sdsfree(timeFormat);
-}
-
 void SprintResults::update(const double dt) {
 	gui.update(dt);
 

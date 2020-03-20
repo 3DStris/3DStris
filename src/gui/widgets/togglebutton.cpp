@@ -1,20 +1,16 @@
 #include <3dstris/game.hpp>
 #include <3dstris/gui/widgets/togglebutton.hpp>
 
-static sds getText(sds text, const bool value) {
+static String getText(const String& text, const bool value) {
 	return sdscatfmt(sdsnew(text), ": %s",
-					 Game::get().translate(value ? "on" : "off"));
+					 Game::get().translate(value ? "on" : "off").s);
 }
 
-ToggleButton::ToggleButton(GUI& _parent, const Pos _pos, const WH _wh, sds text,
-						   const bool defaultValue) noexcept
+ToggleButton::ToggleButton(GUI& _parent, const Pos _pos, const WH _wh,
+						   String&& text, const bool defaultValue) noexcept
 	: Button(_parent, _pos, _wh, getText(text, defaultValue)),
 	  text(text),
 	  value(defaultValue) {}
-
-ToggleButton::~ToggleButton() noexcept {
-	sdsfree(text);
-}
 
 void ToggleButton::update(const touchPosition touch,
 						  const touchPosition previous) noexcept {

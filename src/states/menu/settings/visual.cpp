@@ -7,7 +7,7 @@ VisualSettings::VisualSettings() noexcept
 	  backTip(gui, Pos{0, SCREEN_HEIGHT - 25 - 25}, WH{100, 25}),
 	  backTipText(
 		  sdscatfmt(sdsempty(), "%s %S", KeybindButton::KEY_TO_GLYPH.at(KEY_L),
-					game.translate("settings.gameplay.title")),
+					game.translate("settings.gameplay.title").s),
 		  Pos{6, 0}),
 
 	  useTextures(gui.add<ToggleButton>(

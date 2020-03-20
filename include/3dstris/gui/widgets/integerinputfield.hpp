@@ -17,17 +17,12 @@ class IntegerInputField final : public Widget {
 
    public:
 	IntegerInputField(GUI& _parent, const Pos _pos, const WH _wh,
-					  sds suffix = sdsempty()) noexcept
+					  String suffix = String::empty()) noexcept
 		: Widget(_parent, _pos, _wh), suffix(suffix), value(0) {
 		text.setX(pos.x + 3);
 
 		updateText();
 	}
-	IntegerInputField(GUI& _parent, const Pos _pos, const WH _wh,
-					  const char* __restrict suffix) noexcept
-		: IntegerInputField(_parent, _pos, _wh, sdsnew(suffix)) {}
-
-	~IntegerInputField() noexcept override { sdsfree(suffix); }
 
 	void draw() const noexcept override {
 		C2D_DrawRectSolid(pos.x, pos.y, 0, wh.x, wh.y,
@@ -84,7 +79,7 @@ class IntegerInputField final : public Widget {
 			sdscatfmt(sdsempty(), std::is_signed<T>::value ? "%I%S" : "%U%S",
 					  std::is_signed<T>::value ? static_cast<s64>(value)
 											   : static_cast<u64>(value),
-					  suffix));
+					  suffix.s));
 
 		const float textScale = std::min(text.getWH().y / wh.y, 0.5f);
 		text.setScale({textScale, textScale});
@@ -93,7 +88,7 @@ class IntegerInputField final : public Widget {
 	}
 
 	Text text;
-	const sds suffix;
+	const String suffix;
 
 	T value;
 

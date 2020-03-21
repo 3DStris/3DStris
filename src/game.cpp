@@ -9,12 +9,6 @@ Game::Game() noexcept {
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 	C2D_Prepare();
 
-#ifndef NDEBUG
-	consoleDebugInit(debugDevice_3DMOO);
-	Log::get().setLevel(Log::Level::DEBUG);
-	Log::get().setQuiet(false);
-#endif
-
 	top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
 	bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
 

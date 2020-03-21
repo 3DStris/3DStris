@@ -20,6 +20,10 @@
  * IN THE SOFTWARE.
  */
 
+extern "C" {
+#include <3ds/console.h>
+}
+
 #include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>
 #include <3dstris/version.hpp>
@@ -28,6 +32,12 @@ Log::Log() noexcept {
 	static const FS_Path HOMEBREW_PATH = fsMakePath(PATH_ASCII, "/3ds/");
 	static const FS_Path GAME_PATH = fsMakePath(PATH_ASCII, "/3ds/3dstris/");
 	static constexpr auto LOG_PATH = "sdmc:/3ds/3dstris/log.log";
+
+#ifndef NDEBUG
+	consoleDebugInit(debugDevice_3DMOO);
+	setLevel(Log::Level::DEBUG);
+	setQuiet(false);
+#endif
 
 	// Please don't use any of the LOG macros here
 

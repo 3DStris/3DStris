@@ -110,17 +110,7 @@ Games& Game::getGames() noexcept {
 	return config.getGames();
 }
 
-L10n& Game::getL10n() noexcept {
-	return config.getL10n();
-}
-const L10n& Game::getL10n() const noexcept {
-	return config.getL10n();
-}
-
 Keybinds& Game::getKeybinds() noexcept {
-	return config.getKeybinds();
-}
-const Keybinds& Game::getKeybinds() const noexcept {
 	return config.getKeybinds();
 }
 

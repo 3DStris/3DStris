@@ -6,6 +6,7 @@
 
 #include <3dstris/util/log.hpp>
 
+class String;
 class L10n final {
    public:
 	struct CompareString {
@@ -43,7 +44,7 @@ class L10n final {
 	void load(const char* __restrict path) noexcept;
 	rapidjson::Document loadJson(const char* __restrict path) noexcept;
 
-	sds get(const char* __restrict key) const noexcept;
+	String get(const char* __restrict key) const noexcept;
 
 	static size_t getFlag(Language language) noexcept;
 

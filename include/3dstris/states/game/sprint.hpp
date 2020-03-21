@@ -6,7 +6,6 @@
 class Sprint final : public Ingame {
    public:
 	explicit Sprint(const u16 lines);
-	~Sprint() noexcept override;
 
 	void update(double dt) override;
 	void draw(bool bottom) override;
@@ -14,7 +13,7 @@ class Sprint final : public Ingame {
 	void reset() override;
 
    private:
-	const sds infoFormat;
+	const String infoFormat;
 
 	const u16 lines;
 

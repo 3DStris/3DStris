@@ -5,9 +5,8 @@
 class GUI;
 class ToggleButton final : public Button {
    public:
-	ToggleButton(GUI& parent, Pos pos, WH wh, sds text,
+	ToggleButton(GUI& parent, Pos pos, WH wh, String&& text,
 				 bool defaultValue) noexcept;
-	~ToggleButton() noexcept override;
 
 	void update(touchPosition touch, touchPosition previous) noexcept override;
 
@@ -16,7 +15,7 @@ class ToggleButton final : public Button {
    private:
 	using Button::setText;
 
-	sds text;
+	String text;
 
 	bool value;
 };

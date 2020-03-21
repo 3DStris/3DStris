@@ -1,31 +1,13 @@
 #include <3dstris/util/draw.hpp>
 #include <3dstris/util/text.hpp>
 
-Text::Text(sds text, const Pos pos, const Vector2f scale,
+Text::Text(String&& text, const Pos pos, const Vector2f scale,
 		   const Color& color) noexcept
 	: pos(pos),
 	  _scale(scale),
 	  textBuffer(C2D_TextBufNew(sdslen(text))),
 	  color(color) {
-	setText(text);
-}
-Text::Text(const char* __restrict text, const Pos pos, const Vector2f scale,
-		   const Color& color) noexcept
-	: Text(sdsnew(text), pos, scale, color) {}
-
-Text::~Text() noexcept {
-	C2D_TextBufDelete(textBuffer);
-	sdsfree(text);
-}
-Text::Text(Text&& other) noexcept
-	: pos(other.pos),
-	  _scale(other._scale),
-	  text(other.text),
-	  textBuffer(other.textBuffer),
-	  textObject(other.textObject),
-	  color(other.color) {
-	other.text = nullptr;
-	other.textBuffer = nullptr;
+	setText(std::forward<String>(text));
 }
 
 void Text::draw(const float depth) const noexcept {
@@ -69,13 +51,12 @@ void Text::scale(const float cw, const float max) noexcept {
 	setScale({scale, scale});
 }
 
-void Text::setText(sds text) noexcept {
-	sdsfree(this->text);
-	this->text = text;
+void Text::setText(String&& text) noexcept {
+	this->text = std::forward<String>(text);
 
 	C2D_TextBufClear(textBuffer);
 
-	const size_t textLen = sdslen(text);
+	const size_t textLen = sdslen(this->text);
 	if (C2D_TextBufGetNumGlyphs(textBuffer) < textLen) {
 		textBuffer = C2D_TextBufResize(textBuffer, textLen);
 	}
@@ -84,7 +65,7 @@ void Text::setText(sds text) noexcept {
 	C2D_TextOptimize(&textObject);
 }
 
-sds Text::getText() const noexcept {
+const String& Text::getText() const noexcept {
 	return text;
 }
 

@@ -15,8 +15,8 @@ SprintTimes::SprintTimes()
 
 	  title(game.translate("results.sprint.times"), Pos{0, 5}),
 	  noGames(game.translate("sprint.times.nogames"), Pos{}, {0.75f, 0.75f}),
-	  page(sdsempty(), Pos{10, 10}, {0.8f, 0.8f}),
-	  selectedText(sdsempty(), Pos{0, SCREEN_HEIGHT - TABLE_Y + 10},
+	  page(String::empty(), Pos{10, 10}, {0.8f, 0.8f}),
+	  selectedText(String::empty(), Pos{0, SCREEN_HEIGHT - TABLE_Y + 10},
 				   {0.65f, 0.65f}) {
 	// Games::all joins the load thread
 	if (game.getGames().all().empty()) {
@@ -48,17 +48,13 @@ SprintTimes::SprintTimes()
 	updateSelectedText();
 }
 
-SprintTimes::~SprintTimes() noexcept {
-	sdsfree(infoFormat);
-}
-
 void SprintTimes::genValues() {
 	values.clear();
 
 	for (u32 i = 0; i < std::min(games.size(), CELLS); ++i) {
 		const SavedGame& saved = games[i + topCell];
 
-		Text time(sdscatprintf(sdsempty(), "%.3fs", saved.time), Pos{},
+		Text time(String::fromPrintf("%.3fs", saved.time), Pos{},
 				  {0.8f, 0.8f});
 		time.align(Text::Align::CENTER,
 				   Pos{TABLE_X, TABLE_Y + CELL_H * (i + 1.0f)},
@@ -185,7 +181,7 @@ void SprintTimes::updateSelectedText() {
 void SprintTimes::updateInfoText(const SavedGame& saved) {
 	char date[60];
 	saved.dateString(date, 60);
-	page.setText(sdscatprintf(sdsempty(), infoFormat, saved.lines, saved.time,
+	page.setText(String::fromPrintf(infoFormat.s, saved.lines, saved.time,
 							  saved.pps, date));
 }
 

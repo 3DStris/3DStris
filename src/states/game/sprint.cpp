@@ -16,14 +16,10 @@ Sprint::Sprint(const u16 lines)
 	infoText.setPos({10, 10});
 }
 
-Sprint::~Sprint() noexcept {
-	sdsfree(infoFormat);
-}
-
 void Sprint::reset() {
 	Ingame::reset();
 
-	infoText.setText(sdsempty());
+	infoText.setText(String::empty());
 
 	time = 0.0;
 	startTimer = 0.0;
@@ -59,8 +55,8 @@ void Sprint::update(const double dt) {
 
 	time += dt;
 
-	infoText.setText(sdscatprintf(sdsempty(), infoFormat, board.linesCleared(),
-								  lines, time, board.droppedPieces() / time));
+	infoText.setText(String::fromPrintf(infoFormat, board.linesCleared(), lines,
+										time, board.droppedPieces() / time));
 
 	Ingame::update(dt);
 }

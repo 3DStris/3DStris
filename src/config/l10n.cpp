@@ -2,6 +2,7 @@
 #include <rapidjson/filereadstream.h>
 
 #include <3dstris/config/l10n.hpp>
+#include <3dstris/util/string.hpp>
 
 #define FLAG(lang) images_##lang##_idx
 
@@ -43,16 +44,16 @@ rapidjson::Document L10n::loadJson(const char* __restrict path) noexcept {
 	return document;
 }
 
-sds L10n::get(const char* __restrict key) const noexcept {
+String L10n::get(const char* __restrict key) const noexcept {
 	if (translations.HasMember(key)) {
-		return sdsnew(translations[key].GetString());
+		return translations[key].GetString();
 	} else if (!enTranslations.IsNull()) {
 		if (enTranslations.HasMember(key)) {
-			return sdsnew(enTranslations[key].GetString());
+			return enTranslations[key].GetString();
 		}
 	}
 
-	return sdsnew(key);
+	return key;
 }
 
 size_t L10n::getFlag(const Language language) noexcept {

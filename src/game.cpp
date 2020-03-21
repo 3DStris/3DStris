@@ -1,18 +1,13 @@
 #include <3dstris/game.hpp>
 #include <3dstris/state.hpp>
 #include <3dstris/util/colorstextures.hpp>
+#include <3dstris/util/string.hpp>
 
 Game::Game() noexcept {
 	gfxInitDefault();
 	C3D_Init(C3D_DEFAULT_CMDBUF_SIZE);
 	C2D_Init(C2D_DEFAULT_MAX_OBJECTS);
 	C2D_Prepare();
-
-#ifndef NDEBUG
-	consoleDebugInit(debugDevice_3DMOO);
-	Log::get().setLevel(Log::Level::DEBUG);
-	Log::get().setQuiet(false);
-#endif
 
 	top = C2D_CreateScreenTarget(GFX_TOP, GFX_LEFT);
 	bottom = C2D_CreateScreenTarget(GFX_BOTTOM, GFX_LEFT);
@@ -50,7 +45,7 @@ bool Game::isPressed(const u32 kDown, const Keybinds::Action action) const
 	return kDown & config.getKeybinds().get(action);
 }
 
-sds Game::translate(const char* __restrict key) const noexcept {
+String Game::translate(const char* __restrict key) const noexcept {
 	return config.getL10n().get(key);
 }
 void Game::loadLanguage(const L10n::Language language) noexcept {

@@ -16,8 +16,8 @@ GameplaySettings::GameplaySettings() noexcept
 	  nextTip(gui, Pos(SCREEN_WIDTH - 100, SCREEN_HEIGHT - 25 - 25),
 			  WH{100, 25}),
 	  nextTipText(
-		  sdscatfmt(sdsempty(), "%s %S", KeybindButton::KEY_TO_GLYPH.at(KEY_R),
-					game.translate("settings.visual.title")),
+		  String::fromFmt("%s %S", KeybindButton::KEY_TO_GLYPH.at(KEY_R),
+						  game.translate("settings.visual.title").s),
 		  Pos(SCREEN_WIDTH - 100 + 5, 0)),
 
 	  das(gui.add<IntegerInputField<u16>>(

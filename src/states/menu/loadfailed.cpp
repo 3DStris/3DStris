@@ -18,7 +18,7 @@ void LoadFailed::update(const double dt) noexcept {
 	}
 }
 
-void LoadFailed::draw(const bool bottom) noexcept {
+void LoadFailed::draw(const bool bottom) const noexcept {
 	if (!bottom) {
 		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 

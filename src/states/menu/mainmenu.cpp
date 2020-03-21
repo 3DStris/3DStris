@@ -51,7 +51,7 @@ void MainMenu::update(const double dt) noexcept {
 	}
 }
 
-void MainMenu::draw(const bool bottom) noexcept {
+void MainMenu::draw(const bool bottom) const noexcept {
 	if (!bottom) {
 		static constexpr u8 ICON_SCALE = 3;
 

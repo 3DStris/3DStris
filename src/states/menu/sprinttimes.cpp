@@ -54,8 +54,7 @@ void SprintTimes::genValues() {
 	for (u32 i = 0; i < std::min(games.size(), CELLS); ++i) {
 		const SavedGame& saved = games[i + topCell];
 
-		Text time(String::fromPrintf("%.3fs", saved.time), Pos{},
-				  {0.8f, 0.8f});
+		Text time(String::fromPrintf("%.3fs", saved.time), Pos{}, {0.8f, 0.8f});
 		time.align(Text::Align::CENTER,
 				   Pos{TABLE_X, TABLE_Y + CELL_H * (i + 1.0f)},
 				   WH{TIME_W, CELL_H});
@@ -127,7 +126,7 @@ void SprintTimes::update(const double dt) {
 	}
 }
 
-void SprintTimes::draw(const bool bottom) noexcept {
+void SprintTimes::draw(const bool bottom) const noexcept {
 	if (!bottom) {
 		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 
@@ -182,7 +181,7 @@ void SprintTimes::updateInfoText(const SavedGame& saved) {
 	char date[60];
 	saved.dateString(date, 60);
 	page.setText(String::fromPrintf(infoFormat.s, saved.lines, saved.time,
-							  saved.pps, date));
+									saved.pps, date));
 }
 
 // Thanks, C++11!

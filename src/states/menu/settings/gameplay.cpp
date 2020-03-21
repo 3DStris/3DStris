@@ -50,7 +50,7 @@ void GameplaySettings::update(const double dt) noexcept {
 	BaseSettings::update(dt);
 }
 
-void GameplaySettings::draw(const bool bottom) noexcept {
+void GameplaySettings::draw(const bool bottom) const noexcept {
 	BaseSettings::draw(bottom);
 
 	if (!bottom) {

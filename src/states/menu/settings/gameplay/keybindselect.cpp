@@ -75,7 +75,7 @@ void KeybindSelect::update(const double dt) {
 	}
 }
 
-void KeybindSelect::draw(const bool bottom) noexcept {
+void KeybindSelect::draw(const bool bottom) const noexcept {
 	if (!bottom) {
 		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 

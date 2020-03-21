@@ -47,7 +47,7 @@ void SprintSelect::update(const double dt) noexcept {
 	}
 }
 
-void SprintSelect::draw(const bool bottom) noexcept {
+void SprintSelect::draw(const bool bottom) const noexcept {
 	if (!bottom) {
 		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 

@@ -8,7 +8,7 @@ class Sprint final : public Ingame {
 	explicit Sprint(const u16 lines);
 
 	void update(double dt) override;
-	void draw(bool bottom) override;
+	void draw(bool bottom) const override;
 
 	void reset() override;
 

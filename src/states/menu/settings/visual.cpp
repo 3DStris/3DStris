@@ -30,7 +30,7 @@ void VisualSettings::update(const double dt) noexcept {
 	BaseSettings::update(dt);
 }
 
-void VisualSettings::draw(const bool bottom) noexcept {
+void VisualSettings::draw(const bool bottom) const noexcept {
 	BaseSettings::draw(bottom);
 
 	if (!bottom) {

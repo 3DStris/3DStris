@@ -74,7 +74,7 @@ void Ingame::update(const double dt) {
 	}
 }
 
-void Ingame::draw(const bool bottom) {
+void Ingame::draw(const bool bottom) const {
 	if (bottom) {
 		return;
 	}

@@ -9,7 +9,7 @@ class SprintTimes final : public State {
 	SprintTimes();
 
 	void update(double dt) override;
-	void draw(bool bottom) noexcept override;
+	void draw(bool bottom) const noexcept override;
 
 	void genValues();
 

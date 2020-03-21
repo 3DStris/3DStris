@@ -8,7 +8,7 @@ class Paused final : public State {
 	explicit Paused(Ingame* parent);
 
 	void update(double dt) override;
-	void draw(bool bottom) override;
+	void draw(bool bottom) const override;
 
    private:
 	static constexpr Color PAUSED = C2D_Color32(0, 0, 0, 190);

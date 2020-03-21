@@ -8,7 +8,7 @@ class LanguageSelect final : public State {
 	LanguageSelect() noexcept;
 
 	void update(double dt) noexcept override;
-	void draw(bool bottom) noexcept override;
+	void draw(bool bottom) const noexcept override;
 
    private:
 	Text select;

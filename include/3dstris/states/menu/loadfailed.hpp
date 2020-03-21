@@ -10,7 +10,7 @@ class LoadFailed final : public State {
 	LoadFailed(FailType type = FailType::CONFIG) noexcept;
 
 	void update(double dt) noexcept override;
-	void draw(bool bottom) noexcept override;
+	void draw(bool bottom) const noexcept override;
 
    private:
 	static const char* FAILTYPE_TO_KEY[];

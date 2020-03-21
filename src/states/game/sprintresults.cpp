@@ -37,7 +37,7 @@ void SprintResults::update(const double dt) {
 	}
 }
 
-void SprintResults::draw(const bool bottom) {
+void SprintResults::draw(const bool bottom) const {
 	if (!bottom) {
 		parent->draw(bottom);
 		C2D_DrawRectSolid(0, 0, 1, SCREEN_WIDTH, SCREEN_HEIGHT, RESULTS);

@@ -9,7 +9,7 @@ class BaseSettings : public State {
 	BaseSettings(const char* __restrict titleKey) noexcept;
 
 	void update(double dt) override;
-	void draw(bool bottom) override;
+	void draw(bool bottom) const override;
 
    protected:
 	// The constructor can only be called once, so I guess it's okay. However,

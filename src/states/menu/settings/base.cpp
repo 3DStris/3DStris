@@ -40,7 +40,7 @@ void BaseSettings::update(const double dt) {
 	}
 }
 
-void BaseSettings::draw(const bool bottom) {
+void BaseSettings::draw(const bool bottom) const {
 	if (!bottom) {
 		C2D_TargetClear(game.getTop(), gui.getTheme().background);
 

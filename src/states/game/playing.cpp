@@ -11,7 +11,7 @@ void Playing::update(const double dt) {
 	}
 }
 
-void Playing::draw(const bool bottom) {
+void Playing::draw(const bool bottom) const {
 	if (bottom) {
 		C2D_TargetClear(game.getBottom(), game.getTheme().background);
 	} else {

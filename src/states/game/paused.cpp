@@ -38,7 +38,7 @@ void Paused::update(const double dt) {
 	}
 }
 
-void Paused::draw(const bool bottom) {
+void Paused::draw(const bool bottom) const {
 	if (!bottom) {
 		assert(parent != nullptr);
 

@@ -5,7 +5,7 @@ Text::Text(String&& text, const Pos pos, const Vector2f scale,
 		   const Color& color) noexcept
 	: pos(pos),
 	  _scale(scale),
-	  textBuffer(C2D_TextBufNew(sdslen(text))),
+	  textBuffer(C2D_TextBufNew(text.length())),
 	  color(color) {
 	setText(std::forward<String>(text));
 }
@@ -56,7 +56,7 @@ void Text::setText(String&& text) noexcept {
 
 	C2D_TextBufClear(textBuffer);
 
-	const size_t textLen = sdslen(this->text);
+	const size_t textLen = this->text.length();
 	if (C2D_TextBufGetNumGlyphs(textBuffer) < textLen) {
 		textBuffer = C2D_TextBufResize(textBuffer, textLen);
 	}

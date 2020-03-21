@@ -35,5 +35,7 @@ struct String final {
 
 	operator sds() const noexcept { return s; }
 
+	inline size_t length() const noexcept { return sdslen(s); }
+
 	sds s;
 };

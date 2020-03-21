@@ -75,11 +75,11 @@ class IntegerInputField final : public Widget {
 
    private:
 	void updateText() noexcept {
-		text.setText(
-			sdscatfmt(sdsempty(), std::is_signed<T>::value ? "%I%S" : "%U%S",
-					  std::is_signed<T>::value ? static_cast<s64>(value)
-											   : static_cast<u64>(value),
-					  suffix.s));
+		text.setText(String::fromFmt(std::is_signed<T>::value ? "%I%S" : "%U%S",
+									 std::is_signed<T>::value
+										 ? static_cast<s64>(value)
+										 : static_cast<u64>(value),
+									 suffix.s));
 
 		const float textScale = std::min(text.getWH().y / wh.y, 0.5f);
 		text.setScale({textScale, textScale});

@@ -5,6 +5,17 @@
 struct String final {
 	static String empty() noexcept { return sdsempty(); }
 
+	template <typename... Args>
+	static String fromFmt(const char* __restrict fmt, Args&&... args) noexcept {
+		return sdscatfmt(sdsempty(), fmt, args...);
+	}
+
+	template <typename... Args>
+	static String fromPrintf(const char* __restrict fmt,
+							 Args&&... args) noexcept {
+		return sdscatprintf(sdsempty(), fmt, args...);
+	}
+
 	String() noexcept : s(nullptr) {}
 	String(const char* __restrict str) noexcept : s(sdsnew(str)) {}
 	String(sds str) noexcept : s(str) {}

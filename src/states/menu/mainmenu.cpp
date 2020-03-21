@@ -9,9 +9,8 @@
 
 MainMenu::MainMenu() noexcept
 	: State(),
-	  version(
-		  sdscatfmt(sdsempty(), "v%s-%s", _3DSTRIS_VERSION, _3DSTRIS_GIT_HASH),
-		  Pos{}, {0.5f, 0.5f}),
+	  version(String::fromFmt("v%s-%s", _3DSTRIS_VERSION, _3DSTRIS_GIT_HASH),
+			  Pos{}, {0.5f, 0.5f}),
 
 	  icon(C2D_SpriteSheetGetImage(game.getImageSheet(), images_icon_idx)),
 

@@ -15,6 +15,8 @@ class Board {
 	constexpr bool inside(const T x, const T y) const noexcept {
 		static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
 
+		// Casting 0 to T is to prevent any problems with floating-point
+		// integers
 		return x >= static_cast<T>(0) && y >= static_cast<T>(0) && x < width &&
 			   y < height;
 	}
@@ -60,6 +62,6 @@ class Board {
    private:
 	std::vector<PieceType> grid;
 
-	u32 _droppedPieces;
-	u32 _linesCleared;
+	u32 _droppedPieces = 0;
+	u32 _linesCleared = 0;
 };

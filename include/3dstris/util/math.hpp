@@ -14,8 +14,8 @@ template <typename T>
 struct Vector2 {
 	static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
 
-	constexpr Vector2(const T x, const T y) noexcept : x(x), y(y) {}
 	constexpr Vector2() noexcept {}
+	constexpr Vector2(const T x, const T y) noexcept : x(x), y(y) {}
 
 	T x = 0;
 	T y = 0;

@@ -18,7 +18,7 @@ class IntegerInputField final : public Widget {
    public:
 	IntegerInputField(GUI& _parent, const Pos _pos, const WH _wh,
 					  String suffix = String::empty()) noexcept
-		: Widget(_parent, _pos, _wh), suffix(suffix), value(0) {
+		: Widget(_parent, _pos, _wh), suffix(suffix) {
 		text.setX(pos.x + 3);
 
 		updateText();
@@ -90,7 +90,7 @@ class IntegerInputField final : public Widget {
 	Text text;
 	const String suffix;
 
-	T value;
+	T value = 0;
 
 	bool held;
 };

@@ -9,10 +9,7 @@ Sprint::Sprint(const u16 lines)
 	: Ingame(),
 	  infoFormat(game.translate("sprint.info")),
 
-	  lines(lines),
-
-	  time(0.0),
-	  startTimer(0.0) {
+	  lines(lines) {
 	infoText.setPos({10, 10});
 }
 

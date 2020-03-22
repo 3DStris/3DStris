@@ -18,8 +18,8 @@ class Sprint final : public Ingame {
 	const u16 lines;
 
 	Text infoText;
-	double time;
+	double time = 0.0;
 
 	const double startTime = 1.0;
-	double startTimer;
+	double startTimer = 0.0;
 };

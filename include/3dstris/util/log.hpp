@@ -97,7 +97,7 @@ class Log final {
 
 	Handle mutex;
 
-	FILE* fp;
+	FILE* fp = nullptr;
 	Level level = Level::INFO;
 	bool quiet = true;
 };

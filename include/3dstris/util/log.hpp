@@ -48,7 +48,7 @@ class Log final {
 	void setQuiet(bool enable) noexcept;
 
 	void log(const Level level, const char* __restrict file, int line,
-			 const char* __restrict string) {
+			 const char* __restrict string) noexcept {
 		log(level, file, line, "%s", string);
 	}
 

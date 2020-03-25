@@ -16,7 +16,7 @@ class L10n final {
 	};
 
 	static constexpr u8 LANGUAGE_COUNT = 9;
-	enum class Language { EN, BG, RU, PT, PL, DE, JP, MK, FR };
+	enum class Language { EN, BG, RU, PT, PL, DE, JP, MK, FR, DA};
 	static constexpr std::array<Language, LANGUAGE_COUNT> LANGUAGES{
 		Language::EN, Language::BG, Language::RU, Language::PT, Language::PL,
 		Language::DE, Language::JP, Language::MK, Language::FR, Language::DA};

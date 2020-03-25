@@ -1,0 +1,70 @@
+{
+	"ok": "OK",
+	"save": "Gem",
+
+	"back": "Tilbage",
+	"cancel": "Anuller",
+	"exit": "Afslut",
+
+	"menu": "Menu",
+
+	"on": "Tændt",
+	"off": "Slukket",
+	
+	"reset": "Nulstil",
+
+	"sprint.info": "Linjer: %d/%d\nTid: %.3fs\nPPS: %.3f",
+	"sprint.times.title": "Spil",
+	"sprint.times.nogames": "Du har ikke spillet nogle Sprint spil endnu.",
+	"sprint.times.table.time": "Tid",
+	"sprint.times.table.date": "Dato",
+	"sprint.times.table.lines": "Linjer",
+	"sprint.times.info": "Linjer: %d\nTid: %.3fs\nPPS: %.2f\nDato: %s",
+
+	"results.dead": "Spil Slut",
+	"results.restart": "Genstart",
+	"results.sprint.time": "Tid: %.3fs",
+	"results.sprint.times": "Tider",
+
+	"paused.title": "Pauset",
+	"paused.resume": "Fortsæt",
+
+	"mainmenu.play": "Spil",
+	"mainmenu.settings": "Instillinger",
+	"mainmenu.games": "Spil",
+	"mainmenu.languages": "Sprog",
+
+	"modeselect.title": "Vælg en mode",
+	"modeselect.normal": "Normal",
+	"modeselect.sprint": "Sprint",
+	
+	"sprintselect.title": "Sprint",
+	"sprintselect.twenty": "20L",
+	"sprintselect.forty": "40L",
+	"sprintselect.custom": "Tilpasset",
+
+	"settings.tip": "Brug den nederste skærm til at ændre instillinger. Tryk \uE001 for at anullere.",
+	"settings.gameplay.title": "Gameplay",
+	"settings.gameplay.das": "DAS",
+	"settings.gameplay.arr": "ARR",
+	"settings.gameplay.droptimer": "Drop timer",
+	"settings.gameplay.keybinds": "Tastebinding",
+	"settings.visual.title": "Visuel",
+	"settings.visual.usetextures": "Teksture",
+
+	"loadfailed.config": "Kunne ikke indlæse spil; dine instillinger er blevet nulstillet.",
+	"loadfailed.keybinds": "Kunne ikke indlæse tastebindinger; dine bindinger er blevet nulstillet.",
+	"loadfailed.games": "Kunne ikke indlæse spil; dine gemte spil er blevet nulstillet.",
+
+	"languageselect.select": "Vælg et sprog",
+	
+	"keybindselect.title": "Tastebindinger",
+	"keybindselect.tip": "Tryk START for at anullere. Tryk SELECT for at nulstille.",
+	"keybindselect.left": "Venstre",
+	"keybindselect.right": "Højre",
+	"keybindselect.rotatecw": "Roter med uret",
+	"keybindselect.rotateccw": "Roter mod uret",
+	"keybindselect.softdrop": "Blødt Drop",
+	"keybindselect.harddrop": "Hårdt Drop",
+	"keybindselect.hold": "Hold"
+}

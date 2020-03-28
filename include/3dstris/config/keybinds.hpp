@@ -22,7 +22,7 @@ class Keybinds final {
 	using Binds = phmap::flat_hash_map<Action, Key>;
 
 	static const char* KEYBIND_TO_KEY[];
-	static const Binds DEFAULT_BINDS;
+	static const Binds& defaults();
 
 	Keybinds() noexcept;
 

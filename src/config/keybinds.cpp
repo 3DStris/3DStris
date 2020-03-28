@@ -18,13 +18,16 @@ const char* Keybinds::KEYBIND_TO_KEY[]{
 	"keybindselect.softdrop", "keybindselect.harddrop",
 	"keybindselect.hold"};
 
-const Keybinds::Binds Keybinds::DEFAULT_BINDS{
-	{Action::LEFT, KEY_LEFT},	   {Action::RIGHT, KEY_RIGHT},
-	{Action::ROTATE_CW, KEY_B},	   {Action::ROTATE_CCW, KEY_Y},
-	{Action::SOFT_DROP, KEY_DOWN}, {Action::HARD_DROP, KEY_UP},
-	{Action::HOLD, KEY_A | KEY_X}};
+const Keybinds::Binds& Keybinds::defaults() {
+	static const Binds DEFAULT_BINDS{
+		{Action::LEFT, KEY_LEFT},	   {Action::RIGHT, KEY_RIGHT},
+		{Action::ROTATE_CW, KEY_B},	   {Action::ROTATE_CCW, KEY_Y},
+		{Action::SOFT_DROP, KEY_DOWN}, {Action::HARD_DROP, KEY_UP},
+		{Action::HOLD, KEY_A | KEY_X}};
+	return DEFAULT_BINDS;
+}
 
-Keybinds::Keybinds() noexcept : binds(DEFAULT_BINDS) {
+Keybinds::Keybinds() noexcept : binds(defaults()) {
 	LOG_INFO("Loading keybinds");
 	if (!exists(KEYBINDS_PATH)) {
 		LOG_INFO("Creating keybinds file");
@@ -51,7 +54,7 @@ Keybinds::Keybinds() noexcept : binds(DEFAULT_BINDS) {
 		if (binds.contains(action)) {
 			binds[action] = bind;
 		} else {
-			LOG_WARN("Invalid action %d in saved keybinds");
+			LOG_WARN("Invalid action %d in saved keybinds", action);
 		}
 	}
 

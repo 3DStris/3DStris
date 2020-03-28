@@ -9,14 +9,8 @@
 class String;
 class L10n final {
    public:
-	struct CompareString {
-		bool operator()(const char* a, const char* b) const {
-			return strcmp(a, b) < 0;
-		}
-	};
-
 	static constexpr u8 LANGUAGE_COUNT = 10;
-	enum class Language { EN, BG, RU, PT, PL, DE, JP, MK, FR, DA};
+	enum class Language { EN, BG, RU, PT, PL, DE, JP, MK, FR, DA };
 	static constexpr std::array<Language, LANGUAGE_COUNT> LANGUAGES{
 		Language::EN, Language::BG, Language::RU, Language::PT, Language::PL,
 		Language::DE, Language::JP, Language::MK, Language::FR, Language::DA};

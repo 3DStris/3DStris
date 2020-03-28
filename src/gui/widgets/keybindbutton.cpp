@@ -69,7 +69,7 @@ void KeybindButton::save() noexcept {
 }
 
 void KeybindButton::reset() {
-	key = Keybinds::DEFAULT_BINDS.at(action);
+	key = Keybinds::defaults().at(action);
 	updateText();
 }
 

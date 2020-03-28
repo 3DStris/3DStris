@@ -85,6 +85,7 @@ Resulting binaries can be found in `build/bin/`.
 * Japanese by https://github.com/Epicpkmn11[@Epicpkmn11]
 * Macedonian by https://github.com/geniiii[@geniiii]
 * French by https://github.com/badablek[@badablek]
+* Danish by https://github.com/AlbertCoolGuy[@AlbertCoolGuy]
 
 == License
 Distributed under the MIT license. See the accompanying link:LICENSE[LICENSE] file for more information.

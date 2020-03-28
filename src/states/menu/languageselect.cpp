@@ -20,7 +20,7 @@ LanguageSelect::LanguageSelect() noexcept
 		gui.add<LanguageButton>(Pos{x, y}, WH{80, 25}, lang, language);
 
 		y += 25 + 10;
-		if (y + 35 + 25 > SCREEN_HEIGHT) {
+		if (y + 35 + 25 > gui.getHeight()) {
 			y = 10;
 			x += 80 + 10;
 		}

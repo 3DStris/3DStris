@@ -61,7 +61,7 @@ size_t L10n::getFlag(const Language language) noexcept {
 
 	static constexpr std::array<size_t, LANGUAGE_COUNT> LANGUAGE_TO_ICON{
 		FLAG(us), FLAG(bg), FLAG(ru), FLAG(br), FLAG(pl),
-		FLAG(de), FLAG(jp), FLAG(mk), FLAG(fr)};
+		FLAG(de), FLAG(jp), FLAG(mk), FLAG(fr), FLAG(da)};
 
 	return static_cast<u8>(language) < LANGUAGE_COUNT
 			   ? LANGUAGE_TO_ICON[static_cast<size_t>(language)]

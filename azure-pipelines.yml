@@ -36,7 +36,7 @@ jobs:
       - bash: |
           source /etc/profile.d/devkit-env.sh
           mkdir -p build && cd build
-          cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON -GNinja ..
+          cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -GNinja ..
           ninja
         displayName: Build
 

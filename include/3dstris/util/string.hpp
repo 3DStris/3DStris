@@ -19,6 +19,8 @@ struct String final {
 	String() noexcept : s(nullptr) {}
 	String(const char* __restrict str) noexcept : s(sdsnew(str)) {}
 	String(sds str) noexcept : s(str) {}
+	String(const char* __restrict str, size_t len) noexcept
+		: s(sdsnewlen(str, len)) {}
 
 	~String() noexcept { sdsfree(s); }
 	String(const String& other) noexcept : s(sdsnew(other.s)) {}

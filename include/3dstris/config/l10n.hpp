@@ -9,14 +9,14 @@
 class String;
 class L10n final {
    public:
-	static constexpr u8 LANGUAGE_COUNT = 10;
+	static constexpr size_t LANGUAGE_COUNT = 10;
 	enum class Language { EN, BG, RU, PT, PL, DE, JP, MK, FR, DA };
 	static constexpr std::array<Language, LANGUAGE_COUNT> LANGUAGES{
 		Language::EN, Language::BG, Language::RU, Language::PT, Language::PL,
 		Language::DE, Language::JP, Language::MK, Language::FR, Language::DA};
 
 	static const char* languageToString(const Language language) noexcept {
-		assert(static_cast<u8>(language) < LANGUAGE_COUNT);
+		assert(static_cast<size_t>(language) < LANGUAGE_COUNT);
 
 		static constexpr std::array<char[2 + 1], LANGUAGE_COUNT>
 			LANGUAGE_TO_STRING = {"en", "bg", "ru", "pt", "pl",

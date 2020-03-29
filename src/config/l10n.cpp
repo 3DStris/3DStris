@@ -57,13 +57,13 @@ String L10n::get(const char* __restrict key) const noexcept {
 }
 
 size_t L10n::getFlag(const Language language) noexcept {
-	assert(static_cast<u8>(language) < LANGUAGE_COUNT);
+	assert(static_cast<size_t>(language) < LANGUAGE_COUNT);
 
 	static constexpr std::array<size_t, LANGUAGE_COUNT> LANGUAGE_TO_ICON{
 		FLAG(us), FLAG(bg), FLAG(ru), FLAG(br), FLAG(pl),
 		FLAG(de), FLAG(jp), FLAG(mk), FLAG(fr), FLAG(da)};
 
-	return static_cast<u8>(language) < LANGUAGE_COUNT
+	return static_cast<size_t>(language) < LANGUAGE_COUNT
 			   ? LANGUAGE_TO_ICON[static_cast<size_t>(language)]
 			   : images_un_idx;
 }

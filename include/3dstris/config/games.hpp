@@ -14,7 +14,7 @@ struct SavedGame {
 	time_t date;
 	u16 lines;
 
-	void dateString(char* buf, size_t size,
+	void dateString(char* __restrict buf, size_t size,
 					const char* __restrict format = "%F %T") const {
 		strftime(buf, size, format, localtime(&date));
 	}

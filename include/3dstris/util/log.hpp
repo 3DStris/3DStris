@@ -55,8 +55,8 @@ class Log final {
 	template <typename... Args>
 	void log(const Level level, const char* __restrict file, int line,
 			 const char* __restrict fmt, Args&&... args) noexcept {
-		static const char* LEVELS[] = {"TRACE", "DEBUG", "INFO",
-									   "WARN",	"ERROR", "FATAL"};
+		static const char* LEVELS[]{"TRACE", "DEBUG", "INFO",
+									"WARN",	 "ERROR", "FATAL"};
 
 		if (level < this->level || (quiet && !fp)) {
 			return;
@@ -69,7 +69,7 @@ class Log final {
 
 		svcWaitSynchronization(mutex, std::numeric_limits<s64>::max());
 
-		const auto printTo = [&](FILE* fp, const char* format) {
+		const auto printTo = [&](FILE* fp, const char* __restrict format) {
 			char buf[32];
 			buf[strftime(buf, sizeof buf, format, &lt)] = '\0';
 			fprintf(fp, "%s %-5s %s:%d: ", buf,

@@ -4,9 +4,7 @@
 LanguageButton::LanguageButton(GUI& _parent, const Pos _pos, const WH _wh,
 							   const L10n::Language language,
 							   L10n::Language& toSet) noexcept
-	: Button(
-		  _parent, _pos, _wh,
-		  String(L10n::languageToString(language), L10n::LANGUAGE_CODE_LENGTH)),
+	: Button(_parent, _pos, _wh, L10n::languageToString(language)),
 	  language(language),
 	  toSet(toSet),
 

@@ -6,7 +6,7 @@ VisualSettings::VisualSettings() noexcept
 
 	  backTip(gui, Pos{0, SCREEN_HEIGHT - 25 - 25}, WH{100, 25}),
 	  backTipText(
-		  String::fromFmt("%s %S", KeybindButton::KEY_TO_GLYPH.at(KEY_L),
+		  String::fromFmt("%s %S", KeybindButton::KEY_TO_GLYPH.at(KEY_L).data(),
 						  game.translate("settings.gameplay.title").s),
 		  Pos{6, 0}),
 

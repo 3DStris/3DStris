@@ -2,8 +2,8 @@
 #include <3dstris/gui/widgets/togglebutton.hpp>
 
 static String getText(const String& text, const bool value) {
-	return sdscatfmt(sdsnew(text), ": %s",
-					 Game::get().translate(value ? "on" : "off").s);
+	return String::fromFmt("%S: %S", text.s,
+						   Game::get().translate(value ? "on" : "off").s);
 }
 
 ToggleButton::ToggleButton(GUI& _parent, const Pos _pos, const WH _wh,

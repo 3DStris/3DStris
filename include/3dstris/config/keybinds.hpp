@@ -3,7 +3,7 @@
 extern "C" {
 #include <3ds/types.h>
 }
-#include <parallel_hashmap/phmap.h>
+#include <robin_hood.h>
 
 struct mpack_writer_t;
 class Keybinds final {
@@ -19,7 +19,7 @@ class Keybinds final {
 	};
 
 	using Key = u32;
-	using Binds = phmap::flat_hash_map<Action, Key>;
+	using Binds = robin_hood::unordered_flat_map<Action, Key>;
 
 	static const char* KEYBIND_TO_KEY[];
 	static const Binds& defaults();

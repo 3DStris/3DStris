@@ -11,8 +11,8 @@
 #define KEY(key, code) \
 	{ KEY_##key, code }
 
-const phmap::flat_hash_map<Keybinds::Key, const char*>
-	KeybindButton::KEY_TO_GLYPH{
+const robin_hood::unordered_map<Keybinds::Key, StringLiteral>
+	KeybindButton::KEY_TO_GLYPH = {
 		KEY(A, "\uE000"),	  KEY(B, "\uE001"),
 		KEY(X, "\uE002"),	  KEY(Y, "\uE003"),
 		KEY(L, "\uE004"),	  KEY(R, "\uE005"),

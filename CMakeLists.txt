@@ -50,8 +50,7 @@ find_package(ctrulib REQUIRED)
 find_package(Citro3D REQUIRED)
 find_package(Citro2D REQUIRED)
 
-find_package(RapidJSON REQUIRED)
-find_package(phmap REQUIRED)
+find_package(sajson REQUIRED)
 find_package(pcg REQUIRED)
 add_subdirectory(external)
 

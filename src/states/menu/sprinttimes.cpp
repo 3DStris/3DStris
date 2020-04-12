@@ -62,7 +62,7 @@ void SprintTimes::genValues() {
 
 		// why sds? because the Text i pass it to later will allocate
 		// a new sds if i pass a regular, stack-allocated char array anyways
-		sds dateString = sdsnewlen(nullptr, 40);
+		String dateString(40);
 		saved.dateString(dateString, 40, "%F");
 		Text date(dateString, Pos{}, {0.7f, 0.7f});
 		date.align(Text::Align::CENTER,
@@ -70,7 +70,7 @@ void SprintTimes::genValues() {
 				   WH{DATE_W, CELL_H});
 		values.push_back(std::move(date));
 
-		Text lines(sdsfromlonglong(saved.lines), Pos{}, {0.7f, 0.7f});
+		Text lines(String(sdsfromlonglong(saved.lines)), Pos{}, {0.7f, 0.7f});
 		lines.align(
 			Text::Align::CENTER,
 			Pos{TABLE_X + TIME_W + DATE_W, TABLE_Y + CELL_H * (i + 1.0f)},

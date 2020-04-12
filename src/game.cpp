@@ -45,9 +45,6 @@ bool Game::isPressed(const u32 kDown, const Keybinds::Action action) const
 	return kDown & config.getKeybinds().get(action);
 }
 
-String Game::translate(const char* __restrict key) const noexcept {
-	return config.getL10n().get(key);
-}
 void Game::loadLanguage(const L10n::Language language) noexcept {
 	config.getL10n().loadLanguage(language);
 }

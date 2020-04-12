@@ -1,12 +1,12 @@
 #pragma once
 
-#include <3dstris/gui.hpp>
+#include <3dstris/gui/widgets/button.hpp>
 #include <3dstris/gui/widgets/panel.hpp>
 #include <3dstris/state.hpp>
 
 class BaseSettings : public State {
    public:
-	BaseSettings(const char* __restrict titleKey) noexcept;
+	BaseSettings(const StringView titleKey) noexcept;
 
 	void update(double dt) override;
 	void draw(bool bottom) const override;

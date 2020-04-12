@@ -5,7 +5,7 @@
 
 class LanguageButton final : public Button {
    public:
-	LanguageButton(GUI& parent, Pos pos, WH wh, L10n::Language language,
+	LanguageButton(GUI& parent, Pos pos, WH wh, L10n::Language&& language,
 				   L10n::Language& toSet) noexcept;
 
 	void draw() const noexcept override;

@@ -17,6 +17,7 @@ SprintSelect::SprintSelect() noexcept
 						   game.translate("back"), Button::Flags::HCENTER)) {
 	title.align(Text::Align::SCREEN_CENTER);
 }
+
 void SprintSelect::update(const double dt) noexcept {
 	gui.update(dt);
 

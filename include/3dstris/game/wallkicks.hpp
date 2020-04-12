@@ -17,7 +17,7 @@ using Wallkick = std::array<int8_t, 80>;
 
 namespace Wallkicks {
 	// clang-format off
-	constexpr Wallkick I = {
+	constexpr Wallkick I{
 		 0, 0,   0, 0,   0, 0,   0, 0,   0, 0,   0, 0,   0, 0,   0, 0,
 		-1, 0,  -2, 0,   2, 0,  -1, 0,   1, 0,   2, 0,  -2, 0,   1, 0,
 		 2, 0,   1, 0,  -1, 0,   2, 0,  -2, 0,  -1, 0,   1, 0,  -2, 0,
@@ -25,7 +25,7 @@ namespace Wallkicks {
 		 2, 1,   1,-2,  -1, 2,   2, 1,  -2,-1,  -1, 2,   1,-2,  -2,-1
 	};
 	// couldn't think of a better name
-	constexpr Wallkick OTHERS = {
+	constexpr Wallkick OTHERS{
 		 0, 0,   0, 0,   0, 0,   0, 0,   0, 0,   0, 0,   0, 0,   0, 0,
 		 1, 0,  -1, 0,   1, 0,   1, 0,  -1, 0,   1, 0,  -1, 0,  -1, 0,
 		 1,-1,  -1,-1,   1, 1,   1, 1,  -1,-1,   1,-1,  -1, 1,  -1, 1,

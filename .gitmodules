@@ -6,12 +6,6 @@
 	path = external/sds
 	url = https://github.com/3DStris/sds.git
 	branch = cpp
-[submodule "external/rapidjson"]
-	path = external/rapidjson
-	url = https://github.com/Tencent/rapidjson.git
-[submodule "external/phmap"]
-	path = external/phmap
-	url = https://github.com/greg7mdp/parallel-hashmap.git
 [submodule "external/mpack"]
 	path = external/mpack
 	url = https://github.com/3DStris/mpack.git
@@ -20,3 +14,9 @@
 	path = external/pcg
 	url = https://github.com/3DStris/pcg-cpp.git
 	branch = 3dstris
+[submodule "external/sajson"]
+	path = external/sajson
+	url = https://github.com/chadaustin/sajson
+[submodule "external/phmap"]
+	path = external/phmap
+	url = https://github.com/greg7mdp/parallel-hashmap.git

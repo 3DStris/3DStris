@@ -10,7 +10,7 @@ struct BaseConfig {
 	u16 arr = 0;
 	u16 dropTimer = 5;
 	bool useTextures = true;
-	L10n::Language language = L10n::Language::EN;
+	L10n::Language language = L10n::Language(L10n::EN_US);
 	Theme theme = Theme::night();
 };
 

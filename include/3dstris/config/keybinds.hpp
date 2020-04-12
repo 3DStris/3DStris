@@ -5,6 +5,8 @@ extern "C" {
 }
 #include <parallel_hashmap/phmap.h>
 
+#include <3dstris/util/string.hpp>
+
 struct mpack_writer_t;
 class Keybinds final {
    public:
@@ -21,7 +23,7 @@ class Keybinds final {
 	using Key = u32;
 	using Binds = phmap::flat_hash_map<Action, Key>;
 
-	static const char* KEYBIND_TO_KEY[];
+	static const StringView KEYBIND_TO_KEY[];
 	static const Binds& defaults();
 
 	Keybinds() noexcept;

@@ -1,13 +1,13 @@
 --atlas -f rgba8888 -z auto
 icon.png
-flag/bg.png
-flag/br.png
-flag/de.png
-flag/jp.png
-flag/pl.png
-flag/ru.png
-flag/us.png
-flag/mk.png
-flag/fr.png
+flag/bg_BG.png
+flag/pt_BR.png
+flag/de_DE.png
+flag/ja_JP.png
+flag/pl_PL.png
+flag/ru_RU.png
+flag/en_US.png
+flag/mk_MK.png
+flag/fr_FR.png
+flag/da_DK.png
 flag/un.png
-flag/da.png

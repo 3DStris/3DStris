@@ -11,9 +11,21 @@ class Text {
    public:
 	enum class Align { CENTER, VCENTER, HCENTER, SCREEN_CENTER };
 
-	explicit Text(String&& text = String::empty(), Pos pos = Pos{},
-				  Vector2f scale = {1, 1},
-				  const Color& color = Game::get().getTheme().text) noexcept;
+	explicit Text()
+		: _scale(1, 1),
+		  textBuffer(C2D_TextBufNew(1)),
+		  color(Game::get().getTheme().text) {
+		setText(String::empty());
+	}
+	template <typename T>
+	explicit Text(T&& text, Pos pos = Pos{}, Vector2f scale = {1, 1},
+				  const Color& color = Game::get().getTheme().text) noexcept
+		: pos(pos),
+		  _scale(scale),
+		  textBuffer(C2D_TextBufNew(text.length())),
+		  color(color) {
+		setText(text);
+	}
 
 	void draw(float depth = 1) const noexcept;
 
@@ -22,7 +34,20 @@ class Text {
 
 	void scale(float cw, float max) noexcept;
 
-	void setText(String&& text) noexcept;
+	template <typename T>
+	void setText(T&& text) noexcept {
+		this->text = String(text);
+
+		C2D_TextBufClear(textBuffer);
+
+		const size_t textLen = this->text.length();
+		if (C2D_TextBufGetNumGlyphs(textBuffer) < textLen) {
+			textBuffer = C2D_TextBufResize(textBuffer, textLen);
+		}
+
+		C2D_TextParse(&textObject, textBuffer, this->text);
+		C2D_TextOptimize(&textObject);
+	}
 	const String& getText() const noexcept;
 
 	void setX(float x) noexcept;

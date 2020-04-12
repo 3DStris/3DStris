@@ -1,7 +1,7 @@
 #pragma once
 
 #include <3dstris/game.hpp>
-#include <3dstris/gui/widgets/button.hpp>
+#include <3dstris/gui/widget.hpp>
 #include <3dstris/util/draw.hpp>
 #include <3dstris/util/pointer.hpp>
 

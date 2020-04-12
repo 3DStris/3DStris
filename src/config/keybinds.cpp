@@ -12,7 +12,7 @@ extern "C" {
 
 #include <mpack/mpack.h>
 
-const char* Keybinds::KEYBIND_TO_KEY[]{
+const StringView Keybinds::KEYBIND_TO_KEY[]{
 	"keybindselect.left",	  "keybindselect.right",
 	"keybindselect.rotatecw", "keybindselect.rotateccw",
 	"keybindselect.softdrop", "keybindselect.harddrop",

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <3dstris/gui.hpp>
+#include <3dstris/gui/widgets/button.hpp>
 #include <3dstris/state.hpp>
 
 class LanguageSelect final : public State {

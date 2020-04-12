@@ -16,8 +16,10 @@ extern "C" {
 L10n::LanguageCodes L10n::getCodes() {
 	DIR* dp = opendir("romfs:/lang/");
 	if (!dp) {
-		// TODO: proper error handling
-		return {};
+		LOG_FATAL(
+			"Failed to open translation directory! Is the ROMFS messed "
+			"up?");
+		std::exit(1);
 	}
 
 	L10n::LanguageCodes entries;
@@ -32,17 +34,22 @@ L10n::LanguageCodes L10n::getCodes() {
 		sds* split =
 			sdssplitlen(ep->d_name, strlen(ep->d_name), ".", 1, &count);
 		if (!count) {
-			// TODO: proper error handling
-			return {};
+			LOG_WARN("Found file without extension in translation directory");
 		}
 
-		if (split && strcmp(split[count - 1], "json") == 0) {
-			entries.emplace(split[0]);
+		if (split) {
+			if (strcmp(split[count - 1], "json") == 0) {
+				entries.emplace(split[0]);
+			} else {
+				LOG_WARN("Found non-JSON file in translation directory");
+			}
 
 			for (int i = 1; i < count; ++i) {
 				sdsfree(split[i]);
 			}
 			delete split;
+		} else {
+			LOG_ERROR("Failed to split filename");
 		}
 	}
 	closedir(dp);

@@ -36,7 +36,7 @@ class Text {
 
 	template <typename T>
 	void setText(T&& text) noexcept {
-		this->text = String(text);
+		this->text = text;
 
 		C2D_TextBufClear(textBuffer);
 

@@ -74,5 +74,5 @@ void KeybindButton::reset() {
 }
 
 void KeybindButton::updateText() {
-	setText(KEY_TO_GLYPH.contains(key) ? KEY_TO_GLYPH.at(key) : "?");
+	setText(String(KEY_TO_GLYPH.contains(key) ? KEY_TO_GLYPH.at(key) : "?"));
 }

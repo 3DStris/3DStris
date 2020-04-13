@@ -44,12 +44,12 @@
 	"sprintselect.custom": "Custom",
 
 	"settings.tip": "Use the bottom screen to change settings. Press \uE001 to cancel.",
-	"settings.gameplay.title": "Gameplay",
+	"settings.gameplay.title": "Gameplay settings",
 	"settings.gameplay.das": "DAS",
 	"settings.gameplay.arr": "ARR",
 	"settings.gameplay.droptimer": "Drop timer",
 	"settings.gameplay.keybinds": "Keybinds",
-	"settings.visual.title": "Visual",
+	"settings.visual.title": "Visual settings",
 	"settings.visual.usetextures": "Textures",
 
 	"loadfailed.config": "Failed to load config; your settings have been reset.",

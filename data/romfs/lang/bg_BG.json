@@ -38,10 +38,11 @@
 	"modeselect.normal": "Нормален",
 	"modeselect.sprint": "Спринт",
 
-	"settings.title": "Настройки",
 	"settings.tip": "Натиснете \uE001 за да отмените промените.",
-	"settings.droptimer": "Таймер на падането",
-	"settings.usetextures": "Текстури",
+	"settings.gameplay.title": "Игрови настройки",
+	"settings.gameplay.droptimer": "Таймер на падането",
+	"settings.visual.title": "Визуални настройки",
+	"settings.visual.usetextures": "Текстури",
 
 	"loadfailed.config": "Неуспешно зареждане на конфигурацията; вашите настройки ще бъдат анулирани.",
 	"loadfailed.keybinds": "Неуспешно зареждане на контролите; вашите контроли ще бъдат анулирани.",

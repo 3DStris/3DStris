@@ -31,10 +31,11 @@
 	"modeselect.title": "Wybierz tryb",
 	"modeselect.normal": "Normalny",
 
-	"settings.title": "Ustawienia",
 	"settings.tip": "Użyj dolnego ekranu do zmiany ustawień. Naciśnij \uE001 by anulować.",
-	"settings.droptimer": "Zegar dropów",
-	"settings.usetextures": "Tekstury",
+	"settings.gameplay.title": "Ustawienia gry"
+	"settings.gameplay.droptimer": "Zegar dropów",
+	"settings.visual.title": "Ustawienia wizualne",
+	"settings.visual.usetextures": "Tekstury",
 
 	"loadfailed.config": "Nie udało się załadować konfiguracji; twoje ustawienia zostały zresetowane.",
 	"loadfailed.games": "Nie udało się załadować rozgrywek; twoje zapisane rozgrywki zostały zresetowane.",

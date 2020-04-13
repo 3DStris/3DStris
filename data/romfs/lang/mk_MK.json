@@ -38,10 +38,11 @@
 	"modeselect.normal": "Нормален",
 	"modeselect.sprint": "Спринт",
 
-	"settings.title": "Поставки",
 	"settings.tip": "Притиснете \uE001 за да отфрлите измените.",
-	"settings.droptimer": "Таjмер за паганье",
-	"settings.usetextures": "Текстури",
+	"settings.gameplay.title": "Поставки за игра",
+	"settings.gameplay.droptimer": "Таjмер за паганье",
+	"settings.visual.title": "Визуелни поставки"
+	"settings.visual.usetextures": "Текстури",
 
 	"loadfailed.config": "Не успеа да се вчита конфигурациjата; вашите поставуваньа ке бидат вратени по основно.",
 	"loadfailed.keybinds": "Не успеа да се вчита конфигурациjата; вашите контроли ке бидат вратени по основно.",

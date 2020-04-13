@@ -36,10 +36,11 @@
 	"modeselect.normal": "Нормальный",
 	"modeselect.sprint": "Спринт",
 
-	"settings.title": "Настройки",
 	"settings.tip": "Пользуетесь нижним экраном. Нажмите \uE001 что-бы отменить.",
-	"settings.droptimer": "Таймер падения",
-	"settings.usetextures": "Текстуры",
+	"settings.gameplay.title": "Игровые настройки",
+	"settings.gameplay.droptimer": "Таймер падения",
+	"settings.visual.title": "Визуальные настройки"
+	"settings.visual.usetextures": "Текстуры",
 
 	"loadfailed.config": "Неудалось загрузить настройки; ваши настройки были сброшены.",
 	"loadfailed.games": "Неудалось загрузить игры; ваши настройки были сброшены.",

@@ -30,9 +30,10 @@
 
 	"modeselect.title": "Choix du mode",
 
-	"settings.title": "Paramètres",
 	"settings.tip": "Utilisez l'écran inférieur pour modifier les paramètres. Appuyez sur \uE001 pour annuler.",
-	"settings.droptimer": "Minuteur",
+	"settings.gameplay.title": "Paramètres de jeu",
+	"settings.gameplay.droptimer": "Minuteur",
+	"settings.visual.title": "Paramètres visuels",
 
 	"loadfailed.config": "Echec de chargement de la configuration; paramètres réinitialisés.",
 	"loadfailed.keybinds": "Echec de chargement des touches; touches réinitialisées.",

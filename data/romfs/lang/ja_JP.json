@@ -35,10 +35,10 @@
 	"modeselect.normal": "ノーマル",
 	"modeselect.sprint": "スプリント",
 
-	"settings.title": "設定",
 	"settings.tip": "下の画面を使用して設定を変更します。キャンセルするには\uE001を押します。",
-	"settings.droptimer": "ドロップタイマー",
-	"settings.usetextures": "テクスチャ",
+	"settings.gameplay.title": "ゲーム設定",
+	"settings.gameplay.droptimer": "ドロップタイマー",
+	"settings.visual.usetextures": "テクスチャ",
 
 	"loadfailed.config": "設定の読み込みに失敗しました。設定は再設定しました。",
 	"loadfailed.games": "ゲームの読み込みに失敗しますた。ゲームの保存は再設定しました。",

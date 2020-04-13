@@ -30,9 +30,10 @@
 
 	"modeselect.title": "Wählen Sie einen Spielemodus",
 
-	"settings.title": "Einstellungen",
 	"settings.tip": "Verwenden Sie den unteren Bildschirm, um die Einstellungen zu ändern.",
-	"settings.usetextures": "Texturen",
+	"settings.gameplay.title": "Spieleinstellungen",
+	"settings.visual.title": "Visuelle Einstellungen",
+	"settings.visual.usetextures": "Texturen",
 
 	"loadfailed.config": "Konfiguration könnte nicht geladen werden; ihre Einstellungen wurden zurückgesetzt.",
 	"loadfailed.games": "Spiele könnte nicht geladen werden; ihre gespeicherten Spiele wurden zurückgesetzt.",

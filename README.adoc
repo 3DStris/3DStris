@@ -52,7 +52,7 @@ For building you'll need to {devkitpro-setup}[set up devkitPro] and you'll need 
 * {bannertool}[bannertool]
 * {makerom}[makerom]
 
-Make sure to clone recursively (required for third-party libs, check `lib/`):
+Make sure to clone recursively (required for third-party libs, check `external/`):
 [source, bash]
 ----
 git clone --recursive https://github.com/3DStris/3DStris

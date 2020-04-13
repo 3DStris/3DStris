@@ -63,7 +63,8 @@ class Log final {
 
 		svcWaitSynchronization(mutex, std::numeric_limits<s64>::max());
 
-		const auto printTo = [&](FILE* fp, const char* __restrict format) {
+		const auto printTo = [&](FILE* __restrict fp,
+								 const char* __restrict format) {
 			char buf[32];
 			buf[strftime(buf, sizeof buf, format, &lt)] = '\0';
 			fprintf(fp, "%s %-5s %s:%d: ", buf,

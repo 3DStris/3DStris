@@ -3,17 +3,15 @@
 #include <parallel_hashmap/btree.h>
 #include <parallel_hashmap/phmap.h>
 #include <sajson.h>
-#include <sds.h>
 
 #include <3dstris/util/hash.hpp>
-#include <3dstris/util/log.hpp>
 #include <3dstris/util/string.hpp>
-#include <vector>
 
 class L10n final {
    public:
 	using Language = String;
 	using LanguageCodes = phmap::btree_set<String>;
+
 	static constexpr StringView EN_US = "en_US";
 
 	static LanguageCodes getCodes();

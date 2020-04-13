@@ -1,6 +1,7 @@
 #include <3dstris/game.hpp>
 #include <3dstris/game/board.hpp>
 #include <3dstris/gui.hpp>
+#include <3dstris/util/colorstextures.hpp>
 
 Board::Board(const u32 width, const u32 height)
 	: width(width), height(height), grid(width * height) {}

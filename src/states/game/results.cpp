@@ -8,7 +8,7 @@ Results::Results(Ingame* parent)
 
 	  dead(game.translate("results.dead")),
 
-	  restart(gui.add<Button>(Pos{-1, gui.getHeight() / 3.0f - 10}, WH{150, 60},
+	  restart(gui.add<Button>(Pos(-1, gui.getHeight() / 3 - 10), WH{150, 60},
 							  game.translate("results.restart"),
 							  Button::Flags::HCENTER)),
 	  menu(gui.add<Button>(Pos(-1, gui.getHeight() - 45 - 10), WH{100, 45},

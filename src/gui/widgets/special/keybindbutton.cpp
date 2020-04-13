@@ -11,8 +11,8 @@
 #define KEY(key, code) \
 	{ KEY_##key, code }
 
-const phmap::flat_hash_map<Keybinds::Key, const char*>
-	KeybindButton::KEY_TO_GLYPH{
+const phmap::flat_hash_map<Keybinds::Key, StringView>
+	KeybindButton::KEY_TO_GLYPH = {
 		KEY(A, "\uE000"),	  KEY(B, "\uE001"),
 		KEY(X, "\uE002"),	  KEY(Y, "\uE003"),
 		KEY(L, "\uE004"),	  KEY(R, "\uE005"),
@@ -74,5 +74,5 @@ void KeybindButton::reset() {
 }
 
 void KeybindButton::updateText() {
-	setText(KEY_TO_GLYPH.contains(key) ? KEY_TO_GLYPH.at(key) : "?");
+	setText(String(KEY_TO_GLYPH.contains(key) ? KEY_TO_GLYPH.at(key) : "?"));
 }

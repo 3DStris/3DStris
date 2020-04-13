@@ -6,7 +6,7 @@
 
 class KeybindButton final : public Button {
    public:
-	static const phmap::flat_hash_map<Keybinds::Key, const char*> KEY_TO_GLYPH;
+	static const phmap::flat_hash_map<Keybinds::Key, StringView> KEY_TO_GLYPH;
 
 	KeybindButton(GUI& parent, Pos pos, WH wh, Keybinds::Action action,
 				  Keybinds::Key& toSet) noexcept;
@@ -17,9 +17,9 @@ class KeybindButton final : public Button {
 	void reset();
 
    private:
-	void updateText();
-
 	using Button::setText;
+
+	void updateText();
 
 	const Keybinds::Action action;
 

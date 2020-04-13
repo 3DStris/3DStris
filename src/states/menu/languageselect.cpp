@@ -6,18 +6,18 @@ LanguageSelect::LanguageSelect() noexcept
 	: State(),
 	  select(game.translate("languageselect.select")),
 
-	  save(gui.add<Button>(Pos{10, gui.getHeight() - 50.0f}, WH{75, 40},
+	  save(gui.add<Button>(Pos(10, gui.getHeight() - 50), WH{75, 40},
 						   game.translate("save"))),
-	  cancel(
-		  gui.add<Button>(Pos{gui.getWidth() - 90.0f, gui.getHeight() - 50.0f},
-						  WH{80, 40}, game.translate("cancel"))),
+	  cancel(gui.add<Button>(Pos(gui.getWidth() - 90, gui.getHeight() - 50),
+							 WH{80, 40}, game.translate("cancel"))),
 	  language(game.getConfig().language) {
 	select.align(Text::Align::SCREEN_CENTER);
 
 	float y = 10;
 	float x = 10;
-	for (const auto& lang : L10n::LANGUAGES) {
-		gui.add<LanguageButton>(Pos{x, y}, WH{80, 25}, lang, language);
+	for (auto& lang : L10n::getCodes()) {
+		gui.add<LanguageButton>(Pos{x, y}, WH{80, 25}, std::move(lang),
+								language);
 
 		y += 25 + 10;
 		if (y + 35 + 25 > gui.getHeight()) {
@@ -31,7 +31,7 @@ void LanguageSelect::update(const double dt) noexcept {
 	gui.update(dt);
 
 	if (save.pressed()) {
-		if (language != game.getConfig().language) {
+		if (!(language == game.getConfig().language)) {
 			game.loadLanguage(language);
 
 			auto& config = game.getConfig();

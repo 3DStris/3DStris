@@ -2,8 +2,10 @@
 
 #include <sds.h>
 
+#include <3dstris/util/stringview.hpp>
+
 struct String final {
-	static String empty() noexcept { return sdsempty(); }
+	static String empty() noexcept;
 
 	template <typename... Args>
 	static String fromFmt(const char* __restrict fmt, Args&&... args) noexcept {
@@ -16,28 +18,28 @@ struct String final {
 		return sdscatprintf(sdsempty(), fmt, args...);
 	}
 
-	String() noexcept : s(nullptr) {}
-	String(const char* __restrict str) noexcept : s(sdsnew(str)) {}
-	String(sds str) noexcept : s(str) {}
-	String(const char* __restrict str, size_t len) noexcept
-		: s(sdsnewlen(str, len)) {}
+	String() noexcept;
+	String(sds str) noexcept;
+	String(size_t len) noexcept;
+	explicit String(StringView v) noexcept;
+	String(const char* __restrict str) noexcept;
+	String(const char* __restrict str, size_t len) noexcept;
 
-	~String() noexcept { sdsfree(s); }
-	String(const String& other) noexcept : s(sdsnew(other.s)) {}
-	String(String&& other) noexcept : s(other.s) { other.s = nullptr; }
-	void operator=(const String& other) noexcept {
-		sdsfree(s);
-		s = sdsnew(other.s);
-	}
-	void operator=(String&& other) noexcept {
-		sdsfree(s);
-		s = other.s;
-		other.s = nullptr;
-	}
+	~String() noexcept;
+	String(const String& other) noexcept;
+	String(String&& other) noexcept;
+	void operator=(const String& other) noexcept;
+	void operator=(String&& other) noexcept;
 
 	operator sds() const noexcept { return s; }
+	operator StringView() const noexcept { return StringView(s, size()); }
 
-	inline size_t length() const noexcept { return sdslen(s); }
+	bool operator==(const String& str) const noexcept;
+	bool operator!=(const String& str) const noexcept;
+	bool operator<(const String& str) const noexcept;
+
+	size_t size() const noexcept;
+	size_t length() const noexcept;
 
 	sds s;
 };

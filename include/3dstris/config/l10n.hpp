@@ -1,56 +1,42 @@
 #pragma once
 
+#include <parallel_hashmap/btree.h>
 #include <parallel_hashmap/phmap.h>
-#include <rapidjson/document.h>
+#include <sajson.h>
 #include <sds.h>
 
+#include <3dstris/util/hash.hpp>
 #include <3dstris/util/log.hpp>
+#include <3dstris/util/string.hpp>
+#include <vector>
 
-class String;
 class L10n final {
    public:
-	static constexpr size_t LANGUAGE_COUNT = 10;
-	static constexpr size_t LANGUAGE_CODE_LENGTH = 2;
+	using Language = String;
+	using LanguageCodes = phmap::btree_set<String>;
+	static constexpr StringView EN_US = "en_US";
 
-	enum class Language { EN, BG, RU, PT, PL, DE, JP, MK, FR, DA };
-	static constexpr std::array<Language, LANGUAGE_COUNT> LANGUAGES{
-		Language::EN, Language::BG, Language::RU, Language::PT, Language::PL,
-		Language::DE, Language::JP, Language::MK, Language::FR, Language::DA};
+	static LanguageCodes getCodes();
 
-	static const char* languageToString(const Language language) noexcept {
-		assert(static_cast<size_t>(language) < LANGUAGE_COUNT);
+	void loadLanguage(const Language& language) noexcept;
+	void load(const char* __restrict path, const Language& language) noexcept;
 
-		static constexpr std::array<char[LANGUAGE_CODE_LENGTH + 1],
-									LANGUAGE_COUNT>
-			LANGUAGE_TO_STRING{"en", "bg", "ru", "pt", "pl",
-							   "de", "jp", "mk", "fr", "da"};
+	String get(StringView key) const noexcept;
 
-		return LANGUAGE_TO_STRING[static_cast<size_t>(language)];
-	}
-
-	void loadLanguage(const Language language) noexcept {
-		constexpr auto FORMAT_STRING_LEN =
-			17 + LANGUAGE_CODE_LENGTH;	// I didn't feel like adding a constexpr
-										// strlen() method just for this.
-
-		LOG_INFO("Loading language %s", languageToString(language));
-		char buf[FORMAT_STRING_LEN + 1];
-		load(getPath(language, buf));
-		LOG_INFO("Loaded language");
-	}
-	void load(const char* __restrict path) noexcept;
-	rapidjson::Document loadJson(const char* __restrict path) noexcept;
-
-	String get(const char* __restrict key) const noexcept;
-
-	static size_t getFlag(Language language) noexcept;
+	static size_t getFlag(const Language& language) noexcept;
 
    private:
-	static constexpr auto EN_PATH = "romfs:/lang/en.json";
+	using Translations =
+		phmap::flat_hash_map<String, String, StringHash, StringEq>;
 
-	static char* getPath(const Language language,
+	static constexpr const char* EN_US_PATH = "romfs:/lang/en_US.json";
+
+	void loadFromJson(const char* __restrict path, const Language& language,
+					  Translations& where) noexcept;
+
+	static char* getPath(const Language& language,
 						 char* __restrict buf) noexcept;
 
-	rapidjson::Document enTranslations;
-	rapidjson::Document translations;
+	Translations translations;
+	Translations enTranslations;
 };

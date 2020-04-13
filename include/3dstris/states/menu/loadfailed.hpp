@@ -1,6 +1,7 @@
 #pragma once
 
 #include <3dstris/gui.hpp>
+#include <3dstris/gui/widgets/button.hpp>
 #include <3dstris/state.hpp>
 
 class LoadFailed final : public State {
@@ -13,7 +14,7 @@ class LoadFailed final : public State {
 	void draw(bool bottom) const noexcept override;
 
    private:
-	static const char* FAILTYPE_TO_KEY[];
+	static const StringView FAILTYPE_TO_KEY[];
 
 	Text reason;
 

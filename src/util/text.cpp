@@ -1,15 +1,6 @@
 #include <3dstris/util/draw.hpp>
 #include <3dstris/util/text.hpp>
 
-Text::Text(String&& text, const Pos pos, const Vector2f scale,
-		   const Color& color) noexcept
-	: pos(pos),
-	  _scale(scale),
-	  textBuffer(C2D_TextBufNew(text.length())),
-	  color(color) {
-	setText(std::forward<String>(text));
-}
-
 void Text::draw(const float depth) const noexcept {
 	C2D_DrawText(&textObject, C2D_WithColor, pos.x, pos.y, depth, _scale.x,
 				 _scale.y, color);
@@ -49,20 +40,6 @@ void Text::scale(const float cw, const float max) noexcept {
 
 	const float scale = std::min((cw - 10) / getWH().x, max);
 	setScale({scale, scale});
-}
-
-void Text::setText(String&& text) noexcept {
-	this->text = std::forward<String>(text);
-
-	C2D_TextBufClear(textBuffer);
-
-	const size_t textLen = this->text.length();
-	if (C2D_TextBufGetNumGlyphs(textBuffer) < textLen) {
-		textBuffer = C2D_TextBufResize(textBuffer, textLen);
-	}
-
-	C2D_TextParse(&textObject, textBuffer, this->text);
-	C2D_TextOptimize(&textObject);
 }
 
 const String& Text::getText() const noexcept {

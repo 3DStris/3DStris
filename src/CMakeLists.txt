@@ -23,10 +23,11 @@ add_t3s(3dstris ${ROMFS_LOCATION}
 target_link_libraries(3dstris PRIVATE
 	3ds::ctrulib 3ds::citro3d 3ds::citro2d
 	sds::sds
-	RapidJSON::RapidJSON
+	sajson::sajson
 	phmap::phmap
 	mpack::mpack
 	pcg::pcg)
+target_compile_definitions(3dstris PUBLIC SAJSON_NO_STD_STRING SAJSON_UNSORTED_OBJECT_KEYS)
 
 source_group(TREE "${3DStris_SOURCE_DIR}/include"
 			 PREFIX "Header Files"

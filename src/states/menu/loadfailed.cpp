@@ -30,5 +30,5 @@ void LoadFailed::draw(const bool bottom) const noexcept {
 	}
 }
 
-const char* LoadFailed::FAILTYPE_TO_KEY[] = {
+const StringView LoadFailed::FAILTYPE_TO_KEY[]{
 	"loadfailed.config", "loadfailed.games", "loadfailed.keybinds"};

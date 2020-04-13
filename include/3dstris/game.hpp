@@ -3,6 +3,7 @@
 #include <citro2d.h>
 
 #include <3dstris/config.hpp>
+#include <memory>
 
 class State;
 class Game {
@@ -18,7 +19,9 @@ class Game {
 
 	bool isPressed(u32 kDown, Keybinds::Action action) const noexcept;
 
-	String translate(const char* __restrict key) const noexcept;
+	String translate(const StringView key) const noexcept {
+		return config.getL10n().get(key);
+	}
 	void loadLanguage(L10n::Language language) noexcept;
 
 	C3D_RenderTarget* getTop() noexcept;

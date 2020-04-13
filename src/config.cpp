@@ -14,11 +14,6 @@
 			member = mpack_node_##type(node);                          \
 	}
 #define MEMBER(member, type) MEMBER_CHECK_TYPE(member, type, type)
-
-#define SERIALIZE_MEMBER(value, type)  \
-	mpack_write_cstr(&writer, #value); \
-	mpack_write_##type(&writer, value);
-
 Config::Config() noexcept {
 	romfsInit();
 
@@ -43,10 +38,10 @@ Config::Config() noexcept {
 	LOG_INFO("Setting config member language");
 	{
 		const auto node = mpack_node_map_cstr_optional(root, "language");
-		if (mpack_node_type(node) != mpack_type_uint) {
+		if (mpack_node_type(node) != mpack_type_str) {
 			LOG_WARN("Failed to set config member language; using default");
 		} else {
-			language = static_cast<L10n::Language>(mpack_node_u8(node));
+			language = String(mpack_node_str(node), mpack_node_strlen(node));
 		}
 	}
 
@@ -66,6 +61,9 @@ Config::~Config() noexcept {
 	romfsExit();
 }
 
+#define SERIALIZE_MEMBER(value, type)  \
+	mpack_write_cstr(&writer, #value); \
+	mpack_write_##type(&writer, value);
 void Config::serialize(mpack_writer_t& writer) const noexcept {
 	mpack_start_map(&writer, 5);
 
@@ -74,7 +72,7 @@ void Config::serialize(mpack_writer_t& writer) const noexcept {
 	SERIALIZE_MEMBER(dropTimer, u16)
 	SERIALIZE_MEMBER(useTextures, bool)
 	mpack_write_cstr(&writer, "language");
-	mpack_write_u8(&writer, static_cast<u8>(language));
+	mpack_write_cstr(&writer, language);
 
 	mpack_finish_map(&writer);
 }

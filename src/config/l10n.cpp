@@ -9,6 +9,7 @@ extern "C" {
 #include <sajson.h>
 
 #include <3dstris/config/l10n.hpp>
+#include <3dstris/util/log.hpp>
 
 #define FLAG(lang) \
 	{ #lang, images_##lang##_idx }

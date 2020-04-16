@@ -1,5 +1,9 @@
 #pragma once
 
+extern "C" {
+#include <3ds/types.h>
+}
+
 #include <array>
 #include <vector>
 
@@ -10,26 +14,17 @@ class PieceShape {
 	explicit PieceShape(size_t size) : shape(size * size), _size(size) {}
 	PieceShape(Shape&& shape, size_t size) : shape(shape), _size(size) {}
 
-	template <typename T>
-	constexpr bool get(const T x, const T y) const noexcept {
-		static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
-
+	constexpr bool get(const u32 x, const u32 y) const noexcept {
 		return inside(x, y) ? shape[index(x, y)] : false;
 	}
 
-	template <typename T>
-	void set(const T x, const T y, const bool value = true) noexcept {
-		static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
-
+	void set(const u32 x, const u32 y, const bool value = true) noexcept {
 		if (inside(x, y)) {
 			shape[index(x, y)] = value;
 		}
 	}
 
-	template <typename T>
-	constexpr bool inside(const T x, const T y) const noexcept {
-		static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
-
+	constexpr bool inside(const u32 x, const u32 y) const noexcept {
 		return index(x, y) < shape.size();
 	}
 
@@ -37,10 +32,7 @@ class PieceShape {
 	Shape& getShape() noexcept { return shape; }
 
    private:
-	template <typename T>
-	constexpr size_t index(const T x, const T y) const {
-		static_assert(std::is_arithmetic<T>::value, "T must be arithmetic");
-
+	constexpr size_t index(const u32 x, const u32 y) const {
 		return y * _size + x;
 	}
 

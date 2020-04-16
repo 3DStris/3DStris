@@ -19,7 +19,7 @@ class StringView final {
 	constexpr StringView(const StringView& v) noexcept = default;
 	StringView& operator=(const StringView& v) noexcept = default;
 
-	operator String() noexcept;
+	explicit operator String() const noexcept;
 
 	constexpr const char* data() const noexcept { return _data; }
 	constexpr size_t size() const noexcept { return _size; }

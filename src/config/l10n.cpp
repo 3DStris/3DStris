@@ -143,7 +143,7 @@ void L10n::loadFromJson(const char* __restrict path, const Language& language,
 	delete[] buffer;
 }
 
-String L10n::get(StringView key) const noexcept {
+String L10n::get(const StringView key) const noexcept {
 	const auto it = translations.find(key);
 	if (it != translations.end()) {
 		return it->second;
@@ -161,7 +161,7 @@ String L10n::get(StringView key) const noexcept {
 	}
 
 	LOG_DEBUG("Translation for key \"%s\" missing", key.data());
-	return key;
+	return String(key);
 }
 
 size_t L10n::getFlag(const Language& language) noexcept {

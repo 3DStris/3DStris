@@ -6,7 +6,7 @@
 StringView::StringView(const String& str) noexcept
 	: _data(str.s), _size(str.size()) {}
 
-StringView::operator String() noexcept {
+StringView::operator String() const noexcept {
 	return String(_data, _size);
 }
 

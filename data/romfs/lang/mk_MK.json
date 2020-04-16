@@ -1,16 +1,16 @@
 {
 	"ok": "ОК",
 	"save": "Запази",
-	
+
 	"back": "Назад",
 	"cancel": "Отфрли",
 	"exit": "Исход",
 
 	"menu": "Мени",
-	
+
 	"on": "Да",
 	"off": "Не",
-	
+
 	"reset": "Врати се по основно",
 
 	"sprint.info": "Редови: %d/%d\nВреме: %.3fs\nPPS: %.3f",
@@ -39,17 +39,17 @@
 	"modeselect.sprint": "Спринт",
 
 	"settings.tip": "Притиснете \uE001 за да отфрлите измените.",
-	"settings.gameplay.title": "Поставки за игра",
+	"settings.gameplay.title": "За игра",
 	"settings.gameplay.droptimer": "Таjмер за паганье",
-	"settings.visual.title": "Визуелни поставки"
+	"settings.visual.title": "Визуелни",
 	"settings.visual.usetextures": "Текстури",
 
 	"loadfailed.config": "Не успеа да се вчита конфигурациjата; вашите поставуваньа ке бидат вратени по основно.",
 	"loadfailed.keybinds": "Не успеа да се вчита конфигурациjата; вашите контроли ке бидат вратени по основно.",
 	"loadfailed.games": "Не успеа да се вчитаат игри; вашите зачувани игри ке бидат вратени по основно.",
-	
+
 	"languageselect.select": "Изберете jазик",
-	
+
 	"keybindselect.title": "Контроли",
 	"keybindselect.tip": "START за да ги отфрлите измените, SELECT за да ги вратите по основно.",
 	"keybindselect.left": "Лево",

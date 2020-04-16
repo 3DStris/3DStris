@@ -1,16 +1,16 @@
 {
 	"ok": "ОК",
 	"save": "Запази",
-	
+
 	"back": "Назад",
 	"cancel": "Отмени",
 	"exit": "Изход",
 
 	"menu": "Меню",
-	
+
 	"on": "Да",
 	"off": "Не",
-	
+
 	"reset": "Анулиране",
 
 	"sprint.info": "Редове: %d/%d\nВреме: %.3fs\nPPS: %.3f",
@@ -39,17 +39,17 @@
 	"modeselect.sprint": "Спринт",
 
 	"settings.tip": "Натиснете \uE001 за да отмените промените.",
-	"settings.gameplay.title": "Игрови настройки",
+	"settings.gameplay.title": "Игрови",
 	"settings.gameplay.droptimer": "Таймер на падането",
-	"settings.visual.title": "Визуални настройки",
+	"settings.visual.title": "Визуални",
 	"settings.visual.usetextures": "Текстури",
 
 	"loadfailed.config": "Неуспешно зареждане на конфигурацията; вашите настройки ще бъдат анулирани.",
 	"loadfailed.keybinds": "Неуспешно зареждане на контролите; вашите контроли ще бъдат анулирани.",
 	"loadfailed.games": "Неуспешно зареждане на игри; запазените ви игри ще бъдат анулирани.",
-	
+
 	"languageselect.select": "Изберете език",
-	
+
 	"keybindselect.title": "Контроли",
 	"keybindselect.tip": "START за да отмените промените, SELECT за да ги анулирате.",
 	"keybindselect.left": "Ляво",

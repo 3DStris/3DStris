@@ -1,13 +1,13 @@
 {
 	"ok": "ОК",
 	"save": "Сохранить",
-	
+
 	"back": "Назад",
 	"cancel": "Отменить",
 	"exit": "Выйти",
 
 	"menu": "Меню",
-	
+
 	"on": "Да",
 	"off": "Нет",
 
@@ -37,13 +37,13 @@
 	"modeselect.sprint": "Спринт",
 
 	"settings.tip": "Пользуетесь нижним экраном. Нажмите \uE001 что-бы отменить.",
-	"settings.gameplay.title": "Игровые настройки",
+	"settings.gameplay.title": "Игровые",
 	"settings.gameplay.droptimer": "Таймер падения",
-	"settings.visual.title": "Визуальные настройки"
+	"settings.visual.title": "Визуальные",
 	"settings.visual.usetextures": "Текстуры",
 
 	"loadfailed.config": "Неудалось загрузить настройки; ваши настройки были сброшены.",
 	"loadfailed.games": "Неудалось загрузить игры; ваши настройки были сброшены.",
-	
+
 	"languageselect.select": "Выберите язык"
 }

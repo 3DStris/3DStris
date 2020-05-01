@@ -29,7 +29,7 @@ class L10n final {
 
 	static constexpr const char* EN_US_PATH = "romfs:/lang/en_US.json";
 
-	void loadFromJson(const char* __restrict path, const Language& language,
+	void loadFromJson(const char* __restrict path, const StringView language,
 					  Translations& where) noexcept;
 
 	static char* getPath(const Language& language,

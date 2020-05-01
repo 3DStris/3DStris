@@ -73,7 +73,7 @@ void L10n::load(const char* __restrict path,
 				const Language& language) noexcept {
 	if (enTranslations.empty()) {
 		LOG_DEBUG("Loading en_US as fallback");
-		loadFromJson(EN_US_PATH, language, enTranslations);
+		loadFromJson(EN_US_PATH, EN_US, enTranslations);
 	}
 
 	if (language == EN_US) {
@@ -85,18 +85,18 @@ void L10n::load(const char* __restrict path,
 	loadFromJson(path, language, translations);
 }
 
-#define FALLBACK(condition, reason, ...)                               \
-	if (condition && language != EN_US) {                              \
-		LOG_ERROR("Failed to deserialize language JSON: " reason       \
-				  " Falling back to English...",                       \
-				  ##__VA_ARGS__);                                      \
-		return loadFromJson(EN_US_PATH, L10n::Language(EN_US), where); \
-	} else if (condition) {                                            \
-		LOG_FATAL("Failed to deserialize English JSON: " reason,       \
-				  ##__VA_ARGS__);                                      \
-		std::exit(1);                                                  \
+#define FALLBACK(condition, reason, ...)                         \
+	if (condition && language != EN_US) {                        \
+		LOG_ERROR("Failed to deserialize language JSON: " reason \
+				  "\nFalling back to English...",                \
+				  ##__VA_ARGS__);                                \
+		return loadFromJson(EN_US_PATH, EN_US, where);           \
+	} else if (condition) {                                      \
+		LOG_FATAL("Failed to deserialize English JSON: " reason, \
+				  ##__VA_ARGS__);                                \
+		std::exit(1);                                            \
 	}
-void L10n::loadFromJson(const char* __restrict path, const Language& language,
+void L10n::loadFromJson(const char* __restrict path, const StringView language,
 						Translations& where) noexcept {
 	FILE* fp = fopen(path, "r");
 
@@ -104,7 +104,7 @@ void L10n::loadFromJson(const char* __restrict path, const Language& language,
 		LOG_ERROR(
 			"Failed to load language JSON into memory, falling back to "
 			"English...");
-		return loadFromJson(EN_US_PATH, language, where);
+		return loadFromJson(EN_US_PATH, EN_US, where);
 	} else if (!fp) {
 		LOG_FATAL(
 			"Failed to load English JSON into memory, something's gone "
@@ -114,6 +114,7 @@ void L10n::loadFromJson(const char* __restrict path, const Language& language,
 
 	fseek(fp, 0, SEEK_END);
 	size_t fsize = static_cast<size_t>(ftell(fp));
+	FALLBACK(fsize == 0, "File is empty")
 	rewind(fp);
 
 	char* buffer = new char[fsize];

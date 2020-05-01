@@ -1,12 +1,20 @@
 :license-badge: https://img.shields.io/badge/license-MIT-blue.svg
+
 :cpp11-badge: https://img.shields.io/badge/standard-C%2B%2B%2011-blue.svg?logo=C%2B%2B
 :isocpp: https://isocpp.org
+
 :azure-badge: https://dev.azure.com/3DStris/3DStris/_apis/build/status/3DStris.3DStris?branchName=master
 :azure-latest: https://dev.azure.com/3DStris/3DStris/_build/latest?definitionId=1&branchName=master
+
 :downloads-badge: https://img.shields.io/github/downloads/3DStris/3DStris/total
 :latest-release: https://github.com/3DStris/3DStris/releases/latest
+
 :codefactor-badge: https://www.codefactor.io/repository/github/3DStris/3DStris/badge
 :codefactor: https://www.codefactor.io/repository/github/3DStris/3DStris
+
+:weblate-badge: https://hosted.weblate.org/widgets/3dstris/-/svg-badge.svg
+:weblate: https://hosted.weblate.org/engage/3dstris/
+:weblate-homepage: https://weblate.org
 
 :imagesdir: ./data/screenshots
 
@@ -18,7 +26,7 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
-= 3DStris image:{license-badge}[MIT, link=LICENSE] image:{cpp11-badge}[C\+\+ 11, link={isocpp}] image:{azure-badge}[Azure Pipelines, link={azure-latest}] image:{downloads-badge}[GitHub release downloads, link={latest-release}] image:{codefactor-badge}[CodeFactor, link={codefactor}]
+= 3DStris image:{license-badge}[MIT, link=LICENSE] image:{cpp11-badge}[C\+\+ 11, link={isocpp}] image:{azure-badge}[Azure Pipelines, link={azure-latest}] image:{downloads-badge}[GitHub release downloads, link={latest-release}] image:{codefactor-badge}[CodeFactor, link={codefactor}] image:{weblate-badge}[Weblate, link={weblate}]
 :toc: preamble
 
 A Tetris clone for the 3DS.
@@ -74,18 +82,17 @@ make
 Resulting binaries can be found in `build/bin/`.
 
 == Translation
-3DStris currently has translations available for the following languages:
+3DStris uses {weblate-homepage}[Weblate] for its translations. Feel free to contribute or view existing translations at {weblate}[the Hosted Weblate instance].
 
-* English
-* Bulgarian by https://github.com/geniiii[@geniiii]
-* German by https://github.com/itsdavvid[@itsdavvid]
-* Polish by https://github.com/itsdavvid[@itsdavvid]
-* (Brazilian) Portuguese by https://github.com/matcool[@matcool]
-* Russian by https://github.com/oatmealine[@oatmealine]
-* Japanese by https://github.com/Epicpkmn11[@Epicpkmn11]
-* Macedonian by https://github.com/geniiii[@geniiii]
-* French by https://github.com/badablek[@badablek]
-* Danish by https://github.com/AlbertCoolGuy[@AlbertCoolGuy]
+Pre-Weblate integration credits:
+
+* German - https://github.com/itsdavvid[@itsdavvid]
+* Polish - https://github.com/itsdavvid[@itsdavvid]
+* (Brazilian) Portuguese - https://github.com/matcool[@matcool]
+* Russian - https://github.com/oatmealine[@oatmealine]
+* Japanese - https://github.com/Epicpkmn11[@Epicpkmn11]
+* French - https://github.com/badablek[@badablek]
+* Danish - https://github.com/AlbertCoolGuy[@AlbertCoolGuy]
 
 == License
 Distributed under the MIT license. See the accompanying link:LICENSE[LICENSE] file for more information.

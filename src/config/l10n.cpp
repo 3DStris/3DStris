@@ -72,6 +72,7 @@ void L10n::loadLanguage(const Language& language) noexcept {
 void L10n::load(const char* __restrict path,
 				const Language& language) noexcept {
 	if (enTranslations.empty()) {
+		LOG_DEBUG("Loading en_US as fallback");
 		loadFromJson(EN_US_PATH, language, enTranslations);
 	}
 
@@ -136,10 +137,15 @@ void L10n::loadFromJson(const char* __restrict path, const Language& language,
 
 		FALLBACK(value.get_type() != sajson::TYPE_STRING,
 				 "Value of key \"%s\" must be of type string", key.data())
-		where[String(key.data(), key.length())] =
-			String(value.as_cstring(), value.get_string_length());
+		if (value.get_string_length() != 0) {
+			where[String(key.data(), key.length())] =
+				String(value.as_cstring(), value.get_string_length());
+		} else {
+			LOG_DEBUG(
+				"Empty translation for key \"%s\"; probably Weblate's fault",
+				key.data());
+		}
 	}
-
 	delete[] buffer;
 }
 

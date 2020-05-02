@@ -52,9 +52,11 @@ L10n::LanguageCodes L10n::getCodes() {
 				entries.insert(split[0]);
 			} else {
 				LOG_WARN("Found non-JSON file in translation directory");
-				sdsfree(split[count - 1]);
 			}
 
+			for (int i = 1; i < count; ++i) {
+				sdsfree(split[i]);
+			}
 			delete split;
 		} else {
 			LOG_ERROR("Failed to split filename");

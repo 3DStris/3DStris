@@ -15,6 +15,15 @@ extern "C" {
 	{ #lang, images_##lang##_idx }
 
 L10n::LanguageCodes L10n::getCodes() {
+	const auto sdsEqStr = [](sds lhs, const char* __restrict rhs) {
+		const size_t len1 = sdslen(lhs);
+		const size_t len2 = strlen(rhs);
+		if (len1 != len2) {
+			return false;
+		}
+		return memcmp(lhs, rhs, (len1 < len2) ? len1 : len2) == 0;
+	};
+
 	DIR* dp = opendir("romfs:/lang/");
 	if (!dp) {
 		LOG_FATAL(
@@ -39,15 +48,13 @@ L10n::LanguageCodes L10n::getCodes() {
 		}
 
 		if (split) {
-			if (strcmp(split[count - 1], "json") == 0) {
-				entries.emplace(split[0]);
+			if (sdsEqStr(split[count - 1], "json")) {
+				entries.insert(split[0]);
 			} else {
 				LOG_WARN("Found non-JSON file in translation directory");
+				sdsfree(split[count - 1]);
 			}
 
-			for (int i = 1; i < count; ++i) {
-				sdsfree(split[i]);
-			}
 			delete split;
 		} else {
 			LOG_ERROR("Failed to split filename");

@@ -17,19 +17,19 @@ String::String(const char* __restrict str, size_t len) noexcept
 String::~String() noexcept {
 	sdsfree(s);
 }
-String::String(const String& other) noexcept : s(sdsdup(other.s)) {}
-String::String(String&& other) noexcept : s(other.s) {
-	other.s = nullptr;
+String::String(const String& str) noexcept : s(sdsdup(str.s)) {}
+String::String(String&& str) noexcept : s(str.s) {
+	str.s = nullptr;
 }
 
-void String::operator=(const String& other) noexcept {
+void String::operator=(const String& str) noexcept {
 	sdsfree(s);
-	s = sdsdup(other.s);
+	s = sdsdup(str.s);
 }
-void String::operator=(String&& other) noexcept {
+void String::operator=(String&& str) noexcept {
 	sdsfree(s);
-	s = other.s;
-	other.s = nullptr;
+	s = str.s;
+	str.s = nullptr;
 }
 
 bool String::operator==(const String& str) const noexcept {

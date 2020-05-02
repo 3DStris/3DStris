@@ -26,10 +26,10 @@ struct String final {
 	String(const char* __restrict str, size_t len) noexcept;
 
 	~String() noexcept;
-	String(const String& other) noexcept;
-	String(String&& other) noexcept;
-	void operator=(const String& other) noexcept;
-	void operator=(String&& other) noexcept;
+	String(const String& str) noexcept;
+	String(String&& str) noexcept;
+	void operator=(const String& str) noexcept;
+	void operator=(String&& str) noexcept;
 
 	operator sds() const noexcept { return s; }
 	operator StringView() const noexcept { return StringView(s, size()); }

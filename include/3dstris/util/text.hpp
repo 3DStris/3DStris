@@ -11,12 +11,7 @@ class Text {
    public:
 	enum class Align { CENTER, VCENTER, HCENTER, SCREEN_CENTER };
 
-	explicit Text()
-		: _scale(1, 1),
-		  textBuffer(C2D_TextBufNew(1)),
-		  color(Game::get().getTheme().text) {
-		setText(String::empty());
-	}
+	Text();
 	template <typename T>
 	explicit Text(T&& text, Pos pos = Pos{}, Vector2f scale = {1, 1},
 				  const Color& color = Game::get().getTheme().text) noexcept

@@ -1,6 +1,13 @@
 #include <3dstris/util/draw.hpp>
 #include <3dstris/util/text.hpp>
 
+Text::Text()
+	: _scale(1, 1),
+	  textBuffer(C2D_TextBufNew(1)),
+	  color(Game::get().getTheme().text) {
+	setText(String::empty());
+}
+
 void Text::draw(const float depth) const noexcept {
 	C2D_DrawText(&textObject, C2D_WithColor, pos.x, pos.y, depth, _scale.x,
 				 _scale.y, color);

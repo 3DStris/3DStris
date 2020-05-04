@@ -32,5 +32,6 @@
     "cancel": "Avbryt",
     "back": "Tilbake",
     "save": "Lagre",
-    "ok": "OK"
+    "ok": "OK",
+    "settings.visual.usetextures": "Teksturer"
 }

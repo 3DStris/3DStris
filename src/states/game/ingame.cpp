@@ -26,7 +26,7 @@ Ingame::Ingame()
 void Ingame::reset() {
 	board.reset();
 
-	const auto newBag = genBag(bagRNG);
+	auto newBag = genBag(bagRNG);
 	bag = std::deque<PieceType>(std::make_move_iterator(newBag.begin()),
 								std::make_move_iterator(newBag.end()));
 

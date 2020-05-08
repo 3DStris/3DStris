@@ -45,7 +45,8 @@ void Ingame::update(const double dt) {
 	}
 
 	assert(hold != PieceType::INVALID);
-	assert(piece.getType() != PieceType::INVALID);
+	assert(piece.getType() != PieceType::INVALID &&
+		   piece.getType() != PieceType::NONE);
 
 	piece.update(dt, kDown);
 
@@ -62,7 +63,7 @@ void Ingame::update(const double dt) {
 
 	if (!hasHeld && game.isPressed(kDown, Keybinds::Action::HOLD)) {
 		hasHeld = true;
-		if (hold == PieceType::NONE && piece.getType() != PieceType::NONE) {
+		if (hold == PieceType::NONE) {
 			hold = piece.getType();
 			piece.reset(bag.front());
 			bag.pop_front();

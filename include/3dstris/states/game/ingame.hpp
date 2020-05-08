@@ -25,6 +25,6 @@ class Ingame : public State {
 
 	Piece piece;
 
-	PieceType hold;
+	PieceType hold = PieceType::NONE;
 	bool hasHeld;
 };

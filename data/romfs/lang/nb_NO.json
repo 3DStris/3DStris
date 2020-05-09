@@ -33,5 +33,14 @@
     "back": "Tilbake",
     "save": "Lagre",
     "ok": "OK",
-    "settings.visual.usetextures": "Teksturer"
+    "settings.visual.usetextures": "Teksturer",
+    "loadfailed.games": "Klarte ikke å lese inn spill; dine lagrede spill har blitt tilbakestilt.",
+    "keybindselect.tip": "Trykk START for å avbryte. Trykk SELECT for å tilbakestille.",
+    "keybindselect.title": "Nøkkelbindinger",
+    "loadfailed.keybinds": "Klarte ikke å laste inn nøkkelbindinger; bindingene dine har blitt tilbakestilt.",
+    "loadfailed.config": "Klarte ikke å laste inn oppsett; innstillingene dine har blitt tilbakestilt.",
+    "settings.gameplay.keybinds": "Tastebindinger",
+    "settings.tip": "Bruk bunnskjermen for å endre innstillinger. Trykk  for å avbryte.",
+    "settings.visual.title": "Visuelle innstillinger",
+    "settings.gameplay.title": "Spillinnstillinger"
 }

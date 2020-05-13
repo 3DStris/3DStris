@@ -12,11 +12,6 @@ class BaseSettings : public State {
 	void draw(bool bottom) const override;
 
    protected:
-	// The constructor can only be called once, so I guess it's okay. However,
-	// that in and of itself was changed only to accomodate for this. It would
-	// be preferable for this design to be scrapped entirely.
-	friend Config;
-
 	static BaseConfig config;
 
 	GUI gui;

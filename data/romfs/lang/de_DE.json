@@ -33,5 +33,6 @@
     "modeselect.normal": "normal",
     "results.dead": "Spiel vorbei",
     "reset": "Reset",
-    "menu": "Menü"
+    "menu": "Menü",
+    "sprintselect.custom": "Benutzerdefiniert"
 }

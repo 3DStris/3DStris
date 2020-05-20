@@ -42,5 +42,11 @@
     "settings.gameplay.keybinds": "Tastebindinger",
     "settings.tip": "Bruk bunnskjermen for å endre innstillinger. Trykk  for å avbryte.",
     "settings.visual.title": "Visuelle innstillinger",
-    "settings.gameplay.title": "Spillinnstillinger"
+    "settings.gameplay.title": "Spillinnstillinger",
+    "keybindselect.hold": "Hold",
+    "keybindselect.harddrop": "Hardt dropp",
+    "keybindselect.softdrop": "Mykt dropp",
+    "keybindselect.rotateccw": "Roter mot klokka",
+    "keybindselect.rotatecw": "Roter med klokka",
+    "settings.gameplay.droptimer": "Dropp-tidsur"
 }

@@ -4,8 +4,8 @@
 #include <3dstris/game/shapes.hpp>
 #include <3dstris/util/math.hpp>
 
-enum class PieceType { I, O, L, J, S, T, Z, NONE, INVALID };
-enum class Direction { LEFT, RIGHT, UP, DOWN };
+enum class PieceType : u8 { I, O, L, J, S, T, Z, NONE, INVALID };
+enum class Direction : u8 { LEFT, RIGHT, UP, DOWN };
 
 class Board;
 class Piece {

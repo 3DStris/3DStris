@@ -98,7 +98,7 @@ void Ingame::draw(const bool bottom) const {
 			 origin.y + y * tileSize},
 			tileSize, Shapes::ALL[static_cast<size_t>(p)], p);
 
-		y += Shapes::ALL[static_cast<size_t>(p)].get().size();
+		y += Shapes::ALL[p].get().size();
 		if (p == PieceType::O) {
 			++y;
 		}

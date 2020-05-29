@@ -1,8 +1,10 @@
 #pragma once
 
 #include <3dstris/gui.hpp>
+#include <3dstris/gui/widgets/button.hpp>
 #include <3dstris/gui/widgets/panel.hpp>
 #include <3dstris/state.hpp>
+#include <3dstris/util/text.hpp>
 
 class KeybindButton;
 class KeybindSelect final : public State {

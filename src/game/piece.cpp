@@ -184,7 +184,7 @@ void Piece::rotate(const bool ccw) {
 	 (ccw being true if the current rotation is counter clockwise)
 	*/
 	const int testOffset = 2 * prevRotation + !ccw;
-	for (u8 test = 0; test < WK_TESTS; test++) {
+	for (u8 test = 0; test < WK_TESTS; ++test) {
 		const u32 i = test * 16 + static_cast<u32>(testOffset * 2);
 		const int offX = wkData[i];
 		const int offY = wkData[i + 1];

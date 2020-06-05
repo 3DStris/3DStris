@@ -89,7 +89,7 @@ Games::Games() noexcept {
 			}
 
 			// Just in case
-			_this.saveThread = nullptr;
+			_this.loadThread = nullptr;
 		},
 		this, 1024, mainPrio + 1, -2, true);
 }

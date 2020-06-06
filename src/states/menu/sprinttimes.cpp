@@ -13,6 +13,7 @@ SprintTimes::SprintTimes()
 	  dateLabel(game.translate("sprint.times.table.date")),
 	  linesLabel(game.translate("sprint.times.table.lines")),
 
+	  // Games::all joins the load thread
 	  games(game.getGames().all()),
 
 	  title(game.translate("results.sprint.times"), Pos{0, 5}),
@@ -20,7 +21,6 @@ SprintTimes::SprintTimes()
 	  page(String::empty(), Pos{10, 10}, {0.8f, 0.8f}),
 	  selectedText(String::empty(), Pos{0, SCREEN_HEIGHT - TABLE_Y + 10},
 				   {0.65f, 0.65f}) {
-	// Games::all joins the load thread
 	if (games.empty()) {
 		noGames.align(Text::Align::SCREEN_CENTER);
 		return;

@@ -20,6 +20,12 @@
  * IN THE SOFTWARE.
  */
 
+#ifndef NDEBUG
+extern "C" {
+	#include <3ds/console.h>
+}
+#endif
+
 #include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>
 #include <3dstris/version.hpp>

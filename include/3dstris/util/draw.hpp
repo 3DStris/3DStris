@@ -1,7 +1,7 @@
 #pragma once
 
 extern "C" {
-#include <c2d/base.h>
+#include <3ds/types.h>
 }
 
 #include <3dstris/util/math.hpp>

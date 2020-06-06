@@ -13,18 +13,19 @@ SprintTimes::SprintTimes()
 	  dateLabel(game.translate("sprint.times.table.date")),
 	  linesLabel(game.translate("sprint.times.table.lines")),
 
+	  games(game.getGames().all()),
+
 	  title(game.translate("results.sprint.times"), Pos{0, 5}),
 	  noGames(game.translate("sprint.times.nogames"), Pos{}, {0.75f, 0.75f}),
 	  page(String::empty(), Pos{10, 10}, {0.8f, 0.8f}),
 	  selectedText(String::empty(), Pos{0, SCREEN_HEIGHT - TABLE_Y + 10},
 				   {0.65f, 0.65f}) {
 	// Games::all joins the load thread
-	if (game.getGames().all().empty()) {
+	if (games.empty()) {
 		noGames.align(Text::Align::SCREEN_CENTER);
 		return;
 	}
 
-	games = game.getGames().all();
 	std::sort(games.begin(), games.end(), std::less<SavedGame>());
 
 	title.align(Text::Align::HCENTER, Pos{}, WH{SCREEN_WIDTH, SCREEN_HEIGHT});

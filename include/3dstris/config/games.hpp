@@ -32,7 +32,7 @@ class Games final {
 
 	void serialize(mpack_writer_t& writer) const noexcept;
 
-	const SavedGames& all() const noexcept;
+	SavedGames& all() noexcept;
 
 	void save() noexcept;
 	void push(SavedGame&& game);

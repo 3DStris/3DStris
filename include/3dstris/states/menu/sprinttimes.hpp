@@ -43,7 +43,7 @@ class SprintTimes final : public State {
 	u32 selected = 0;
 
 	std::vector<Text> values;
-	Games::SavedGames games;
+	Games::SavedGames& games;
 
 	Text title;
 	Text noGames;

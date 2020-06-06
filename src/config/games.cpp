@@ -113,7 +113,7 @@ void Games::serialize(mpack_writer_t& writer) const noexcept {
 	mpack_finish_array(&writer);
 }
 
-const Games::SavedGames& Games::all() const noexcept {
+Games::SavedGames& Games::all() noexcept {
 	joinLoadThread();
 	return games;
 }

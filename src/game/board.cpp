@@ -22,12 +22,12 @@ void Board::draw(const Pos origin, const u32 tileSize, const float outerThick,
 					 theme.board, 0.1f);
 
 	for (u32 y = 0; y < height; ++y) {
-		straightLine(Pos{origin.x, origin.y + y * tileSize},
-					 WH(width * tileSize, 0), gridThick, theme.grid, 0);
+		GUI::drawHLine(Pos{origin.x, origin.y + y * tileSize}, width * tileSize,
+					   gridThick, theme.grid, 0);
 	}
 	for (u32 x = 0; x < width; ++x) {
-		straightLine(Pos{origin.x + x * tileSize, origin.y},
-					 WH(0, height * tileSize), gridThick, theme.grid, 0);
+		GUI::drawVLine(Pos{origin.x + x * tileSize, origin.y},
+					   height * tileSize, gridThick, theme.grid, 0);
 	}
 
 	for (u32 y = 0; y < height; ++y) {

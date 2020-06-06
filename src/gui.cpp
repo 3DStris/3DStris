@@ -33,21 +33,19 @@ const Theme& GUI::getTheme() noexcept {
 void GUI::drawOutline(const Pos pos, const WH wh, const float scale,
 					  const Color color, const float depth) noexcept {
 	drawHLine(pos, wh.x, scale, color, depth);
-	C2D_DrawRectSolid(pos.x - scale, pos.y, depth, scale, wh.y, color);
+	drawHLine(Pos{pos.x, pos.y + wh.y}, wh.x, scale, color, depth);
 
-	C2D_DrawRectSolid(pos.x + wh.x, pos.y, depth, scale, wh.y, color);
-	C2D_DrawRectSolid(pos.x - scale, pos.y + wh.y, depth, wh.x + 2 * scale,
-					  scale, color);
+	drawVLine(Pos{pos.x, pos.y - scale + 1}, wh.y + scale, scale, color, depth);
+	drawVLine(Pos{pos.x + wh.x, pos.y - scale + 1}, wh.y + scale, scale, color,
+			  depth);
 }
 
 void GUI::drawHLine(const Pos pos, const float w, const float scale,
 					const Color color, const float depth) noexcept {
-	C2D_DrawRectSolid(pos.x - scale, pos.y - scale, depth, w + 2 * scale, scale,
-					  color);
+	C2D_DrawLine(pos.x, pos.y, color, pos.x + w, pos.y, color, scale, depth);
 }
 
 void GUI::drawVLine(const Pos pos, const float h, const float scale,
 					const Color color, const float depth) noexcept {
-	C2D_DrawRectSolid(pos.x - scale, pos.y - scale, depth, scale, h + 2 * scale,
-					  color);
+	C2D_DrawLine(pos.x, pos.y, color, pos.x, pos.y + h, color, scale, depth);
 }

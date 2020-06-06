@@ -20,10 +20,6 @@
  * IN THE SOFTWARE.
  */
 
-extern "C" {
-#include <3ds/console.h>
-}
-
 #include <3dstris/util/fs.hpp>
 #include <3dstris/util/log.hpp>
 #include <3dstris/version.hpp>

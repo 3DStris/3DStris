@@ -4,7 +4,7 @@
 :isocpp: https://isocpp.org
 
 :azure-badge: https://dev.azure.com/3DStris/3DStris/_apis/build/status/3DStris.3DStris?branchName=master
-:azure-latest: https://dev.azure.com/3DStris/3DStris/_build/latest?definitionId=1&branchName=master
+:azure-builds: https://dev.azure.com/3DStris/3DStris/_build
 
 :downloads-badge: https://img.shields.io/github/downloads/3DStris/3DStris/total
 :latest-release: https://github.com/3DStris/3DStris/releases/latest
@@ -26,7 +26,7 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
-= 3DStris image:{license-badge}[MIT, link=LICENSE] image:{cpp11-badge}[C\+\+ 11, link={isocpp}] image:{azure-badge}[Azure Pipelines, link={azure-latest}] image:{downloads-badge}[GitHub release downloads, link={latest-release}] image:{codefactor-badge}[CodeFactor, link={codefactor}] image:{weblate-badge}[Weblate, link={weblate}]
+= 3DStris image:{license-badge}[MIT, link=LICENSE] image:{cpp11-badge}[C\+\+ 11, link={isocpp}] image:{azure-badge}[Azure Pipelines, link={azure-builds}] image:{downloads-badge}[GitHub release downloads, link={latest-release}] image:{codefactor-badge}[CodeFactor, link={codefactor}] image:{weblate-badge}[Weblate, link={weblate}]
 :toc: preamble
 
 A Tetris clone for the 3DS.
@@ -37,7 +37,7 @@ A Tetris clone for the 3DS.
 
 [%hardbreaks]
 The latest automatically generated stable build can be found {latest-release}[here].
-Development builds are available as Azure Pipelines artifacts. You can find the latest development build {azure-latest}[here].
+Development builds are available as Azure Pipelines artifacts. You can find the latest development build {azure-builds}[here].
 3DStris is also available on {tinydb}[TinyDB].
 You can view the GitHub release stats {stats}[here].
 

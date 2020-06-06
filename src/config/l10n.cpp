@@ -184,7 +184,7 @@ size_t L10n::getFlag(const Language& language) noexcept {
 	static const phmap::flat_hash_map<StringView, size_t, StringHash, StringEq>
 		FLAGS{FLAG(en_US), FLAG(bg_BG), FLAG(ru_RU), FLAG(pt_BR),
 			  FLAG(pl_PL), FLAG(de_DE), FLAG(ja_JP), FLAG(mk_MK),
-			  FLAG(fr_FR), FLAG(da_DK), FLAG(nb_NO)};
+			  FLAG(fr_FR), FLAG(da_DK), FLAG(nb_NO), FLAG(id_ID)};
 
 	const auto flag = FLAGS.find(language);
 	return flag != FLAGS.end() ? flag->second : images_un_idx;

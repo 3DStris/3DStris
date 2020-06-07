@@ -65,5 +65,7 @@ class Piece {
 	double arr;
 	double arrTimer;
 
+	bool lastActionWasRotate;
+
 	bool _dead;
 };

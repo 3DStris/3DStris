@@ -35,6 +35,8 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 
 	rotation = 0;
 
+	lastActionWasRotate = false;
+
 	_dead =
 		collides(0, 0);	 // piece is "dead" if it collides as soon as it spawns
 }
@@ -189,6 +191,11 @@ void Piece::rotate(const bool ccw) {
 		if (!collides(offX, offY)) {
 			pos.x += offX;
 			pos.y += offY;
+
+			if (type == PieceType::T) {
+				lastActionWasRotate = true;
+			}
+
 			return;
 		}
 	}
@@ -202,6 +209,24 @@ void Piece::update(const double dt, const u32 kDown) {
 	const u32 kHeld = hidKeysHeld();
 
 	fallTimer += dt;
+
+	if (type == PieceType::T && lastActionWasRotate) {
+		u8 cornersFilled = 0;
+		for (const auto& corner : std::array<PieceType, 4>{
+				 board.get(pos.x, pos.y),
+				 board.get(pos.x + shape.size() - 1, pos.y),
+				 board.get(pos.x, pos.y + shape.size() - 1),
+				 board.get(pos.x + shape.size() - 1,
+						   pos.y + shape.size() - 1)}) {
+			if (corner != PieceType::NONE) {
+				++cornersFilled;
+			}
+		}
+
+		board.lastWasTSpin = cornersFilled >= 3;
+	} else {
+		board.lastWasTSpin = false;
+	}
 
 	const bool softDropHeld =
 		game.isPressed(kHeld, Keybinds::Action::SOFT_DROP);
@@ -218,6 +243,7 @@ void Piece::update(const double dt, const u32 kDown) {
 	if (collides(0, 1)) {
 		setTimer += dt;
 		if (hasSet()) {
+			board.score += 1;
 			set();
 			return;
 		}
@@ -226,6 +252,8 @@ void Piece::update(const double dt, const u32 kDown) {
 	}
 
 	if (game.isPressed(kDown, Keybinds::Action::HARD_DROP)) {
+		board.score += 2;
+
 		while (move(Direction::DOWN)) {
 		}
 		setTimer = setAfter;
@@ -244,6 +272,8 @@ void Piece::update(const double dt, const u32 kDown) {
 		rotate(true);
 	} else if (game.isPressed(kDown, Keybinds::Action::ROTATE_CW)) {
 		rotate(false);
+	} else {
+		lastActionWasRotate = false;
 	}
 }
 

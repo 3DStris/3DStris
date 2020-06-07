@@ -7,6 +7,9 @@ class Board {
 	u32 width;
 	u32 height;
 
+	u32 score = 0;
+	bool lastWasTSpin = false;
+
 	Board(u32 width, u32 height);
 
 	void reset();
@@ -62,6 +65,8 @@ class Board {
    private:
 	std::vector<PieceType> grid;
 
+	u32 comboCount = 0;
 	u32 _droppedPieces = 0;
+
 	u32 _linesCleared = 0;
 };

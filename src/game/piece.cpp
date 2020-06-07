@@ -3,16 +3,13 @@
 #include <3dstris/game/wallkicks.hpp>
 #include <3dstris/util/colorstextures.hpp>
 
-// Ching cong
 Piece::Piece(Board& board, const PieceShape& shape, const PieceType type)
 	: game(Game::get()), board(board), shape(shape) {
 	reset(shape, type);
 }
 
 Piece::Piece(Board& board, const PieceType type)
-	: Piece(board, Shapes::ALL[static_cast<size_t>(type)], type) {
-	// Uhh
-}
+	: Piece(board, Shapes::ALL[static_cast<size_t>(type)], type) {}
 
 void Piece::reset(const PieceShape& shape, const PieceType type) {
 	this->shape = shape;

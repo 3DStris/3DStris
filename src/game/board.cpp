@@ -8,52 +8,7 @@ Board::Board(const u32 width, const u32 height)
 	: width(width), height(height), grid(width * height) {}
 
 void Board::reset() {
-	// clang-format off
-grid = std::vector<PieceType>{
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::I,    PieceType::I,    PieceType::NONE, PieceType::NONE, PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,
-			PieceType::I,    PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,
-			PieceType::I,    PieceType::NONE, PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,
-			PieceType::I,    PieceType::NONE, PieceType::NONE, PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,
-			PieceType::I,    PieceType::NONE, PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,};
-
-	/*grid = std::vector<PieceType>{
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::I, PieceType::I, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::I, PieceType::I, PieceType::NONE,
-			PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::I,    PieceType::I, PieceType::I, PieceType::NONE,
-			PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::NONE, PieceType::NONE, PieceType::NONE, PieceType::I, PieceType::I, PieceType::NONE,
-			PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I,    PieceType::I, PieceType::NONE, PieceType::I,    PieceType::I, PieceType::I, PieceType::NONE,};*/
-	// clang-format on
-	//	grid.assign(width * height, PieceType::NONE);
+	grid.assign(width * height, PieceType::NONE);
 
 	score = 0;
 	lastWasTSpin = false;

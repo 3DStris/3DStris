@@ -1,14 +1,27 @@
 #pragma once
 
 #include <3dstris/game/piece.hpp>
+#include <3dstris/util/text.hpp>
 
 class Board {
    public:
 	u32 width;
 	u32 height;
 
-	u32 score = 0;
-	bool lastWasTSpin = false;
+	struct Scoring {
+		Scoring() noexcept;
+
+		void reset() noexcept;
+		void updateDisplay() noexcept;
+
+		Text scoreDisplay;
+
+		u32 score = 0;
+		u32 comboCount = 0;
+
+		bool lastWasTSpin = false;
+	};
+	Scoring scoring;
 
 	Board(u32 width, u32 height);
 
@@ -55,6 +68,8 @@ class Board {
 	void draw(Pos origin, u32 tileSize, float outerThick = 1.75,
 			  float gridThick = 1) const;
 
+	void updateScoreDisplay() noexcept;
+
 	void clearLines() noexcept;
 
 	void dropPiece() noexcept { _droppedPieces++; }
@@ -65,7 +80,6 @@ class Board {
    private:
 	std::vector<PieceType> grid;
 
-	u32 comboCount = 0;
 	u32 _droppedPieces = 0;
 
 	u32 _linesCleared = 0;

@@ -223,9 +223,9 @@ void Piece::update(const double dt, const u32 kDown) {
 			}
 		}
 
-		board.lastWasTSpin = cornersFilled >= 3;
+		board.scoring.lastWasTSpin = cornersFilled >= 3;
 	} else {
-		board.lastWasTSpin = false;
+		board.scoring.lastWasTSpin = false;
 	}
 
 	const bool softDropHeld =
@@ -243,7 +243,9 @@ void Piece::update(const double dt, const u32 kDown) {
 	if (collides(0, 1)) {
 		setTimer += dt;
 		if (hasSet()) {
-			board.score += 1;
+			++board.scoring.score;
+			board.scoring.updateDisplay();
+
 			set();
 			return;
 		}
@@ -252,7 +254,8 @@ void Piece::update(const double dt, const u32 kDown) {
 	}
 
 	if (game.isPressed(kDown, Keybinds::Action::HARD_DROP)) {
-		board.score += 2;
+		board.scoring.score += 2;
+		board.scoring.updateDisplay();
 
 		while (move(Direction::DOWN)) {
 		}

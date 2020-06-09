@@ -10,7 +10,7 @@ Board::Scoring::Scoring() noexcept
 }
 void Board::Scoring::reset() noexcept {
 	score = 0;
-	comboCount = 0;
+	updateDisplay();
 
 	lastWasTSpin = false;
 }
@@ -97,7 +97,6 @@ void Board::clearLines() noexcept {
 	}
 
 	if (linesCleared > 0) {
-		++scoring.comboCount;
 		if (scoring.lastWasTSpin) {
 			for (u8 i = 0; i < linesCleared; ++i) {
 				scoring.score += 400;
@@ -122,12 +121,6 @@ void Board::clearLines() noexcept {
 				}
 			}
 		}
-	} else {
-		scoring.comboCount = 0;
-	}
-
-	if (scoring.comboCount > 1) {
-		scoring.score += 50 * scoring.comboCount;  // No levels (yet)
 	}
 
 	scoring.updateDisplay();

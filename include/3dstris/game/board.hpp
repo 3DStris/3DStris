@@ -17,7 +17,6 @@ class Board {
 		Text scoreDisplay;
 
 		u32 score = 0;
-		u32 comboCount = 0;
 
 		bool lastWasTSpin = false;
 	};
@@ -67,8 +66,6 @@ class Board {
 
 	void draw(Pos origin, u32 tileSize, float outerThick = 1.75,
 			  float gridThick = 1) const;
-
-	void updateScoreDisplay() noexcept;
 
 	void clearLines() noexcept;
 

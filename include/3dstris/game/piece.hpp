@@ -27,7 +27,7 @@ class Piece {
 
 	void rotate(bool ccw);
 
-	bool collides(int offX, int offY) const noexcept;
+	bool collides(s32 offX, s32 offY) const noexcept;
 
 	void update(double dt, u32 kDown);
 
@@ -45,7 +45,7 @@ class Piece {
 	PieceType type;
 	Pos pos;
 
-	int rotation;
+	s32 rotation;
 
 	C2D_Image sprite;
 	PieceShape shape;

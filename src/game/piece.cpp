@@ -55,7 +55,7 @@ void Piece::set() noexcept {
 	board.clearLines();
 }
 
-bool Piece::collides(const int offX, const int offY) const noexcept {
+bool Piece::collides(const s32 offX, const s32 offY) const noexcept {
 	for (u8 y = 0; y < shape.size(); ++y) {
 		for (u8 x = 0; x < shape.size(); ++x) {
 			const Vector2f offPos{pos.x + x + offX, pos.y + y + offY};
@@ -69,7 +69,7 @@ bool Piece::collides(const int offX, const int offY) const noexcept {
 }
 
 void Piece::draw(const Pos origin, const u32 tileSize) const {
-	int ghostY = 0;
+	s32 ghostY = 0;
 	while (!collides(0, ++ghostY)) {
 	}
 	ghostY--;
@@ -119,7 +119,7 @@ void Piece::draw(const Pos origin, const u32 tileSize, const PieceShape& shape,
 }
 
 bool Piece::move(const Direction dir) noexcept {
-	int xOff = 0, yOff = 0;
+	s32 xOff = 0, yOff = 0;
 	switch (dir) {
 		case Direction::LEFT:
 			xOff = -1;
@@ -164,7 +164,7 @@ void Piece::rotate(const bool ccw) {
 	const PieceShape oldShape = shape;
 	shape = std::move(newShape);
 
-	const int prevRotation = rotation;
+	const s32 prevRotation = rotation;
 	rotation = mod(rotation + (ccw ? -1 : 1), 4);
 
 	const Wallkick wkData =
@@ -180,11 +180,11 @@ void Piece::rotate(const bool ccw) {
 	 which makes it easy to index by using: 2 * prevRotation + (ccw ? 0 : 1)
 	 (ccw being true if the current rotation is counter clockwise)
 	*/
-	const int testOffset = 2 * prevRotation + !ccw;
+	const s32 testOffset = 2 * prevRotation + !ccw;
 	for (u8 test = 0; test < WK_TESTS; ++test) {
 		const u32 i = test * 16 + static_cast<u32>(testOffset * 2);
-		const int offX = wkData[i];
-		const int offY = wkData[i + 1];
+		const s32 offX = wkData[i];
+		const s32 offY = wkData[i + 1];
 		if (!collides(offX, offY)) {
 			pos.x += offX;
 			pos.y += offY;

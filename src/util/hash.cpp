@@ -45,16 +45,16 @@ inline T unaligned_load(const void* ptr) noexcept {
 #endif
 
 static size_t hash_bytes(const void* ptr, const size_t len) noexcept {
-	static constexpr uint64_t m = UINT64_C(0xc6a4a7935bd1e995);
-	static constexpr uint64_t seed = UINT64_C(0xe17a1465);
-	static constexpr unsigned int r = 47;
+	static constexpr u64 m = UINT64_C(0xc6a4a7935bd1e995);
+	static constexpr u64 seed = UINT64_C(0xe17a1465);
+	static constexpr u32 r = 47;
 
-	const auto data64 = static_cast<const uint64_t*>(ptr);
-	uint64_t h = seed ^ (len * m);
+	const u64* data64 = static_cast<const u64*>(ptr);
+	u64 h = seed ^ (len * m);
 
 	const size_t n_blocks = len / 8;
 	for (size_t i = 0; i < n_blocks; ++i) {
-		auto k = unaligned_load<uint64_t>(data64 + i);
+		auto k = unaligned_load<u64>(data64 + i);
 
 		k *= m;
 		k ^= k >> r;
@@ -64,28 +64,28 @@ static size_t hash_bytes(const void* ptr, const size_t len) noexcept {
 		h *= m;
 	}
 
-	const auto data8 = reinterpret_cast<const uint8_t*>(data64 + n_blocks);
+	const auto data8 = reinterpret_cast<const u8*>(data64 + n_blocks);
 	switch (len & 7U) {
 		case 7:
-			h ^= static_cast<uint64_t>(data8[6]) << 48U;
+			h ^= static_cast<u64>(data8[6]) << 48U;
 			FALLTHROUGH();	// FALLTHROUGH
 		case 6:
-			h ^= static_cast<uint64_t>(data8[5]) << 40U;
+			h ^= static_cast<u64>(data8[5]) << 40U;
 			FALLTHROUGH();	// FALLTHROUGH
 		case 5:
-			h ^= static_cast<uint64_t>(data8[4]) << 32U;
+			h ^= static_cast<u64>(data8[4]) << 32U;
 			FALLTHROUGH();	// FALLTHROUGH
 		case 4:
-			h ^= static_cast<uint64_t>(data8[3]) << 24U;
+			h ^= static_cast<u64>(data8[3]) << 24U;
 			FALLTHROUGH();	// FALLTHROUGH
 		case 3:
-			h ^= static_cast<uint64_t>(data8[2]) << 16U;
+			h ^= static_cast<u64>(data8[2]) << 16U;
 			FALLTHROUGH();	// FALLTHROUGH
 		case 2:
-			h ^= static_cast<uint64_t>(data8[1]) << 8U;
+			h ^= static_cast<u64>(data8[1]) << 8U;
 			FALLTHROUGH();	// FALLTHROUGH
 		case 1:
-			h ^= static_cast<uint64_t>(data8[0]);
+			h ^= static_cast<u64>(data8[0]);
 			h *= m;
 			FALLTHROUGH();	// FALLTHROUGH
 		default:

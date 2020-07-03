@@ -69,7 +69,7 @@ Log::~Log() noexcept {
 	fclose(fp);
 }
 
-void Log::log(const Level level, const char* __restrict file, const int line,
+void Log::log(const Level level, const char* __restrict file, const s32 line,
 			  const char* __restrict string) noexcept {
 	log(level, file, line, "%s", string);
 }

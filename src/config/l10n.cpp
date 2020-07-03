@@ -40,7 +40,7 @@ L10n::LanguageCodes L10n::getCodes() {
 			continue;
 		}
 
-		int count;
+		s32 count;
 		sds* split =
 			sdssplitlen(ep->d_name, strlen(ep->d_name), ".", 1, &count);
 		if (!count) {
@@ -54,7 +54,7 @@ L10n::LanguageCodes L10n::getCodes() {
 				LOG_WARN("Found non-JSON file in translation directory");
 			}
 
-			for (int i = 1; i < count; ++i) {
+			for (s32 i = 1; i < count; ++i) {
 				sdsfree(split[i]);
 			}
 			delete split;

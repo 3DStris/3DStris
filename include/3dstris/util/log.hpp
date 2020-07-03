@@ -43,11 +43,11 @@ class Log final {
 		return log;
 	}
 
-	void log(Level level, const char* __restrict file, int line,
+	void log(Level level, const char* __restrict file, s32 line,
 			 const char* __restrict string) noexcept;
 
 	template <typename... Args>
-	void log(const Level level, const char* __restrict file, int line,
+	void log(const Level level, const char* __restrict file, s32 line,
 			 const char* __restrict fmt, Args&&... args) noexcept {
 		static const char* LEVELS[]{"TRACE", "DEBUG", "INFO",
 									"WARN",	 "ERROR", "FATAL"};

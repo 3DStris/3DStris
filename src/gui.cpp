@@ -33,19 +33,18 @@ const Theme& GUI::getTheme() noexcept {
 void GUI::drawOutline(const Pos pos, const WH wh, const float scale,
 					  const Color color, const float depth) noexcept {
 	drawHLine(pos, wh.x, scale, color, depth);
-	drawHLine(Pos{pos.x, pos.y + wh.y}, wh.x, scale, color, depth);
+	drawVLine(pos, wh.y, scale, color, depth);
 
-	drawVLine(Pos{pos.x, pos.y - scale + 1}, wh.y + scale, scale, color, depth);
-	drawVLine(Pos{pos.x + wh.x, pos.y - scale + 1}, wh.y + scale, scale, color,
-			  depth);
+	drawHLine({pos.x, pos.y + wh.y}, wh.x, scale, color, depth);
+	drawVLine({pos.x + wh.x, pos.y}, wh.y, scale, color, depth);
 }
 
 void GUI::drawHLine(const Pos pos, const float w, const float scale,
 					const Color color, const float depth) noexcept {
-	C2D_DrawLine(pos.x, pos.y, color, pos.x + w, pos.y, color, scale, depth);
+	C2D_DrawRectSolid(pos.x, pos.y, depth, w + scale, scale, color);
 }
 
 void GUI::drawVLine(const Pos pos, const float h, const float scale,
 					const Color color, const float depth) noexcept {
-	C2D_DrawLine(pos.x, pos.y, color, pos.x, pos.y + h, color, scale, depth);
+	C2D_DrawRectSolid(pos.x, pos.y, depth, scale, h + scale, color);
 }

@@ -8,27 +8,15 @@ using Color = u32;
 
 class Textures final {
    public:
-	static const C2D_Image& get(const size_t index) {
-		static Textures textures;
-		return textures.all[index];
-	}
-
-	static Color getColor(const size_t index, const bool ghost = false) {
-		static DefaultColors defaultColors;
-		return defaultColors.get(index, ghost);
-	}
+	static const C2D_Image& get(size_t index);
+	static Color getColor(size_t index, bool ghost = false);
 
 	static C2D_ImageTint GHOST;
 
    private:
 	class DefaultColors {
 	   public:
-		static const Color& get(const size_t index, const bool ghost = false) {
-			static DefaultColors defaultTints;
-
-			return ghost ? defaultTints.ghost[index]
-						 : defaultTints.normal[index];
-		}
+		static const Color& get(size_t index, bool ghost = false);
 
 		DefaultColors();
 

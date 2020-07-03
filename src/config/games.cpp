@@ -88,7 +88,6 @@ Games::Games() noexcept {
 				LOG_INFO("Loaded games");
 			}
 
-			// Just in case
 			_this.loadThread = nullptr;
 		},
 		this, 1024, mainPrio + 1, -2, true);
@@ -151,11 +150,10 @@ void Games::save() noexcept {
 			fwrite(data, sizeof(char), size, file);
 			fclose(file);
 
-			delete[] data;
+			free(data);
 
 			LOG_INFO("Saved games");
 
-			// Just in case
 			static_cast<Games*>(_this)->saveThread = nullptr;
 		},
 		this, 1024, mainPrio + 1, -2, true);

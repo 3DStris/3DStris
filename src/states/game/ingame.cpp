@@ -68,7 +68,7 @@ void Ingame::update(const double dt) {
 			piece.reset(bag.front());
 			bag.pop_front();
 		} else {
-			const auto tmp = piece.getType();
+			const PieceType tmp = piece.getType();
 			piece.reset(hold);
 			hold = tmp;
 		}

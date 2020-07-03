@@ -11,8 +11,8 @@ int main() {
 	// constructor *before* the main function is called
 
 	// These constructors attempt to use the romfs service and various others,
-	// however none are initialized at the time of construction,
-	// therefore making it impossible to initialize said services here
+	// which, if initialized here, are not initialized at the time of
+	// construction
 
 	Game& game = Game::get();
 	game.pushState(make_unique<MainMenu>());

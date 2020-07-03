@@ -109,7 +109,7 @@ void Keybinds::save() noexcept {
 	fwrite(data, sizeof(char), size, file);
 	fclose(file);
 
-	delete[] data;
+	free(data);
 
 	LOG_INFO("Saved keybinds");
 }

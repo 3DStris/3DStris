@@ -5,7 +5,7 @@
 struct String;
 class StringView final {
    public:
-	constexpr StringView() noexcept : _data(""), _size(0) {}
+	constexpr StringView() noexcept : _data(nullptr), _size(0) {}
 
 	template <size_t sz>
 	constexpr StringView(const char (&_text)[sz]) noexcept

@@ -23,7 +23,7 @@ void Piece::reset(const PieceShape& shape, const PieceType type) {
 
 	fallTimer = 0;
 	fallAfter = 1;
-	sDropAfter = game.getConfig().dropTimer / 1000.0;
+	dropTimer = game.getConfig().dropTimer / 1000.0;
 	setTimer = 0;
 	setAfter = 1;
 
@@ -205,12 +205,15 @@ void Piece::update(const double dt, const u32 kDown) {
 
 	const bool softDropHeld =
 		game.isPressed(kHeld, Keybinds::Action::SOFT_DROP);
-	if (sDropAfter == 0.0 && softDropHeld) {
+
+	// code path for when the drop timer is set to 0
+	// see the header for variable explanations
+	if (dropTimer == 0.0 && softDropHeld) {
 		while (move(Direction::DOWN)) {
 		}
 		fallTimer = 0;
-	} else if (softDropHeld ||
-			   fallTimer > (softDropHeld ? sDropAfter : fallAfter)) {
+	} else if (game.isPressed(kDown, Keybinds::Action::SOFT_DROP) ||
+			   fallTimer > (softDropHeld ? dropTimer : fallAfter)) {
 		fallTimer = 0;
 		move(Direction::DOWN);
 	}

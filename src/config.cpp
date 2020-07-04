@@ -4,12 +4,12 @@
 #include <3dstris/util/log.hpp>
 
 #define MEMBER_CHECK_TYPE(member, check_type, type)                    \
-	LOG_INFO("Setting config member " #member);                        \
+	LOG_INFO("Setting config member \"" #member "\"");                 \
 	{                                                                  \
 		const auto node = mpack_node_map_cstr_optional(root, #member); \
 		if (mpack_node_type(node) != mpack_type_##check_type)          \
-			LOG_WARN("Failed to set config member " #member            \
-					 "; using default");                               \
+			LOG_WARN("Failed to set config member \"" #member          \
+					 "\"; using default");                             \
 		else                                                           \
 			member = mpack_node_##type(node);                          \
 	}
@@ -35,11 +35,11 @@ Config::Config() noexcept {
 	MEMBER_CHECK_TYPE(dropTimer, uint, u16)
 	MEMBER(useTextures, bool)
 
-	LOG_INFO("Setting config member language");
+	LOG_INFO("Setting config member \"language\"");
 	{
 		const auto node = mpack_node_map_cstr_optional(root, "language");
 		if (mpack_node_type(node) != mpack_type_str) {
-			LOG_WARN("Failed to set config member language; using default");
+			LOG_WARN("Failed to set config member \"language\"; using default");
 		} else {
 			language = String(mpack_node_str(node), mpack_node_strlen(node));
 		}
@@ -85,7 +85,7 @@ void Config::save() noexcept {
 	mpack_writer_t writer;
 	mpack_writer_init_growable(&writer, &data, &size);
 
-	this->serialize(writer);
+	serialize(writer);
 
 	if (mpack_writer_destroy(&writer) != mpack_ok) {
 		LOG_ERROR("Failed to encode config, error code %u",

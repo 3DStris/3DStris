@@ -97,7 +97,7 @@ void Keybinds::save() noexcept {
 	mpack_writer_t writer;
 	mpack_writer_init_growable(&writer, &data, &size);
 
-	this->serialize(writer);
+	serialize(writer);
 
 	if (mpack_writer_destroy(&writer) != mpack_ok) {
 		LOG_ERROR("Failed to encode keybinds, error code %u",

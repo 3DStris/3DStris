@@ -51,7 +51,7 @@ class Piece {
 	PieceShape shape;
 
 	double fallTimer;  /* timer that's between 0 and either fallAfter or
-						   dropTimer */
+						  dropTimer */
 	double fallAfter;  // how much time it takes for the piece to fall
 	double dropTimer;  // replaces fallTimer when the soft drop button is held
 

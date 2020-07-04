@@ -3,16 +3,14 @@
 
 int main() {
 	// Services are not (de)initialized here; instead, Game does graphics
-	// initialization, while Config does RomFS (de)init
+	// de(init), while Config does RomFS (de)init
 
 	// The reason for this is that BaseSettings::config (a static variable) is
 	// initialized as a copy of Game::get().getConfig(), a method which, after
 	// being called to initialize a static variable, calls the Game and Config
-	// constructor *before* the main function is called
-
-	// These constructors attempt to use the romfs service and various others,
-	// which, if initialized here, are not initialized at the time of
-	// construction
+	// constructor *before* the main function is called, whicn in turn call
+	// various services which, if initialized here, are not initialized at the
+	// time of construction
 
 	Game& game = Game::get();
 	game.pushState(make_unique<MainMenu>());

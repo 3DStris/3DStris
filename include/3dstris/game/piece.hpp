@@ -30,6 +30,7 @@ class Piece {
 	bool collides(s32 offX, s32 offY) const noexcept;
 
 	void update(double dt, u32 kDown);
+	void updateAction(double dt, u32 kDown, u32 kHeld);
 
 	PieceType getType() const noexcept { return type; }
 
@@ -64,6 +65,8 @@ class Piece {
 
 	double arr;
 	double arrTimer;
+
+	bool lastActionWasRotate;
 
 	bool _dead;
 };

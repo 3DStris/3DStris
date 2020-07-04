@@ -36,7 +36,9 @@ Log::Log() noexcept {
 	static constexpr auto LOG_PATH = "sdmc:/3ds/3dstris/log.log";
 
 #ifndef NDEBUG
-	consoleDebugInit(debugDevice_3DMOO);
+	// The Luma3DS GDB stub supports svcOutputDebugString, although it's
+	// horribly slow
+	consoleDebugInit(debugDevice_SVC);
 	setLevel(Log::Level::DEBUG);
 	setQuiet(false);
 #endif

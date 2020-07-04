@@ -19,9 +19,7 @@ class Game {
 
 	bool isPressed(u32 kDown, Keybinds::Action action) const noexcept;
 
-	String translate(const StringView key) const noexcept {
-		return config.getL10n().get(key);
-	}
+	String translate(const StringView key) const noexcept;
 	void loadLanguage(L10n::Language language) noexcept;
 
 	C3D_RenderTarget* getTop() noexcept;

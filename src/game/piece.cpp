@@ -77,10 +77,11 @@ void Piece::draw(const Pos origin, const u32 tileSize) const {
 	for (u8 y = 0; y < shape.size(); ++y) {
 		for (u8 x = 0; x < shape.size(); ++x) {
 			if (shape.get(x, y)) {
-				const auto pieceX = origin.x + (pos.x + x) * tileSize;
-				const auto pieceY = origin.y + (pos.y + y) * tileSize;
-				const auto ghostPieceY =
+				const float pieceX = origin.x + (pos.x + x) * tileSize;
+				const float pieceY = origin.y + (pos.y + y) * tileSize;
+				const float ghostPieceY =
 					origin.y + (pos.y + ghostY + y) * tileSize;
+
 				if (game.getConfig().useTextures) {
 					C2D_DrawImageAt(sprite, pieceX, pieceY, 0.5f);
 					C2D_DrawImageAt(sprite, pieceX, ghostPieceY, 0.5f,
@@ -103,8 +104,8 @@ void Piece::draw(const Pos origin, const u32 tileSize, const PieceShape& shape,
 	for (u8 y = 0; y < shape.size(); ++y) {
 		for (u8 x = 0; x < shape.size(); ++x) {
 			if (shape.get(x, y)) {
-				const auto pieceX = origin.x + x * tileSize;
-				const auto pieceY = origin.y + y * tileSize;
+				const float pieceX = origin.x + x * tileSize;
+				const float pieceY = origin.y + y * tileSize;
 				if (Game::get().getConfig().useTextures) {
 					C2D_DrawImageAt(Textures::get(static_cast<size_t>(type)),
 									pieceX, pieceY, 0.5f);

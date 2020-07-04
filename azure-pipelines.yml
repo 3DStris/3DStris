@@ -17,14 +17,9 @@ jobs:
       vmImage: ubuntu-latest
     variables:
       build_type: Release
-      CCACHE_DIR: $(Pipeline.Workspace)/ccache
     steps:
       - checkout: self
         submodules: true
-
-      - bash: |
-          sudo apt install ninja-build -y
-        displayName: Install ninja
 
       - bash: $(System.DefaultWorkingDirectory)/.azure/install-devkitarm.sh
         displayName: Install devkitARM
@@ -36,8 +31,8 @@ jobs:
       - bash: |
           source /etc/profile.d/devkit-env.sh
           mkdir -p build && cd build
-          cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -GNinja ..
-          ninja
+          cmake -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON ..
+          make -j$(nproc)
         displayName: Build
 
       - bash: |

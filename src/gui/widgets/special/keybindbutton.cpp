@@ -37,6 +37,7 @@ void KeybindButton::update(const touchPosition touch,
 
 	if (pressed()) {
 		key = hidKeysDown();
+		// TODO: maybe do this on a separate thread
 		do {
 			hidScanInput();
 			Keybinds::Key kDown = hidKeysDown();

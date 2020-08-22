@@ -6,7 +6,7 @@ KeybindSelect::KeybindSelect()
 	: State(),
 	  title(game.translate("keybindselect.title")),
 
-	  binds(game.getKeybinds().all()),
+	  unsavedBinds(game.getKeybinds().all()),
 
 	  tip(gui, Pos{0, SCREEN_HEIGHT - 25}, WH{SCREEN_WIDTH, 25}, false),
 	  tipText(game.translate("keybindselect.tip")),
@@ -29,10 +29,10 @@ KeybindSelect::KeybindSelect()
 	float x = 10;
 	float y = 15;
 	float textW = 0;
-	for (const auto& bind : binds) {
+	for (const auto& bind : unsavedBinds) {
 		buttons.push_back(
 			gui.add<KeybindButton>(Pos{x, y}, WH{BUTTON_WIDTH, BUTTON_HEIGHT},
-								   bind.first, binds[bind.first]));
+								   bind.first, unsavedBinds[bind.first]));
 		Text label(
 			game.translate(
 				Keybinds::KEYBIND_TO_KEY[static_cast<size_t>(bind.first)]),
@@ -62,7 +62,7 @@ void KeybindSelect::update(const double dt) {
 		for (const auto& button : buttons) {
 			button.get().save();
 		}
-		game.getKeybinds().all() = binds;
+		game.getKeybinds().all() = unsavedBinds;
 		game.getKeybinds().save();
 
 		game.popState();

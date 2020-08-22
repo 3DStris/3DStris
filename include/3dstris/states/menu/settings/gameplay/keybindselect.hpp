@@ -20,7 +20,7 @@ class KeybindSelect final : public State {
 	std::vector<std::reference_wrapper<KeybindButton>> buttons;
 	std::vector<Text> labels;
 
-	Keybinds::Binds binds;
+	Keybinds::Binds unsavedBinds;
 
 	GUI gui;
 

@@ -37,7 +37,7 @@
     "settings.gameplay.droptimer": "Сбросить таймер",
     "settings.gameplay.keybinds": "Привязка клавиш",
     "settings.gameplay.title": "Игровые настройки",
-    "settings.tip": "Пользуетесь нижним экраном для изменения настроек. Нажмите  что-бы отменить.",
+    "settings.tip": "Воспользуйтесь нижним экраном для изменения настроек. Нажмите  что-бы отменить.",
     "settings.visual.title": "Визуальные настройки",
     "settings.visual.usetextures": "Текстуры",
     "sprint.info": "Строк: %d/%d\nВремя: %.3fs\nPPS: %.3f",

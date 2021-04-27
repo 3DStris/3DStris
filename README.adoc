@@ -31,6 +31,8 @@ endif::[]
 
 A Tetris clone for the 3DS.
 
+IMPORTANT: Development currently paused, project will eventually be rewritten
+
 == Downloads
 :tinydb: https://tinydb.eiphax.tech
 :stats: https://3dstris.geni.site

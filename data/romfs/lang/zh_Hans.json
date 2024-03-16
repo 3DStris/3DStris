@@ -13,7 +13,7 @@
     "keybindselect.title": "按键绑定",
     "languageselect.select": "选择语言",
     "loadfailed.config": "无法加载config，你的设置已被重置。",
-    "loadfailed.games": "遊戲載入失敗；您儲存的遊戲將被重置",
+    "loadfailed.games": "游戏载入失败；您储存的游戏将被重置。",
     "loadfailed.keybinds": "无法加载按键绑定，你的按键已被重置。",
     "mainmenu.games": "游戏",
     "mainmenu.languages": "语言",

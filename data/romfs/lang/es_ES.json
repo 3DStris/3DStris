@@ -17,10 +17,19 @@
     "mainmenu.play": "Jugar",
     "mainmenu.settings": "Opciones",
     "menu": "Menú",
+    "modeselect.normal": "Normal",
+    "modeselect.sprint": "Esprint",
+    "modeselect.title": "Selecciona un modo",
+    "off": "Inactivo",
+    "ok": "OK",
+    "on": "Activo",
+    "paused.resume": "Reanudar",
+    "paused.title": "Pausado",
     "reset": "Reiniciar",
     "results.dead": "¡Has Perdido!",
     "results.restart": "Reiniciar",
     "results.sprint.time": "Tiempo: %.3fs",
+    "results.sprint.times": "Tiempos",
     "save": "Guardar",
     "settings.gameplay.droptimer": "Tiempo de Caída",
     "settings.tip": "Usa la pantalla inferior para cambiar los ajustes. Presiona  para cancelar.",
@@ -32,5 +41,7 @@
     "sprint.times.table.date": "Fecha",
     "sprint.times.table.lines": "Líneas",
     "sprint.times.table.time": "Tiempo",
-    "sprint.times.title": "Partidas"
+    "sprint.times.title": "Partidas",
+    "sprintselect.custom": "Personalizar",
+    "sprintselect.title": "Esprint"
 }

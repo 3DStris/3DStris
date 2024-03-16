@@ -7,5 +7,7 @@
     "ok": "OK",
     "on": "Encendido",
     "reset": "Reiniciar",
-    "save": "Guardar"
+    "save": "Guardar",
+    "sprint.info": "Lines: %d/%d\nTime: %.3fs\nPPS: %.3f",
+    "sprint.times.title": "Juegos"
 }

@@ -5,6 +5,8 @@
     "keybindselect.hold": "Håll",
     "keybindselect.left": "Vänster",
     "keybindselect.right": "Höger",
+    "keybindselect.rotateccw": "Rotera CCW",
+    "keybindselect.rotatecw": "Rotera CW",
     "keybindselect.tip": "Tryck på START för att avbryta. Tryck på SELECT för att återställa.",
     "keybindselect.title": "Nyckelbindningar",
     "languageselect.select": "Välj ett språk",

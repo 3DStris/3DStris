@@ -29,7 +29,7 @@
     "paused.resume": "Reprise",
     "paused.title": "Pause",
     "reset": "Réinitialiser",
-    "results.dead": "Game Over",
+    "results.dead": "Perdu",
     "results.restart": "Recommencer",
     "results.sprint.time": "Temps : %.3fs",
     "results.sprint.times": "Temps",

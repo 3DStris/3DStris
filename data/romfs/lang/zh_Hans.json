@@ -2,6 +2,13 @@
     "back": "返回",
     "cancel": "取消",
     "exit": "1312dasdfasdafasd",
-    "keybindselect.harddrop": "_**hello**_",
-    "keybindselect.hold": "2"
+    "keybindselect.harddrop": "",
+    "keybindselect.hold": "",
+    "keybindselect.left": "**home**",
+    "keybindselect.right": "hi **Right**",
+    "keybindselect.rotateccw": "_asdfsadf_",
+    "loadfailed.config": "**asdasd**",
+    "loadfailed.games": "",
+    "mainmenu.games": "**hello world**",
+    "modeselect.sprint": "**pppadfaf**"
 }

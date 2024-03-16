@@ -14,7 +14,7 @@
     "languageselect.select": "言語の選択",
     "loadfailed.config": "設定の読み込みに失敗しました。設定は再設定しました。",
     "loadfailed.games": "ゲームの読み込みに失敗しますた。ゲームの保存は再設定しました。",
-    "loadfailed.keybinds": "キーバインドの読み込みに失敗しました、バインドは再設定されました。",
+    "loadfailed.keybinds": "キーバインドの読み込みに失敗しました。バインディングがリセットされまreset。",
     "mainmenu.games": "ゲーム",
     "mainmenu.languages": "言語",
     "mainmenu.play": "プレイ",

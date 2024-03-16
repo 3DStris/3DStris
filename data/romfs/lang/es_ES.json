@@ -28,7 +28,7 @@
     "on": "Activo",
     "paused.resume": "Reanudar",
     "paused.title": "Pausado",
-    "reset": "Reiniciar",
+    "reset": "Restablecer",
     "results.dead": "¡Has perdido!",
     "results.restart": "Reiniciar",
     "results.sprint.time": "Tiempo: %.3fs",

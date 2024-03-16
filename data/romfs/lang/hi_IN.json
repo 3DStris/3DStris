@@ -1,5 +1,13 @@
 {
     "back": "पीछे",
+    "cancel": "",
+    "exit": "",
+    "keybindselect.harddrop": "",
+    "keybindselect.hold": "",
+    "keybindselect.left": "",
+    "keybindselect.right": "",
+    "loadfailed.config": "",
+    "loadfailed.games": "",
     "ok": "ठीक",
     "save": "सहेजें"
 }

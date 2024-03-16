@@ -1,1 +1,17 @@
-{}
+{
+    "back": "* HI\n    * HELLO",
+    "cancel": "* HI\n    * HELLO",
+    "keybindselect.harddrop": "* HI\n *   HELLO",
+    "keybindselect.hold": "* HI\n* HELLO",
+    "keybindselect.left": "* HI\n * HELLO",
+    "keybindselect.right": "* HI\n  * HELLO",
+    "keybindselect.rotateccw": "* a",
+    "keybindselect.softdrop": "* a\n  * b",
+    "keybindselect.tip": "* a\\n  * b",
+    "keybindselect.title": "* a \\n  * b",
+    "languageselect.select": "* a\\n* b",
+    "loadfailed.config": "* a\\n * b",
+    "loadfailed.games": "* a\\n * b",
+    "loadfailed.keybinds": "* a\\n * b",
+    "mainmenu.games": "* a \\n * b"
+}

@@ -39,7 +39,7 @@
     "settings.gameplay.title": "Impostazioni di gioco",
     "settings.tip": "Usa lo schermo inferiore per modificare le impostazioni. Premi  to annullare.",
     "settings.visual.title": "Impostazioni visive",
-    "settings.visual.usetextures": "Textures",
+    "settings.visual.usetextures": "Texture",
     "sprint.info": "Righe: %d/%d\nTempo: %.3fs\nPPS: %.3f",
     "sprint.times.info": "Righe: %d/%d\nTempo: %.3fs\nPPS: %.3f\nData: %s",
     "sprint.times.nogames": "Non hai ancora giocato ad alcuna partita Sprint.",

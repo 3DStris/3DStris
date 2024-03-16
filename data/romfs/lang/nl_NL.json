@@ -1,1 +1,13 @@
-{}
+{
+    "back": "Terug",
+    "cancel": "Annuleer",
+    "menu": "Menu",
+    "off": "Uit",
+    "ok": "OK",
+    "on": "Aan",
+    "reset": "Reset",
+    "save": "Opslaan",
+    "sprint.times.nogames": "U heeft nog geen Sprint spellen gespeeld.",
+    "sprint.times.table.time": "Tijd",
+    "sprint.times.title": "Spellen"
+}

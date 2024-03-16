@@ -1,3 +1,11 @@
 {
-    "ok": "OK"
+    "back": "Atras",
+    "cancel": "Cancelar",
+    "exit": "Salir",
+    "menu": "Menú",
+    "off": "Apagado",
+    "ok": "OK",
+    "on": "Encendido",
+    "reset": "Reiniciar",
+    "save": "Guardar"
 }

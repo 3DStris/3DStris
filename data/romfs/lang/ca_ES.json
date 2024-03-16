@@ -1,0 +1,16 @@
+{
+    "back": "Tornar",
+    "cancel": "Cancel·lar",
+    "exit": "Sortir",
+    "keybindselect.harddrop": "Caiguda ràpida",
+    "keybindselect.hold": "Mantenir",
+    "keybindselect.left": "Esquerra",
+    "keybindselect.right": "Dreta",
+    "keybindselect.rotateccw": "Rotació antihoraria",
+    "keybindselect.rotatecw": "Rotació horaria",
+    "keybindselect.softdrop": "Caiguda suau",
+    "keybindselect.tip": "Premeu INICIAR per a cancel·lar. Premeu TRIAR per a resetejar.",
+    "keybindselect.title": "Combinació de tecles",
+    "languageselect.select": "Trieu una llengua",
+    "loadfailed.config": "No s'ha pogut carregar la configuració. S'ha resetejat la configuració."
+}

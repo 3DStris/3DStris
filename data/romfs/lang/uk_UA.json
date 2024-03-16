@@ -13,5 +13,20 @@
     "loadfailed.config": "* a\\n * b",
     "loadfailed.games": "* a\\n * b",
     "loadfailed.keybinds": "* a\\n * b",
-    "mainmenu.games": "* a \\n * b"
+    "mainmenu.games": "* a \\n * b",
+    "mainmenu.languages": "Мова",
+    "mainmenu.play": "Грати",
+    "mainmenu.settings": "Налаштування",
+    "menu": "Меню",
+    "modeselect.normal": "Нормальний",
+    "modeselect.title": "Оберіть режим",
+    "off": "Вимкн.",
+    "ok": "Так",
+    "on": "Увімкн.",
+    "paused.resume": "Продовжити",
+    "paused.title": "Пауза",
+    "results.dead": "Кінець",
+    "results.restart": "С початку",
+    "results.sprint.times": "Часи",
+    "save": "Зберегти"
 }

@@ -9,7 +9,7 @@
     "keybindselect.rotateccw": "",
     "keybindselect.rotatecw": "",
     "keybindselect.softdrop": "",
-    "keybindselect.tip": "",
+    "keybindselect.tip": "按 \"开始 \"取消。按SELECT复位。",
     "keybindselect.title": "",
     "languageselect.select": "語言選擇",
     "loadfailed.config": "",

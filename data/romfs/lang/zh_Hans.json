@@ -34,6 +34,17 @@
     "results.sprint.time": "时间：%.3fs",
     "results.sprint.times": "",
     "save": "保存",
-    "settings.tip": "",
-    "sprint.times.nogames": ""
+    "settings.gameplay.keybinds": "按键绑定",
+    "settings.gameplay.title": "游戏设置",
+    "settings.tip": "使用下方屏幕更改设置。按取消。",
+    "settings.visual.title": "显示设置",
+    "settings.visual.usetextures": "材质",
+    "sprint.info": "行数：%d/%d\n时间：%.3fs\n块/秒：%.3f",
+    "sprint.times.info": "行数：%d\n时间：%.3fs\n块/秒：%.2f\n日期：%s",
+    "sprint.times.nogames": "",
+    "sprint.times.table.date": "日期",
+    "sprint.times.table.lines": "行数",
+    "sprint.times.table.time": "时间",
+    "sprint.times.title": "游戏记录",
+    "sprintselect.custom": "自定义"
 }
